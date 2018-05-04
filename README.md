@@ -9,7 +9,7 @@ This repository contains Helm Charts for running applications on APPUiO.
 Add the repo:
 
 ```
-helm repo add appuio http://charts.appuio.ch
+helm repo add appuio https://charts.appuio.ch
 ```
 
 ## Add / Update Charts
@@ -17,7 +17,7 @@ helm repo add appuio http://charts.appuio.ch
 ```
 helm package MYCHART
 mv *.tgz docs/
-helm repo index docs --url http://charts.appuio.ch
+helm repo index docs --url https://charts.appuio.ch
 git add -i
 git commit -av
 git push

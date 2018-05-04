@@ -2,10 +2,13 @@
 
 [Prometheus](https://prometheus.io/), a [Cloud Native Computing Foundation](https://cncf.io/) project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.
 
+**This is a fork of the upstream Helm Chart from [stable/prometheus](https://github.com/kubernetes/charts/tree/master/stable/prometheus)**.
+It adds OpenShift support.
+
 ## TL;DR;
 
 ```console
-$ helm install stable/prometheus
+$ helm install appuio/prometheus
 ```
 
 ## Introduction

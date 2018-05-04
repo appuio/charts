@@ -2,15 +2,15 @@ apiVersion: v1
 entries:
   prometheus:
   - appVersion: 2.2.1
-    created: 2018-04-27T16:44:23.643900484+02:00
+    created: 2018-05-04T17:09:20.146867128+02:00
     description: Prometheus is a monitoring system and time series database.
-    digest: e63c0de0e8857f36f6bd6ff1f30c7631433ad8aee10e43ec4dd36f57265c3b93
+    digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
     home: https://prometheus.io/
     icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
     maintainers:
-    - email: mgoodness@gmail.com
-      name: mgoodness
+    - email: info@appuio.ch
+      name: APPUiO Team
     name: prometheus
     sources:
     - https://github.com/prometheus/alertmanager
@@ -19,6 +19,6 @@ entries:
     - https://github.com/prometheus/node_exporter
     - https://github.com/kubernetes/kube-state-metrics
     urls:
-    - http://charts.appuio.ch/prometheus-6.2.1.tgz
-    version: 6.2.1
-generated: 2018-04-27T16:44:23.642824182+02:00
+    - https://charts.appuio.ch/prometheus-0.0.1.tgz
+    version: 0.0.1
+generated: 2018-05-04T17:09:20.145485406+02:00

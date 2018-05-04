@@ -1,0 +1,30 @@
+{{- if .Values.server.route.enabled -}}
+{{- $releaseName := .Release.Name -}}
+{{- $serviceName := include "prometheus.server.fullname" . }}
+{{- $servicePort := .Values.server.service.servicePort -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+{{- if .Values.server.route.annotations }}
+  annotations:
+{{ toYaml .Values.server.route.annotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "prometheus.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.server.name }}"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ template "prometheus.server.fullname" . }}
+spec:
+{{- if .Values.server.route.host }}
+  host: {{ .Values.server.route.host }}
+{{- end }}
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ template "prometheus.server.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+{{- end -}}
