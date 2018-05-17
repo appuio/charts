@@ -27,4 +27,9 @@ spec:
     name: {{ template "prometheus.server.fullname" . }}
     weight: 100
   wildcardPolicy: None
+  {{- if .Values.server.route.tls }}
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  {{- end }}
 {{- end -}}

@@ -457,6 +457,7 @@ server:
 
   route:
     enabled: false
+    tls: true
 
   ingress:
     ## If true, Prometheus server Ingress will be created
