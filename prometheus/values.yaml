@@ -455,6 +455,9 @@ server:
   ##
   configMapOverrideName: ""
 
+  route:
+    enabled: false
+
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
