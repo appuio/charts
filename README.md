@@ -14,11 +14,7 @@ helm repo add appuio https://charts.appuio.ch
 
 ## Add / Update Charts
 
-```
-helm package MYCHART
-mv *.tgz docs/
-helm repo index docs --url https://charts.appuio.ch
-git add -i
-git commit -av
-git push
-```
+New charts and versions will be built and published automatically. Please note
+that changes to existing charts only ever get published if the version number in
+the `Chart.yaml` changes.
+[![Build Status](https://travis-ci.com/appuio/charts.svg?branch=master)](https://travis-ci.com/appuio/charts)
