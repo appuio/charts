@@ -30,7 +30,8 @@ echo "----> Moving new charts into repo"
 mv -nv "${tmp}"/*.tgz "${OUT_DIR}/"
 
 pushd "$OUT_DIR"
-if git status -s | grep -v '^??' -q; then
+new_charts="$(git status --short | grep '^??' --count)"
+if [ "$new_charts" -eq 0 ]; then
   echo '----> No new charts, exiting'
   exit 0
 fi
