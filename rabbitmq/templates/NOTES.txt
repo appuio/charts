@@ -1,0 +1,7 @@
+Credentials:
+
+  Username      : {{ .Values.rabbitmqUser }}
+  Password      : $(kubectl get secret --namespace {{ .Release.Namespace }} {{ template "rabbitmq.fullname" . }}-creds -o jsonpath='{.data.rabbitmq-password}' | base64 --decode)
+  Erlang Cookie : $(kubectl get secret --namespace {{ .Release.Namespace }} {{ template "rabbitmq.fullname" . }}-config -o jsonpath='{.data.rabbitmq-erlang-cookie}' | base64 --decode)
+
+{{/* vim: set filetype=mustache: */}}
