@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   prometheus:
   - appVersion: 2.2.1
-    created: 2018-05-04T18:25:56.986920718+02:00
+    created: 2018-06-01T14:35:24.268414053Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -22,7 +22,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2018-05-04T18:25:56.985935039+02:00
+    created: 2018-06-01T14:35:24.266716242Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -41,4 +41,4 @@ entries:
     urls:
     - https://charts.appuio.ch/prometheus-0.0.1.tgz
     version: 0.0.1
-generated: 2018-05-04T18:25:56.984568951+02:00
+generated: 2018-06-01T14:35:24.265170502Z
