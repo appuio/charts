@@ -1,0 +1,36 @@
+---
+# Default values for rabbitmq.
+
+rabbitmq:
+  replicas: 3
+  storageSize: 1Gi
+  user: guest
+  password:
+  vhost: /
+  erlangCookie:
+
+  image:
+    repository: rabbitmq
+    tag: 3.7-management-alpine
+    pullPolicy: IfNotPresent
+
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  # Possible values for podAntiAffinity:
+  # "hard" - require during scheduling
+  # "soft" - preferr during scheduling
+  # any other value - no anti affinity
+  podAntiAffinity: soft
+
+  route:
+    enabled: true
+    annotations: {}
+      # kubernetes.io/tls-acme: "true"
+    host:
+    tls: true

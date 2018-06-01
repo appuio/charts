@@ -1,0 +1,31 @@
+{{- $route := .Values.rabbitmq.route -}}
+{{- if $route.enabled -}}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "rabbitmq.fullname" . }}-management
+{{- with $route.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "rabbitmq.name" . }}
+    chart: {{ template "rabbitmq.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+{{- with $route.host }}
+  host: {{ . }}
+{{- end }}
+  port:
+    targetPort: management
+  to:
+    kind: Service
+    name: {{ template "rabbitmq.fullname" $ }}
+  {{- if $route.tls }}
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  {{- end }}
+{{- end -}}

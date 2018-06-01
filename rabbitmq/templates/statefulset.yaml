@@ -1,0 +1,158 @@
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: {{ template "rabbitmq.fullname" . }}
+  labels:
+    app: {{ template "rabbitmq.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  serviceName: {{ template "rabbitmq.fullname" . }}-discovery
+  replicas: {{ .Values.rabbitmq.replicaCount }}
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: {{ template "rabbitmq.fullname" . }}
+    spec:
+      serviceAccountName: {{ template "rabbitmq.fullname" . }}
+      terminationGracePeriodSeconds: 180
+      restartPolicy: Always
+      {{- if eq .Values.rabbitmq.podAntiAffinity "hard" }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: "kubernetes.io/hostname"
+              labelSelector:
+                matchLabels:
+                  app: {{ template "rabbitmq.name" . }}
+                  release: {{ .Release.Name }}
+      {{- else if eq .Values.rabbitmq.podAntiAffinity "soft" }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: {{ template "rabbitmq.name" . }}
+                    release: {{ .Release.Name }}
+      {{- end }}
+      initContainers:
+        - name: copy-rabbitmq-config
+          image: busybox:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - cp /configmap/* /etc/rabbitmq/
+          volumeMounts:
+            - name: rabbitmq-config
+              mountPath: /configmap
+            - name: etc-rabbitmq
+              mountPath: /etc/rabbitmq
+            - name: rabbitmq-data
+              mountPath: /var/lib/rabbitmq
+      containers:
+        - name: rabbitmq
+          image: {{ .Values.rabbitmq.image.repository }}:{{ .Values.rabbitmq.image.tag }}
+          imagePullPolicy: {{ .Values.rabbitmq.image.pullPolicy }}
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: RABBITMQ_USE_LONGNAME
+              value: "true"
+            - name: RABBITMQ_NODENAME
+              value: rabbit@$(POD_NAME).{{ template "rabbitmq.fullname" . }}-discovery.{{ .Release.Namespace }}.svc.cluster.local
+            - name: K8S_HOSTNAME_SUFFIX
+              value: .{{ template "rabbitmq.fullname" . }}-discovery.{{ .Release.Namespace }}.svc.cluster.local
+            - name: K8S_SERVICE_NAME
+              value: {{ template "rabbitmq.fullname" . }}-discovery
+            - name: RABBITMQ_DEFAULT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "rabbitmq.fullname" . }}-creds
+                  key: rabbitmq-user
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "rabbitmq.fullname" . }}-creds
+                  key: rabbitmq-password
+            - name: RABBITMQ_DEFAULT_VHOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "rabbitmq.fullname" . }}-creds
+                  key: rabbitmq-vhost
+            - name: RABBITMQ_ERLANG_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "rabbitmq.fullname" . }}-config
+                  key: rabbitmq-erlang-cookie
+          ports:
+            - name: epmd
+              containerPort: 4369
+            - name: amqp
+              containerPort: 5672
+            - name: management
+              containerPort: 15672
+          volumeMounts:
+            - name: rabbitmq-data
+              mountPath: /var/lib/rabbitmq
+            - name: etc-rabbitmq
+              mountPath: /etc/rabbitmq
+          resources:
+{{ toYaml .Values.rabbitmq.resources | indent 12 }}
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  wget -S -O /dev/null http://127.0.0.1:15672/ &&
+                  /opt/rabbitmq/sbin/rabbitmqctl --timeout=10 node_health_check
+            failureThreshold: 2
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  NOW="$(date)" &&
+                  echo -n "$NOW" > /var/lib/rabbitmq/.livenessProbe &&
+                  test "$NOW" = "$(cat /var/lib/rabbitmq/.livenessProbe)" &&
+                  rm /var/lib/rabbitmq/.livenessProbe &&
+                  wget -S -O /dev/null http://127.0.0.1:15672/ &&
+                  /opt/rabbitmq/sbin/rabbitmqctl --timeout=10 node_health_check
+            failureThreshold: 5
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 30
+          lifecycle:
+            postStart: null
+            preStop:
+              exec:
+                command:
+                  - /opt/rabbitmq/sbin/rabbitmqctl
+                  - --timeout=50
+                  - shutdown
+      volumes:
+        - name: etc-rabbitmq
+          emptyDir: {}
+        - name: rabbitmq-config
+          configMap:
+            name: {{ template "rabbitmq.fullname" . }}
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbitmq-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.rabbitmq.storageSize }}
