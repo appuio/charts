@@ -1,0 +1,43 @@
+---
+# Default values for rabbitmq.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+storageSize: 1Gi
+rabbitmqUser: guest
+# rabbitmqPassword:
+rabbitmqVhost: /
+# rabbitmqErlangCookie:
+
+image:
+  repository: rabbitmq
+  tag: 3.7-management-alpine
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+route:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  host: rabbitmq.local
+
+resources: {}
+  # To specify sources, remove the curly braces after `resources:` and uncomment
+  # the lines below
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+# Possible values for podAntiAffinity:
+# "hard" - require during scheduling
+# "soft" - preferr during scheduling
+# any other value - no anti affinity
+podAntiAffinity: soft
