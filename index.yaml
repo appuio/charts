@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   prometheus:
   - appVersion: 2.2.1
-    created: 2018-06-01T14:35:24.268414053Z
+    created: 2018-06-08T14:52:21.551109992Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -22,7 +22,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2018-06-01T14:35:24.266716242Z
+    created: 2018-06-08T14:52:21.54903898Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -41,4 +41,16 @@ entries:
     urls:
     - https://charts.appuio.ch/prometheus-0.0.1.tgz
     version: 0.0.1
-generated: 2018-06-01T14:35:24.265170502Z
+  secret:
+  - apiVersion: v1
+    created: 2018-06-08T14:52:21.551394282Z
+    description: Deploy arbitrary secrets
+    digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: secret
+    urls:
+    - https://charts.appuio.ch/secret-1.0.0.tgz
+    version: 1.0.0
+generated: 2018-06-08T14:52:21.545898958Z
