@@ -38,16 +38,3 @@ fi
 
 echo '----> Reindexing Helm repository'
 helm repo index --url="$REPO_URL" .
-
-popd
-
-#echo '----> Commiting changes'
-#new_charts="$(git status --short | awk '/^\?\?/{print "*", $2}')"
-#commit_message="Adding new charts
-#
-#New charts:
-#$new_charts
-#"
-#git add .
-#git commit -m "$commit_message"
-#git push origin gh-pages
