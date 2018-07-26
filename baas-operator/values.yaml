@@ -1,0 +1,8 @@
+---
+baas_operator:
+  image: registry.vshn.net/vshn/baas:latest
+  environment:
+    BACKUP_IMAGE: registry.vshn.net/vshn/wrestic:latest
+
+rbac:
+  create: false

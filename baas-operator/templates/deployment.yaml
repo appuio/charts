@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "baas-operator.fullname" $ }}
+  labels:
+    app: {{ template "baas-operator.name" $ }}
+    chart: {{ template "baas-operator.chart" $ }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "baas-operator.name" $ }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "baas-operator.name" $ }}
+    spec:
+      containers:
+        - name: baas-operator
+          image: {{ .Values.baas_operator.image }}
+          imagePullPolicy: Always
+          env:
+{{- range $key, $value := .Values.baas_operator.environment }}
+            - name: {{ $key }}
+              value: {{ $value }}
+{{- end }}
+      serviceAccountName: {{ template "baas-operator.fullname" $ }}
