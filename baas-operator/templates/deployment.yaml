@@ -22,6 +22,9 @@ spec:
         - name: baas-operator
           image: {{ .Values.baas_operator.image }}
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
           env:
 {{- range $key, $value := .Values.baas_operator.environment }}
             - name: {{ $key }}
