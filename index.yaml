@@ -1,8 +1,20 @@
 apiVersion: v1
 entries:
+  baas-operator:
+  - apiVersion: v1
+    created: 2018-07-27T14:31:41.719242545Z
+    description: Backup as a Service Operator
+    digest: 90f108d28fe79801976074275c43d440797d5ff6b161ec250702aac2e686de5b
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: baas-operator
+    urls:
+    - https://charts.appuio.ch/baas-operator-1.0.0.tgz
+    version: 1.0.0
   keycloak:
   - appVersion: 4.1.0.Final
-    created: 2018-07-18T18:24:29.670349944Z
+    created: 2018-07-27T14:31:41.720627803Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
@@ -30,7 +42,7 @@ entries:
     version: 3.1.0
   prometheus:
   - appVersion: 2.2.1
-    created: 2018-07-18T18:24:29.673892437Z
+    created: 2018-07-27T14:31:41.724118032Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -50,7 +62,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2018-07-18T18:24:29.67220598Z
+    created: 2018-07-27T14:31:41.722372689Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -71,7 +83,7 @@ entries:
     version: 0.0.1
   secret:
   - apiVersion: v1
-    created: 2018-07-18T18:24:29.674322498Z
+    created: 2018-07-27T14:31:41.724491576Z
     description: Deploy arbitrary secrets
     digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
     maintainers:
@@ -81,4 +93,4 @@ entries:
     urls:
     - https://charts.appuio.ch/secret-1.0.0.tgz
     version: 1.0.0
-generated: 2018-07-18T18:24:29.669213205Z
+generated: 2018-07-27T14:31:41.718645018Z
