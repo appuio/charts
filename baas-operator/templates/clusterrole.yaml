@@ -1,0 +1,44 @@
+{{- if .Values.rbac.create }}
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: {{ template "baas-operator.fullname" $ }}
+  labels:
+    app: {{ template "baas-operator.name" $ }}
+    chart: {{ template "baas-operator.chart" $ }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+rules:
+- apiGroups:
+    - apiextensions.k8s.io
+  resources:
+    - customresourcedefinitions
+  verbs:
+    - get
+    - watch
+    - list
+    - create
+    - edit
+    - patch
+- apiGroups:
+  - appuio.ch
+  resources:
+    - backups
+  verbs:
+    - '*'
+- apiGroups:
+  - ''
+  resources:
+  - pods
+  - persistentvolumeclaims
+  - events
+  verbs:
+  - '*'
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - '*'
+{{- end }}
