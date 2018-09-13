@@ -1,7 +1,7 @@
 apiVersion: v1
 description: Backup as a Service Operator
 name: baas-operator
-version: 1.0.0
+version: 1.0.1
 maintainers:
   - name: APPUiO Team
     email: info@appuio.ch
