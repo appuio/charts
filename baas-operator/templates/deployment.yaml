@@ -27,4 +27,7 @@ spec:
             - name: {{ $key }}
               value: {{ $value }}
 {{- end }}
+          ports:
+          - containerPort: 8080
+            protocol: TCP
       serviceAccountName: {{ template "baas-operator.fullname" $ }}
