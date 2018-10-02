@@ -1,0 +1,94 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "maxscale.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "maxscale.name" . }}
+    helm.sh/chart: {{ include "maxscale.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "maxscale.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "maxscale.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        prometheus.io/port: "9195"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      {{- if .Values.metrics.enabled }}
+        - name: exporter
+          image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
+          imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
+          ports:
+            - containerPort: 9195
+              name: prometheus
+              protocol: TCP
+          resources:
+{{ toYaml .Values.metrics.resources | indent 12 }}
+      {{- end }}
+        - name: maxscale
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MASTER_ONLY_LISTEN_ADDRESS
+              value: 0.0.0.0
+            - name: READ_WRITE_LISTEN_ADDRESS
+              value: 0.0.0.0
+            - name: DB1_ADDRESS
+              value: {{ .Values.db1Address }}
+            - name: DB2_ADDRESS
+              value: {{ .Values.db2Address }}
+            - name: DB3_ADDRESS
+              value: {{ .Values.db3Address }}
+            - name: SERVICE_USER
+              value: {{ .Values.serviceUser }}
+            - name: MONITOR_USER
+              value: {{ .Values.monitorUser }}
+            - name: SERVICE_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "maxscale.fullname" . }}
+                  key: service-password
+            - name: MONITOR_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "maxscale.fullname" . }}
+                  key: monitor-password
+          ports:
+            - name: master-only
+              containerPort: 3306
+            - name: rw-split
+              containerPort: 3307
+          livenessProbe:
+            tcpSocket:
+              port: master-only
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            tcpSocket:
+              port: master-only
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
