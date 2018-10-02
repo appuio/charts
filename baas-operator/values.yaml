@@ -1,8 +1,15 @@
 ---
 baas_operator:
-  image: registry.vshn.net/vshn/baas:latest
-  environment:
-    BACKUP_IMAGE: registry.vshn.net/vshn/wrestic:latest
+  image: docker.io/appuio/baas:v0.0.9
+  ## Allows the specification of additional environment variables
+  envVars: |
+    - name: BACKUP_IMAGE
+      value: docker.io/appuio/wrestic:latest
+    # - name: BACKUP_GLOBALACCESSKEYID
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: global-s3-credentials
+    #       key: access-key-id
 
 rbac:
   create: false

@@ -23,9 +23,8 @@ spec:
           image: {{ .Values.baas_operator.image }}
           imagePullPolicy: Always
           env:
-{{- range $key, $value := .Values.baas_operator.environment }}
-            - name: {{ $key }}
-              value: {{ $value }}
+{{- with .Values.baas_operator.envVars }}
+{{ tpl . $ | indent 12 }}
 {{- end }}
           ports:
           - containerPort: 8080
