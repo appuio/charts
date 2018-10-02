@@ -1,6 +1,6 @@
 ---
 baas_operator:
-  image: registry.vshn.net/vshn/baas:latest
+  image: docker.io/appuio/baas:v0.0.9
   ## Allows the specification of additional environment variables
   envVars: |
     - name: BACKUP_IMAGE
@@ -8,8 +8,8 @@ baas_operator:
     # - name: BACKUP_GLOBALACCESSKEYID
     #   valueFrom:
     #     secretKeyRef:
-    #       key: access-key-id
     #       name: global-s3-credentials
+    #       key: access-key-id
 
 rbac:
   create: false
