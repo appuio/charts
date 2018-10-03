@@ -2,8 +2,20 @@ apiVersion: v1
 entries:
   baas-operator:
   - apiVersion: v1
+    appVersion: v0.0.10
+    created: 2018-10-03T14:24:48.501141016Z
+    description: Backup as a Service Operator
+    digest: 3d6292c567c675089558674fbdb4de9941f660fe40f93096201d5a49161c80c2
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: baas-operator
+    urls:
+    - https://charts.appuio.ch/baas-operator-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v1
     appVersion: v0.0.9
-    created: 2018-10-02T08:59:59.081362502Z
+    created: 2018-10-03T14:24:48.500634069Z
     description: Backup as a Service Operator
     digest: 0c1e22eb38be15e49f7b6a7e9083689090febca004ebfd324a71faff9142ff27
     maintainers:
@@ -14,7 +26,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v1
-    created: 2018-10-02T08:59:59.080802889Z
+    created: 2018-10-03T14:24:48.500214996Z
     description: Backup as a Service Operator
     digest: 4a4174ac224956fc4522afdc08f7060deaadfc44ad5d1a5954e0ac40ab76ca74
     maintainers:
@@ -25,7 +37,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: 2018-10-02T08:59:59.080266181Z
+    created: 2018-10-03T14:24:48.499693297Z
     description: Backup as a Service Operator
     digest: 7ed7ffdbf356e4778645492bbe18d1a97a1aa0af79c3c03cd7212d0e9cc9d415
     maintainers:
@@ -36,7 +48,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2018-10-02T08:59:59.079763774Z
+    created: 2018-10-03T14:24:48.499149866Z
     description: Backup as a Service Operator
     digest: 90f108d28fe79801976074275c43d440797d5ff6b161ec250702aac2e686de5b
     maintainers:
@@ -48,7 +60,7 @@ entries:
     version: 1.0.0
   keycloak:
   - appVersion: 4.1.0.Final
-    created: 2018-10-02T08:59:59.082865739Z
+    created: 2018-10-03T14:24:48.502326796Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
@@ -76,7 +88,7 @@ entries:
     version: 3.1.0
   prometheus:
   - appVersion: 2.4.2
-    created: 2018-10-02T08:59:59.087001451Z
+    created: 2018-10-03T14:24:48.506719361Z
     description: Prometheus is a monitoring system and time series database.
     digest: 42908b83975324cd52da0fb9c57fab84ae972e6dc99c9d5b83e2425474b95d59
     engine: gotpl
@@ -96,7 +108,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.3.tgz
     version: 0.0.3
   - appVersion: 2.2.1
-    created: 2018-10-02T08:59:59.085748547Z
+    created: 2018-10-03T14:24:48.50543536Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -116,7 +128,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2018-10-02T08:59:59.084599317Z
+    created: 2018-10-03T14:24:48.50404815Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -138,7 +150,7 @@ entries:
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: 0.12.0
-    created: 2018-10-02T08:59:59.087394259Z
+    created: 2018-10-03T14:24:48.507130324Z
     description: Prometheus Blackbox Exporter
     digest: 211fee66093eb0a26e957336b28b5da453d81e3048555d8e06b1334bf4829513
     home: https://github.com/prometheus/blackbox_exporter
@@ -157,7 +169,7 @@ entries:
     version: 0.1.1
   secret:
   - apiVersion: v1
-    created: 2018-10-02T08:59:59.087579675Z
+    created: 2018-10-03T14:24:48.507358498Z
     description: Deploy arbitrary secrets
     digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
     maintainers:
@@ -167,4 +179,4 @@ entries:
     urls:
     - https://charts.appuio.ch/secret-1.0.0.tgz
     version: 1.0.0
-generated: 2018-10-02T08:59:59.078850347Z
+generated: 2018-10-03T14:24:48.498344843Z
