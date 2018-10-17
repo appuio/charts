@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "maxscale.fullname" . }}-rwsplit
+  labels:
+    app.kubernetes.io/name: {{ include "maxscale.name" . }}
+    helm.sh/chart: {{ include "maxscale.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: rw-split
+      port: 3306
+      targetPort: 3307
+  selector:
+    app.kubernetes.io/name: {{ include "maxscale.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

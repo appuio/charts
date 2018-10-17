@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "maxscale.fullname" . }}-masteronly
+  labels:
+    app.kubernetes.io/name: {{ include "maxscale.name" . }}
+    helm.sh/chart: {{ include "maxscale.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: master-only
+      port: 3306
+      targetPort: 3306
+  selector:
+    app.kubernetes.io/name: {{ include "maxscale.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

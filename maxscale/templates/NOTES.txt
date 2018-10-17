@@ -1,0 +1,5 @@
+Maxscale has been deployed and can be accessed by using
+
+    {{ include "maxscale.fullname" . }}
+
+as the MySQL hostname.
