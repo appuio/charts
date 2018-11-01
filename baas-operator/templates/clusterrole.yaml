@@ -22,10 +22,9 @@ rules:
     - edit
     - patch
 - apiGroups:
-  - appuio.ch
+  - backup.appuio.ch
   resources:
-    - backups
-    - restores
+    - '*'
   verbs:
     - '*'
 - apiGroups:
