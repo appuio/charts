@@ -1,6 +1,6 @@
 ---
 baas_operator:
-  image: docker.io/appuio/baas:v0.0.10
+  image: docker.io/appuio/baas:v0.1.0
   ## Allows the specification of additional environment variables
   envVars: |
     - name: BACKUP_IMAGE
