@@ -1,13 +1,15 @@
 #!/bin/bash
 set -e
 
+HELMQA_URL=https://helmqa-helmqa.a3c1.starter-us-west-1.openshiftapps.com/livecheck?repo
 REPO_URL="${REPO_URL:-https://charts.appuio.ch}"
 echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-echo "########################################## $GIT_REPO ######################################"
+helm_status=$(curl --max-time 10 $HELMQA_URL=$REPO_URL | jq -r .status)
 
+echo "###################################### $helm_status ######################################"
 
 tmp="$(mktemp -d)"
 echo "----> Working in $tmp"

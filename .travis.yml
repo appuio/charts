@@ -10,6 +10,7 @@ install:
 - tar -xzvf /tmp/helm.tgz
 - PATH=$(pwd)/linux-amd64/:$PATH
 - helm init --client-only
+- sudo apt-get install jq
 before_script:
 - git fetch origin gh-pages
 script: "./.ci/build.sh"
