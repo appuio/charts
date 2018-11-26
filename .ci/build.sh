@@ -6,6 +6,9 @@ echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
+echo "########################################## $GIT_REPO ######################################"
+
+
 tmp="$(mktemp -d)"
 echo "----> Working in $tmp"
 

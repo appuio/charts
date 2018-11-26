@@ -1,28 +1,23 @@
----
 language: python
-
 env:
   global:
-    - HELM_URL=https://storage.googleapis.com/kubernetes-helm
-    - HELM_TGZ=helm-v2.9.1-linux-amd64.tar.gz
-    - OUT_DIR=out
-
+  - HELM_URL=https://storage.googleapis.com/kubernetes-helm
+  - HELM_TGZ=helm-v2.9.1-linux-amd64.tar.gz
+  - OUT_DIR=out
+  - secure: WvEYYrEMyCRh4ugVzfxUoeN2aDIdGlhnY2s0O9s+boBwEzCEPDk3Nfn66Y5SnBRJUqOZabp+EskuV+OKrQSijvCPF7xnyN9ZAlwuKVmKAV62cwnSB+NwrKxIACYulj9cKQqTkJGCdMUiXJ5SH9/Ki/v8c4uo8IJrilV4J63gdb+8StBbOYHHkS3aNaERJdNmj5Zg4WeiXV6i1N/cafvtGw0JLZxL7D0If9MOqcqsnqD5MJmj2Ny3VK6fquwBo0Yh+EXAI8+a3/koaZO4Vu4lqv0I6QmZQot3hRvWrr/XSySzBc4maXs0a2Z7FBwLBi5NuWOddt//wn6N/l4xbDl+u/tjqU0mwF8YDAT1e2EgQW+GM6/PfSHsuYOvoQt1dE8CDJhjbSPxvgHpLqN2ydl0mOezv2SIw3BQxegRtL8oAFDGPSm8wSZ/n/r7BzXL+cxEJwch9iL3VUd4O3JQF/a7FA9hjCQDsOgT8EDNUehMh62sWMwJsfaQfUitayv5biw3MXglK5NRgx9oE0t2RlBmTP6TK/CcUkUObwgXBob7K2Jtt1nboFLHTzWm2QgMNYY5rkn1qmtCqMtjL+VwT41A5Zu7QIQ5Pl01eZ5UE5iImVjOPDQ9NEcEt3Na3RFETiR0GXP4vxE5dpwlTvpiUULO3G0h9PahRJzTJv0kDjWjlmk=
 install:
-  - curl -sSLo /tmp/helm.tgz "${HELM_URL}/${HELM_TGZ}"
-  - tar -xzvf /tmp/helm.tgz
-  - PATH=$(pwd)/linux-amd64/:$PATH
-  - helm init --client-only
-
+- curl -sSLo /tmp/helm.tgz "${HELM_URL}/${HELM_TGZ}"
+- tar -xzvf /tmp/helm.tgz
+- PATH=$(pwd)/linux-amd64/:$PATH
+- helm init --client-only
 before_script:
-  - git fetch origin gh-pages
-
-script: ./.ci/build.sh
-
+- git fetch origin gh-pages
+script: "./.ci/build.sh"
 deploy:
   provider: pages
-  local-dir: $OUT_DIR
+  local-dir: "$OUT_DIR"
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: "$GITHUB_TOKEN"
   keep-history: true
   on:
     branch: master
