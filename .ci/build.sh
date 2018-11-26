@@ -7,18 +7,21 @@ echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-HELM_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
+HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
 
-HELM_STATUS=$(echo "$HELM_RESPONSE" | jq -r .status)
-HELM_RESPONSE_CODE=$(echo "$HELM_RESPONSE" | jq -r .code)
-
-echo "-------------------> $HELM_STATUS"
-echo "-------------------> $HELM_RESPONSE_CODE"
-
-if [[ "$HELM_STATUS" == "fail" ]]; then
-	echo "HelmQA test failed. Check response"
-	echo "-------------> $HELM_RESPONSE"
-	exit 1
+if [[ $? != 28 ]]; then
+	TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
+        echo "-------------------> $TEST_STATUS"
+	
+	if [[ "$TEST_STATUS" == "fail" ]]; then
+		echo "HelmQA test failed. Check response"
+		echo "-------------> $HELMQA_RESPONSE"
+		exit 1
+	else 
+		echo "HelmQA test succeeded. No issues found"
+	fi
+else
+	echo "HelmQA connection failed. Timed out!"
 fi
 
 tmp="$(mktemp -d)"
