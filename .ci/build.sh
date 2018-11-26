@@ -15,6 +15,11 @@ HELM_RESPONSE_CODE=$(echo "$HELM_RESPONSE" | jq -r .code)
 echo "-------------------> $HELM_STATUS"
 echo "-------------------> $HELM_RESPONSE_CODE"
 
+if [[ "$HELM_STATUS" == "fail" ]]; then
+	echo "HelmQA test failed. Check response"
+	echo "-------------> $HELM_RESPONSE"
+	exit 1
+fi
 
 tmp="$(mktemp -d)"
 echo "----> Working in $tmp"
