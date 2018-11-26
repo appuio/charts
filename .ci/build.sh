@@ -8,7 +8,7 @@ echo "----> Deploying to $REPO_URL"
 GIT_REPO="$(git config remote.origin.url)"
 
 HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
-
+echo $?
 if [[ $? != 28 ]]; then
 	TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
         echo "-------------------> $TEST_STATUS"
