@@ -7,7 +7,7 @@ echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-helm_status=$(curl --max-time 10 $HELMQA_URL=$REPO_URL | jq -r .status)
+helm_status=$(curl --max-time 10 "$HELMQA_URL=$REPO_URL" | jq -r .status)
 
 echo "###################################### $helm_status ######################################"
 
