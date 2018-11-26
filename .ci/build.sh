@@ -7,9 +7,14 @@ echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-helm_status=$(curl --max-time 10 "$HELMQA_URL=$GIT_REPO" | jq -r .status)
+HELM_RESPONSE=$(curl --max-time 10 "$HELMQA_URL=$GIT_REPO")
 
-echo "###################################### $helm_status ######################################"
+HELM_STATUS=$("$HELM_RESPONSE" | jq -r .status)
+HELM_RESPONSE_CODE=$("$HELM_RESPONSE" | jq -r .code)
+
+echo "-------------------> $HELM_STATUS"
+echo "-------------------> $HELM_RESPONSE_CODE"
+
 
 tmp="$(mktemp -d)"
 echo "----> Working in $tmp"
