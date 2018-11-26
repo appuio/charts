@@ -9,8 +9,8 @@ GIT_REPO="$(git config remote.origin.url)"
 
 HELM_RESPONSE=$(curl --max-time 10 "$HELMQA_URL=$GIT_REPO")
 
-HELM_STATUS=$("$HELM_RESPONSE" | jq -r .status)
-HELM_RESPONSE_CODE=$("$HELM_RESPONSE" | jq -r .code)
+HELM_STATUS=$(echo "$HELM_RESPONSE" | jq -r .status)
+HELM_RESPONSE_CODE=$(echo "$HELM_RESPONSE" | jq -r .code)
 
 echo "-------------------> $HELM_STATUS"
 echo "-------------------> $HELM_RESPONSE_CODE"
