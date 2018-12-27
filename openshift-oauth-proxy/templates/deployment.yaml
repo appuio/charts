@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "openshift-oauth-proxy.fullname" $ }}
+  labels:
+    app: {{ template "openshift-oauth-proxy.name" $ }}
+    chart: {{ template "openshift-oauth-proxy.chart" $ }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "openshift-oauth-proxy.name" $ }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "openshift-oauth-proxy.name" $ }}
+    spec:
+      containers:
+        - name: {{ template "openshift-oauth-proxy.name" $ }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          ports:
+            - containerPort: 8080
+              name: http
+          args:
+            - -provider=openshift
+            - -openshift-service-account={{ .Values.serviceaccount }}
+            - -cookie-secret-file=/etc/proxy/secrets/session_secret
+          {{- range $key, $value := .Values.extraArgs }}
+            - -{{ $key }}={{ $value }}
+          {{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - mountPath: /etc/proxy/secrets
+            name: {{ template "openshift-oauth-proxy.name" $ }}
+      serviceAccountName: {{ .Values.serviceaccount }}

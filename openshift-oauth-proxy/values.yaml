@@ -1,0 +1,15 @@
+---
+image:
+  repository: openshift/oauth-proxy
+  tag: v1.1.0
+  pullPolicy: IfNotPresent
+serviceaccount: openshift-oauth-proxy
+extraArgs:
+- upstream: http://localhost:9090
+- openshift-sar: '{"resource": "namespaces", "verb": "get"}'
+- openshift-delegate-urls: '{"/": {"resource": "namespaces", "verb": "get"}}'
+route:
+  enabled: true
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  tls: true
