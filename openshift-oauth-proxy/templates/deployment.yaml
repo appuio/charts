@@ -26,15 +26,18 @@ spec:
             - containerPort: 8080
               name: http
           args:
-            - -provider=openshift
-            - -openshift-service-account={{ .Values.serviceaccount }}
-            - -cookie-secret-file=/etc/proxy/secrets/session_secret
+            - '-provider=openshift'
+            - '-openshift-service-account={{ .Values.serviceaccount.name }}'
+            - '-cookie-secret=${COOKIE_SECRET}'
           {{- range $key, $value := .Values.extraArgs }}
-            - -{{ $key }}={{ $value }}
+            - '-{{ $key }}={{ $value }}'
           {{- end }}
+          env:
+            - name: COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "openshift-oauth-proxy.fullname" $ }}
+                  key: cookie-secret
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-          volumeMounts:
-          - mountPath: /etc/proxy/secrets
-            name: {{ template "openshift-oauth-proxy.name" $ }}
-      serviceAccountName: {{ .Values.serviceaccount }}
+      serviceAccountName: {{ .Values.serviceaccount.name }}
