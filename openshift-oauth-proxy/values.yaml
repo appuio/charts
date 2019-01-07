@@ -1,17 +1,27 @@
 ---
 image:
-  repository: openshift/oauth-proxy
+  repository: docker.io/openshift/oauth-proxy
   tag: v1.1.0
   pullPolicy: IfNotPresent
 serviceaccount:
   name: openshift-oauth-proxy
-  annotations:
-    
+
 extraArgs:
-- upstream: http://localhost:9090
-- openshift-sar: '{"resource": "namespaces", "verb": "get"}'
 - openshift-delegate-urls: '{"/": {"resource": "namespaces", "verb": "get"}}'
+
+proxy:
+  upstream: http://localhost:9090
+  openshift-sar: '{"resource": "namespaces", "verb": "get"}'
+
 route:
   annotations:
     kubernetes.io/tls-acme: "true"
   tls: true
+
+resources:
+  requests:
+    memory: "32Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "200m"
