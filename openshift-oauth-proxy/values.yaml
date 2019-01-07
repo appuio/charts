@@ -11,7 +11,7 @@ extraArgs:
 
 proxy:
   upstream: http://localhost:9090
-  openshift-sar: '{"resource": "namespaces", "verb": "get"}'
+  openshiftSar: '{"resource": "namespaces", "verb": "get"}'
 
 route:
   annotations:

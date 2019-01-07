@@ -30,7 +30,7 @@ spec:
             - '-openshift-service-account={{ .Values.serviceaccount.name }}'
             - '-cookie-secret=${COOKIE_SECRET}'
             - '-upstream={{ .Values.proxy.upstream }}'
-            - '-openshift-sar={{ .Values.proxy.openshift-sar }}'
+            - '-openshift-sar={{ .Values.proxy.openshiftSar }}'
           {{- range $key, $value := .Values.extraArgs }}
             - '-{{ $key }}={{ $value }}'
           {{- end }}

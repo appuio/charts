@@ -18,4 +18,4 @@ The following table lists the configurable parameters of the OpenShift oauth-pro
 | `route.tls` | Enable tls for the route
 | `serviceaccount.name` | Name of the service account
 | `proxy.upstream` | Upstream url
-| `proxy.openshift-sar` | OpenShift Subject Access Review
+| `proxy.openshiftSar` | OpenShift Subject Access Review
