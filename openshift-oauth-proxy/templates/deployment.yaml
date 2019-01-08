@@ -29,6 +29,7 @@ spec:
             - '-provider=openshift'
             - '-openshift-service-account={{ .Values.serviceaccount.name }}'
             - '-cookie-secret=${COOKIE_SECRET}'
+            - '-https-address='
             - '-upstream={{ .Values.proxy.upstream }}'
             - '-openshift-sar={{ .Values.proxy.openshiftSar }}'
           {{- range $arg := .Values.extraArgs }}
