@@ -31,8 +31,8 @@ spec:
             - '-cookie-secret=${COOKIE_SECRET}'
             - '-upstream={{ .Values.proxy.upstream }}'
             - '-openshift-sar={{ .Values.proxy.openshiftSar }}'
-          {{- range $key, $value := .Values.extraArgs }}
-            - '-{{ $key }}={{ $value }}'
+          {{- range $arg := .Values.extraArgs }}
+            - '-{{ $arg.name }}={{ $arg.value }}'
           {{- end }}
           env:
             - name: COOKIE_SECRET
