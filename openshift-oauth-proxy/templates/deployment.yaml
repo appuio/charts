@@ -30,6 +30,7 @@ spec:
             - '-openshift-service-account={{ .Values.serviceaccount.name }}'
             - '-cookie-secret=${COOKIE_SECRET}'
             - '-https-address='
+            - '-http-address=:8080'
             - '-upstream={{ .Values.proxy.upstream }}'
             - '-openshift-sar={{ .Values.proxy.openshiftSar }}'
           {{- range $arg := .Values.extraArgs }}
