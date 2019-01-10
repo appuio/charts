@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "openshift-oauth-proxy.fullname" $ }}
+  labels:
+    app: {{ template "openshift-oauth-proxy.name" $ }}
+    chart: {{ template "openshift-oauth-proxy.chart" $ }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "openshift-oauth-proxy.name" $ }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "openshift-oauth-proxy.name" $ }}
+    spec:
+      containers:
+        - name: {{ template "openshift-oauth-proxy.name" $ }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          ports:
+            - containerPort: 8080
+              name: http
+          args:
+            - '-provider=openshift'
+            - '-openshift-service-account={{ .Values.serviceaccount.name }}'
+            - '-cookie-secret=${COOKIE_SECRET}'
+            - '-https-address='
+            - '-http-address=:8080'
+            - '-upstream={{ .Values.proxy.upstream }}'
+            - '-openshift-sar={{ .Values.proxy.openshiftSar }}'
+          {{- range $arg := .Values.extraArgs }}
+            - '-{{ $arg.name }}={{ $arg.value }}'
+          {{- end }}
+          env:
+            - name: COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "openshift-oauth-proxy.fullname" $ }}
+                  key: cookie-secret
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      serviceAccountName: {{ .Values.serviceaccount.name }}
