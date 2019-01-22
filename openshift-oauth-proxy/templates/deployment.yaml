@@ -13,10 +13,16 @@ spec:
   selector:
     matchLabels:
       app: {{ template "openshift-oauth-proxy.name" $ }}
+      chart: {{ template "openshift-oauth-proxy.chart" $ }}
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
         app: {{ template "openshift-oauth-proxy.name" $ }}
+        chart: {{ template "openshift-oauth-proxy.chart" $ }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
     spec:
       containers:
         - name: {{ template "openshift-oauth-proxy.name" $ }}

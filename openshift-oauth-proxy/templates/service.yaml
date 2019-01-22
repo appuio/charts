@@ -15,4 +15,7 @@ spec:
       targetPort: http
   selector:
     app: {{ template "openshift-oauth-proxy.name" $ }}
+    chart: {{ template "openshift-oauth-proxy.chart" $ }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
   type: ClusterIP
