@@ -3,8 +3,6 @@ image:
   repository: docker.io/openshift/oauth-proxy
   tag: v1.1.0
   pullPolicy: IfNotPresent
-serviceaccount:
-  name: openshift-oauth-proxy
 
 extraArgs:
 #  - name: openshift-delegate-urls

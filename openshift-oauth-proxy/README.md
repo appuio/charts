@@ -16,6 +16,5 @@ The following table lists the configurable parameters of the OpenShift oauth-pro
 | `route.annotations` | Add annotations to route
 | `route.host` | Define route host
 | `route.tls` | Enable tls for the route
-| `serviceaccount.name` | Name of the service account
 | `proxy.upstream` | Upstream url
 | `proxy.openshiftSar` | OpenShift Subject Access Review

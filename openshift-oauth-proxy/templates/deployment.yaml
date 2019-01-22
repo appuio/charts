@@ -27,7 +27,7 @@ spec:
               name: http
           args:
             - '-provider=openshift'
-            - '-openshift-service-account={{ .Values.serviceaccount.name }}'
+            - '-openshift-service-account={{ template "openshift-oauth-proxy.fullname" $ }}'
             - '-cookie-secret=${COOKIE_SECRET}'
             - '-https-address='
             - '-http-address=:8080'
@@ -44,4 +44,4 @@ spec:
                   key: cookie-secret
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-      serviceAccountName: {{ .Values.serviceaccount.name }}
+      serviceAccountName: {{ template "openshift-oauth-proxy.fullname" $ }}
