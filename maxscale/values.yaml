@@ -11,6 +11,10 @@ servicePassword: secret
 monitorUser: maxscale
 monitorPassword: secret
 
+## MaxScale passwords using an existing secret
+## The secret needs the keys 'service-password' and 'monitor-password'
+# existingSecret: secret
+
 replicaCount: 1
 
 image:

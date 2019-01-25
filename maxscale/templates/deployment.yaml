@@ -56,12 +56,12 @@ spec:
             - name: SERVICE_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "maxscale.fullname" . }}
+                  name: {{ template "maxscale.secretName" . }}
                   key: service-password
             - name: MONITOR_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "maxscale.fullname" . }}
+                  name: {{ template "maxscale.secretName" . }}
                   key: monitor-password
           ports:
             - name: master-only
