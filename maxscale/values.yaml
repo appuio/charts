@@ -18,8 +18,8 @@ monitorPassword: secret
 replicaCount: 1
 
 image:
-  repository: appuio/maxscale
-  tag: 2.2.15
+  repository: docker.io/appuio/maxscale
+  tag: 2.2.19
   pullPolicy: IfNotPresent
 
 nameOverride: ""
