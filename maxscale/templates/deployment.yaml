@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "maxscale.fullname" . }}
   labels:
+    app: {{ include "maxscale.name" . }}
     app.kubernetes.io/name: {{ include "maxscale.name" . }}
     helm.sh/chart: {{ include "maxscale.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
