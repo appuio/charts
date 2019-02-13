@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-HELMQA_URL=https://helmqa-helmqa.a3c1.starter-us-west-1.openshiftapps.com/livecheck?repo
+HELMQA_URL=https://http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
 REPO_URL="${REPO_URL:-https://charts.appuio.ch}"
 echo "----> Deploying to $REPO_URL"
 
@@ -11,12 +11,12 @@ HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
 
 if [[ $? != 28 ]]; then
 	TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
-	
+
 	if [[ "$TEST_STATUS" == "fail" ]]; then
 		echo "HelmQA test failed. Check response"
 		echo "$HELMQA_RESPONSE"
 		exit 1
-	elif [[ "$TEST_STATUS" == "success" ]]; then 
+	elif [[ "$TEST_STATUS" == "success" ]]; then
 		echo "HelmQA test succeeded. No issues found"
 	fi
 else
