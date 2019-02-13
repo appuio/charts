@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "maxscale.fullname" . }}
   labels:
+    app: {{ include "maxscale.name" . }}
     app.kubernetes.io/name: {{ include "maxscale.name" . }}
     helm.sh/chart: {{ include "maxscale.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
@@ -56,12 +57,12 @@ spec:
             - name: SERVICE_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "maxscale.fullname" . }}
+                  name: {{ template "maxscale.secretName" . }}
                   key: service-password
             - name: MONITOR_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "maxscale.fullname" . }}
+                  name: {{ template "maxscale.secretName" . }}
                   key: monitor-password
           ports:
             - name: master-only
