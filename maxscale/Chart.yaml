@@ -5,3 +5,6 @@ version: 1.0.3
 appVersion: "2.2.19"
 description: MaxScale Helm Chart
 home: "https://mariadb.com/products/technology/maxscale"
+maintainers:
+  - name: APPUiO Team
+    email: info@appuio.ch
