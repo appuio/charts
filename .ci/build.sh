@@ -1,26 +1,46 @@
 #!/bin/bash
 set -e
 
-HELMQA_URL=https://http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
+# set to one of the following values
+# - don't use HelmQA: (empty)
+# - use HelmQA in SaaS mode: http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
+# - use HelmQA locally in Docker mode: http://127.0.0.1:5000/livecheck?repo
+HELMQA_URL=http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
 REPO_URL="${REPO_URL:-https://charts.appuio.ch}"
 echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
+if [ ! -z $HELMQA_URL ]; then
+  echo $HELMQA_URL | grep -q 127.0.0.1
+  did=
+  if [ $? == 0 ]; then
+    docker pull jszhaw/helmqa
+    did=`docker run -d -p 127.0.0.1:5000:5000 helmqa`
+    sleep 3
+  fi
 
-if [[ $? != 28 ]]; then
-	TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
+  HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
 
-	if [[ "$TEST_STATUS" == "fail" ]]; then
-		echo "HelmQA test failed. Check response"
-		echo "$HELMQA_RESPONSE"
-		exit 1
-	elif [[ "$TEST_STATUS" == "success" ]]; then
-		echo "HelmQA test succeeded. No issues found"
-	fi
+  if [[ $? != 28 ]]; then
+    TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
+
+    if [[ "$TEST_STATUS" == "fail" ]]; then
+      echo "HelmQA test failed. Check response"
+      echo "$HELMQA_RESPONSE"
+      exit 1
+    elif [[ "$TEST_STATUS" == "success" ]]; then
+      echo "HelmQA test succeeded. No issues found"
+    fi
+  else
+    echo "HelmQA connection failed. Timed out!"
+  fi
+
+  if [ ! -z $did ]; then
+    docker kill $did
+  fi
 else
-	echo "HelmQA connection failed. Timed out!"
+  echo "Skipping HelmQA test."
 fi
 
 tmp="$(mktemp -d)"
