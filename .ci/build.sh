@@ -3,41 +3,46 @@ set -e
 
 # set to one of the following values
 # - don't use HelmQA: (empty)
-# - use HelmQA in SaaS mode: http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
-# - use HelmQA locally in Docker mode: http://127.0.0.1:5000/livecheck?repo
-HELMQA_URL=http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo
+# - use HelmQA in SaaS mode: 'http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo'
+# - use HelmQA locally in Docker mode: 'http://127.0.0.1:5000/livecheck?repo'
+HELMQA_URL='http://helmqa-zhaw-prod-demos.appuioapp.ch/livecheck?repo'
 REPO_URL="${REPO_URL:-https://charts.appuio.ch}"
 echo "----> Deploying to $REPO_URL"
 
 GIT_REPO="$(git config remote.origin.url)"
 
-if [ ! -z $HELMQA_URL ]; then
-  echo $HELMQA_URL | grep -q 127.0.0.1
+if [ -n "$HELMQA_URL" ]; then
   did=
-  if [ $? == 0 ]; then
+  if [[ "$HELMQA_URL" =~ 127.0.0.1 ]]; then
     docker pull jszhaw/helmqa
-    did=`docker run -d -p 127.0.0.1:5000:5000 helmqa`
-    sleep 3
+    did="$(docker run -d -p 127.0.0.1:5000:5000 helmqa)"
   fi
 
-  HELMQA_RESPONSE=$(curl --connect-timeout 5 "$HELMQA_URL=$GIT_REPO")
+  while true; do
+    sleep 1
+    tresponse="$(curl --connect-timeout 5 $HELMQA_URL=$GIT_REPO)" || true
+    if [ -n "$tresponse" ]; then
+      break
+    fi
+    echo "Still spinning up HelmQA container image..."
+  done
 
   if [[ $? != 28 ]]; then
-    TEST_STATUS=$(echo "$HELMQA_RESPONSE" | jq -r .status)
+    tstatus=$(echo "$tresponse" | jq -r .status)
 
-    if [[ "$TEST_STATUS" == "fail" ]]; then
+    if [[ "$tstatus" == "fail" ]]; then
       echo "HelmQA test failed. Check response"
-      echo "$HELMQA_RESPONSE"
+      echo "$tresponse"
       exit 1
-    elif [[ "$TEST_STATUS" == "success" ]]; then
+    elif [[ "$tstatus" == "success" ]]; then
       echo "HelmQA test succeeded. No issues found"
     fi
   else
     echo "HelmQA connection failed. Timed out!"
   fi
 
-  if [ ! -z $did ]; then
-    docker kill $did
+  if [ -n "$did" ]; then
+    docker kill "$did"
   fi
 else
   echo "Skipping HelmQA test."
