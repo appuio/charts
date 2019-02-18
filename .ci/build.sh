@@ -14,13 +14,13 @@ GIT_REPO="$(git config remote.origin.url)"
 if [ -n "$HELMQA_URL" ]; then
   did=
   if [[ "$HELMQA_URL" =~ 127.0.0.1 ]]; then
-    docker pull jszhaw/helmqa
-    did="$(docker run -d -p 127.0.0.1:5000:5000 helmqa)"
+    docker pull docker.io/jszhaw/helmqa
+    did="$(docker run -d -p 127.0.0.1:5000:5000 docker.io/jszhaw/helmqa)"
   fi
 
   while true; do
     sleep 1
-    tresponse="$(curl --connect-timeout 5 $HELMQA_URL=$GIT_REPO)" || true
+    tresponse="$(curl --connect-timeout 5 --max-time 60 $HELMQA_URL=$GIT_REPO)" || true
     if [ -n "$tresponse" ]; then
       break
     fi
