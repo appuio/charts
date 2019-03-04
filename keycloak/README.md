@@ -50,6 +50,16 @@ $ helm delete keycloak
 
 ## Configuration
 
+To override parameters regarding the keycloak-chart (which is helm/stable) you need to address the chart in your values.yaml like following:
+
+
+```yaml
+keycloak: #prepend
+  keycloak:
+    <key>:<value>
+    ...
+```
+
 The following table lists the configurable parameters of the Keycloak chart and their default values.
 
 Parameter | Description | Default
