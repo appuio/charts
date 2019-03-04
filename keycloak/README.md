@@ -2,11 +2,17 @@
 
 [Keycloak](http://www.keycloak.org/) is an open source identity and access management for modern applications and services.
 
+
 ## TL;DR;
 
 ```console
 $ helm install stable/keycloak
 ```
+
+## Adaptations for Openshift
+
+There are some minor adaptations necessary to run the [helm/stable Keycloak-Chart] on openshift. To make these adaptations the appuio Keycloak-Chart takes the
+helm/stable Chart just as a dependency. The values.yaml then adds an empty securityContext and a configuration for the route to the chart. The templates-folder contains the openshift-specific definition for the route. Everything else is plain Keycloak.
 
 ## Introduction
 
