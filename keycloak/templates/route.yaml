@@ -1,4 +1,4 @@
-{{- $route := .Values.keycloak.route -}}
+{{- $route := .Values.route -}}
 {{- if $route.enabled -}}
 apiVersion: route.openshift.io/v1
 kind: Route
