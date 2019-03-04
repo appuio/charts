@@ -5,12 +5,20 @@
 
 ## TL;DR;
 
+Please make sure that you first run:
 ```console
-$ helm install stable/keycloak
+$ helm dependency update
+```
+
+the dependent helm/stable chart of keycloak will be pulled. Afterwards:
+
+```console
+$ helm install -n <name_of_the_deployment> .
 ```
 
 ## Adaptations for Openshift
 
+After helm updated its dependencies there is a new folder called /charts. In this folder you find the upstream chart from helm/stable.
 There are some minor adaptations necessary to run the [helm/stable Keycloak-Chart] on openshift. To make these adaptations the appuio Keycloak-Chart takes the
 helm/stable Chart just as a dependency. The values.yaml then adds an empty securityContext and a configuration for the route to the chart. The templates-folder contains the openshift-specific definition for the route. Everything else is plain Keycloak.
 
