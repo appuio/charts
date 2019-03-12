@@ -53,6 +53,7 @@ rules:
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
+metadata:
   name: {{ template "baas-operator.fullname" $ }}-edit
   labels:
     app: {{ template "baas-operator.name" $ }}
