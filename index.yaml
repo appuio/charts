@@ -3,7 +3,19 @@ entries:
   baas-operator:
   - apiVersion: v1
     appVersion: v0.1.3
-    created: 2019-03-04T14:26:53.849354854Z
+    created: 2019-03-12T15:52:28.625385327Z
+    description: Backup as a Service Operator
+    digest: 42534abd4a8a7ee49166ca4c6acf8fc5525e2b8f9bb4323d61bd9e76cb356951
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: baas-operator
+    urls:
+    - https://charts.appuio.ch/baas-operator-1.2.2.tgz
+    version: 1.2.2
+  - apiVersion: v1
+    appVersion: v0.1.3
+    created: 2019-03-12T15:52:28.625108448Z
     description: Backup as a Service Operator
     digest: 9236755605bcd952be46097a28ea731c4bff88479de49e22998991a818e85bf1
     maintainers:
@@ -15,7 +27,7 @@ entries:
     version: 1.2.1
   - apiVersion: v1
     appVersion: v0.1.0
-    created: 2019-03-04T14:26:53.848857561Z
+    created: 2019-03-12T15:52:28.624850337Z
     description: Backup as a Service Operator
     digest: fb4ff9f57056813ef7a9941bce884198356bf7ccacef39b3347b673223b583fd
     maintainers:
@@ -27,7 +39,7 @@ entries:
     version: 1.2.0
   - apiVersion: v1
     appVersion: v0.0.10
-    created: 2019-03-04T14:26:53.848256654Z
+    created: 2019-03-12T15:52:28.624615893Z
     description: Backup as a Service Operator
     digest: 3d6292c567c675089558674fbdb4de9941f660fe40f93096201d5a49161c80c2
     maintainers:
@@ -39,7 +51,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: v0.0.9
-    created: 2019-03-04T14:26:53.847769511Z
+    created: 2019-03-12T15:52:28.624275481Z
     description: Backup as a Service Operator
     digest: 0c1e22eb38be15e49f7b6a7e9083689090febca004ebfd324a71faff9142ff27
     maintainers:
@@ -50,7 +62,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v1
-    created: 2019-03-04T14:26:53.847276733Z
+    created: 2019-03-12T15:52:28.62402795Z
     description: Backup as a Service Operator
     digest: 4a4174ac224956fc4522afdc08f7060deaadfc44ad5d1a5954e0ac40ab76ca74
     maintainers:
@@ -61,7 +73,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: 2019-03-04T14:26:53.846773252Z
+    created: 2019-03-12T15:52:28.623748586Z
     description: Backup as a Service Operator
     digest: 7ed7ffdbf356e4778645492bbe18d1a97a1aa0af79c3c03cd7212d0e9cc9d415
     maintainers:
@@ -72,7 +84,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2019-03-04T14:26:53.846305919Z
+    created: 2019-03-12T15:52:28.623462753Z
     description: Backup as a Service Operator
     digest: 90f108d28fe79801976074275c43d440797d5ff6b161ec250702aac2e686de5b
     maintainers:
@@ -84,7 +96,7 @@ entries:
     version: 1.0.0
   keycloak:
   - appVersion: 4.8.3.Final
-    created: 2019-03-04T14:26:53.851809339Z
+    created: 2019-03-12T15:52:28.627653259Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55ffcdb3a317e08c1d1c4e0913cdaef3d610e98a8547347aa00c0b46a55b9012
@@ -111,7 +123,7 @@ entries:
     - https://charts.appuio.ch/keycloak-4.1.0.tgz
     version: 4.1.0
   - appVersion: 4.1.0.Final
-    created: 2019-03-04T14:26:53.850130281Z
+    created: 2019-03-12T15:52:28.626141477Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
@@ -140,7 +152,7 @@ entries:
   maxscale:
   - apiVersion: v1
     appVersion: 2.2.19
-    created: 2019-03-04T14:26:53.852330439Z
+    created: 2019-03-12T15:52:28.628183203Z
     description: MaxScale Helm Chart
     digest: 6f7ec64bcf4122a2585ea3ca7f52773a36d91c0a8ed81849d12580d6a1f77a6d
     home: https://mariadb.com/products/technology/maxscale
@@ -150,7 +162,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: 2.2.15
-    created: 2019-03-04T14:26:53.852079471Z
+    created: 2019-03-12T15:52:28.627910268Z
     description: MaxScale Helm Chart
     digest: 82ccb25596ce6c3674880f8179559c2c637878db2fadeb21ec09ad9b1a455689
     home: https://mariadb.com/products/technology/maxscale
@@ -161,7 +173,7 @@ entries:
   openshift-oauth-proxy:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-03-04T14:26:53.852882063Z
+    created: 2019-03-12T15:52:28.62873793Z
     description: OpenShift oauth-proxy
     digest: 8e784d176af6c39fc46d855e4b696efccad8b4165e13dd07075c75e5b78e94b1
     maintainers:
@@ -173,7 +185,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-03-04T14:26:53.852600168Z
+    created: 2019-03-12T15:52:28.628488438Z
     description: OpenShift oauth-proxy
     digest: ee61705b2a0a0d6fb3407308e92b12baff0198489616cbee96991873f8b597f0
     maintainers:
@@ -185,7 +197,7 @@ entries:
     version: 0.1.0
   prometheus:
   - appVersion: 2.4.2
-    created: 2019-03-04T14:26:53.856552636Z
+    created: 2019-03-12T15:52:28.634663549Z
     description: Prometheus is a monitoring system and time series database.
     digest: 42908b83975324cd52da0fb9c57fab84ae972e6dc99c9d5b83e2425474b95d59
     engine: gotpl
@@ -205,7 +217,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.3.tgz
     version: 0.0.3
   - appVersion: 2.2.1
-    created: 2019-03-04T14:26:53.855511553Z
+    created: 2019-03-12T15:52:28.633393123Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -225,7 +237,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2019-03-04T14:26:53.853959064Z
+    created: 2019-03-12T15:52:28.630929393Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -247,7 +259,7 @@ entries:
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: 0.12.0
-    created: 2019-03-04T14:26:53.856875049Z
+    created: 2019-03-12T15:52:28.635015953Z
     description: Prometheus Blackbox Exporter
     digest: 211fee66093eb0a26e957336b28b5da453d81e3048555d8e06b1334bf4829513
     home: https://github.com/prometheus/blackbox_exporter
@@ -266,7 +278,7 @@ entries:
     version: 0.1.1
   secret:
   - apiVersion: v1
-    created: 2019-03-04T14:26:53.857038594Z
+    created: 2019-03-12T15:52:28.635188814Z
     description: Deploy arbitrary secrets
     digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
     maintainers:
@@ -276,4 +288,4 @@ entries:
     urls:
     - https://charts.appuio.ch/secret-1.0.0.tgz
     version: 1.0.0
-generated: 2019-03-04T14:26:53.845530229Z
+generated: 2019-03-12T15:52:28.623013374Z
