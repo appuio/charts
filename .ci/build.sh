@@ -74,10 +74,18 @@ echo "----> Check out gh-pages branch"
 git clone --depth=1 "$GIT_REPO" --branch=gh-pages "$OUT_DIR"
 
 echo "----> Moving new charts into repo"
-mv -nv "${tmp}"/*.tgz "${OUT_DIR}/"
+mv -v "${tmp}"/*.tgz "${OUT_DIR}/"
 
 pushd "$OUT_DIR"
 new_charts="$(git status --short | grep '^??' --count ||:)"
+modified_charts="$(git status --short | grep '^.M' --count ||:)"
+
+if [ "$modified_charts" -ne 0 ]; then
+  echo 'ERROR: Chart version number was not updated'
+  git status --short | grep '^.M'
+  exit 1
+fi
+
 if [ "$new_charts" -eq 0 ]; then
   echo '----> No new charts, exiting'
   exit 0
