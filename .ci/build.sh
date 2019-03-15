@@ -61,6 +61,8 @@ for chart in $charts; do
   echo "----> Update dependencies for ${chart}"
   helm dependency update "$chart"
 
+  helm lint "$chart"
+
   echo "----> Packaging ${chart}"
   helm package \
     --destination="$tmp" \
