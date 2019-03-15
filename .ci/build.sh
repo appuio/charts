@@ -93,3 +93,5 @@ fi
 
 echo '----> Reindexing Helm repository'
 helm repo index --url="$REPO_URL" .
+
+git diff
