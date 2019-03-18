@@ -58,8 +58,8 @@ trap cleanup 0 1 2 3 6 15
 
 charts=$(find ./* -maxdepth 1 -name Chart.yaml -exec dirname "{}" \;)
 for chart in $charts; do
-  echo "----> Update dependencies for ${chart}"
-  helm dependency update "$chart"
+  echo "----> Build dependencies for ${chart}"
+  helm dependency build "$chart"
 
   helm lint "$chart"
 
