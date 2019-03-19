@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "stardog.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "stardog.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  serviceName: stardog-service
+  replicas: {{ .Values.replicaCount }}
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "stardog.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: stardog
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              sed "s|\$ZOOKEEPER_USERNAME|$ZOOKEEPER_USERNAME|g; s|\$ZOOKEEPER_PASSWORD|$ZOOKEEPER_PASSWORD|g" ${STARDOG_HOME}/stardog.properties.tpl > ${STARDOG_HOME}/stardog.properties
+              /opt/stardog/bin/stardog-admin server start --foreground --web-console
+          env:
+            {{- if and .Values.zookeeper.enabled .Values.zookeeper.auth.enabled }}
+            - name: ZOOKEEPER_USERNAME
+              value: {{ .Values.zookeeper.auth.clientUser }}
+            - name: ZOOKEEPER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "stardog.zookeeper.fullname" . }}
+                  key: client-password
+            {{- end }}
+            - name: STARDOG_SERVER_JAVA_ARGS
+              value: "-Xmx8g -Xms8g -XX:MaxDirectMemorySize=2g"
+          ports:
+            - containerPort: 5820
+              name: stardog
+          volumeMounts:
+            - name: license
+              mountPath: /var/opt/stardog/stardog-license-key.bin
+              subPath: stardog-license-key.bin
+              readOnly: true
+            - name: data
+              mountPath: /var/opt/stardog/
+            - name: config
+              mountPath: /var/opt/stardog/stardog.properties.tpl
+              subPath: stardog.properties
+            - name: config
+              mountPath: /var/opt/stardog/log4j2.xml
+              subPath: log4j2.xml
+          livenessProbe:
+            httpGet:
+              path: /admin/healthcheck
+              port: stardog
+            initialDelaySeconds: 180
+          readinessProbe:
+            httpGet:
+              path: /admin/healthcheck
+              port: stardog
+            initialDelaySeconds: 15
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /opt/stardog/bin/stardog-admin
+                  - server
+                  - stop
+      terminationGracePeriodSeconds: 60
+      imagePullSecrets:
+      {{- if .Values.stardog.existingPullSecret }}
+        - name: {{ .Values.stardog.existingPullSecret }}
+      {{- else }}
+        - name: {{ template "stardog.fullname" . }}-pullsecret
+      {{- end }}
+      volumes:
+        - name: license
+          secret:
+            secretName: {{ required "stardog.existingLicenseSecret is required to point to an existing secret with a valid Stardog license" .Values.stardog.existingLicenseSecret }}
+        - name: config
+          configMap:
+            name: {{ template "stardog.fullname" . }}-config
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app.kubernetes.io/name: {{ include "stardog.name" . }}
+          helm.sh/chart: {{ include "stardog.chart" . }}
+          app.kubernetes.io/instance: {{ .Release.Name }}
+          app.kubernetes.io/managed-by: {{ .Release.Service }}
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        {{- if .Values.persistence.storageClass }}
+        storageClassName: {{ .Values.persistence.storageClass }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size }}
+  {{- else }}
+        - name: data
+          emptyDir: {}
+  {{- end }}

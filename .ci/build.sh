@@ -56,6 +56,9 @@ cleanup() {
 }
 trap cleanup 0 1 2 3 6 15
 
+# Dependency repos
+helm repo add bitnami https://charts.bitnami.com
+
 charts=$(find ./* -maxdepth 1 -name Chart.yaml -exec dirname "{}" \;)
 changed_files=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
 any_chart_changed=false
