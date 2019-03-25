@@ -1,5 +1,6 @@
 ---
-language: python
+language: minimal
+dist: xenial
 
 env:
   global:
