@@ -57,7 +57,25 @@ cleanup() {
 trap cleanup 0 1 2 3 6 15
 
 charts=$(find ./* -maxdepth 1 -name Chart.yaml -exec dirname "{}" \;)
+changed_files=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+
+echo "Changed files: $changed_files"
+
 for chart in $charts; do
+  chart=${chart:2}
+  chart_changed=false
+  for file in $changed_files; do
+    if [[ $file == "$chart/"* ]]; then
+      chart_changed=true
+      break
+    fi
+  done
+
+  if [[ $chart_changed == false ]]; then
+    echo "No changes for chart $chart"
+    continue
+  fi
+
   echo "----> Build dependencies for ${chart}"
   helm dependency build "$chart"
 
