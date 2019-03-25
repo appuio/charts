@@ -6,6 +6,8 @@ env:
     - HELM_URL=https://storage.googleapis.com/kubernetes-helm
     - HELM_TGZ=helm-v2.13.0-linux-amd64.tar.gz
     - OUT_DIR=out
+git:
+  depth: false
 
 install:
   - curl -sSLo /tmp/helm.tgz "${HELM_URL}/${HELM_TGZ}"
