@@ -11,3 +11,4 @@ route:
       # kubernetes.io/tls-acme: "true"
   host:
   tls: true
+  some: more
