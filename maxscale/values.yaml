@@ -9,7 +9,7 @@ db3Address: db3.example.com
 serviceUser: maxscale
 servicePassword: secret
 monitorUser: maxscale
-monitorPassword: secret
+monitorPassword: secret1
 
 ## MaxScale passwords using an existing secret
 ## The secret needs the keys 'service-password' and 'monitor-password'
