@@ -1,0 +1,5 @@
+package test
+
+var (
+	helmChartPath = ".."
+)

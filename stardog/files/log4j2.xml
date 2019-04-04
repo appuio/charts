@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" name="default-config">
+	<Appenders>
+		<Console name="stdoutAppender" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5level %d [%t] %c:%M(%L): %m%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="stdoutAppender"/>
+		</Root>
+	</Loggers>
+</Configuration>
