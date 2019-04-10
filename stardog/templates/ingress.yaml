@@ -15,24 +15,22 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-{{- if $ingress.tls }}
+{{- if $ingress.tls.enabled }}
   tls:
-  {{- range $ingress.tls }}
     - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
+        - {{ $ingress.host }}
+      {{- if $ingress.tls.secretName }}
+      secretName: {{ $ingress.tls.secretName }}
+      {{- else }}
+      secretName: {{ $fullName }}-tls
       {{- end }}
-      secretName: {{ .secretName }}
-  {{- end }}
 {{- end }}
   rules:
-  {{- range (required "ingress.hosts is required when using ingress" $ingress.hosts) }}
-    - host: {{ . | quote }}
+    - host: {{ $ingress.host }}
       http:
         paths:
-          - path: {{ $ingress.path }}
+          - path: /
             backend:
               serviceName: {{ $fullName }}
               servicePort: stardog
-  {{- end }}
 {{- end }}

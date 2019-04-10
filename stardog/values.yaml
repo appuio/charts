@@ -23,28 +23,21 @@ stardog:
   # Custom Stardog config (string value)
   config: |
 
-service:
-  type: ClusterIP
-  port: 5820
-
 ingress:
   enabled: false
-  path: /
 
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     # ingress.kubernetes.io/affinity: cookie
 
-  ## List of hosts for the ingress
-  hosts:
-    - stardog.example.com
+  ## Host for the ingress
+  host: stardog.example.com
 
   ## TLS configuration
-  tls: []
-  # - hosts:
-  #     - stardog.example.com
-  #   secretName: tls-stardog
+  tls:
+    enabled: true
+    secretName: # tls-stardog
 
 persistence:
   enabled: true
