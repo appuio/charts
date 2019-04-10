@@ -22,6 +22,17 @@ stardog:
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
+  backup:
+    databases: # List of databases to backup
+     # - name: myDB
+     #   schedule: "18 03 * * *" # in UTC
+    s3Endpoint:
+    s3Region: eu-central-1
+    s3BucketName:
+    s3PathPrefix: # defaults to full name
+    s3AccessKey:
+    s3SecretKey:
+    s3CredentialsExistingSecret: # your existing secret
   securityContext:
     runAsUser: 32541
     fsGroup: 32541
