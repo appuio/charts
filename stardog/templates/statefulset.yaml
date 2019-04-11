@@ -50,13 +50,14 @@ spec:
             {{- end }}
             - name: STARDOG_SERVER_JAVA_ARGS
               value: "-Xmx8g -Xms8g -XX:MaxDirectMemorySize=2g"
+            - name: STARDOG_LICENSE
+              value: /run/secrets/stardog/stardog-license-key.bin
           ports:
             - containerPort: 5820
               name: stardog
           volumeMounts:
             - name: license
-              mountPath: /var/opt/stardog/stardog-license-key.bin
-              subPath: stardog-license-key.bin
+              mountPath: /run/secrets/stardog/
               readOnly: true
             - name: data
               mountPath: /var/opt/stardog/
@@ -76,13 +77,6 @@ spec:
               path: /admin/healthcheck
               port: stardog
             initialDelaySeconds: 15
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                  - /opt/stardog/bin/stardog-admin
-                  - server
-                  - stop
       terminationGracePeriodSeconds: 60
       imagePullSecrets:
       {{- if .Values.stardog.existingPullSecret }}
