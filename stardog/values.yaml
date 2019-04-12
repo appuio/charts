@@ -68,7 +68,7 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
+affinityTopologyKey: kubernetes.io/hostname
 
 # Only applies when stardog's replicaCount is >= 2
 zookeeper:
