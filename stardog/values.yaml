@@ -83,3 +83,17 @@ zookeeper:
     # serverPasswords: secretPassword,
   metrics:
     enabled: true
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - zookeeper
+              - key: app.kubernetes.io/component
+                operator: NotIn
+                values:
+                - zookeeper-metrics
+          topologyKey: kubernetes.io/hostname
