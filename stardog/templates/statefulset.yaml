@@ -88,6 +88,7 @@ spec:
               port: stardog
             initialDelaySeconds: 15
       terminationGracePeriodSeconds: 60
+      securityContext: {{ .Values.stardog.securityContext | toYaml | nindent 8 }}
       imagePullSecrets:
       {{- if .Values.stardog.existingPullSecret }}
         - name: {{ .Values.stardog.existingPullSecret }}
