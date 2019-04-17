@@ -14,5 +14,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "stardog.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['http://{{ include "stardog.fullname" . }}:5820']
   restartPolicy: Never
