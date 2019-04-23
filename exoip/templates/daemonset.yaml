@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "exoip.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "exoip.name" . }}
+    helm.sh/chart: {{ include "exoip.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "exoip.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "exoip.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - -W
+          env:
+            - name: IF_ADDRESS
+              value: {{ .Values.eip | quote }}
+            - name: IF_EXOSCALE_PEER_GROUP
+              value: {{ .Values.peerGroup | quote }}
+            - name: IF_EXOSCALE_API_ENDPOINT
+              value: {{ .Values.exoscaleApiEndpoint | quote }}
+            - name: IF_EXOSCALE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "exoip.fullname" . }}-credentials
+                  key: exoscale_api_key
+            - name: IF_EXOSCALE_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "exoip.fullname" . }}-credentials
+                  key: exoscale_api_secret
+          ports:
+            - name: exoip
+              containerPort: 12345
+              hostPort: {{ .Values.hostPort }}
+          hostNetwork: true
+          livenessProbe:
+            tcpSocket:
+              port: exoip
+          readinessProbe:
+            tcpSocket:
+              port: exoip
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
