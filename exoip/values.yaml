@@ -23,9 +23,6 @@ fullnameOverride: ""
 peerGroup: 'kubernetes1-ingress'
 ### End of required settings
 
-# Port to bind on
-hostPort: 12345
-
 # Exoscale API endpoint to use
 exoscaleApiEndpoint: 'https://api.exoscale.ch/compute'
 

@@ -46,13 +46,7 @@ spec:
           ports:
             - name: exoip
               containerPort: 12345
-              hostPort: {{ .Values.hostPort }}
-          livenessProbe:
-            tcpSocket:
-              port: exoip
-          readinessProbe:
-            tcpSocket:
-              port: exoip
+              hostPort: 12345
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
