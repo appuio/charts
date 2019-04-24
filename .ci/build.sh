@@ -33,7 +33,6 @@ if [ -n "$HELMQA_URL" ]; then
     if [[ "$tstatus" == "fail" ]]; then
       echo "HelmQA test failed. Check response"
       echo "$tresponse"
-      exit 1
     elif [[ "$tstatus" == "success" ]]; then
       echo "HelmQA test succeeded. No issues found"
     fi
