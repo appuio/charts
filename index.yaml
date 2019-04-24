@@ -3,7 +3,7 @@ entries:
   baas-operator:
   - apiVersion: v1
     appVersion: v0.1.3
-    created: 2019-04-24T13:43:41.677200226Z
+    created: 2019-04-24T13:48:02.708189953Z
     description: Backup as a Service Operator
     digest: 5a7696aaf42c6366a82bad7e3c566038736b944f995b083c73fa1cb4ef524fa9
     maintainers:
@@ -15,7 +15,7 @@ entries:
     version: 1.2.3
   - apiVersion: v1
     appVersion: v0.1.3
-    created: 2019-04-24T13:43:41.676891427Z
+    created: 2019-04-24T13:48:02.707866051Z
     description: Backup as a Service Operator
     digest: 42534abd4a8a7ee49166ca4c6acf8fc5525e2b8f9bb4323d61bd9e76cb356951
     maintainers:
@@ -27,7 +27,7 @@ entries:
     version: 1.2.2
   - apiVersion: v1
     appVersion: v0.1.3
-    created: 2019-04-24T13:43:41.676426682Z
+    created: 2019-04-24T13:48:02.707577994Z
     description: Backup as a Service Operator
     digest: 9236755605bcd952be46097a28ea731c4bff88479de49e22998991a818e85bf1
     maintainers:
@@ -39,7 +39,7 @@ entries:
     version: 1.2.1
   - apiVersion: v1
     appVersion: v0.1.0
-    created: 2019-04-24T13:43:41.67614937Z
+    created: 2019-04-24T13:48:02.707302746Z
     description: Backup as a Service Operator
     digest: fb4ff9f57056813ef7a9941bce884198356bf7ccacef39b3347b673223b583fd
     maintainers:
@@ -51,7 +51,7 @@ entries:
     version: 1.2.0
   - apiVersion: v1
     appVersion: v0.0.10
-    created: 2019-04-24T13:43:41.675889808Z
+    created: 2019-04-24T13:48:02.707022993Z
     description: Backup as a Service Operator
     digest: 3d6292c567c675089558674fbdb4de9941f660fe40f93096201d5a49161c80c2
     maintainers:
@@ -63,7 +63,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: v0.0.9
-    created: 2019-04-24T13:43:41.675639973Z
+    created: 2019-04-24T13:48:02.70669961Z
     description: Backup as a Service Operator
     digest: 0c1e22eb38be15e49f7b6a7e9083689090febca004ebfd324a71faff9142ff27
     maintainers:
@@ -74,7 +74,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v1
-    created: 2019-04-24T13:43:41.675331376Z
+    created: 2019-04-24T13:48:02.706300745Z
     description: Backup as a Service Operator
     digest: 4a4174ac224956fc4522afdc08f7060deaadfc44ad5d1a5954e0ac40ab76ca74
     maintainers:
@@ -85,7 +85,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: 2019-04-24T13:43:41.675090567Z
+    created: 2019-04-24T13:48:02.705649159Z
     description: Backup as a Service Operator
     digest: 7ed7ffdbf356e4778645492bbe18d1a97a1aa0af79c3c03cd7212d0e9cc9d415
     maintainers:
@@ -96,7 +96,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2019-04-24T13:43:41.674821876Z
+    created: 2019-04-24T13:48:02.705137723Z
     description: Backup as a Service Operator
     digest: 90f108d28fe79801976074275c43d440797d5ff6b161ec250702aac2e686de5b
     maintainers:
@@ -109,7 +109,7 @@ entries:
   exoip:
   - apiVersion: v1
     appVersion: v0.4.3
-    created: 2019-04-24T13:43:41.678212763Z
+    created: 2019-04-24T13:48:02.709135288Z
     description: Deploy exoip as a DaemonSet
     digest: b79b4efcd566f1b9a21587e8cac550da548c20b8c582fdb581e75fc09bf1b9c7
     maintainers:
@@ -121,7 +121,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: v0.4.3
-    created: 2019-04-24T13:43:41.677919234Z
+    created: 2019-04-24T13:48:02.708857336Z
     description: Deploy exoip as a DaemonSet
     digest: d37644008fe1774b08d093fedbcaadf94775d30aa06a90986a339322eecd32ca
     name: exoip
@@ -130,7 +130,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: v0.4.3
-    created: 2019-04-24T13:43:41.677654287Z
+    created: 2019-04-24T13:48:02.70862665Z
     description: Deploy exoip as a DaemonSet
     digest: a6847104f068aee0084ba92c85d4c1654688677a28093484707985f74ce1b214
     name: exoip
@@ -139,7 +139,7 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: v0.4.3
-    created: 2019-04-24T13:43:41.677399304Z
+    created: 2019-04-24T13:48:02.708395334Z
     description: Deploy exoip as a DaemonSet
     digest: 7a6bdb5ff48309e0b512f01a372aa16b721b9849e7bb136192187fa62fb7b1e3
     name: exoip
@@ -148,7 +148,7 @@ entries:
     version: 1.0.0
   keycloak:
   - appVersion: 5.0.0
-    created: 2019-04-24T13:43:41.686503821Z
+    created: 2019-04-24T13:48:02.715308146Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 0c079177a3456facc7897e0e0c5801815bae6877da13d4cc0fa18f3bf375528e
@@ -175,7 +175,7 @@ entries:
     - https://charts.appuio.ch/keycloak-4.8.0.tgz
     version: 4.8.0
   - appVersion: 4.8.3.Final
-    created: 2019-04-24T13:43:41.684637754Z
+    created: 2019-04-24T13:48:02.713509098Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: a3f6e1e56cb1087795889628e91edd17239164d8fd1858baff858141ea8e8ec6
@@ -202,7 +202,7 @@ entries:
     - https://charts.appuio.ch/keycloak-4.1.1.tgz
     version: 4.1.1
   - appVersion: 4.8.3.Final
-    created: 2019-04-24T13:43:41.681375988Z
+    created: 2019-04-24T13:48:02.711601961Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55ffcdb3a317e08c1d1c4e0913cdaef3d610e98a8547347aa00c0b46a55b9012
@@ -229,7 +229,7 @@ entries:
     - https://charts.appuio.ch/keycloak-4.1.0.tgz
     version: 4.1.0
   - appVersion: 4.1.0.Final
-    created: 2019-04-24T13:43:41.679072945Z
+    created: 2019-04-24T13:48:02.709872729Z
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
@@ -258,7 +258,7 @@ entries:
   maxscale:
   - apiVersion: v1
     appVersion: 2.2.20
-    created: 2019-04-24T13:43:41.687703039Z
+    created: 2019-04-24T13:48:02.718712062Z
     description: MaxScale Helm Chart
     digest: 9d336fda297db6d10f8040e649102d8b498302fedae6dce45dcbf52c6dfeb21a
     home: https://mariadb.com/products/technology/maxscale
@@ -271,7 +271,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: 2.2.19
-    created: 2019-04-24T13:43:41.687368622Z
+    created: 2019-04-24T13:48:02.717303037Z
     description: MaxScale Helm Chart
     digest: a6ae4ae783efdc3a40dcd2c3a568c12c3aa8ee561155692b3118f6a8f6e643b5
     home: https://mariadb.com/products/technology/maxscale
@@ -284,7 +284,7 @@ entries:
     version: 1.0.4
   - apiVersion: v1
     appVersion: 2.2.19
-    created: 2019-04-24T13:43:41.687065887Z
+    created: 2019-04-24T13:48:02.716645474Z
     description: MaxScale Helm Chart
     digest: 6f7ec64bcf4122a2585ea3ca7f52773a36d91c0a8ed81849d12580d6a1f77a6d
     home: https://mariadb.com/products/technology/maxscale
@@ -294,7 +294,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: 2.2.15
-    created: 2019-04-24T13:43:41.686794874Z
+    created: 2019-04-24T13:48:02.715884026Z
     description: MaxScale Helm Chart
     digest: 82ccb25596ce6c3674880f8179559c2c637878db2fadeb21ec09ad9b1a455689
     home: https://mariadb.com/products/technology/maxscale
@@ -305,7 +305,7 @@ entries:
   openshift-oauth-proxy:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-04-24T13:43:41.6885844Z
+    created: 2019-04-24T13:48:02.720206875Z
     description: OpenShift oauth-proxy
     digest: 6798f0d9c132089722b866d9c3d46ebf733f93f7dfdf4fa43fb046a5ae759c57
     maintainers:
@@ -317,7 +317,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-04-24T13:43:41.688262525Z
+    created: 2019-04-24T13:48:02.719845051Z
     description: OpenShift oauth-proxy
     digest: 8e784d176af6c39fc46d855e4b696efccad8b4165e13dd07075c75e5b78e94b1
     maintainers:
@@ -329,7 +329,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-04-24T13:43:41.687979166Z
+    created: 2019-04-24T13:48:02.719450962Z
     description: OpenShift oauth-proxy
     digest: ee61705b2a0a0d6fb3407308e92b12baff0198489616cbee96991873f8b597f0
     maintainers:
@@ -341,7 +341,7 @@ entries:
     version: 0.1.0
   prometheus:
   - appVersion: 2.4.2
-    created: 2019-04-24T13:43:41.693796727Z
+    created: 2019-04-24T13:48:02.724878623Z
     description: Prometheus is a monitoring system and time series database.
     digest: a972e9daa30fa29359606d89ee18e7c0fc473da1a2ebf1429e7378f4ed1b6fa7
     engine: gotpl
@@ -361,7 +361,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.4.tgz
     version: 0.0.4
   - appVersion: 2.4.2
-    created: 2019-04-24T13:43:41.692285805Z
+    created: 2019-04-24T13:48:02.723702848Z
     description: Prometheus is a monitoring system and time series database.
     digest: 42908b83975324cd52da0fb9c57fab84ae972e6dc99c9d5b83e2425474b95d59
     engine: gotpl
@@ -381,7 +381,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.3.tgz
     version: 0.0.3
   - appVersion: 2.2.1
-    created: 2019-04-24T13:43:41.691001888Z
+    created: 2019-04-24T13:48:02.722548206Z
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     engine: gotpl
@@ -401,7 +401,7 @@ entries:
     - https://charts.appuio.ch/prometheus-0.0.2.tgz
     version: 0.0.2
   - appVersion: 2.2.1
-    created: 2019-04-24T13:43:41.689790855Z
+    created: 2019-04-24T13:48:02.721361205Z
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     engine: gotpl
@@ -423,7 +423,7 @@ entries:
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: 0.12.0
-    created: 2019-04-24T13:43:41.695299967Z
+    created: 2019-04-24T13:48:02.725664525Z
     description: Prometheus Blackbox Exporter
     digest: abc38db36280377e25b3f61b8472b23b140da0c3bb7007d9788da587f249f886
     home: https://github.com/prometheus/blackbox_exporter
@@ -442,7 +442,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 0.12.0
-    created: 2019-04-24T13:43:41.69430172Z
+    created: 2019-04-24T13:48:02.725281877Z
     description: Prometheus Blackbox Exporter
     digest: 211fee66093eb0a26e957336b28b5da453d81e3048555d8e06b1334bf4829513
     home: https://github.com/prometheus/blackbox_exporter
@@ -461,7 +461,7 @@ entries:
     version: 0.1.1
   secret:
   - apiVersion: v1
-    created: 2019-04-24T13:43:41.696190898Z
+    created: 2019-04-24T13:48:02.726067497Z
     description: Deploy arbitrary secrets
     digest: 19a6f5c74d430b044ce4295111c4b6ecfe97f3fd96d4bb150a1d79ec8b7a1cb6
     maintainers:
@@ -472,7 +472,7 @@ entries:
     - https://charts.appuio.ch/secret-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: 2019-04-24T13:43:41.695792726Z
+    created: 2019-04-24T13:48:02.725841621Z
     description: Deploy arbitrary secrets
     digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
     maintainers:
@@ -485,7 +485,21 @@ entries:
   stardog:
   - apiVersion: v1
     appVersion: 6.1.3
-    created: 2019-04-24T13:43:41.704821243Z
+    created: 2019-04-24T13:48:02.736858211Z
+    description: Stardog Helm Chart
+    digest: 73ee710f5ec59bd64159de0ec6c627772c28e5042aecd22724ad505b964a61df
+    home: https://www.stardog.com/
+    icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: stardog
+    urls:
+    - https://charts.appuio.ch/stardog-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v1
+    appVersion: 6.1.3
+    created: 2019-04-24T13:48:02.735478045Z
     description: Stardog Helm Chart
     digest: 184987f4d84817932e1412221212811874f615d2826e1d0c94c67ea5f3d795e2
     home: https://www.stardog.com/
@@ -499,7 +513,7 @@ entries:
     version: 0.0.5
   - apiVersion: v1
     appVersion: 6.1.3
-    created: 2019-04-24T13:43:41.703386577Z
+    created: 2019-04-24T13:48:02.734046109Z
     description: Stardog Helm Chart
     digest: a7c5da094a2c2ce66adc89cf9d806c636ab129a1336bc2f9442ec8eed9dbc8c1
     home: https://www.stardog.com/
@@ -513,7 +527,7 @@ entries:
     version: 0.0.4
   - apiVersion: v1
     appVersion: 6.1.3
-    created: 2019-04-24T13:43:41.70202231Z
+    created: 2019-04-24T13:48:02.732673029Z
     description: Stardog Helm Chart
     digest: 1d123dddc97d24755ac826cef8295151cb3ac69ee09214ad3fb54c80ae0ba866
     home: https://www.stardog.com/
@@ -527,7 +541,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: 6.1.3
-    created: 2019-04-24T13:43:41.700630664Z
+    created: 2019-04-24T13:48:02.730060409Z
     description: Stardog Helm Chart
     digest: 11f73718a4f1856b0726f4a88d5ffca0067b1d10cd3505570ba0fd50e75b6202
     home: https://www.stardog.com/
@@ -541,7 +555,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: 6.1.2
-    created: 2019-04-24T13:43:41.698790078Z
+    created: 2019-04-24T13:48:02.727490585Z
     description: Stardog Helm Chart
     digest: e30a0510c9a7402baedbf42d2ee1908e059d9e9598a4b6b8a91f1d1db3c53139
     home: https://www.stardog.com/
@@ -553,4 +567,4 @@ entries:
     urls:
     - https://charts.appuio.ch/stardog-0.0.1.tgz
     version: 0.0.1
-generated: 2019-04-24T13:43:41.674210815Z
+generated: 2019-04-24T13:48:02.704176964Z
