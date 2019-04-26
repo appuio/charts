@@ -106,12 +106,15 @@ zookeeper:
       requiredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
             matchExpressions:
-              - key: app
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - stardog
+          topologyKey: kubernetes.io/hostname
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/component
                 operator: In
                 values:
                 - zookeeper
-              - key: app.kubernetes.io/component
-                operator: NotIn
-                values:
-                - zookeeper-metrics
           topologyKey: kubernetes.io/hostname
