@@ -61,6 +61,14 @@ persistence:
   size: 5Gi
   # storageClass: -
 
+metrics:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: sscaling/jmx-prometheus-exporter
+    tag: 0.11.0
+    pullPolicy: IfNotPresent
+
 resources: {}
 # We usually recommend not to specify default resources and to leave
 # this as a conscious choice for the user. This also increases chances

@@ -19,4 +19,9 @@ data:
     {{- if .Values.zookeeper.auth.enabled }}
     pack.zookeeper.auth=$ZOOKEEPER_USERNAME:$ZOOKEEPER_PASSWORD
     {{- end }}
+    {{- if .Values.metrics.enabled }}
+    metrics.enabled=true
+    metrics.reporter=jmx
+    metrics.jmx.remote.access=true
+    {{- end }}
     {{- end }}

@@ -10,9 +10,14 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 5820
-      targetPort: 5820
-      name: stardog
+    - name: stardog
+      port: 5820
+      targetPort: stardog
+    {{- if .Values.metrics.enabled }}
+    - name: metrics
+      port: 80
+      targetPort: metrics
+    {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "stardog.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

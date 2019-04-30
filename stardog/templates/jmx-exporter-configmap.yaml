@@ -1,0 +1,13 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "stardog.fullname" . }}-jmx-exporter
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  {{- (.Files.Glob "files/jmx-exporter.yaml").AsConfig | nindent 2 }}
+{{- end }}
