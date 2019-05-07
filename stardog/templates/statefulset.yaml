@@ -22,6 +22,9 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
       annotations:
         checksum/config: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if .Values.metrics.enabled }}
+        checksum/jmx-config: {{ include (print .Template.BasePath "/jmx-exporter-configmap.yaml") . | sha256sum }}
+        {{- end }}
     spec:
     {{- if .Values.affinityTopologyKey }}
       affinity:
@@ -63,8 +66,8 @@ spec:
             - name: STARDOG_SERVER_JAVA_ARGS
               value: "-Xmx8g -Xms8g -XX:MaxDirectMemorySize=2g -XX:ParallelGCThreads=2 -Dstardog.license.location=/run/secrets/stardog/stardog-license-key.bin"
           ports:
-            - containerPort: 5820
-              name: stardog
+            - name: stardog
+              containerPort: 5820
           volumeMounts:
             - name: license
               mountPath: /run/secrets/stardog/
@@ -87,6 +90,39 @@ spec:
               path: /admin/healthcheck
               port: stardog
             initialDelaySeconds: 15
+      {{- if .Values.metrics.enabled }}
+        - name: jmx-exporter
+          image: {{ .Values.metrics.image.registry }}/{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}
+          imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
+          env:
+            - name: CONFIG_YML
+              value: /etc/jmx_exporter/jmx-exporter.yaml
+            - name: JVM_OPTS
+              value: -XX:MaxRAM=100M
+          ports:
+            - name: metrics
+              containerPort: 5556
+          volumeMounts:
+            - name: jmx-config
+              mountPath: /etc/jmx_exporter/
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 180
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 15
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 500m
+            limits:
+              memory: 128Mi
+              cpu: 500m
+      {{- end }}
       terminationGracePeriodSeconds: 60
       securityContext: {{ .Values.stardog.securityContext | toYaml | nindent 8 }}
       imagePullSecrets:
@@ -102,6 +138,11 @@ spec:
         - name: config
           configMap:
             name: {{ template "stardog.fullname" . }}-config
+        {{- if .Values.metrics.enabled }}
+        - name: jmx-config
+          configMap:
+            name: {{ template "stardog.fullname" . }}-jmx-exporter
+        {{- end }}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
