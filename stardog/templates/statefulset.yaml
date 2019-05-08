@@ -126,8 +126,8 @@ spec:
       terminationGracePeriodSeconds: 60
       securityContext: {{ .Values.stardog.securityContext | toYaml | nindent 8 }}
       imagePullSecrets:
-      {{- if .Values.stardog.existingPullSecret }}
-        - name: {{ .Values.stardog.existingPullSecret }}
+      {{- if .Values.image.existingPullSecret }}
+        - name: {{ .Values.image.existingPullSecret }}
       {{- else }}
         - name: {{ template "stardog.fullname" . }}-pullsecret
       {{- end }}

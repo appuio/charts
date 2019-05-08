@@ -52,7 +52,7 @@ func Test_StatefulSet_Should_UseExistingPullSecret_IfGiven(t *testing.T) {
 	secretName := "my-custom-registry"
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"stardog.existingPullSecret": secretName,
+			"image.existingPullSecret": secretName,
 		},
 	}
 
