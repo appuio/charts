@@ -67,8 +67,8 @@ spec:
                 {{ $db.name | quote }}
           restartPolicy: Never
           imagePullSecrets:
-          {{- if $.Values.stardog.existingPullSecret }}
-            - name: {{ $.Values.stardog.existingPullSecret }}
+          {{- if $.Values.image.existingPullSecret }}
+            - name: {{ $.Values.image.existingPullSecret }}
           {{- else }}
             - name: {{ $fullName }}-pullsecret
           {{- end }}
