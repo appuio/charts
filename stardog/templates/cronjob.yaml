@@ -1,0 +1,75 @@
+{{- $backup := .Values.stardog.backup -}}
+{{- $fullName := include "stardog.fullname" . -}}
+{{- range $db := $backup.databases }}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ $fullName }}-backup-{{ $db.name }}
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" $ }}
+    helm.sh/chart: {{ include "stardog.chart" $ }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+spec:
+  schedule: "{{ $db.schedule }}"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 7200 # 2h
+      backoffLimit: 4
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: {{ $.Values.image.registry }}/{{ $.Values.image.repository }}:{{ $.Values.image.tag }}
+            imagePullPolicy: {{ $.Values.image.pullPolicy }}
+            env:
+              - name: STARDOG_JAVA_ARGS
+                value: "-Dstardog.default.cli.server=http://{{ $fullName }}:5820 -XX:ParallelGCThreads=1"
+              - name: S3_BUCKET_NAME
+                value: {{ required "A bucket name is required to make backups" $backup.s3BucketName }}
+              - name: S3_REGION
+                value: {{ $backup.s3Region }}
+              - name: S3_PATH_PREFIX
+              {{- if $backup.s3PathPrefix }}
+                value: {{ $backup.s3PathPrefix }}
+              {{- else }}
+                value: {{ $fullName }}
+              {{- end }}
+              - name: S3_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    {{- if $backup.s3CredentialsExistingSecret }}
+                    name: {{ $backup.s3CredentialsExistingSecret }}
+                    {{- else }}
+                    name: {{ $fullName }}-backup-s3-credentials
+                    {{- end }}
+                    key: s3-access-key
+              - name: S3_SECRET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    {{- if $backup.s3CredentialsExistingSecret }}
+                    name: {{ $backup.s3CredentialsExistingSecret }}
+                    {{- else }}
+                    name: {{ $fullName }}-backup-s3-credentials
+                    {{- end }}
+                    key: s3-secret-key
+            command:
+            - /bin/bash
+            - -c
+            - |
+              set -e
+              BACKUP_TARGET="s3:///$S3_BUCKET_NAME/$S3_PATH_PREFIX/$(date --utc +%Y-%m-%d_%H%M)?AWS_ACCESS_KEY_ID=$S3_ACCESS_KEY&AWS_SECRET_ACCESS_KEY=$S3_SECRET_KEY&region=$S3_REGION"
+              /opt/stardog/bin/stardog-admin db status {{ $db.name | quote }}
+              /opt/stardog/bin/stardog-admin db backup \
+                --to "$BACKUP_TARGET" \
+                {{ $db.name | quote }}
+          restartPolicy: Never
+          imagePullSecrets:
+          {{- if $.Values.image.existingPullSecret }}
+            - name: {{ $.Values.image.existingPullSecret }}
+          {{- else }}
+            - name: {{ $fullName }}-pullsecret
+          {{- end }}
+{{- end }}

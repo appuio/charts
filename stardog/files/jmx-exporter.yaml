@@ -1,0 +1,6 @@
+---
+startDelaySeconds: 10
+hostPort: 127.0.0.1:5833
+ssl: false
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true

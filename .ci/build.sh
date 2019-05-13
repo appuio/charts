@@ -33,7 +33,6 @@ if [ -n "$HELMQA_URL" ]; then
     if [[ "$tstatus" == "fail" ]]; then
       echo "HelmQA test failed. Check response"
       echo "$tresponse"
-      exit 1
     elif [[ "$tstatus" == "success" ]]; then
       echo "HelmQA test succeeded. No issues found"
     fi
@@ -56,10 +55,36 @@ cleanup() {
 }
 trap cleanup 0 1 2 3 6 15
 
+# Dependency repos
+helm repo add bitnami https://charts.bitnami.com
+
 charts=$(find ./* -maxdepth 1 -name Chart.yaml -exec dirname "{}" \;)
+changed_files=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+any_chart_changed=false
+
+echo "Changed files: $changed_files"
+
 for chart in $charts; do
-  echo "----> Update dependencies for ${chart}"
-  helm dependency update "$chart"
+  chart=${chart:2}
+  chart_changed=false
+  for file in $changed_files; do
+    if [[ $file == "$chart/"* ]]; then
+      chart_changed=true
+      break
+    fi
+  done
+
+  if [[ $chart_changed == false ]]; then
+    echo "No changes for chart $chart"
+    continue
+  fi
+
+  any_chart_changed=true
+
+  echo "----> Build dependencies for ${chart}"
+  helm dependency build "$chart"
+
+  helm lint "$chart"
 
   echo "----> Packaging ${chart}"
   helm package \
@@ -68,14 +93,27 @@ for chart in $charts; do
     "$chart"
 done
 
+if [[ $any_chart_changed == false ]]; then
+  echo "No charts changes at all. Nothing more to do."
+  exit 0
+fi
+
 echo "----> Check out gh-pages branch"
 git clone --depth=1 "$GIT_REPO" --branch=gh-pages "$OUT_DIR"
 
 echo "----> Moving new charts into repo"
-mv -nv "${tmp}"/*.tgz "${OUT_DIR}/"
+mv -v "${tmp}"/*.tgz "${OUT_DIR}/"
 
 pushd "$OUT_DIR"
 new_charts="$(git status --short | grep '^??' --count ||:)"
+modified_charts="$(git status --short | grep '^.M' --count ||:)"
+
+if [ "$modified_charts" -ne 0 ]; then
+  echo 'ERROR: Chart version number was not updated'
+  git status --short | grep '^.M'
+  exit 1
+fi
+
 if [ "$new_charts" -eq 0 ]; then
   echo '----> No new charts, exiting'
   exit 0
@@ -83,3 +121,5 @@ fi
 
 echo '----> Reindexing Helm repository'
 helm repo index --url="$REPO_URL" .
+
+git diff

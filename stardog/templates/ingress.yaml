@@ -1,0 +1,36 @@
+{{- $ingress := .Values.ingress -}}
+{{- if $ingress.enabled -}}
+{{- $fullName := include "stardog.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{- with $ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+{{- if $ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ $ingress.host }}
+      {{- if $ingress.tls.secretName }}
+      secretName: {{ $ingress.tls.secretName }}
+      {{- else }}
+      secretName: {{ $fullName }}-tls
+      {{- end }}
+{{- end }}
+  rules:
+    - host: {{ $ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: stardog
+{{- end }}

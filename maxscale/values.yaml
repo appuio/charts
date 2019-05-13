@@ -19,7 +19,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/appuio/maxscale
-  tag: 2.2.19
+  tag: 2.2.20
   pullPolicy: IfNotPresent
 
 nameOverride: ""

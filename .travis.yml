@@ -1,5 +1,6 @@
 ---
-language: python
+language: minimal
+dist: xenial
 
 env:
   global:
@@ -16,6 +17,8 @@ install:
 
 before_script:
   - git fetch origin gh-pages
+
+if: branch = master OR type = pull_request
 
 script: ./.ci/build.sh
 

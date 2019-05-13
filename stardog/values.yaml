@@ -1,0 +1,117 @@
+---
+# Default values for stardog.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## If the replicaCount is larger than 3 make sure to enable the ZooKeeper chart
+replicaCount: 3
+
+image:
+  repository: stardog
+  registry: stardog-eps-docker.jfrog.io
+  # username:
+  # password:
+  tag: 6.1.3
+  pullPolicy: IfNotPresent
+  # existingPullSecret: my-image-pull-secret
+
+# nameOverride: ""
+# fullnameOverride: ""
+
+stardog:
+  existingLicenseSecret: stardog-license
+  # Custom Stardog config (string value)
+  config: |
+  backup:
+    databases: # List of databases to backup
+     # - name: myDB
+     #   schedule: "18 03 * * *" # in UTC
+    s3Region: eu-central-1
+    s3BucketName:
+    s3PathPrefix: # defaults to full name
+    s3AccessKey:
+    s3SecretKey:
+    s3CredentialsExistingSecret: # your existing secret
+  securityContext:
+    runAsUser: 32541
+    fsGroup: 32541
+    runAsNonRoot: true
+
+ingress:
+  enabled: false
+
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    # ingress.kubernetes.io/affinity: cookie
+
+  ## Host for the ingress
+  host: stardog.example.com
+
+  ## TLS configuration
+  tls:
+    enabled: true
+    secretName: # tls-stardog
+
+persistence:
+  enabled: true
+  size: 5Gi
+  # storageClass: -
+
+metrics:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: sscaling/jmx-prometheus-exporter
+    tag: 0.11.0
+    pullPolicy: IfNotPresent
+
+resources: {}
+# We usually recommend not to specify default resources and to leave
+# this as a conscious choice for the user. This also increases chances
+# charts run on environments with little resources, such as Minikube.
+# If you do want to specify resources, uncomment the following lines,
+# adjust them as necessary, and remove the curly braces after
+# 'resources:'.
+#  requests:
+#    cpu: '1'
+#    memory: 128Mi
+#  limits:
+#    memory: 512Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinityTopologyKey: kubernetes.io/hostname
+
+# Only applies when stardog's replicaCount is >= 2
+zookeeper:
+  enabled: true
+  replicaCount: 3
+  allowAnonymousLogin: false
+  auth:
+    enabled: true
+    clientUser: stardogClient
+    # clientPassword: secretPassword
+    serverUsers: zookeeperServer,
+    # serverPasswords: secretPassword,
+  metrics:
+    enabled: true
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - zookeeper
+              - key: app.kubernetes.io/component
+                operator: NotIn
+                values:
+                - zookeeper-metrics
+          topologyKey: kubernetes.io/hostname
