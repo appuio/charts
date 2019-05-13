@@ -11,9 +11,5 @@ appVersion: v0.1.4
 sources:
   - https://github.com/vshn/k8up
 maintainers:
-  - name: janPhil
-    email: jan.heinrich@vshn.ch
-  - name: srueg
-    email: simon.ruegg@vshn.ch
-  - name: kidswiss
-    email: simon.beck@vshn.ch
+  - name: APPUiO Team
+    email: info@appuio.ch
