@@ -2,13 +2,12 @@
 
 [Keycloak](http://www.keycloak.org/) is an open source identity and access management for modern applications and services.
 
-The readme for the upstream chart of [Keycloak can be found here](https://github.com/helm/charts/blob/master/stable/keycloak/README.md)  
+The README for the upstream chart of [Keycloak can be found here](https://github.com/codecentric/helm-charts/tree/master/charts/keycloak)
 
-## Adaptations for Openshift
+## Adaptations for OpenShift
 
-After helm updated its dependencies there is a new folder called /charts. In this folder you find the upstream chart from helm/stable.
-There are some minor adaptations necessary to run the [helm/stable Keycloak-Chart] on openshift. To make these adaptations the appuio Keycloak-Chart takes the
-helm/stable Chart just as a dependency. The values.yaml then adds an empty securityContext and a configuration for the route to the chart. The templates-folder contains the openshift-specific definition for the route. Everything else is plain Keycloak.
+There are some minor adaptations necessary to run the Keycloak chart on OpenShift. To make these adaptations the APPUiO Keycloak chart defines the
+codecentric chart as a dependency. The values.yaml then adds an empty securityContext and a configuration for the route to the chart. The templates-folder contains the openshift-specific definition for the route.
 
 ## Configuration
 
