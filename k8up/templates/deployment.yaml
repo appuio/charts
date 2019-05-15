@@ -32,4 +32,6 @@ spec:
           ports:
           - containerPort: 8080
             protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       serviceAccountName: {{ template "k8up-operator.fullname" $ }}
