@@ -1,29 +1,30 @@
-# k8up
+# K8up - Kubernetes and OpenShift Backup Operator based on restic
 
-k8up is an operator which simplifies the process of application data backup in a kubernetes cluster.
+[K8up](https://github.com/vshn/k8up) is a Kubernetes operator which simplifies the process of application data backup in a kubernetes cluster. It is based on [restic](https://restic.net/).
 
 ## TL;DR;
 
 ```console
-helm install stable/k8up
+helm repo add appuio https://charts.appuio.ch
+helm install appuio/k8up
 ```
 
 ## Introduction
 
-This chart bootstraps a [k8up](https://vshn.github.io/k8up/) operator on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. To start backing up your application data just create a schedule object in the namespace you would like to backup. For more information on k8up and its capabilities please check the [documentation](https://vshn.github.io/k8up/)
+This chart bootstraps a [K8up](https://vshn.github.io/k8up/) operator on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. To start backing up your application data just create a schedule object in the namespace you would like to backup. For more information on K8up and its capabilities please check the [documentation](https://vshn.github.io/k8up/)
 
 ## Prerequisites Details
 
-As the k8up operator is working cluster wide it needs an appropriate cluster role and rolebinding. If your tiller (the server-side component of Helm) doesnt have the right privileges to define roles and rolebindings, it might be that you need to define these per hand.
+As the K8up operator is working cluster wide it needs an appropriate cluster role and rolebinding. If your tiller (the server-side component of Helm) doesnt have the right privileges to define roles and rolebindings, it might be that you need to define these per hand.
 
-k8up uses Wrestic as a backup runner, to learn more about it, please visit [wrestic on github](https://github.com/vshn/wrestic/tree/master). 
+K8up uses Wrestic as a backup runner, to learn more about it, please visit [wrestic on github](https://github.com/vshn/wrestic/tree/master). 
 
 ## Installing the Chart
 
 To install the chart with the release name `k8up`:
 
 ```console
-$ helm install --name k8up stable/k8up
+$ helm install --name k8up appuio/k8up
 ```
 
 ## Uninstalling the Chart
@@ -40,7 +41,7 @@ The following table lists the configurable parameters of the k8up chart. For def
 
 | Parameter                   | Description                                             | Default
 | ---                         | ---                                                     | ---
-| `k8up_operator.image`       | The k8up operator image                                     | docker.io/vshn/k8up:v0.1.4
+| `k8up_operator.image`       | The K8up operator image                                     | docker.io/vshn/k8up:v0.1.4
 | `k8up_operator.envVars`     | Allows the specification of additional environment variables for the k8up operator. | BACKUP_IMAGE:docker.io/vshn/wrestic:v0.0.10
 | `rbac.create`               | Create cluster roles and rolebinding                    | true
 
