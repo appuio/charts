@@ -1,0 +1,50 @@
+# Default values for signalilo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  registry: registry.vshn.net
+  repository: vshn/signalilo
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+  # username:
+  # password:
+  # existingPullSecret: my-image-pull-secret
+
+nameOverride: ""
+fullnameOverride: ""
+
+config: {}
+  # uuid: 9ec06d59-aa0c-4434-b5e2-1aeaf93cd925
+  # host_name: localhost
+  # icinga_api:
+  #   url: https://localhost:5665
+  #   username: icinga_user
+  #   password: icinga_user_pw
+  # alertmanager:
+  #   bearer_token: aaaaaa
+  # gc_interval: 120s
+  # heartbeat_interval: 60s
+  # keep_for: 168h
+  # log_level: 2
+
+securityContext:
+  enabled: false
+  runAsUser: 999
+  fsGroup: 999
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
