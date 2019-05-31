@@ -1,0 +1,46 @@
+{{- if and .Values.metrics.prometheusOperator .Values.zookeeper.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "stardog.fullname" . }}-zookeeper-rules
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    role: alert-rules
+spec:
+  groups:
+  - name: zookeeper
+    rules:
+    - alert: ZooKeeperDown
+      expr: zk_up == 0
+      for: 10m
+      annotations:
+        summary: A ZooKeeper instance is down
+        description: The ZooKeeper instance {{ "{{" }} .Labels.zk_host {{ "}}" }} could not be scraped by the ZooKeeper exporter
+      labels:
+        env: {{ .Release.Name }}
+        app: zookeeper
+        severity: critical
+    - alert: ZooKeeperFsyncThresholdExeeded
+      expr: zk_fsync_threshold_exceed_count > 0
+      for: 1m
+      annotations:
+        summary: The ZooKeeper fsync threshold exeeded
+        description: An fsync took longer than 1000ms
+      labels:
+        env: {{ .Release.Name }}
+        app: zookeeper
+        severity: critical
+    - alert: JavaFileDescriptorsRunningOut
+      expr: zk_max_file_descriptor_count - zk_open_file_descriptor_count < 1000
+      for: 1m
+      annotations:
+        summary: Java file descriptors are running out
+        description: There are less than 1000 free file descriptors left to be used ({{ "{{" }} $value {{ "}}" }}).
+      labels:
+        env: {{ .Release.Name }}
+        app: zookeeper
+        severity: warning
+{{- end }}

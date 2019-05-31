@@ -1,0 +1,90 @@
+{{- if .Values.metrics.prometheusOperator }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "stardog.fullname" . }}-java-rules
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    role: alert-rules
+spec:
+  groups:
+  - name: Java Internas
+    # Appendix: JMX metrics https://sysdig.com/blog/jmx-monitoring-custom-metrics/
+    rules:
+    - alert: JavaCollectionUsageThresholdExceeded
+      expr: java_lang_memorypool_collectionusagethresholdexceeded > 0
+      for: 1m
+      annotations:
+        summary: The Java collection usage threshold has been exceeded
+        description: The memory usage of a memory pool is greater than or equal to its collection usage threshold after the Java virtual machine has expended effort in recycling unused objects in that memory pool.
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: critical
+    - alert: JavaMemoryPoolInvalid
+      expr: java_lang_memorypool_valid != 1
+      for: 1m
+      annotations:
+        summary: A Java memory pool has become invalid
+        description: A memory pool becomes invalid once the Java virtual machine removes it from the memory system.
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: critical
+    - alert: JavaGarbageCollectorInvalid
+      expr: java_lang_garbagecollector_valid != 1
+      for: 1m
+      annotations:
+        summary: A Java garbage collector has become invalid
+        description: Tests if this memory manager is valid in the Java virtual machine.
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: critical
+    - alert: JavaGarbageCollectionTimeExceeded
+      expr: java_lang_garbagecollector_collectiontime > 120000
+      for: 1m
+      annotations:
+        summary: Java garbage collection time exeeded
+        description: The approximate garbage collection time exceeded 2m ({{ "{{" }} $value {{ "}}" }}ms).
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: warning
+    - alert: JavaFileDescriptorsRunningOut
+      expr: java_lang_operatingsystem_maxfiledescriptorcount - java_lang_operatingsystem_openfiledescriptorcount < 1000
+      for: 1m
+      annotations:
+        summary: Java file descriptors are running out
+        description: There are less than 1000 free file descriptors left to be used ({{ "{{" }} $value {{ "}}" }}).
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: warning
+    - alert: JavaCPULoad
+      expr: java_lang_operatingsystem_processcpuload / java_lang_operatingsystem_availableprocessors > 1
+      for: 30m
+      annotations:
+        summary: High CPU load
+        description: The CPU load was over 100% in the last 30 minutes ({{ "{{" }} $value {{ "}}" }}).
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: warning
+
+  - name: Memory Usage
+    rules:
+      - alert: JavaLowHeapMemory
+        expr: java_lang_memory_heapmemoryusage_max - java_lang_memory_heapmemoryusage_used < 128 * 1024 * 1024
+        for: 1m
+        annotations:
+          summary: Java Low Heap Memory
+          description: Less than 128M of heap memory is available ({{ "{{" }} $value {{ "}}" }}).
+        labels:
+          env: {{ .Release.Name }}
+          app: stardog
+          severity: warning
+{{- end }}
