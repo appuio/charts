@@ -1,0 +1,26 @@
+{{- if .Values.metrics.prometheusOperator }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "stardog.fullname" . }}-rules
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    role: alert-rules
+spec:
+  groups:
+  - name: Stardog
+    rules:
+    - alert: StardogOpenConnections
+      expr: stardog_database_openconnections > 32
+      for: 1m
+      annotations:
+        summary: Too many open connections
+        description: Open connections for DB {{ "{{" }} $labels.database {{ "}}" }} on instance {{ "{{" }} $labels.pod {{ "}}" }} exeeded 32 ({{ "{{" }} $value {{ "}}" }}).
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: critical
+{{- end }}

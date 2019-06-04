@@ -1,0 +1,23 @@
+{{- if and .Values.metrics.prometheusOperator .Values.zookeeper.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "stardog.fullname" . }}-zookeeper
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zookeeper
+      app.kubernetes.io/component: metrics
+  endpoints:
+  - port: metrics
+    interval: 10s
+  jobLabel: app.kubernetes.io/instance
+  podTargetLabels:
+    - app.kubernetes.io/component
+    - app.kubernetes.io/name
+{{- end }}

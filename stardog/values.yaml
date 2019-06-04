@@ -63,6 +63,7 @@ persistence:
 
 metrics:
   enabled: true
+  prometheusOperator: false
   image:
     registry: docker.io
     repository: sscaling/jmx-prometheus-exporter

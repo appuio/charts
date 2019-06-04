@@ -49,6 +49,7 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.auth.clientPassword`              | Password to use for ZooKeeper clients. Will be generated if unset |
 | `zookeeper.auth.serverPasswords`             | Password to use for ZooKeeper servers (delimited by `,`). Will be generated if unset |
 | `zookeeper.metrics.enabled`                  | Enable ZooKeeper Proemtheus exporter |
+| `zookeeper.metrics.prometheusOperator`       | Enable Proemtheus Operator integration (requires the operator to be installed) |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
