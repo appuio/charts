@@ -18,6 +18,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "signalilo.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/tokens-secret: {{ include (print .Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
       {{- if .Values.securityContext.enabled }}
       securityContext:
@@ -27,10 +29,34 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          env:
+          - name: SIGNALILO_UUID
+            value: {{ required ".Values.config.uuid is required" .Values.config.uuid | quote }}
+          - name: SIGNALILO_ICINGA_HOSTNAME
+            value: {{ required ".Values.config.icinga_hostname is required" .Values.config.icinga_hostname | quote }}
+          - name: SIGNALILO_ICINGA_URL
+            value:  {{ required ".Values.config.icinga_url is required" .Values.config.icinga_url | quote }}
+          - name: SIGNALILO_ICINGA_USERNAME
+            value: {{ required ".Values.config.icinga_username is required" .Values.config.icinga_username | quote }}
+          - name: SIGNALILO_ICINGA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.config.icinga_password_secret | default (printf "%s" (include "signalilo.fullname" .)) | quote }}
+                key: "icinga_password"
+          - name: SIGNALILO_ALERTMANAGER_PORT
+            value: {{ .Values.config.alertmanager_port | quote }}
+          - name: SIGNALILO_ALERTMANAGER_BEARER_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.config.alertmanager_bearer_token_secret | default (printf "%s" (include "signalilo.fullname" .)) | quote }}
+                key: "alertmanager_bearer_token"
+{{- if .Values.extraEnvVars }}
+{{ toYaml .Values.extraEnvVars | indent 10 }}
+{{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8888
+              containerPort: {{ .Values.config.alertmanager_port }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -40,10 +66,6 @@ spec:
             httpGet:
               path: /healthz
               port: http
-          volumeMounts:
-            - name: config
-              mountPath: /etc/signalilo/
-              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -64,7 +86,3 @@ spec:
     {{- else if .Values.image.password }}
         - name: {{ template "signalilo.fullname" . }}-pullsecret
     {{- end }}
-      volumes:
-        - name: config
-          secret:
-            secretName: {{ template "signalilo.fullname" . }}
