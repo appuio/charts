@@ -7,7 +7,7 @@ replicaCount: 2
 image:
   registry: registry.vshn.net
   repository: vshn/signalilo
-  tag: 0.0.1
+  tag: 0.0.2
   pullPolicy: IfNotPresent
   # username:
   # password:
@@ -16,19 +16,32 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
-config: {}
+# Required configuration
+config:
   # uuid: 9ec06d59-aa0c-4434-b5e2-1aeaf93cd925
-  # host_name: localhost
-  # icinga_api:
-  #   url: https://localhost:5665
-  #   username: icinga_user
-  #   password: icinga_user_pw
-  # alertmanager:
-  #   bearer_token: aaaaaa
-  # gc_interval: 120s
-  # heartbeat_interval: 60s
-  # keep_for: 168h
-  # log_level: 2
+  # icinga_hostname: localhost
+  # icinga_url: https://localhost:5665
+  # icinga_username: icinga_user
+  # icinga_password: icinga_user_pw
+  # icinga_password_secret:
+  alertmanager_port: 8888
+  # alertmanager_bearer_token: aaaaaa
+  # alertmanager_bearer_token_secret:
+
+# Optional extra configuration
+# extraEnvVars:
+# - name: SIGNALILO_LOG_LEVEL
+#   value: "2"
+# - name: SIGNALILO_ICINGA_INSECURE_TLS
+#   value: "false"
+# - name: SIGNALILO_ICINGA_DEBUG
+#   value: "false"
+# - name: SIGNALILO_ICINGA_GC_INTERVAL
+#   value: "15m"
+# - name: SIGNALILO_ICINGA_HEARTBEAT_INTERVAL
+#   value: "60s"
+# - name: SIGNALILO_ICINGA_KEEP_FOR
+#   value: "168h"
 
 securityContext:
   enabled: false
