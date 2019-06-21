@@ -90,6 +90,8 @@ spec:
               path: /admin/healthcheck
               port: stardog
             initialDelaySeconds: 15
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       {{- if .Values.metrics.enabled }}
         - name: jmx-exporter
           image: {{ .Values.metrics.image.registry }}/{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}
