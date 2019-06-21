@@ -22,6 +22,7 @@ stardog:
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
+  javaArgs: -Xmx8g -Xms8g -XX:MaxDirectMemorySize=2g
   backup:
     databases: # List of databases to backup
      # - name: myDB

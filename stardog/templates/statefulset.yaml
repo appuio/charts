@@ -64,7 +64,7 @@ spec:
                   key: client-password
             {{- end }}
             - name: STARDOG_SERVER_JAVA_ARGS
-              value: "-Xmx8g -Xms8g -XX:MaxDirectMemorySize=2g -XX:ParallelGCThreads=2 -Dstardog.license.location=/run/secrets/stardog/stardog-license-key.bin"
+              value: "{{ .Values.stardog.javaArgs }} -XX:ParallelGCThreads=2 -Dstardog.license.location=/run/secrets/stardog/stardog-license-key.bin"
           ports:
             - name: stardog
               containerPort: 5820
