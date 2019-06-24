@@ -45,11 +45,11 @@ spec:
         app: stardog
         severity: critical
     - alert: JavaGarbageCollectionTimeExceeded
-      expr: java_lang_garbagecollector_collectiontime > 120000
+      expr: java_lang_garbagecollector_lastgcinfo_duration > 10000
       for: 1m
       annotations:
         summary: Java garbage collection time exeeded
-        description: The approximate garbage collection time exceeded 2m ({{ "{{" }} $value {{ "}}" }}ms).
+        description: The approximate garbage collection time exceeded 10s ({{ "{{" }} $value {{ "}}" }}ms).
       labels:
         env: {{ .Release.Name }}
         app: stardog
