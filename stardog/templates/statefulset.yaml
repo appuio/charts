@@ -84,7 +84,7 @@ spec:
             httpGet:
               path: /admin/healthcheck
               port: stardog
-            initialDelaySeconds: 180
+            initialDelaySeconds: 1800
           readinessProbe:
             httpGet:
               path: /admin/healthcheck
