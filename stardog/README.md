@@ -26,6 +26,8 @@ The following table lists the configurable parameters chart. For default values 
 | `image.existingPullSecret`                   | An existing image pull secret to use |
 | `stardog.existingLicenseSecret`              | Name of an existing secret with a key `stardog-license-key.bin` which contains the Stardog license |
 | `stardog.config`                             | Custom configuration to append to the `stardog.properties` file (as string) |
+| `stardog.adminPassword`                      | Password for the Administrator |
+| `stardog.users`                              | Array of users, each one with name and password |
 | `stardog.javaArgs`                           | Custom java args, passed to the JVM |
 | `stardog.securityContext`                    | K8s security context |
 | `stardog.backup.databases[]`                 | List of DBs to be backed up. The schedule is in UTC |
