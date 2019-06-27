@@ -19,6 +19,10 @@ image:
 # fullnameOverride: ""
 
 stardog:
+  adminPassword:
+  users:
+  # - name: nameOfTheUser
+  #   password: passwordForTheUser
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
