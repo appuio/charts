@@ -7,8 +7,8 @@ keywords:
   - alertmanager
   - webhook
   - icinga2
-version: 0.0.2
-appVersion: 0.0.2
+version: 0.0.3
+appVersion: 0.0.3
 sources:
   - https://git.vshn.net/vshn/signalilo
 maintainers:
