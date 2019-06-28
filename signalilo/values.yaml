@@ -7,7 +7,7 @@ replicaCount: 2
 image:
   registry: registry.vshn.net
   repository: vshn/signalilo
-  tag: 0.0.2
+  tag: 0.0.3
   pullPolicy: IfNotPresent
   # username:
   # password:
@@ -32,6 +32,11 @@ config:
 # extraEnvVars:
 # - name: SIGNALILO_LOG_LEVEL
 #   value: "2"
+# - name: SIGNALILO_ICINGA_CA
+#   value: |
+#     -----BEGIN CERTIFICATE-----
+#     ....
+#     -----END CERTIFICATE-----
 # - name: SIGNALILO_ICINGA_INSECURE_TLS
 #   value: "false"
 # - name: SIGNALILO_ICINGA_DEBUG
