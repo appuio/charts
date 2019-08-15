@@ -1,3 +1,4 @@
+{{- if or .Release.IsInstall .Values.stardog.users }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -51,7 +52,7 @@ spec:
         - -ce
         - |
           echo "Testing stardog connectivity to ${STARDOG_SERVER_URL}"
-          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}"); do sleep 1 && echo "."; done
+          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}"/admin/healthcheck); do sleep 1 && echo "."; done
 
           {{- if .Release.IsInstall }}
           echo Disable anonymous user
@@ -62,6 +63,7 @@ spec:
           {{ range .Values.stardog.users }}
           echo Adding user {{ .name }} to stardog
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user add --new-password "${{ .name }}_password" --passwd "$STARDOG_ADMIN_PW" {{ .name }} || \
-          echo User already exists - changing password && \
+          echo User already exists - setting password && \
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password "${{ .name }}_password" --passwd "$STARDOG_ADMIN_PW" {{ .name }}
           {{ end }}
+{{- end }}
