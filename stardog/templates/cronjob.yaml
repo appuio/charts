@@ -8,6 +8,7 @@ metadata:
   name: {{ $fullName }}-backup-{{ $db.name }}
   labels:
     app.kubernetes.io/name: {{ include "stardog.name" $ }}
+    app.kubernetes.io/component: backup
     helm.sh/chart: {{ include "stardog.chart" $ }}
     app.kubernetes.io/instance: {{ $.Release.Name }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}

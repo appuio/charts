@@ -5,6 +5,7 @@ metadata:
   name: {{ include "stardog.fullname" . }}-add-users
   labels:
     app.kubernetes.io/name: {{ include "stardog.name" $ }}
+    app.kubernetes.io/component: config
     helm.sh/chart: {{ include "stardog.chart" $ }}
     app.kubernetes.io/instance: {{ $.Release.Name }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
