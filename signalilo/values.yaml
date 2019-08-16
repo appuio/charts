@@ -2,12 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 2
+replicaCount: 1
 
 image:
-  registry: registry.vshn.net
+  registry: docker.io
   repository: vshn/signalilo
-  tag: 0.0.3
+  tag: 0.1.0
   pullPolicy: IfNotPresent
   # username:
   # password:
