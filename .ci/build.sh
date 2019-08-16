@@ -59,7 +59,7 @@ trap cleanup 0 1 2 3 6 15
 helm repo add bitnami https://charts.bitnami.com
 helm repo add codecentric https://codecentric.github.io/helm-charts
 helm repo add jetstack https://charts.jetstack.io
-helm repo add weaveworks https://weaveworks.github.io/flux
+helm repo add flux https://fluxcd.github.io/flux
 
 charts=$(find ./* -maxdepth 1 -name Chart.yaml -exec dirname "{}" \;)
 changed_files=$(git diff --name-only $TRAVIS_COMMIT_RANGE)

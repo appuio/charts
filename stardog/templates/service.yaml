@@ -20,4 +20,5 @@ spec:
     {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "stardog.name" . }}
+    app.kubernetes.io/component: server
     app.kubernetes.io/instance: {{ .Release.Name }}

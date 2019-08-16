@@ -4,6 +4,7 @@ metadata:
   name: {{ include "stardog.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "stardog.name" . }}
+    app.kubernetes.io/component: server
     helm.sh/chart: {{ include "stardog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
@@ -11,6 +12,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "stardog.name" . }}
+      app.kubernetes.io/component: server
       app.kubernetes.io/instance: {{ .Release.Name }}
   serviceName: stardog-service
   replicas: {{ .Values.replicaCount }}
@@ -20,6 +22,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "stardog.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: server
       annotations:
         checksum/config: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
         {{- if .Values.metrics.enabled }}
@@ -40,6 +43,10 @@ spec:
                     operator: In
                     values:
                     - {{ .Release.Name }}
+                  - key: "app.kubernetes.io/component"
+                    operator: In
+                    values:
+                    - server
               topologyKey: {{ .Values.affinityTopologyKey }}
     {{- end }}
       containers:
