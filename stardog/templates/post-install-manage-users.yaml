@@ -1,9 +1,11 @@
+{{- if or .Release.IsInstall .Values.stardog.users }}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ include "stardog.fullname" . }}-add-users
   labels:
     app.kubernetes.io/name: {{ include "stardog.name" $ }}
+    app.kubernetes.io/component: config
     helm.sh/chart: {{ include "stardog.chart" $ }}
     app.kubernetes.io/instance: {{ $.Release.Name }}
     app.kubernetes.io/managed-by: {{ $.Release.Service }}
@@ -40,7 +42,7 @@ spec:
         - name: STARDOG_SERVER_URL
           value: http://{{ include "stardog.fullname" $ }}:5820
         {{- range .Values.stardog.users }}
-        - name: {{ .name }}_password
+        - name: {{ .name | upper | replace "-" "_" }}
           valueFrom:
             secretKeyRef:
               name: {{ include "stardog.fullname" $ }}-user-passwords
@@ -51,7 +53,7 @@ spec:
         - -ce
         - |
           echo "Testing stardog connectivity to ${STARDOG_SERVER_URL}"
-          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}"); do sleep 1 && echo "."; done
+          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/healthcheck"); do sleep 1 && echo "."; done
 
           {{- if .Release.IsInstall }}
           echo Disable anonymous user
@@ -60,8 +62,10 @@ spec:
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password "$STARDOG_ADMIN_PW"
           {{- end }}
           {{ range .Values.stardog.users }}
+          {{- $pwEnv := .name | upper | replace "-" "_"}}
           echo Adding user {{ .name }} to stardog
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user add --new-password "${{ .name }}_password" --passwd "$STARDOG_ADMIN_PW" {{ .name }} || \
-          echo User already exists - changing password && \
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password "${{ .name }}_password" --passwd "$STARDOG_ADMIN_PW" {{ .name }}
+          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user add --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }} || \
+          echo User already exists - setting password && \
+          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }}
           {{ end }}
+{{- end }}
