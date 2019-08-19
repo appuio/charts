@@ -32,5 +32,5 @@ spec:
       labels:
         env: {{ .Release.Name }}
         app: stardog
-        severity: {{ "{{ if $value lt 21 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}
+        severity: "{{ "{{ if $value lt 21 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
 {{- end }}
