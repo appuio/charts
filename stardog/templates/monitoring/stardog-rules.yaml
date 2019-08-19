@@ -23,4 +23,14 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: critical
+    - alert: StardogLicenseExpire
+      expr: stardog_dbms_license_expiration_value < 42
+      for: 10m
+      annotations:
+        summary: Stardog license about to expire
+        description: The Stardog license will expire in {{ "{{" }} $value {{ "}}" }} days.
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: {{ "{{ if $value lt 21 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}
 {{- end }}

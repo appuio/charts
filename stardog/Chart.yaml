@@ -1,8 +1,8 @@
 ---
 apiVersion: v1
 name: stardog
-version: 0.0.16
-appVersion: 6.2.2
+version: 0.0.17
+appVersion: 6.2.3
 description: Stardog Helm Chart
 home: "https://www.stardog.com/"
 icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
