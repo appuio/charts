@@ -5,10 +5,6 @@ ssl: false
 lowercaseOutputName: true
 lowercaseOutputLabelNames: true
 rules:
-  - pattern: Stardog<name=databases\.(.+?)\.(.+)><>(Count|Value)
-    name: stardog_database_$2
-    labels:
-      database: $1
   - pattern: Stardog<00=databases, 01=(.+?), name=(.+)><>(Count|Value)
     name: stardog_database_$2
     labels:
