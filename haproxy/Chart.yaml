@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: v0.0.1
+description: A Helm chart for HAProxy which can be customized by a config map.
+name: haproxy
+version: 0.0.1
+maintainer:
+  - name: Jan-Philipp Heinrich
+    email: jan.heinrich@vshn.ch

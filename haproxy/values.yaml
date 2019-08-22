@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/haproxytech/haproxy-debian
+  tag: 2.1
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: false
+
+service:
+  port: 8080
+  type: ClusterIP
+
+haproxy:
+  config: tls
+  frontend:
+    port: 30636
+  backend: example.org
+  certificate:
+    path: /usr/share/ca-certificates/mozilla/COMODO_RSA_Certification_Authority.crt
+resources:
+  limits:
+   cpu: 100m
+   memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 128Mi
