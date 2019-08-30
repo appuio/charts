@@ -89,12 +89,12 @@ spec:
               subPath: log4j2.xml
           livenessProbe:
             httpGet:
-              path: /admin/healthcheck
+              path: /admin/alive
               port: stardog
             initialDelaySeconds: 1800
           readinessProbe:
             httpGet:
-              path: /admin/healthcheck
+              path: /admin/alive
               port: stardog
             initialDelaySeconds: 15
           resources:
