@@ -53,7 +53,7 @@ spec:
         - -ce
         - |
           echo "Testing stardog connectivity to ${STARDOG_SERVER_URL}"
-          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/healthcheck"); do sleep 1 && echo "."; done
+          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/alive"); do sleep 1 && echo "."; done
 
           {{- if .Release.IsInstall }}
           echo Disable anonymous user
