@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" name="default-config">
+<!-- Copyright (c) 2010 - 2019, Stardog Union. <http://www.stardog.com> -->
+<!-- For more information about licensing and copyright of this software, please contact -->
+<!-- sales@stardog.com or visit http://stardog.com -->
+<Configuration status="ERROR" name="default-config">
+	<Properties>
+		<Property name="STARDOG_LOG">stardog</Property><!-- do not edit -->
+		<Property name="ZOOKEEPER_LOG">zookeeper</Property>
+		<Property name="LOG_DIR">${sys:stardog.home}</Property>
+		<Property name="ARCHIVE">${LOG_DIR}/.logs_archive</Property><!-- for use with RollingFile -->
+		<Property name="PATTERN">%-5level %d [%t] %c:%M(%L): %m%n</Property>
+	</Properties>
 	<Appenders>
-		<Console name="stdoutAppender" target="SYSTEM_OUT">
-			<PatternLayout pattern="%-5level %d [%t] %c:%M(%L): %m%n"/>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<JsonLayout compact="true" eventEol="true" includeStacktrace="true" stacktraceAsString="true" />
 		</Console>
 	</Appenders>
 	<Loggers>
 		<Root level="INFO">
-			<AppenderRef ref="stdoutAppender"/>
+			<AppenderRef ref="STDOUT"/>
 		</Root>
+		<Logger name="com.complexible.stardog" level="INFO" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<Logger name="com.complexible.stardog.StardogModules" level="DEBUG" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- ignore minor warnings from PDFBox about mis-named Unicode symbols -->
+		<Logger name="org.apache.pdfbox.encoding.Encoding" level="ERROR" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- ignore warning from RIO about our replacing their TurtleWriter -->
+		<Logger name="org.com.complexible.common.openrdf.rio.RDFWriterRegistry" level="ERROR" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- redirect all zookeeper records to its own log file -->
+		<Logger name="org.apache.zookeeper" level="INFO" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+
+		<!-- do not edit -->
+		<Logger name="com.complexible.stardog.Kernels" level="INFO" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
 	</Loggers>
 </Configuration>
