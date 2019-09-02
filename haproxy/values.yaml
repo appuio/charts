@@ -7,18 +7,30 @@ image:
 
 ingress:
   enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: haproxy
+    # kubernetes.io/tls-acme: "true"
+  
+  ## Hosts for the ingress
+  hosts:
+    # - one.example.org
+    # - two.example.org
+  
+  ## TLS configuration
+  tls:
+    enabled: true
+    secretName: # tls-haproxy
 
 service:
-  port: 8080
+  port: 30636
   type: ClusterIP
 
 haproxy:
-  config: tls
-  frontend:
-    port: 30636
-  backend: example.org
-  certificate:
-    path: /usr/share/ca-certificates/mozilla/COMODO_RSA_Certification_Authority.crt
+  config: ldap-tls
+  frontendPort: 30636
+  ldapTls:
+    certificatePath: /etc/ssl/certs/ca-certificates.crt
+    # backend: ldap-example.org
 resources:
   limits:
    cpu: 100m
