@@ -25,7 +25,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: frontend
-              containerPort: {{ .Values.haproxy.frontend.port }}
+              containerPort: {{ .Values.haproxy.frontendPort }}
               protocol: TCP
           readinessProbe:
             tcpSocket:
