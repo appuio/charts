@@ -44,7 +44,7 @@ create your own configmap and values.
 | `image.pullPolicy`     | Determines when the image is pulled | IfNotPresent
 | `ingress.enabled`      | If an ingress object should be created | false
 | `ingress.annotations`  | Annotations to set on the ingress object |
-| `ingress.host`         | Host name which the ingress should resolve |
+| `ingress.hosts`        | Array of host names which the ingress should resolve |
 | `ingress.tls.enabled`  | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`| Name of the secret containing the TLS certificate and key |
 | `haproxy.frontendPort` | Port for the Proxy to listen on the frontend | 30636
