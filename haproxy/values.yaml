@@ -1,0 +1,40 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/haproxytech/haproxy-debian
+  tag: 2.1
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: haproxy
+    # kubernetes.io/tls-acme: "true"
+  
+  ## Hosts for the ingress
+  hosts:
+    # - one.example.org
+    # - two.example.org
+  
+  ## TLS configuration
+  tls:
+    enabled: true
+    secretName: # tls-haproxy
+
+service:
+  port: 30636
+  type: ClusterIP
+
+haproxy:
+  config: ldap-tls
+  frontendPort: 30636
+  ldapTls:
+    certificatePath: /etc/ssl/certs/ca-certificates.crt
+    # backend: ldap-example.org
+resources:
+  limits:
+   cpu: 100m
+   memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 128Mi
