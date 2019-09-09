@@ -24,7 +24,7 @@ K8up uses Wrestic as a backup runner, to learn more about it, please visit [wres
 To install the chart with the release name `k8up`:
 
 ```console
-$ helm install --name k8up appuio/k8up
+helm install --name k8up appuio/k8up
 ```
 
 ## Uninstalling the Chart
@@ -32,7 +32,25 @@ $ helm install --name k8up appuio/k8up
 To uninstall/delete the `k8up` deployment:
 
 ```console
-$ helm delete k8up
+helm delete k8up
+```
+
+## Installing the Chart (without cluster-admin for tiller)
+
+```console
+helm fetch appuio/k8up --untar
+helm template ./k8up/ -x templates/clusterrole.yaml -x templates/clusterrolebinding.yaml --set rbac.enabled=true | kubectl apply -f -
+rm -rf ./k8up/
+helm install --name k8up appuio/k8up --set rbac.enabled=false
+```
+
+## Uninstalling the Chart (without cluster-admin for tiller)
+
+```console
+helm delete k8up
+helm fetch appuio/k8up --untar
+helm template ./k8up/ -x templates/clusterrole.yaml -x templates/clusterrolebinding.yaml --set rbac.enabled=true | kubectl delete -f -
+rm -rf ./k8up/
 ```
 
 ## Configuration
