@@ -55,13 +55,17 @@ create your own configmap and values.
 | `affinity` | Pod affinity rules | `{}`
 
 ### ldap-tls
+
+Set `haproxy.config` to `ldap-tls` to use the LDAP TLS configuration (default).
+
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
-| `haproxy.config`       | Suffix of the used config-map | ldap-tls
 | `haproxy.ldapTls.backend` | Service the proxy should connect to | none
 | `haproxy.ldapTls.certificatePath` | Path to the corresponding root-certificate | /etc/ssl/certs/ca-certificates.crt
 
 ### galera
+
+Set `haproxy.config` to `galera` to use the Galera configuration.
 
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
