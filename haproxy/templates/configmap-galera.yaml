@@ -34,6 +34,6 @@ data:
       balance {{ $galera.balance }}
       {{ if $galera.check.enabled }}option mysql-check user {{ $galera.check.user }}{{ end }}
       {{- range $index, $node := .Values.haproxy.galera.nodes }}
-      server node-{{ $index }} {{ $node.address }} {{ default "3306" $node.port }}{{ if $galera.check.enabled }} check{{ end }}{{ if $node.backup }} backup{{ end }}
+      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }}{{ if $galera.check.enabled }} check{{ end }}{{ if $node.backup }} backup{{ end }}
       {{- end }}
 {{- end }}
