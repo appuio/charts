@@ -1,0 +1,39 @@
+{{- if eq .Values.haproxy.config "galera"}}
+{{- $galera := .Values.haproxy.galera -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "haproxy.fullname" . }}-galera"
+  labels:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    helm.sh/chart: {{ include "haproxy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  haproxy.cfg: |-
+    global
+      log stdout local0
+
+    defaults
+      log global
+
+      option dontlognull
+      timeout connect 5s
+      timeout client 10s
+      timeout server 10s
+
+    frontend galera-in
+      bind *:{{ .Values.haproxy.frontendPort }}
+      mode tcp
+      option clitcpka
+      default_backend galera-nodes
+
+    backend galera-nodes
+      mode tcp
+      option srvtcpka
+      balance {{ $galera.balance }}
+      {{ if $galera.check.enabled }}option mysql-check user {{ $galera.check.user }}{{ end }}
+      {{- range $index, $node := .Values.haproxy.galera.nodes }}
+      server node-{{ $index }} {{ $node.address }} {{ default "3306" $node.port }}{{ if $galera.check.enabled }} check{{ end }}{{ if $node.backup }} backup{{ end }}
+      {{- end }}
+{{- end }}

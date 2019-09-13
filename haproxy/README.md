@@ -32,10 +32,11 @@ helm delete haproxy
 
 ## Configuration
 
-The configuration of HAProxy is derived through a configmap which in turn can be configured by adjusting the corresponding values in values.yaml.  
-The present example is a configmap to configure HAProxy as a TLS reverse proxy to communicate with an LDAP backend. For different purposes you can  
+The configuration of HAProxy is derived through a configmap which in turn can be configured by adjusting the corresponding values in values.yaml.
+The present example is a configmap to configure HAProxy as a TLS reverse proxy to communicate with an LDAP backend. For different purposes you can
 create your own configmap and values.  
 
+### General parameters
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `replicaCount`         | Number of replicas for the proxy. | 1
@@ -49,8 +50,31 @@ create your own configmap and values.
 | `ingress.tls.secretName`| Name of the secret containing the TLS certificate and key |
 | `haproxy.frontendPort` | Port for the Proxy to listen on the frontend | 30636
 | `haproxy.config`       | Suffix of the used config-map | ldap-tls
-| `haproxy.ldapTls.backend` | Service the proxy should connect to | none
-| `haproxy.ldapTls.certificatePath` | Path to the corresponding root-certificate | /etc/ssl/certs/ca-certificates.crt   
 | `nodeSelector` | Pod node selector | `{}`
 | `tolerations` | Pod tolerations | `[]`
 | `affinity` | Pod affinity rules | `{}`
+
+### ldap-tls
+
+Set `haproxy.config` to `ldap-tls` to use the LDAP TLS configuration (default).
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.ldapTls.backend` | Service the proxy should connect to | none
+| `haproxy.ldapTls.certificatePath` | Path to the corresponding root-certificate | /etc/ssl/certs/ca-certificates.crt
+
+### galera
+
+Set `haproxy.config` to `galera` to use the Galera configuration.
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.galera.balance` | What balance mode HAProxy should use | source
+| `haproxy.galera.check.enabled` | If mysql-check should be enabled | true
+| `haproxy.galera.check.user` | The database user to use for mysql-check | haproxy
+| `haproxy.galera.nodes` | List of Galera nodes | []
+| `haproxy.galera.nodes.address` | Address of the Galera node |
+| `haproxy.galera.nodes.port` | Port of the Galera node | 3306
+| `haproxy.galera.nodes.backup` | If this node should be used as a backup node | true
+
+To use `mysql-check`, configure a user `haproxy` in the database (see: http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-option%20mysql-check for more information).
