@@ -28,9 +28,21 @@ service:
 haproxy:
   config: ldap-tls
   frontendPort: 30636
+
   ldapTls:
     certificatePath: /etc/ssl/certs/ca-certificates.crt
     # backend: ldap-example.org
+
+  galera:
+    balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    check:
+      enabled: true # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20mysql-check
+      user: haproxy
+    nodes: []
+    # - address: galera-node-1
+    #   port: 3306
+    #   backup: false
+
 resources:
   limits:
    cpu: 100m
