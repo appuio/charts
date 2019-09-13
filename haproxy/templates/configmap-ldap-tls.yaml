@@ -1,4 +1,4 @@
-{{- if eq .Values.haproxy.config "ldap-tls"}}
+{{- if eq .Values.haproxy.config "ldap-tls" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -32,4 +32,4 @@ data:
 
     backend backend
       server ldap {{ .Values.haproxy.ldapTls.backend }} ssl verify required ca-file {{ .Values.haproxy.ldapTls.certificatePath }}
-{{- end}}}
+{{- end }}
