@@ -87,6 +87,8 @@ spec:
             - name: config
               mountPath: /var/opt/stardog/log4j2.xml
               subPath: log4j2.xml
+            - name: tmp
+              mountPath: /tmp/
           livenessProbe:
             httpGet:
               path: /admin/alive
@@ -132,7 +134,7 @@ spec:
               memory: 128Mi
               cpu: 500m
       {{- end }}
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 600
       securityContext: {{ .Values.stardog.securityContext | toYaml | nindent 8 }}
       imagePullSecrets:
       {{- if .Values.image.existingPullSecret }}
@@ -147,6 +149,8 @@ spec:
         - name: config
           configMap:
             name: {{ template "stardog.fullname" . }}-config
+        - name: tmp
+          emptyDir: {}
         {{- if .Values.metrics.enabled }}
         - name: jmx-config
           configMap:
