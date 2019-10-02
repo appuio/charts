@@ -14,8 +14,8 @@ spec:
       app.kubernetes.io/name: {{ include "stardog.name" . }}
   endpoints:
   - port: metrics
-    interval: 1s
-    scrapeTimeout: 30s
+    interval: 3s
+    scrapeTimeout: 3s
   jobLabel: app.kubernetes.io/instance
   podTargetLabels:
     - app.kubernetes.io/component
