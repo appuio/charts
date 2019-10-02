@@ -93,6 +93,7 @@ affinityTopologyKey: kubernetes.io/hostname
 zookeeper:
   enabled: true
   replicaCount: 3
+  updateStrategy: OnDelete
   allowAnonymousLogin: false
   auth:
     enabled: true
