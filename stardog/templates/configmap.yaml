@@ -16,12 +16,15 @@ data:
     pack.enabled=true
     pack.zookeeper.address={{ template "stardog.zookeeperConnection" . }}
     pack.session.timeout=15s
+    pack.curator.retry.count=42
+    pack.node.join.retry.count=42
     {{- if .Values.zookeeper.auth.enabled }}
     pack.zookeeper.auth=$ZOOKEEPER_USERNAME:$ZOOKEEPER_PASSWORD
     {{- end }}
+    {{- end }}
+
     {{- if .Values.metrics.enabled }}
     metrics.enabled=true
     metrics.reporter=jmx
     metrics.jmx.remote.access=true
-    {{- end }}
     {{- end }}
