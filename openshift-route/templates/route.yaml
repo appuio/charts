@@ -1,0 +1,36 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "openshift-route.fullname" . }}
+  labels:
+{{ include "openshift-route.labels" . | indent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  host: {{ .Values.host }}
+  path: {{ .Values.path }}
+  wildcardPolicy: {{ .Values.wildcardPolicy }}
+  port:
+    targetPort: {{ .Values.service.targetPort }}
+{{- if .Values.tls.enabled }}
+  tls:
+{{- with .Values.tls }}
+    termination: {{ .termination }}
+    insecureEdgeTerminationPolicy: {{ .insecureEdgeTerminationPolicy }}
+    key: {{ .key }}
+    certificate: {{ .certificate }}
+    caCertificate: {{ .caCertificate }}
+    destinationCACertificate: {{ .destinationCACertificate }}
+{{- end}}
+{{- end }}
+  to:
+    kind: Service
+    name: {{ required "A valid .Values.service.name entry required!" .Values.service.name }}
+    weight: {{ .Values.service.weight }}
+{{- with .Values.alternateBackends }}
+  alternateBackends:
+    {{- toYaml . | nindent 4 }}
+{{- end }}

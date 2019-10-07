@@ -1,0 +1,32 @@
+# Default values for openshift-route.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+annotations:
+# kubernetes.io/acme-tls: "true"
+# haproxy.router.openshift.io/timeout: 5000ms
+# haproxy.router.openshift.io/ip_whitelist: 192.168.1.0/24 10.0.0.0/8
+
+host: ""
+path: ""
+
+wildcardPolicy: None
+
+nameOverride: ""
+fullnameOverride: ""
+
+tls:
+  enabled: false
+  termination: edge
+  insecureEdgeTerminationPolicy: Redirect
+  key:
+  certificate:
+  caCertificate:
+  destinationCACertificate:
+
+service:
+  name: ""
+  targetPort: 8080
+  weight: 100
+
+alternateBackends: []
