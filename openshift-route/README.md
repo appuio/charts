@@ -21,7 +21,7 @@ The following table lists the configurable parameters of the chart. For defaults
 | `path` | Subpath of the route. | `""`
 | `annotations` | Annotations on the route object. | `{}`
 | `service.name` | The backend service name of the route. Required. | `""`
-| `service.targetPort` | The port of the backend service. | `8080`
+| `service.targetPort` | The port of the backend service. The port is aware of the named ports of the service, so it can be a name too. | `http`
 | `service.weight` | Weight of the service endpoint. | `100`
 | `wildcardPolicy` | Wildcard Policy of the route. | `None`
 | `tls.enabled` | Whether to secure the Route with TLS. | `false`

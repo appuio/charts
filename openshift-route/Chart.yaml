@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "v1"
 description: A Helm chart for OpenShift that simply creates a Route object
 name: openshift-route
-version: 1.0.0
+version: 1.0.1
