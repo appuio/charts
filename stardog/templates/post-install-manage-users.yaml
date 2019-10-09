@@ -34,6 +34,8 @@ spec:
         image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
+        - name: STARDOG_JAVA_ARGS
+          value: -XX:ParallelGCThreads=1
         - name: STARDOG_ADMIN_PW
           valueFrom:
             secretKeyRef:
@@ -60,6 +62,7 @@ spec:
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user disable anonymous
           echo Changing admin password
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password "$STARDOG_ADMIN_PW"
+          echo
           {{- end }}
           {{ range .Values.stardog.users }}
           {{- $pwEnv := .name | upper | replace "-" "_"}}
@@ -67,5 +70,6 @@ spec:
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user add --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }} || \
           echo User already exists - setting password && \
           /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }}
+          echo
           {{ end }}
 {{- end }}
