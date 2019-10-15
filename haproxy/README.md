@@ -70,8 +70,9 @@ Set `haproxy.config` to `galera` to use the Galera configuration.
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `haproxy.galera.balance` | What balance mode HAProxy should use | source
-| `haproxy.galera.check.enabled` | If mysql-check should be enabled | true
-| `haproxy.galera.check.user` | The database user to use for mysql-check | haproxy
+| `haproxy.galera.check.enabled` | If check should be enabled | true
+| `haproxy.galera.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
+| `haproxy.galera.check.mysql.user` | The database user to use for mysql-check | haproxy
 | `haproxy.galera.nodes` | List of Galera nodes | []
 | `haproxy.galera.nodes.address` | Address of the Galera node |
 | `haproxy.galera.nodes.port` | Port of the Galera node | 3306
