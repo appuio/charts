@@ -1,5 +1,5 @@
 dependencies:
   - name: zookeeper
-    version: 5.0.1
+    version: 5
     repository: https://charts.bitnami.com
     condition: zookeeper.enabled
