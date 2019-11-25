@@ -14,19 +14,26 @@ The following table lists the configurable parameters chart. For default values 
 
 | Parameter                                    | Description |
 | ---                                          | --- |
-| `replicaCount`                               | Number of trifid instances to run. |
+| `replicaCount`                               | Number of trifid instances to run |
+| `serviceAccount.create`                      | Specifies whether a service account should be created |
+| `serviceAccount.name`                        | The name of the service account to use |
+| `imagePullSecrets`                           | The image pull secrets to use |
 | `image.registry`                             | The Docker registry to pull from |
 | `image.repository`                           | The Docker image repostory to pull |
 | `image.tag`                                  | The Docker image tag to pull |
+| `podSecurityContext`                         | The security context which should be applied to the pod |
+| `securityContext`                            | The security context which should be applied to the container |
 | `trifid.sparql.endpoint.url`                 | URL of the SPARQL endpoint to use |
 | `trifid.sparql.endpoint.username`            | Username used to connect to the SPARQL endpoint |
 | `trifid.sparql.endpoint.password`            | Password used to connect to the SPARQL endpoint |
 | `trifid.sparql.endpoint.secretName`          | Name of an existing secret containing `username` and `password` of the SPARQL endpoint |
 | `ingress.enabled`                            | If an ingress object should be created |
 | `ingress.annotations`                        | Annotations to set on the ingress object |
-| `ingress.host`                               | Host name which the ingress should resolve |
+| `ingress.hosts.host`                         | Host name which the ingress should resolve |
+| `ingress.hosts.paths`                        | Paths which the ingress should resolve |
 | `ingress.tls.enabled`                        | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`                     | Name of the secret containing the TLS certificate and key |
+| `ingress.tls.hosts`                          | Hosts to use the certificate secret for |
 | `resources`                                  | Pod resource requests and limits |
 | `nodeSelector`                               | Pod node selector |
 | `affinity`                                   | Pod affinity rules |
