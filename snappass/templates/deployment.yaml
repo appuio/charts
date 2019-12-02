@@ -1,0 +1,129 @@
+{{- $snappass := .Values.snappass }}
+{{- $redis := .Values.snappass.redis }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "snappass.fullname" . }}
+  labels:
+{{ include "snappass.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "snappass.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "snappass.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "snappass.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        {{- if .Values.redis.enabled }}
+        - name: wait-for-redis
+          image: docker.io/busybox:1
+          env:
+          {{- if .Values.redis.enabled }}
+          - name: REDIS_HOST
+            value: "{{ template "snappass.redis.fullname" . }}-master"
+          - name: REDIS_PORT
+            value: "{{ .Values.redis.redisPort }}"
+          {{- else }}
+          - name: REDIS_HOST
+            value: "{{ $redis.host }}"
+          - name: REDIS_PORT
+            value: "{{ $redis.port }}"
+          {{- end }}
+          command: [ "/bin/sh", "-c", "until nc -zv ${REDIS_HOST} ${REDIS_PORT} -w1; do sleep 1; done" ]
+        {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          {{- if $snappass.debug.enabled }}
+          - name: DEBUG
+            value: "true"
+          {{- end }}
+          {{- if not $snappass.ssl.enabled }}
+          - name: NO_SSL
+            value: "true"
+          {{- end }}
+          {{- if $snappass.urlPrefix }}
+          - name: URL_PREFIX
+            value: "{{ $snappass.urlPrefix }}"
+          {{- end }}
+          {{- if $snappass.staticUrl }}
+          - name: STATIC_URL
+            value: "{{ $snappass.staticUrl }}"
+          {{- end }}
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ if $snappass.existingSecret }}{{ $snappass.existingSecret }}{{ else }}{{ include "snappass.fullname" . }}{{ end }}
+                key: secretKey
+          {{- if .Values.redis.enabled }}
+          - name: REDIS_HOST
+            value: "{{ template "snappass.redis.fullname" . }}-master"
+          - name: REDIS_PORT
+            value: "{{ .Values.redis.redisPort }}"
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "{{ if .Values.redis.existingSecret }}{{ .Values.redis.existingSecret }}{{ else }}{{ template "snappass.redis.fullname" . }}{{ end }}"
+                key: "{{ if and .Values.redis.existingSecret .Values.redis.existingSecretPasswordKey  }}{{ .Values.redis.existingSecretPasswordKey }}{{ else }}redis-password{{ end }}"
+          {{- else }}
+          - name: REDIS_HOST
+            value: "{{ $redis.host }}"
+          - name: REDIS_PORT
+            value: "{{ $redis.port }}"
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: "{{ if $redis.existingSecret }}{{ $redis.existingSecret }}{{ else }}{{ include "snappass.fullname" . }}-redis{{ end }}"
+                key: "redis-password"
+          {{- end }}
+          - name: SNAPPASS_REDIS_DB
+            value: "{{ $redis.db }}"
+          {{- if $redis.prefix }}
+          - name: REDIS_PREFIX
+            value: "{{ $redis.prefix }}"
+          {{- end }}
+          command: ["/bin/sh"]
+          args: ["-c", "exec env REDIS_URL=redis://redis:$(REDIS_PASSWORD)@$(REDIS_HOST):$(REDIS_PORT)/$(SNAPPASS_REDIS_DB) snappass"]
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
