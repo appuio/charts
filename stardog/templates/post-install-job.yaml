@@ -52,12 +52,16 @@ spec:
           until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/alive"); do sleep 1; done
           echo "Stardog is available now"
 
-          {{- if .Release.IsInstall }}
+          {{ if .Release.IsInstall }}
           bash ${script} -v --disable-anonymous --set-admin-password
           {{- end }}
-          {{ range .Values.stardog.users }}
+          {{- range .Values.stardog.databases }}
+          bash ${script} -v --new-database {{ .name }} -- {{ if .options }}-o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
+          {{- end }}
+          {{- range .Values.stardog.users }}
           bash ${script} -v --new-user-name {{ .name }} --new-user-pass-from "/run/secrets/stardog/{{ .name }}"
-          {{ end }}
+          {{- end }}
+
         volumeMounts:
         - name: users
           mountPath: /run/secrets/stardog

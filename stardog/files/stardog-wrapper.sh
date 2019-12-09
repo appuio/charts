@@ -11,8 +11,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=sdahn:p:v
-LONGOPTS=server,disable-anonymous,set-admin-password,help,new-user-name:,new-user-pass-from:,verbose
+OPTIONS=sahn:p:dv
+LONGOPTS=server,disable-anonymous,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,verbose
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -50,6 +50,8 @@ disable_anonymous=false
 set_admin_password=false
 verbose=false
 new_user=false
+new_database=false
+options=""
 
 # now enjoy the options in order and nicely split until we see --
 while true; do
@@ -58,7 +60,7 @@ while true; do
             server="${2}"
             shift 2
             ;;
-        -d|--disable-anonymous)
+           --disable-anonymous)
             disable_anonymous=true
             shift
             ;;
@@ -79,12 +81,18 @@ while true; do
             new_user_pass_from="${2}"
             shift 2
             ;;
+        -d|--new-database)
+            new_database=true
+            new_database_name="${2}"
+            shift 2
+            ;;
         -v|--verbose)
             verbose=true
             shift
             ;;
         --)
             shift
+            options="${@}"
             break
             ;;
         *)
@@ -108,6 +116,13 @@ fi
 if $set_admin_password; then
     log "Setting admin password"
     ${admin_bin} --server "${server}" user passwd --new-password "${admin_pw}"
+fi
+
+if $new_database; then
+    log "Checking if database ${new_database_name} exists"
+    ${admin_bin} --server "${server}" db status --passwd "${admin_pw}" "${new_database_name}" || \
+    log "Database does not exist - creating database" && \
+    ${admin_bin} --server "${server}" db create --name "${new_database_name}" --passwd "${admin_pw}" ${options}
 fi
 
 if $new_user; then

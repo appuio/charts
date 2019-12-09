@@ -23,6 +23,11 @@ stardog:
   users:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
+  databases:
+  - name: stardog
+    # options:
+    # - name: option
+    #   value: value
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
