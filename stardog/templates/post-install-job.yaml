@@ -58,11 +58,15 @@ spec:
           bash ${script} -v --disable-user {{ . }}
           {{ end }}
           {{- end }}
-          {{- range .Values.stardog.databases }}
+          {{- range .Values.stardog.databases -}}
           bash ${script} -v --new-database {{ .name }} -- {{ if .options }}-o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
           {{- end }}
           {{- range .Values.stardog.users }}
           bash ${script} -v --new-user-name {{ .name }} --new-user-pass-from "/run/secrets/stardog/{{ .name }}"
+          {{ $username := .name }}
+          {{- range .grants -}}
+          bash ${script} -v --grant-user "{{ $username }},{{ .action }},{{ .object }}"
+          {{- end }}
           {{- end }}
 
         volumeMounts:

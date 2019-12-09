@@ -23,6 +23,9 @@ stardog:
   users:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
+  #   grants:
+  #   - action: write
+  #     object: db:stardog
   disabledUsers:
   - anonymous
   databases:

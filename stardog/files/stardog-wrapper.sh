@@ -11,7 +11,7 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=sahn:p:dv
+OPTIONS=sahn:p:dvg
 LONGOPTS=server,disable-user,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,grant-user:,verbose
 
 # -regarding ! and PIPESTATUS see above
@@ -36,7 +36,7 @@ Usage: $(basename "$0") [OPTION]...
   -a,--set-admin-password                       Sets the admin password. Needs \$STARDOG_ADMIN_PW set as ENV var.
   -n,--new-user-name       USER                 Adds a new user name with the given name. Needs -p.
   -p,--new-user-pass-from  PATH                 When using --new-user-name, set a path to a file which contains the new user password.
-  -p,--new-user-pass-from PATH   When using --new-user-name, set a path to a file which contains the new user password.
+  -g,--grant-user          USER,ACTION,OBJECT   Grant an action for an object for a user. (e.g. peter,write,db:stardog)
   -d,--new-database        VALUE                Creates a new database with the given name. Pass additional options after --, e.g. "--new-database stardog -- -o search.enabled=true"
   -h,--help                                     Display this help.
   -v,--verbose                                  Verbose mode.
@@ -51,9 +51,9 @@ server="${STARDOG_SERVER_URL:-http://localhost:5820}"
 disable_user=false
 set_admin_password=false
 verbose=false
-new_user=false
 new_database=false
 new_user=false
+grant_user=false
 options=""
 
 # now enjoy the options in order and nicely split until we see --
@@ -88,6 +88,11 @@ while true; do
         -d|--new-database)
             new_database=true
             new_database_name="${2}"
+            shift 2
+            ;;
+        -g|--grant-user)
+            grant_user=true
+            grant_arr=(${2//,/ })
             shift 2
             ;;
         -v|--verbose)
@@ -134,4 +139,13 @@ if $new_user; then
     ${admin_bin} --server "${server}" user add --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}" || \
     log "User already exists - updating password" && \
     ${admin_bin} --server "${server}" user passwd --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}"
+fi
+
+if $grant_user; then
+    user_name=${grant_arr[0]}
+    action_name=${grant_arr[1]}
+    grant_object=${grant_arr[2]}
+    command="${admin_bin} --server \"${server}\" user grant ${user_name} --passwd \"${admin_pw}\" --action \"${action_name}\" --object \"${grant_object}\" \"${user_name}\""
+    log "Granting user '${user_name}' ${action_name} to ${grant_object}"
+    grep 'already has' - < <(${command}) || ${command}
 fi
