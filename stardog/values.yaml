@@ -23,6 +23,8 @@ stardog:
   users:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
+  disabledUsers:
+  - anonymous
   databases:
   - name: stardog
     # options:

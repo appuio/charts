@@ -12,7 +12,7 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
 fi
 
 OPTIONS=sahn:p:dv
-LONGOPTS=server,disable-anonymous,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,verbose
+LONGOPTS=server,disable-user,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,grant-user:,verbose
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -31,13 +31,15 @@ function usage {
 	cat <<EOM
 Usage: $(basename "$0") [OPTION]...
 
-  -s,--server             VALUE  Stardog server URL. Uses \$STARDOG_SERVER_URL if unset.
-  -d,--disable-anonymous         Disable the anonymous user.
-  -a,--set-admin-password        Sets the admin password. Needs \$STARDOG_ADMIN_PW set as ENV var.
-  -v,--verbose                   Verbose mode.
-  -n,--new-user-name      VALUE  Adds a new user name with the given name. Needs -p.
+  -s,--server              VALUE                Stardog server URL. Uses \$STARDOG_SERVER_URL if unset.
+    ,--disable-user        USER                 Disable the given user.
+  -a,--set-admin-password                       Sets the admin password. Needs \$STARDOG_ADMIN_PW set as ENV var.
+  -n,--new-user-name       USER                 Adds a new user name with the given name. Needs -p.
+  -p,--new-user-pass-from  PATH                 When using --new-user-name, set a path to a file which contains the new user password.
   -p,--new-user-pass-from PATH   When using --new-user-name, set a path to a file which contains the new user password.
-  -h,--help                      Display this help.
+  -d,--new-database        VALUE                Creates a new database with the given name. Pass additional options after --, e.g. "--new-database stardog -- -o search.enabled=true"
+  -h,--help                                     Display this help.
+  -v,--verbose                                  Verbose mode.
 EOM
 	exit 2
 }
@@ -46,11 +48,12 @@ admin_bin="${STARDOG_ADMIN_BIN:-/opt/stardog/bin/stardog-admin}"
 admin_pw="${STARDOG_ADMIN_PW}"
 server="${STARDOG_SERVER_URL:-http://localhost:5820}"
 
-disable_anonymous=false
+disable_user=false
 set_admin_password=false
 verbose=false
 new_user=false
 new_database=false
+new_user=false
 options=""
 
 # now enjoy the options in order and nicely split until we see --
@@ -60,9 +63,10 @@ while true; do
             server="${2}"
             shift 2
             ;;
-           --disable-anonymous)
-            disable_anonymous=true
-            shift
+           --disable-user)
+            disable_user=true
+            user_name="${2}"
+            shift 2
             ;;
         -a|--set-admin-password)
             set_admin_password=true
@@ -108,9 +112,9 @@ log() {
     fi
 }
 
-if $disable_anonymous; then
-    log "Disable anonymous user"
-    ${admin_bin} --server "${server}" user disable anonymous
+if $disable_user; then
+    log "Disable user ${user_name}"
+    ${admin_bin} --server "${server}" user disable ${user_name}
 fi
 
 if $set_admin_password; then

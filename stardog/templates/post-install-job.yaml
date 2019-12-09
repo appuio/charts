@@ -52,8 +52,11 @@ spec:
           until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/alive"); do sleep 1; done
           echo "Stardog is available now"
 
-          {{ if .Release.IsInstall }}
-          bash ${script} -v --disable-anonymous --set-admin-password
+          {{ if .Release.IsInstall -}}
+          bash ${script} -v --set-admin-password
+          {{- range .Values.stardog.disabledUsers }}
+          bash ${script} -v --disable-user {{ . }}
+          {{ end }}
           {{- end }}
           {{- range .Values.stardog.databases }}
           bash ${script} -v --new-database {{ .name }} -- {{ if .options }}-o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
