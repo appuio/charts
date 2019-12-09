@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "stardog.fullname" . }}-add-users
+  name: {{ include "stardog.fullname" . }}-postinstall
   labels:
     app.kubernetes.io/name: {{ include "stardog.name" $ }}
     app.kubernetes.io/component: config
@@ -43,33 +43,33 @@ spec:
               key: admin
         - name: STARDOG_SERVER_URL
           value: http://{{ include "stardog.fullname" $ }}:5820
-        {{- range .Values.stardog.users }}
-        - name: {{ .name | upper | replace "-" "_" }}
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "stardog.fullname" $ }}-user-passwords
-              key: {{ .name }}
-        {{ end }}
         command:
-        - /bin/sh
+        - /bin/bash
         - -ce
         - |
-          echo "Testing stardog connectivity to ${STARDOG_SERVER_URL}"
-          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/alive"); do sleep 1 && echo "."; done
+          script="/var/opt/stardog/stardog-wrapper.sh"
+          echo "Testing stardog connectivity to ${STARDOG_SERVER_URL}..."
+          until $(curl -o /dev/null -s -f "${STARDOG_SERVER_URL}/admin/alive"); do sleep 1; done
+          echo "Stardog is available now"
 
           {{- if .Release.IsInstall }}
-          echo Disable anonymous user
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user disable anonymous
-          echo Changing admin password
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password "$STARDOG_ADMIN_PW"
-          echo
+          bash ${script} -v --disable-anonymous --set-admin-password
           {{- end }}
           {{ range .Values.stardog.users }}
-          {{- $pwEnv := .name | upper | replace "-" "_"}}
-          echo Adding user {{ .name }} to stardog
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user add --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }} || \
-          echo User already exists - setting password && \
-          /opt/stardog/bin/stardog-admin --server "${STARDOG_SERVER_URL}" user passwd --new-password {{ print "\"${" $pwEnv "}\"" }} --passwd "${STARDOG_ADMIN_PW}" {{ .name }}
-          echo
+          bash ${script} -v --new-user-name {{ .name }} --new-user-pass-from "/run/secrets/stardog/{{ .name }}"
           {{ end }}
+        volumeMounts:
+        - name: users
+          mountPath: /run/secrets/stardog
+          readOnly: true
+        - name: config
+          mountPath: /var/opt/stardog/stardog-wrapper.sh
+          subPath: stardog-wrapper.sh
+      volumes:
+      - name: users
+        secret:
+          secretName: {{ include "stardog.fullname" . }}-user-passwords
+      - name: config
+        configMap:
+          name: {{ template "stardog.fullname" . }}-config
 {{- end }}

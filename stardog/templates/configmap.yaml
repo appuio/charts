@@ -10,6 +10,8 @@ metadata:
 data:
   {{- (.Files.Glob "files/*.xml").AsConfig | nindent 2 }}
 
+  {{- (.Files.Glob "files/*.sh").AsConfig | nindent 2 }}
+
   {{- (.Files.Glob "files/stardog.properties").AsConfig | nindent 2 }}
     {{- .Values.stardog.config | nindent 4 }}
     {{- if .Values.zookeeper.enabled -}}
