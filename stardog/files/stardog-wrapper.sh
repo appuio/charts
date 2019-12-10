@@ -11,8 +11,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=sahn:p:dvg
-LONGOPTS=server,disable-user,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,grant-user:,verbose
+OPTIONS=ahn:p:dvg
+LONGOPTS=disable-user,set-admin-password,help,new-user-name:,new-user-pass-from:,new-database:,grant-user:,verbose
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -31,8 +31,7 @@ function usage {
 	cat <<EOM
 Usage: $(basename "$0") [OPTION]...
 
-  -s,--server              VALUE                Stardog server URL. Uses \$STARDOG_SERVER_URL if unset.
-    ,--disable-user        USER                 Disable the given user.
+     --disable-user        USER                 Disable the given user.
   -a,--set-admin-password                       Sets the admin password. Needs \$STARDOG_ADMIN_PW set as ENV var.
   -n,--new-user-name       USER                 Adds a new user name with the given name. Needs -p.
   -p,--new-user-pass-from  PATH                 When using --new-user-name, set a path to a file which contains the new user password.
@@ -46,7 +45,6 @@ EOM
 
 admin_bin="${STARDOG_ADMIN_BIN:-/opt/stardog/bin/stardog-admin}"
 admin_pw="${STARDOG_ADMIN_PW}"
-server="${STARDOG_SERVER_URL:-http://localhost:5820}"
 
 disable_user=false
 set_admin_password=false
@@ -59,10 +57,6 @@ options=""
 # now enjoy the options in order and nicely split until we see --
 while true; do
     case "$1" in
-        -s|--server)
-            server="${2}"
-            shift 2
-            ;;
            --disable-user)
             disable_user=true
             user_name="${2}"
@@ -119,33 +113,33 @@ log() {
 
 if $disable_user; then
     log "Disable user ${user_name}"
-    ${admin_bin} --server "${server}" user disable ${user_name}
+    ${admin_bin} user disable ${user_name}
 fi
 
 if $set_admin_password; then
     log "Setting admin password"
-    ${admin_bin} --server "${server}" user passwd --new-password "${admin_pw}"
+    ${admin_bin} user passwd --new-password "${admin_pw}"
 fi
 
 if $new_database; then
     log "Checking if database ${new_database_name} exists"
-    ${admin_bin} --server "${server}" db status --passwd "${admin_pw}" "${new_database_name}" || \
+    ${admin_bin} db status --passwd "${admin_pw}" "${new_database_name}" || \
     log "Database does not exist - creating database" && \
-    ${admin_bin} --server "${server}" db create --name "${new_database_name}" --passwd "${admin_pw}" ${options}
+    ${admin_bin} db create --name "${new_database_name}" --passwd "${admin_pw}" ${options}
 fi
 
 if $new_user; then
     log "Adding user ${new_user_name} to stardog"
-    ${admin_bin} --server "${server}" user add --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}" || \
+    ${admin_bin} user add --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}" || \
     log "User already exists - updating password" && \
-    ${admin_bin} --server "${server}" user passwd --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}"
+    ${admin_bin} user passwd --new-password $(cat "${new_user_pass_from}") --passwd "${admin_pw}" "${new_user_name}"
 fi
 
 if $grant_user; then
     user_name=${grant_arr[0]}
     action_name=${grant_arr[1]}
     grant_object=${grant_arr[2]}
-    command="${admin_bin} --server \"${server}\" user grant ${user_name} --passwd \"${admin_pw}\" --action \"${action_name}\" --object \"${grant_object}\" \"${user_name}\""
+    command="${admin_bin} user grant ${user_name} --passwd \"${admin_pw}\" --action \"${action_name}\" --object \"${grant_object}\" \"${user_name}\""
     log "Granting user '${user_name}' ${action_name} to ${grant_object}"
     grep 'already has' - < <(${command}) || ${command}
 fi

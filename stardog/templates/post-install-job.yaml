@@ -35,7 +35,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: STARDOG_JAVA_ARGS
-          value: -XX:ParallelGCThreads=1
+          value: -Dstardog.default.cli.server=http://{{ include "stardog.fullname" . }}:5820 -XX:ParallelGCThreads=1
         - name: STARDOG_ADMIN_PW
           valueFrom:
             secretKeyRef:
