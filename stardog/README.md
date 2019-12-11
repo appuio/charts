@@ -27,7 +27,15 @@ The following table lists the configurable parameters chart. For default values 
 | `stardog.existingLicenseSecret`              | Name of an existing secret with a key `stardog-license-key.bin` which contains the Stardog license |
 | `stardog.config`                             | Custom configuration to append to the `stardog.properties` file (as string) |
 | `stardog.adminPassword`                      | Password for the Administrator |
-| `stardog.users`                              | Array of users, each one with name and password |
+| `stardog.users`                              | Array of users, each element is an object with `name` and `password` |
+| `stardog.roles`                              | Object Array of Roles to create, see below |
+| `stardog.roles[].name`                       | Name of the Role to create |
+| `stardog.roles[].grants`                     | Object Array of permissions to add to objects |
+| `stardog.roles[].grants[].action`            | Name of the permission to add, see [Docs](https://www.stardog.com/docs/6.0.0/#_permissions) |
+| `stardog.roles[].grants[].object`            | Object that this grant should apply to, see [Docs](https://www.stardog.com/docs/6.0.0/#_permissions) |
+| `stardog.roles[].users          `            | String array of users that should have the role assigned to. The users need to exist first |
+| `stardog.databases          `                | Arrays of databases that should be created at Helm install/upgrade. Existing databases are left untouched. |
+| `stardog.databases[].options`                | Object Array of additional [Database Options](https://www.stardog.com/docs/6.0.0/#_configuration_options) (each with `name` and `value`) that should be applied when creating the database. |
 | `stardog.javaArgs`                           | Custom java args, passed to the JVM |
 | `stardog.securityContext`                    | K8s security context |
 | `stardog.backup.databases[]`                 | List of DBs to be backed up. The schedule is in UTC |
