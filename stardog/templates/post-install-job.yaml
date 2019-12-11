@@ -59,13 +59,19 @@ spec:
           {{ end }}
           {{- end }}
           {{- range .Values.stardog.databases -}}
-          bash ${script} -v --new-database {{ .name }} -- {{ if .options }}-o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
+          bash ${script} -v --new-database {{ .name }} {{ if .options }}-- -o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
           {{- end }}
           {{- range .Values.stardog.users }}
-          bash ${script} -v --new-user-name {{ .name }} --new-user-pass-from "/run/secrets/stardog/{{ .name }}"
-          {{ $username := .name }}
-          {{- range .grants -}}
-          bash ${script} -v --grant-user "{{ $username }},{{ .action }},{{ .object }}"
+          bash ${script} -v --ensure-user {{ .name }} --user-pass-from "/run/secrets/stardog/{{ .name }}"
+          {{- end }}
+          {{- range .Values.stardog.roles }}
+          bash ${script} -v --ensure-role {{ .name }}
+          {{- $rolename := .name }}
+          {{- range .grants }}
+          bash ${script} -v --ensure-role-grants {{ $rolename }},{{ .action }},{{ .object }}
+          {{- end }}
+          {{- range .users }}
+          bash ${script} -v --assign-role-to-user {{ $rolename }},{{ . }}
           {{- end }}
           {{- end }}
 

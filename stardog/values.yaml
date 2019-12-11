@@ -23,16 +23,20 @@ stardog:
   users:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
-  #   grants:
-  #   - action: write
-  #     object: db:stardog
   disabledUsers:
   - anonymous
   databases:
-  - name: stardog
-    # options:
-    # - name: option
-    #   value: value
+  # - name: stardog
+  #   options:
+  #   - name: option
+  #     value: value
+  roles:
+  # - name: nameOfTheRole
+  #   grants:
+  #   - action: read
+  #     object: "*:*"
+  #   users:
+  #   - nameOfTheUser
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
