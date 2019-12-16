@@ -30,7 +30,7 @@ spec:
         - name: {{ template "stardog.fullname" . }}-pullsecret
       {{- end }}
       containers:
-      - name: manage-users
+      - name: postinstall
         image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
@@ -54,12 +54,12 @@ spec:
 
           {{ if .Release.IsInstall -}}
           bash ${script} -v --set-admin-password
+          {{- end }}
           {{- range .Values.stardog.disabledUsers }}
           bash ${script} -v --disable-user {{ . }}
-          {{ end }}
           {{- end }}
-          {{- range .Values.stardog.databases -}}
-          bash ${script} -v --new-database {{ .name }} {{ if .options }}-- -o {{ range .options }}\"{{ .name }}={{ .value }}\" {{ end }}--{{ end }}
+          {{- range .Values.stardog.databases }}
+          bash ${script} -v --new-database {{ .name }} {{ if .options }}-- -o {{ range .options }}"{{ .name }}={{ .value }}" {{ end }}--{{ end }}
           {{- end }}
           {{- range .Values.stardog.users }}
           bash ${script} -v --ensure-user {{ .name }} --user-pass-from "/run/secrets/stardog/{{ .name }}"

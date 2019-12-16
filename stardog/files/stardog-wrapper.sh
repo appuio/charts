@@ -118,7 +118,7 @@ log() {
 
 if $disable_user; then
     log "Disable user ${user_name}"
-    ${admin_bin} user disable ${user_name}
+    ${admin_bin} user disable --passwd "${admin_pw}" ${user_name}
 fi
 
 if $set_admin_password; then
@@ -127,9 +127,8 @@ if $set_admin_password; then
 fi
 
 if $new_database; then
-    log "Checking if database ${new_database_name} exists"
+    log "Checking if database ${new_database_name} exists..."
     ${admin_bin} db status --passwd "${admin_pw}" "${new_database_name}" || \
-    log "Database does not exist - creating database" && \
     ${admin_bin} db create --name "${new_database_name}" --passwd "${admin_pw}" ${options}
 fi
 
@@ -143,7 +142,7 @@ fi
 if $ensure_role; then
     add_command="${admin_bin} role add ${role_name} --passwd ${admin_pw}"
     log "Creating role ${role_name} if not existing"
-    grep -E "already exists|Successfully" - < <(${add_command}) || ${add_command}
+    grep -E "(already exists)|(Successfully)" - < <(${add_command}) || ${add_command}
 fi
 
 if $ensure_role_grants; then
@@ -152,13 +151,17 @@ if $ensure_role_grants; then
     grant_object=${grant_arr[2]}
     log "Granting '${action_name}' permission to role '${role_name}' for '${grant_object}'"
     grant_command="${admin_bin} role grant --passwd ${admin_pw} --action ${action_name} --object ${grant_object} ${role_name}"
-    grep -E "already has|Successfully" - < <(${grant_command}) || ${grant_command}
+    grep -E "(already has)|(Successfully)" - < <(${grant_command}) || ${grant_command}
 fi
 
 if $assign_role; then
     role_name=${assign_arr[0]}
     user_name=${assign_arr[1]}
+    check_command="${admin_bin} role list --verbose --passwd ${admin_pw}"
     assign_command="${admin_bin} user addrole --role ${role_name} --passwd ${admin_pw} ${user_name}"
     log "Assigning role ${role_name} to user ${user_name}"
-    grep -E "already has|Successfully" - < <(${assign_command}) || ${assign_command}
+
+    grep -qE "(${role_name}).*(${user_name})" - < <(${check_command}) && log "user ${user_name} already has role ${role_name}" \
+      || ${assign_command}
+
 fi

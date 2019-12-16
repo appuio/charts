@@ -28,15 +28,15 @@ stardog:
   databases:
   # - name: stardog
   #   options:
-  #   - name: option
-  #     value: value
+  #   - name: search.enabled
+  #     value: "true"
   roles:
-  # - name: nameOfTheRole
-  #   grants:
-  #   - action: read
-  #     object: "*:*"
-  #   users:
-  #   - nameOfTheUser
+  - name: superuser
+    grants:
+    - action: all
+      object: "*:*"
+    users:
+    - admin
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
