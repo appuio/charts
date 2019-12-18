@@ -36,7 +36,6 @@ stardog:
     - action: all
       object: "*:*"
     users:
-    - admin
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
