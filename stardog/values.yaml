@@ -23,6 +23,19 @@ stardog:
   users:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
+  disabledUsers:
+  - anonymous
+  databases:
+  # - name: stardog
+  #   options:
+  #   - name: search.enabled
+  #     value: "true"
+  roles:
+  - name: superuser
+    grants:
+    - action: all
+      object: "*:*"
+    users:
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
