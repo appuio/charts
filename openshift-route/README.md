@@ -20,6 +20,7 @@ The following table lists the configurable parameters of the chart. For defaults
 | `fullnameOverride` | If you need to give a specific name to the route, override this, as it affects the hostname generated if `host` is left empty. | `""`
 | `path` | Subpath of the route. | `""`
 | `annotations` | Annotations on the route object. | `{}`
+| `labels` | Additional labels on the route object. | `{}`
 | `service.name` | The backend service name of the route. Required. | `""`
 | `service.targetPort` | The port of the backend service. The port is aware of the named ports of the service, so it can be a name too. | `http`
 | `service.weight` | Weight of the service endpoint. | `100`

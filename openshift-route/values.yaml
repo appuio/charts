@@ -7,6 +7,8 @@ annotations:
 # haproxy.router.openshift.io/timeout: 5000ms
 # haproxy.router.openshift.io/ip_whitelist: 192.168.1.0/24 10.0.0.0/8
 
+labels:
+
 host: ""
 path: ""
 
