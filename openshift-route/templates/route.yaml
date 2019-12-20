@@ -23,10 +23,22 @@ spec:
 {{- with .Values.tls }}
     termination: {{ .termination }}
     insecureEdgeTerminationPolicy: {{ .insecureEdgeTerminationPolicy }}
-    key: {{ .key }}
-    certificate: {{ .certificate }}
-    caCertificate: {{ .caCertificate }}
-    destinationCACertificate: {{ .destinationCACertificate }}
+    {{- with .key }}
+    key: |
+{{ . | indent 6 }}
+    {{- end }}
+    {{- with .certificate }}
+    certificate: |
+{{ . | indent 6 }}
+    {{- end }}
+    {{- with .caCertificate }}
+    caCertificate: |
+{{ . | nindent 6 }}
+    {{- end }}
+    {{- with .destinationCACertificate }}
+    destinationCACertificate: |
+{{ . | nindent 6 }}
+    {{- end }}
 {{- end}}
 {{- end }}
   to:

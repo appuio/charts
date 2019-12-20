@@ -36,4 +36,13 @@ The following table lists the configurable parameters of the chart. For defaults
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
+When you specify certificates or keys in helmfile, please use the YAML multiline strings, e.g.
+```yaml
+tls:
+  certificate: |
+    -----BEGIN CERTIFICATE-----
+    ...
+    -----END CERTIFICATE-----
+```
+
 You can find more information on Routes in the [Documentation](https://docs.openshift.com/container-platform/3.9/architecture/networking/routes.html).
