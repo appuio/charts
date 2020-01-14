@@ -1,6 +1,6 @@
 dependencies:
 - name: redis
   repository: https://kubernetes-charts.storage.googleapis.com
-  version: 10.3.1
-digest: sha256:fa339515b27248739244679e79741a9a92716c679fd962bcd5dff91dfe233502
-generated: "2020-01-03T17:10:49.654054691+01:00"
+  version: 10.3.2
+digest: sha256:df26eec6d44068f8bffd9136d05599cb169b426a8051e15084f76c28bccdba68
+generated: "2020-01-14T17:27:39.088112289+01:00"
