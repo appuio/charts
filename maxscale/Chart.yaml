@@ -1,7 +1,7 @@
 ---
 apiVersion: v1
 name: maxscale
-version: 1.1.0
+version: 1.1.1
 appVersion: "2.2.20"
 description: MaxScale Helm Chart
 home: "https://mariadb.com/products/technology/maxscale"
