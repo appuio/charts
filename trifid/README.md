@@ -23,6 +23,8 @@ The following table lists the configurable parameters chart. For default values 
 | `image.tag`                                  | The Docker image tag to pull |
 | `podSecurityContext`                         | The security context which should be applied to the pod |
 | `securityContext`                            | The security context which should be applied to the container |
+| `pdb.enabled`                                | Create a pod disruption budget |
+| `pdb.minAvailable`                           | How many pods need to be available (absolute number or in percentage) |
 | `trifid.sparql.endpoint.url`                 | URL of the SPARQL endpoint to use |
 | `trifid.sparql.endpoint.username`            | Username used to connect to the SPARQL endpoint |
 | `trifid.sparql.endpoint.password`            | Password used to connect to the SPARQL endpoint |
@@ -36,7 +38,6 @@ The following table lists the configurable parameters chart. For default values 
 | `ingress.tls.hosts`                          | Hosts to use the certificate secret for |
 | `resources`                                  | Pod resource requests and limits |
 | `nodeSelector`                               | Pod node selector |
-| `affinity`                                   | Pod affinity rules |
 | `tolerations`                                | Pod tolerations |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
