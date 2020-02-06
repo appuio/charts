@@ -601,7 +601,7 @@ pushgateway:
   ##
   image:
     repository: prom/pushgateway
-    tag: v0.5.2
+    tag: v0.10.0
     pullPolicy: IfNotPresent
 
   ## Additional pushgateway container arguments
