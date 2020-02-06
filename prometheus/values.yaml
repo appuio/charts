@@ -324,7 +324,7 @@ nodeExporter:
   ##
   image:
     repository: prom/node-exporter
-    tag: v0.16.0
+    tag: v0.18.1
     pullPolicy: IfNotPresent
 
   ## Custom Update Strategy
