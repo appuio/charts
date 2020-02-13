@@ -55,6 +55,8 @@ limited manner (e.g. if `initContainer` is spelled `initcontainer`, it will
 generate an error).
 
 ```console
-cd snappass/test
+cd snappass
+helm dep build
+cd test
 go test -v ./...
 ```

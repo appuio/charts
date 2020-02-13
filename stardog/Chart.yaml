@@ -1,7 +1,7 @@
 ---
 apiVersion: v1
 name: stardog
-version: 0.2.2
+version: 0.2.3
 appVersion: 6.2.3
 description: Stardog Helm Chart
 home: "https://www.stardog.com/"
