@@ -2,5 +2,9 @@
   "extends": [
     "config:base",
     ":gitSignOff"
+  ],
+  "ignorePaths": [
+    "prometheus/*",
+    "keycloak/*"
   ]
 }
