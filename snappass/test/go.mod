@@ -7,7 +7,7 @@ require (
 	github.com/gruntwork-io/terratest v0.23.0
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/spf13/cobra v0.0.3 // indirect
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.5.1
 	k8s.io/api v0.0.0-20190222213804-5cb15d344471
 	k8s.io/apimachinery v0.0.0-20190704094520-6f131bee5e2c
 	k8s.io/client-go v10.0.0+incompatible // indirect
