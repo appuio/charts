@@ -19,6 +19,7 @@ func Test_PullSecret(t *testing.T) {
 		SetValues: map[string]string{
 			"image.username": registryUserName,
 			"image.password": registryPassword,
+			"stardog.adminPassword": adminPassword,
 		},
 	}
 
