@@ -73,11 +73,11 @@ for chart in $charts; do
   chart_changed=false
 
   echo "----> Build dependencies for ${chart}"
+  helm dependency update "$chart"
   helm dependency build "$chart"
 
   # Run go test if there are chart unit tests
   if [[ -f "$chart/test/go.mod" ]]; then
-    #helm dependency update "$chart"
     pushd "$chart/test"
     echo "----> Running unit tests for ${chart}"
     go test ./...
