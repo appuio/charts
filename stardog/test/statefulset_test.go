@@ -19,6 +19,7 @@ func Test_StatefulSet_Should_Include_StorageClass_IfGiven(t *testing.T) {
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"persistence.storageClass": storageClassName,
+			"stardog.adminPassword": adminPassword,
 		},
 	}
 
@@ -36,6 +37,7 @@ func Test_StatefulSet_Should_UseExistingLicenseSecret(t *testing.T) {
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"stardog.existingLicenseSecret": licenseName,
+			"stardog.adminPassword": adminPassword,
 		},
 	}
 
@@ -53,6 +55,7 @@ func Test_StatefulSet_Should_UseExistingPullSecret_IfGiven(t *testing.T) {
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"image.existingPullSecret": secretName,
+			"stardog.adminPassword": adminPassword,
 		},
 	}
 
@@ -69,6 +72,7 @@ func Test_StatefulSet_Should_Contain_ZooKeeper_ConnectionString_InClusterMode(t 
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"zookeeper.enabled": "true",
+			"stardog.adminPassword": adminPassword,
 		},
 	}
 
