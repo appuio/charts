@@ -1,5 +1,7 @@
 ---
-language: minimal
+language: go
+go:
+  - "1.12"
 dist: xenial
 
 env:

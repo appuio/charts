@@ -55,7 +55,8 @@ cleanup() {
 }
 trap cleanup 0 1 2 3 6 15
 
-# Dependency repos
+# Dependency repos (we still have to download them manually, even if they are added in requirements.yaml)
+# (https://github.com/helm/helm/issues/6005)
 helm repo add bitnami https://charts.bitnami.com
 helm repo add codecentric https://codecentric.github.io/helm-charts
 helm repo add jetstack https://charts.jetstack.io
@@ -70,6 +71,18 @@ echo "Changed files: $changed_files"
 for chart in $charts; do
   chart=${chart:2}
   chart_changed=false
+
+  echo "----> Build dependencies for ${chart}"
+  helm dependency build "$chart"
+
+  # Run go test if there are chart unit tests
+  if [[ -f "$chart/test/go.mod" ]]; then
+    #helm dependency update "$chart"
+    pushd "$chart/test"
+    echo "----> Running unit tests for ${chart}"
+    go test ./...
+    popd
+  fi
   for file in $changed_files; do
     if [[ $file != "$chart/test/"* && $file == "$chart/"* ]]; then
       chart_changed=true
@@ -83,9 +96,6 @@ for chart in $charts; do
   fi
 
   any_chart_changed=true
-
-  echo "----> Build dependencies for ${chart}"
-  helm dependency build "$chart"
 
   helm lint "$chart"
 
