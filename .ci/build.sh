@@ -71,7 +71,7 @@ for chart in $charts; do
   chart=${chart:2}
   chart_changed=false
   for file in $changed_files; do
-    if [[ $file == "$chart/"* ]]; then
+    if [[ $file != "$chart/test/"* && $file == "$chart/"* ]]; then
       chart_changed=true
       break
     fi
