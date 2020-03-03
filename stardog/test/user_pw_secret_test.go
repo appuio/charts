@@ -1,8 +1,9 @@
 package test
 
 import (
-	corev1 "k8s.io/api/core/v1"
 	"testing"
+
+	corev1 "k8s.io/api/core/v1"
 
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/assert"
@@ -14,7 +15,7 @@ func Test_UserPwSecret_ShouldThrowError_IfNotGiven(t *testing.T) {
 
 	options := &helm.Options{}
 
-	_, err := helm.RenderTemplateE(t, options, helmChartPath, tplUserPwSecret)
+	_, err := helm.RenderTemplateE(t, options, helmChartPath, releaseName, tplUserPwSecret)
 	assert.Error(t, err)
 }
 
@@ -34,7 +35,7 @@ func Test_UserPwSecret_ShouldListGivenUsers(t *testing.T) {
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplUserPwSecret)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplUserPwSecret)
 
 	secret := corev1.Secret{}
 	helm.UnmarshalK8SYaml(t, output, &secret)

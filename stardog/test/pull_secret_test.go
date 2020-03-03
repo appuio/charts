@@ -17,13 +17,13 @@ func Test_PullSecret(t *testing.T) {
 
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"image.username": registryUserName,
-			"image.password": registryPassword,
+			"image.username":        registryUserName,
+			"image.password":        registryPassword,
 			"stardog.adminPassword": adminPassword,
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplPullSecret)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplPullSecret)
 
 	secret := corev1.Secret{}
 	helm.UnmarshalK8SYaml(t, output, &secret)
