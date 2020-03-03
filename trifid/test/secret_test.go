@@ -23,7 +23,7 @@ func Test_Secret_Should_UseValuesEndpointCredentials(t *testing.T) {
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplSecret)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplSecret)
 
 	secret := corev1.Secret{}
 	helm.UnmarshalK8SYaml(t, output, &secret)

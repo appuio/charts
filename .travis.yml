@@ -6,15 +6,10 @@ dist: xenial
 
 env:
   global:
-    - HELM_URL=https://storage.googleapis.com/kubernetes-helm
-    - HELM_TGZ=helm-v2.13.0-linux-amd64.tar.gz
     - OUT_DIR=out
 
 install:
-  - curl -sSLo /tmp/helm.tgz "${HELM_URL}/${HELM_TGZ}"
-  - tar -xzvf /tmp/helm.tgz
-  - PATH=$(pwd)/linux-amd64/:$PATH
-  - helm init --client-only
+  - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   - sudo apt-get install jq
 
 before_script:

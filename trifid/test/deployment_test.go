@@ -20,7 +20,7 @@ func Test_Deployment_Should_UseValuesEndpointUrl(t *testing.T) {
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplDeployment)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplDeployment)
 
 	deployment := appv1.Deployment{}
 	helm.UnmarshalK8SYaml(t, output, &deployment)
@@ -37,7 +37,7 @@ func Test_Deployment_Should_UseChartSecret(t *testing.T) {
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplDeployment)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplDeployment)
 
 	deployment := appv1.Deployment{}
 	helm.UnmarshalK8SYaml(t, output, &deployment)
@@ -54,7 +54,7 @@ func Test_Deployment_Should_UseExistingEndpointSecret(t *testing.T) {
 		},
 	}
 
-	output := helm.RenderTemplate(t, options, helmChartPath, tplDeployment)
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplDeployment)
 
 	deployment := appv1.Deployment{}
 	helm.UnmarshalK8SYaml(t, output, &deployment)
