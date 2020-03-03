@@ -57,6 +57,7 @@ trap cleanup 0 1 2 3 6 15
 
 # Dependency repos (we still have to download them manually, even if they are added in requirements.yaml)
 # (https://github.com/helm/helm/issues/6005)
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm repo add bitnami https://charts.bitnami.com
 helm repo add codecentric https://codecentric.github.io/helm-charts
 helm repo add jetstack https://charts.jetstack.io
@@ -73,7 +74,6 @@ for chart in $charts; do
   chart_changed=false
 
   echo "----> Build dependencies for ${chart}"
-  helm dependency update "$chart"
   helm dependency build "$chart"
 
   # Run go test if there are chart unit tests
