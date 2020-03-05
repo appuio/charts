@@ -102,7 +102,6 @@ for chart in $charts; do
   echo "----> Packaging ${chart}"
   helm package \
     --destination="$tmp" \
-    --save=false \
     "$chart"
 done
 
