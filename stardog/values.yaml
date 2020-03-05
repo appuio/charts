@@ -54,6 +54,7 @@ stardog:
     runAsUser: 32541
     fsGroup: 32541
     runAsNonRoot: true
+  spatial.enabled: true
 
 ingress:
   enabled: false

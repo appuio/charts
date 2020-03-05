@@ -38,6 +38,7 @@ The following table lists the configurable parameters chart. For default values 
 | `stardog.databases[].options`                | Object Array of additional [Database Options](https://www.stardog.com/docs/6.0.0/#_configuration_options) (each with `name` and `value`) that should be applied when creating the database. |
 | `stardog.javaArgs`                           | Custom java args, passed to the JVM |
 | `stardog.securityContext`                    | K8s security context |
+| `stardog.spatial.enabled`                    | Enables the geospatial search index for the database |
 | `stardog.backup.databases[]`                 | List of DBs to be backed up. The schedule is in UTC |
 | `stardog.backup.s3Region`                    | Region in which the S3 bucket is |
 | `stardog.backup.s3BucketName`                | Name of the S3 bucket |
