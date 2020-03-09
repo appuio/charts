@@ -6,5 +6,8 @@
   "ignorePaths": [
     "prometheus/*",
     "keycloak/*"
-  ]
+  ],
+  "helm-values": {
+    "fileMatch": ["(^|/)values\\.yaml$"]
+  }
 }
