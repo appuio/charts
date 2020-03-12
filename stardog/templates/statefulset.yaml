@@ -59,7 +59,7 @@ spec:
             - |
               set -e
               sed "s|\$ZOOKEEPER_USERNAME|$ZOOKEEPER_USERNAME|g; s|\$ZOOKEEPER_PASSWORD|$ZOOKEEPER_PASSWORD|g" ${STARDOG_HOME}/stardog.properties.tpl > ${STARDOG_HOME}/stardog.properties
-              /opt/stardog/bin/stardog-admin server start --foreground --web-console
+              /opt/stardog/bin/stardog-admin server start --foreground
           env:
             {{- if and .Values.zookeeper.enabled .Values.zookeeper.auth.enabled }}
             - name: ZOOKEEPER_USERNAME
