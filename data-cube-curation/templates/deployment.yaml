@@ -1,0 +1,152 @@
+{{- $fullName := include "data-cube-curation.fullname" . -}}
+{{- $sparqlSecretName := include "data-cube-curation.sparql.secretName" . -}}
+{{- $gitlabSecretName := include "data-cube-curation.gitlab.secretName" . -}}
+{{- $s3SecretName := include "data-cube-curation.s3.secretName" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "data-cube-curation.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "data-cube-curation.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "data-cube-curation.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          env:
+          - name: PORT
+            value: "3000"
+          - name: STORAGE
+            value: s3
+          - name: NODE_ENV
+            value: production
+
+          - name: DEBUG
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: debug
+                optional: true
+
+          - name: BASE_URI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: baseURI
+
+          - name: SPARQL_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: endpoint
+                optional: false
+          - name: SPARQL_UPDATE_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: updateEndpoint
+                optional: true
+          - name: READ_MODEL_SPARQL_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: readModelEndpoint
+                optional: false
+          - name: READ_MODEL_SPARQL_UPDATE_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: readModelUpdateEndpoint
+                optional: true
+          - name: SPARQL_ENDPOINT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: username
+                optional: true
+          - name: SPARQL_ENDPOINT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: password
+                optional: true
+
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ $s3SecretName }}
+                key: accessKey
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ $s3SecretName }}
+                key: secretKey
+          - name: AWS_S3_ENDPOINT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: s3Endpoint
+          - name: AWS_S3_BUCKET
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: s3Bucket
+          - name: GITLAB_PIPELINE
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: gitlabPipeline
+          - name: GITLAB_PIPELINE_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ $gitlabSecretName }}
+                key: token
+          - name: GITLAB_PIPELINE_BRANCH
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: gitlabPipelineBranch
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

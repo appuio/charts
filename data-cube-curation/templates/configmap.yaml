@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "data-cube-curation.fullname" . }}
+  labels:
+    {{- include "data-cube-curation.labels" . | nindent 4 }}
+data:
+  baseURI: {{ include "data-cube-curation.baseURI" . | quote }}
+  s3Endpoint: {{ required "A valid dataCubeCuration.s3.endpoint entry is required!" .Values.dataCubeCuration.s3.endpoint | quote }}
+  s3Bucket: {{ required "A valid dataCubeCuration.s3.bucket entry is required!" .Values.dataCubeCuration.s3.bucket | quote }}
+  gitlabPipeline: {{ required "A valid dataCubeCuration.gitlab.pipeline entry is required!" .Values.dataCubeCuration.gitlab.pipeline | quote }}
+  gitlabPipelineBranch: {{ required "A valid dataCubeCuration.gitlab.branch entry is required!" .Values.dataCubeCuration.gitlab.branch | quote }}
+{{- if .Values.dataCubeCuration.debug }}
+  debug: {{ .Values.dataCubeCuration.debug | quote }}
+{{- end -}}

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: data-cube-curation
+description: RDF Data Cube curation service
+type: application
+
+version: 0.1.0
+# Right now the docker tags are git hashes
+appVersion: a74c6f116619f7cb2cd58bfd2b5f5db03b3df66b
+home: https://github.com/zazuko/data-cube-curation
