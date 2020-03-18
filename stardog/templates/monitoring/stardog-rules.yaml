@@ -34,4 +34,14 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: "{{ "{{ if lt $value 21.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
+    - alert: StardogPodsNotReady
+      expr: kube_statefulset_status_replicas_ready{ {{ $ns_selector }}, statefulset="{{ include "stardog.fullname" . }}" } != {{ .Values.replicaCount }}
+      for: 10m
+      annotations:
+        summary: Pods of Stardog StatefulSet not ready
+        description: Only {{ "{{" }} $value {{ "}}" }} of {{ .Values.replicaCount }} Stardog pods are ready in namespace {{ "{{" }} $labels.namespace {{ "}}" }}.
+      labels:
+        env: {{ .Release.Name }}
+        app: stardog
+        severity: "{{ "{{ if lt $value 2.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
 {{- end }}
