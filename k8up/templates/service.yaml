@@ -1,19 +1,16 @@
+{{- if and .Values.metrics.enabled .Values.metrics.service.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "k8up-operator.fullname" $ }}-metrics
+  name: {{ include "k8up.fullname" . }}-metrics
   labels:
-    app: {{ template "k8up-operator.name" $ }}
-    chart: {{ template "k8up-operator.chart" $ }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "k8up.labels" . | indent 4 }}
 spec:
-  ports:
-  - name: "8080"
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: {{ template "k8up-operator.name" $ }}
-  sessionAffinity: None
   type: ClusterIP
+  ports:
+    - name: metrics
+      port: {{ .Values.metrics.service.port }}
+      targetPort: http
+  selector:
+    {{- include "k8up.selectorLabels" . | nindent 4 }}
+{{- end -}}

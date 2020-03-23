@@ -3,12 +3,9 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: {{ template "k8up-operator.fullname" $ }}
+  name: {{ include "k8up.fullname" . }}
   labels:
-    app: {{ template "k8up-operator.name" $ }}
-    chart: {{ template "k8up-operator.chart" $ }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "k8up.labels" . | indent 4 }}
 rules:
 - apiGroups:
     - apiextensions.k8s.io
@@ -22,53 +19,50 @@ rules:
     - edit
     - patch
 - apiGroups:
-  - backup.appuio.ch
+    - backup.appuio.ch
   resources:
     - '*'
   verbs:
     - '*'
 - apiGroups:
-  - ''
+    - ''
   resources:
-  - pods
-  - pods/exec
-  - persistentvolumeclaims
-  - events
-  - serviceaccounts
+    - pods
+    - pods/exec
+    - persistentvolumeclaims
+    - events
+    - serviceaccounts
   verbs:
-  - '*'
+    - '*'
 - apiGroups:
-  - batch
+    - batch
   resources:
-  - jobs
+    - jobs
   verbs:
-  - '*'
+    - '*'
 - apiGroups:
-  - rbac.authorization.k8s.io
+    - rbac.authorization.k8s.io
   resources:
-  - rolebindings
-  - roles
+    - rolebindings
+    - roles
   verbs:
-  - '*'
+    - '*'
 - apiGroups:
-  - apps
+    - apps
   resources:
-  - deployments
-  - deployments/scale
+    - deployments
+    - deployments/scale
   verbs:
-  - create
-  - delete
-  - watch
+    - create
+    - delete
+    - watch
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ template "k8up-operator.fullname" $ }}-edit
+  name: {{ include "k8up.fullname" . }}-edit
   labels:
-    app: {{ template "k8up-operator.name" $ }}
-    chart: {{ template "k8up-operator.chart" $ }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "k8up.labels" . | indent 4 }}
     # Add these permissions to the "admin" and "edit" default roles.
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
@@ -83,12 +77,9 @@ rules:
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ template "k8up-operator.fullname" $ }}-view
+  name: {{ include "k8up.fullname" . }}-view
   labels:
-    app: {{ template "k8up-operator.name" $ }}
-    chart: {{ template "k8up-operator.chart" $ }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "k8up.labels" . | indent 4 }}
     # Add these permissions to the "view" default role.
     rbac.authorization.k8s.io/aggregate-to-view: "true"
 rules:
@@ -100,4 +91,4 @@ rules:
       - get
       - list
       - watch
-{{- end }}
+{{- end -}}
