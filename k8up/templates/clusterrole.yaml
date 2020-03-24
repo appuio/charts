@@ -1,7 +1,7 @@
 {{- if .Values.rbac.create }}
 ---
-kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
 metadata:
   name: {{ include "k8up.fullname" . }}
   labels:
@@ -57,8 +57,8 @@ rules:
     - delete
     - watch
 ---
-kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 metadata:
   name: {{ include "k8up.fullname" . }}-edit
   labels:
@@ -74,8 +74,8 @@ rules:
     verbs:
       - "*"
 ---
-kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 metadata:
   name: {{ include "k8up.fullname" . }}-view
   labels:

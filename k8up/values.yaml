@@ -14,16 +14,16 @@ serviceAccount:
   name:
 
 k8up:
-  ## Allows the specification of additional environment variables
-  extraEnvVars: []
-  envVars:
-    - name: BACKUP_IMAGE
-      value: docker.io/vshn/wrestic:v0.0.10
-    # - name: BACKUP_GLOBALACCESSKEYID
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: global-s3-credentials
-    #       key: access-key-id
+  # envVars allows the specification of additional environment variables, e.g.
+  # - name: BACKUP_GLOBALACCESSKEYID
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: global-s3-credentials
+  #       key: access-key-id
+  envVars: []
+  backupImage:
+    repository: docker.io/vshn/wrestic
+    tag: v0.0.10
 
 podSecurityContext: {}
 securityContext: {}
