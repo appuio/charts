@@ -42,7 +42,7 @@ spec:
             httpGet:
               path: /metrics
               port: http
-            initialDelaySeconds: 2
+            initialDelaySeconds: 30
             periodSeconds: 10
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
