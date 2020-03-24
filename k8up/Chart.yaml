@@ -7,7 +7,7 @@ keywords:
   - operator
   - appuio
 version: 0.3.0
-appVersion: v0.1.6
+appVersion: v0.1.8
 sources:
   - https://github.com/vshn/k8up
 maintainers:
