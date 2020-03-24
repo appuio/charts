@@ -6,7 +6,7 @@
 
 ```console
 helm repo add appuio https://charts.appuio.ch
-helm install appuio/k8up
+helm install k8up appuio/k8up
 ```
 
 ## Introduction
@@ -15,16 +15,16 @@ This chart bootstraps a [K8up](https://vshn.github.io/k8up/) operator on a [Kube
 
 ## Prerequisites Details
 
-As the K8up operator is working cluster wide it needs an appropriate cluster role and rolebinding. If your tiller (the server-side component of Helm) doesnt have the right privileges to define roles and rolebindings, it might be that you need to define these per hand.
+As the K8up operator is working cluster wide it needs an appropriate cluster role and rolebinding. If your executing user or tiller (the server-side component of Helm v2) doesnt have the sufficient privileges to define roles and rolebindings, it might be that you need to define these per hand with elevated privileges.
 
-K8up uses Wrestic as a backup runner, to learn more about it, please visit [wrestic on github](https://github.com/vshn/wrestic/tree/master). 
+K8up uses Wrestic as a backup runner, to learn more about it, please visit [wrestic on github](https://github.com/vshn/wrestic/tree/master).
 
 ## Installing the Chart
 
 To install the chart with the release name `k8up`:
 
 ```console
-helm install --name k8up appuio/k8up
+helm install k8up appuio/k8up
 ```
 
 ## Uninstalling the Chart
@@ -35,40 +35,36 @@ To uninstall/delete the `k8up` deployment:
 helm delete k8up
 ```
 
-## Installing the Chart (without cluster-admin for tiller)
+## Installing the Chart (without cluster-admin)
 
 ```console
 helm fetch appuio/k8up --untar
-helm template ./k8up/ -x templates/clusterrole.yaml -x templates/clusterrolebinding.yaml --set rbac.enabled=true | kubectl apply -f -
+helm template ./k8up/ -s templates/clusterrole.yaml -s templates/clusterrolebinding.yaml | kubectl apply -f -
 rm -rf ./k8up/
-helm install --name k8up appuio/k8up --set rbac.enabled=false
+helm install k8up appuio/k8up --set rbac.enabled=false
 ```
 
-## Uninstalling the Chart (without cluster-admin for tiller)
+## Uninstalling the Chart (without cluster-admin)
 
 ```console
 helm delete k8up
 helm fetch appuio/k8up --untar
-helm template ./k8up/ -x templates/clusterrole.yaml -x templates/clusterrolebinding.yaml --set rbac.enabled=true | kubectl delete -f -
+helm template ./k8up/ -s templates/clusterrole.yaml -s templates/clusterrolebinding.yaml | kubectl delete -f -
 rm -rf ./k8up/
 ```
 
 ## Configuration
 
-The following table lists the configurable parameters of the k8up chart. For defaults please consult `values.yaml`
+The following table lists the configurable parameters of the k8up chart. For the usual parameters and defaults please consult `values.yaml`.
 
-| Parameter                   | Description                                             | Default
-| ---                         | ---                                                     | ---
-| `k8up_operator.image`       | The K8up operator image                                     | docker.io/vshn/k8up:v0.1.4
-| `k8up_operator.envVars`     | Allows the specification of additional environment variables for the k8up operator. | BACKUP_IMAGE:docker.io/vshn/wrestic:v0.0.10
-| `rbac.create`               | Create cluster roles and rolebinding                    | true
+| Parameter                     | Description                                             | Default
+| ---                           | ---                                                     | ---
+| `image.tag`                   | The operator image tag (version)                        | see `values.yaml` for latest supported version
+| `k8up.backupImage.repository` | The backup runner image repository                      | `docker.io/vshn/wrestic`
+| `k8up.backupImage.tag`        | The backup runner image tag                             | see `values.yaml` for latest supported version
+| `k8up.envVars`                | Allows the specification of additional environment variables for the k8up operator | `[]`
+| `rbac.create`                 | Create cluster roles and rolebinding                    | `true`
+| `metrics.enabled`             | Enable prometheus metrics on the operator               | `false`
+| `metrics.service.enabled`     | Deploy a service object for the metrics endpoint        | `false`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
-
-### Usage of the `tpl` Function
-
-The `tpl` function allows us to pass string values from `values.yaml` through the templating engine. It is used for the following values:
-
-* `k8up_operator.envVars`
-
-It is important that these values be configured as strings. Otherwise, installation will fail. See example for Google Cloud Proxy or default affinity configuration in `values.yaml`.
