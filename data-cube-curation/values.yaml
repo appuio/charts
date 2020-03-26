@@ -4,33 +4,36 @@
 # Some of those keys will fill a configmap while other will fill 3 secrets.
 # An existing secret can be used for each of those 3 sections.
 dataCubeCuration:
-  # baseURI:
-  debug: '*'
+  # baseURI: ""
+  # debug: ""
   sparql:
     existingSecret: null
-    # username:
-    # password:
-    endpoint: http://fuseki:3030/data-cube-e2e/query
-    updateEndpoint: http://fuseki:3030/data-cube-e2e/update
-    readModelEndpoint: http://fuseki:3030/data-cube-read/query
-    readModelUpdateEndpoint: http://fuseki:3030/data-cube-read/update
+    # username: ""
+    # password: ""
+    endpoint: ""
+    # updateEndpoint: ""
+    readModelEndpoint: ""
+    # readModelUpdateEndpoint: ""
+    graphStoreEndpoint: ""
+    # graphStoreUsername: ""
+    # graphStorePassword: ""
   s3:
     existingSecret: null
-    accessKey: AKIAIOSFODNN7EXAMPLE
-    secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-    bucket: data-cube-curation
-    endpoint: http://minio:9000
+    accessKey: ""
+    secretKey: ""
+    bucket: ""
+    endpoint: ""
   gitlab:
     existingSecret: null
-    pipeline: foo
-    branch: master
-    token: "1234"
+    pipeline: ""
+    branch: ""
+    token: ""
 
 
 replicaCount: 1
 
 image:
-  repository: registry.zazukoians.org/data-cube-curation/main
+  repository: zazuko/datacube
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

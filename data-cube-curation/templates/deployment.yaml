@@ -38,10 +38,12 @@ spec:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 30
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 30
           env:
           - name: PORT
             value: "3000"
@@ -98,6 +100,24 @@ spec:
               secretKeyRef:
                 name: {{ $sparqlSecretName }}
                 key: password
+                optional: true
+          - name: GRAPH_STORE_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: graphStoreEndpoint
+                optional: false
+          - name: GRAPH_STORE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: graphStoreUsername
+                optional: true
+          - name: GRAPH_STORE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $sparqlSecretName }}
+                key: graphStorePassword
                 optional: true
 
           - name: AWS_ACCESS_KEY_ID
