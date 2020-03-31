@@ -43,3 +43,14 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{/*
+See related Helm3 issues:
+- https://github.com/openshift/origin/issues/24060
+- https://github.com/helm/helm/issues/6830
+*/}}
+{{- define "chart.helmRouteFix" -}}
+status:
+  ingress:
+    - host: ""
+{{- end -}}
