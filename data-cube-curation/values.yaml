@@ -1,0 +1,84 @@
+# Please fill those values.
+# Optional keys are commented out
+#
+# Some of those keys will fill a configmap while other will fill 3 secrets.
+# An existing secret can be used for each of those 3 sections.
+dataCubeCuration:
+  # baseURI: ""
+  # debug: ""
+  sparql:
+    existingSecret: null
+    # username: ""
+    # password: ""
+    endpoint: ""
+    # updateEndpoint: ""
+    readModelEndpoint: ""
+    # readModelUpdateEndpoint: ""
+    graphStoreEndpoint: ""
+    # graphStoreUsername: ""
+    # graphStorePassword: ""
+  s3:
+    existingSecret: null
+    accessKey: ""
+    secretKey: ""
+    bucket: ""
+    endpoint: ""
+  gitlab:
+    existingSecret: null
+    pipeline: ""
+    branch: ""
+    token: ""
+
+
+replicaCount: 1
+
+image:
+  repository: zazuko/datacube
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  runAsUser: 65534
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  # Enabling the ingress also sets a default baseURI
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: data-cube-curation.localhost
+      paths: [/]
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
