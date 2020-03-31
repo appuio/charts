@@ -49,3 +49,4 @@ spec:
   alternateBackends:
     {{- toYaml . | nindent 4 }}
 {{- end }}
+{{ include "chart.helmRouteFix" . }}
