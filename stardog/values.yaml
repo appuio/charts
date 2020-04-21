@@ -45,6 +45,7 @@ stardog:
      # - name: myDB
      #   schedule: "18 03 * * *" # in UTC
     s3Region: eu-central-1
+    s3Endpoint:
     s3BucketName:
     s3PathPrefix: # defaults to full name
     s3AccessKey:
