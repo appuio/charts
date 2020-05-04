@@ -33,7 +33,8 @@ dataCubeCuration:
 replicaCount: 1
 
 image:
-  repository: zazuko/datacube
+  repository: docker.io/zazuko/datacube
+  tag: api_0.2.0
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
