@@ -6,8 +6,8 @@ keywords:
   - backup
   - operator
   - appuio
-version: 0.3.0
-appVersion: v0.1.8
+version: 0.4.0
+appVersion: v0.1.9
 sources:
   - https://github.com/vshn/k8up
 maintainers:
