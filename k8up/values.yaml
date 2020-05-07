@@ -39,6 +39,20 @@ metrics:
   service:
     enabled: false
     port: 8080
+  serviceMonitor:
+    # metrics.serviceMonitor.enabled -- Whether to enable ServiceMonitor manifests for
+    # [Prometheus Operator](https://github.com/coreos/prometheus-operator)
+    enabled: false
+    # metrics.serviceMonitor.scrapeInterval -- Scrape interval to collect K8up metrics
+    scrapeInterval: 60s
+    # metrics.serviceMonitor.namespace -- If the object should be installed in a different namespace than K8up
+    namespace: ""
+  prometheusRule:
+    # metrics.prometheusRule.enabled -- Whether to enable PrometheusRule manifest for
+    # [Prometheus Operator](https://github.com/coreos/prometheus-operator)
+    enabled: false
+    # metrics.prometheusRule.namespace -- If the object should be installed in a different namespace than K8up
+    namespace: ""
 
 rbac:
   create: true

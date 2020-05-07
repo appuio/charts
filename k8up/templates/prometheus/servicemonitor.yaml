@@ -1,0 +1,16 @@
+{{- if .Values.metrics.serviceMonitor.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "k8up.fullname" . }}
+  namespace: {{ default .Values.metrics.serviceMonitor.namespace .Release.Namespace }}
+  labels:
+    {{- include "k8up.labels" . | nindent 4 }}
+spec:
+  endpoints:
+    - port: http
+      interval: {{ .Values.metrics.serviceMonitor.scrapeInterval }}
+  selector:
+    matchLabels:
+      {{- include "k8up.selectorLabels" . | nindent 6 }}
+{{- end }}
