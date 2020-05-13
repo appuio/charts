@@ -16,7 +16,7 @@ func Test_ServiceMonitor_GivenEnabled_WhenIntervalDefined_ThenRenderNewInterval(
 	expectedInterval := "1m10s"
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"metrics.serviceMonitor.enabled": "true",
+			"metrics.serviceMonitor.enabled":        "true",
 			"metrics.serviceMonitor.scrapeInterval": expectedInterval,
 		},
 	}
@@ -26,4 +26,34 @@ func Test_ServiceMonitor_GivenEnabled_WhenIntervalDefined_ThenRenderNewInterval(
 	helm.UnmarshalK8SYaml(t, output, &monitor)
 
 	assert.Equal(t, expectedInterval, monitor.Spec.Endpoints[0].Interval)
+}
+
+func Test_ServiceMonitor_GivenEnabled_WhenNamespaceDefined_ThenRenderNewNamespace(t *testing.T) {
+	expectedNamespace := "alternative"
+	options := &helm.Options{
+		SetValues: map[string]string{
+			"metrics.serviceMonitor.enabled":   "true",
+			"metrics.serviceMonitor.namespace": expectedNamespace,
+		},
+	}
+
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplServiceMonitor)
+	monitor := monitoringv1.ServiceMonitor{}
+	helm.UnmarshalK8SYaml(t, output, &monitor)
+
+	assert.Equal(t, expectedNamespace, monitor.Namespace)
+}
+
+func Test_ServiceMonitor_GivenEnabled_WhenAdditionalLabelsDefined_ThenRenderMoreLabels(t *testing.T) {
+	expectedLabelKey := "my-custom-label"
+	expectedLabelValue := "my-value"
+	options := &helm.Options{
+		ValuesFiles: []string{"testdata/labels.yaml"},
+	}
+
+	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplServiceMonitor)
+	monitor := monitoringv1.ServiceMonitor{}
+	helm.UnmarshalK8SYaml(t, output, &monitor)
+
+	assert.Equal(t, expectedLabelValue, monitor.Labels[expectedLabelKey])
 }
