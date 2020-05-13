@@ -6,6 +6,9 @@ metadata:
   namespace: {{ default .Values.metrics.serviceMonitor.namespace .Release.Namespace }}
   labels:
     {{- include "k8up.labels" . | nindent 4 }}
+    {{- with .Values.metrics.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   endpoints:
     - port: http
