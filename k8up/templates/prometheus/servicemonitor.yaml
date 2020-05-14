@@ -16,4 +16,9 @@ spec:
   selector:
     matchLabels:
       {{- include "k8up.selectorLabels" . | nindent 6 }}
+  {{- if .Values.metrics.serviceMonitor.namespace }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  {{- end }}
 {{- end }}

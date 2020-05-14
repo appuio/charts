@@ -64,8 +64,9 @@ The following table lists the configurable parameters of the k8up chart. For the
 | `k8up.backupImage.tag`        | The backup runner image tag                             | see `values.yaml` for latest supported version
 | `k8up.envVars`                | Allows the specification of additional environment variables for the k8up operator | `[]`
 | `rbac.create`                 | Create cluster roles and rolebinding                    | `true`
-| `metrics.enabled`             | Enable prometheus metrics endpoint on the operator               | `false`
-| `metrics.service.enabled`     | Deploy a service object for the metrics endpoint        | `false`
+| `metrics.service.type` | Service type of the metrics endpoint | `ClusterIP`
+| `metrics.service.port` | Service port of the metrics endpoint | `8080`
+| `metrics.service.nodePort` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` | `0`
 | `metrics.serviceMonitor.enabled` | Whether to enable ServiceMonitor manifests for [Prometheus Operator](https://github.com/coreos/prometheus-operator) | `false`
 | `metrics.serviceMonitor.scrapeInterval` | Scrape interval to collect K8up metrics | `60s`
 | `metrics.serviceMonitor.namespace` | If the object should be installed in a different namespace than K8up | `""`

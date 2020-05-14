@@ -35,10 +35,10 @@ tolerations: []
 affinity: {}
 
 metrics:
-  enabled: false
   service:
-    enabled: false
     port: 8080
+    type: ClusterIP
+    nodePort: 0
   serviceMonitor:
     # metrics.serviceMonitor.enabled -- Whether to enable ServiceMonitor manifests for
     # [Prometheus Operator](https://github.com/coreos/prometheus-operator)

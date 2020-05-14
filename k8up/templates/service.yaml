@@ -1,4 +1,3 @@
-{{- if and .Values.metrics.enabled .Values.metrics.service.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,11 +5,13 @@ metadata:
   labels:
 {{ include "k8up.labels" . | indent 4 }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.metrics.service.type }}
   ports:
-    - name: metrics
+    - name: http
       port: {{ .Values.metrics.service.port }}
       targetPort: http
+      {{- if eq .Values.metrics.service.type "NodePort" }}
+      nodePort: {{ .Values.metrics.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "k8up.selectorLabels" . | nindent 4 }}
-{{- end -}}
