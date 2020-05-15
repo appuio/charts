@@ -35,10 +35,32 @@ tolerations: []
 affinity: {}
 
 metrics:
-  enabled: false
   service:
-    enabled: false
     port: 8080
+    type: ClusterIP
+    nodePort: 0
+  serviceMonitor:
+    # metrics.serviceMonitor.enabled -- Whether to enable ServiceMonitor manifests for
+    # [Prometheus Operator](https://github.com/coreos/prometheus-operator)
+    enabled: false
+    # metrics.serviceMonitor.scrapeInterval -- Scrape interval to collect K8up metrics
+    scrapeInterval: 60s
+    # metrics.serviceMonitor.namespace -- If the object should be installed in a different namespace than K8up
+    namespace: ""
+    # metrics.serviceMonitor.additionalLabels -- Add labels to the ServiceMonitor object
+    additionalLabels: {}
+  prometheusRule:
+    # metrics.prometheusRule.enabled -- Whether to enable PrometheusRule manifest for
+    # [Prometheus Operator](https://github.com/coreos/prometheus-operator)
+    enabled: false
+    # metrics.prometheusRule.namespace -- If the object should be installed in a different namespace than K8up
+    namespace: ""
+    # metrics.prometheusRule.additionalLabels -- Add labels to the PrometheusRule object
+    additionalLabels: {}
+    # metrics.prometheusRule.createDefaultRules -- Whether the K8up default rules should be installed
+    createDefaultRules: true
+    # metrics.prometheusRule.additionalRules -- Provide additional alert rules in addition to the defaults
+    additionalRules: []
 
 rbac:
   create: true

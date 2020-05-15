@@ -21,7 +21,7 @@ func Test_Deployment_ShouldRender_EnvironmentVariables(t *testing.T) {
 		ValuesFiles: []string{"testdata/deployment_1.yaml"},
 		SetValues: map[string]string{
 			"k8up.backupImage.repository": wantRepo,
-			"k8up.backupImage.tag": wantTag,
+			"k8up.backupImage.tag":        wantTag,
 		},
 	}
 
