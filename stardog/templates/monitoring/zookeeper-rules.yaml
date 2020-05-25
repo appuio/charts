@@ -14,36 +14,6 @@ spec:
   groups:
   - name: zookeeper
     rules:
-    - alert: ZooKeeperDown
-      expr: zk_up{ {{ $ns_selector }} } == 0
-      for: 10m
-      annotations:
-        summary: A ZooKeeper instance is down
-        description: The ZooKeeper instance {{ "{{" }} $labels.zk_host {{ "}}" }} could not be scraped by the ZooKeeper exporter
-      labels:
-        env: {{ .Release.Name }}
-        app: zookeeper
-        severity: critical
-    - alert: ZooKeeperFsyncThresholdExeeded
-      expr: zk_fsync_threshold_exceed_count{ {{ $ns_selector }} } > 0
-      for: 1m
-      annotations:
-        summary: The ZooKeeper fsync threshold exeeded
-        description: An fsync took longer than 1000ms
-      labels:
-        env: {{ .Release.Name }}
-        app: zookeeper
-        severity: critical
-    - alert: JavaFileDescriptorsRunningOut
-      expr: zk_max_file_descriptor_count{ {{ $ns_selector }} } - zk_open_file_descriptor_count{ {{ $ns_selector }} } < 1000
-      for: 1m
-      annotations:
-        summary: Java file descriptors are running out
-        description: There are less than 1000 free file descriptors left to be used ({{ "{{" }} $value {{ "}}" }}).
-      labels:
-        env: {{ .Release.Name }}
-        app: zookeeper
-        severity: warning
     - alert: ZooKeeperPodsNotReady
       expr: kube_statefulset_status_replicas_ready{ {{ $ns_selector }}, statefulset="{{ include "stardog.zookeeper.fullname" . }}" } != {{ .Values.zookeeper.replicaCount }}
       for: 10m
