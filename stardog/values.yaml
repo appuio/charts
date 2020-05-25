@@ -116,6 +116,8 @@ zookeeper:
     # serverPasswords: secretPassword,
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   affinity:
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
