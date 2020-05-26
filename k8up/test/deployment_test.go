@@ -17,11 +17,13 @@ func Test_Deployment_ShouldRender_EnvironmentVariables(t *testing.T) {
 	wantRepo := "repository"
 	wantTag := "tag"
 	wantVar := "BACKUP_IMAGE"
+	wantTimezone := "Europe/Zurich"
 	options := &helm.Options{
 		ValuesFiles: []string{"testdata/deployment_1.yaml"},
 		SetValues: map[string]string{
 			"k8up.backupImage.repository": wantRepo,
 			"k8up.backupImage.tag":        wantTag,
+			"k8up.timezone":               wantTimezone,
 		},
 	}
 
@@ -30,8 +32,10 @@ func Test_Deployment_ShouldRender_EnvironmentVariables(t *testing.T) {
 	envs := got.Spec.Template.Spec.Containers[0].Env
 	assert.Equalf(t, wantVar, envs[0].Name, "Deployment does not use required Env %s", wantVar)
 	assert.Equalf(t, wantRepo+":"+wantTag, envs[0].Value, "Deployment does not use required Env Value from %s", wantVar)
-	assert.Equal(t, "VARIABLE", envs[1].Name, "Deployment does not use configured Env Name")
-	assert.Equal(t, "VALUE", envs[1].Value, "Deployment does not use configured Env Value")
+	assert.Equal(t, "TZ", envs[1].Name)
+	assert.Equal(t, wantTimezone, envs[1].Value)
+	assert.Equal(t, "VARIABLE", envs[2].Name, "Deployment does not use configured Env Name")
+	assert.Equal(t, "VALUE", envs[2].Value, "Deployment does not use configured Env Value")
 }
 
 func Test_Deployment_ShouldRender_Affinity(t *testing.T) {
@@ -69,7 +73,7 @@ func Test_Deployment_ShouldRender_CustomServiceAccount(t *testing.T) {
 	assert.Equal(t, want, serviceName, "Deployment does not render configured serviceName")
 }
 
-func Test_Deployment_ShouldRender_DefaultResources(t *testing.T) {
+func Test_Deployment_ShouldRender_Resources(t *testing.T) {
 	want := "1Gi"
 	options := &helm.Options{
 		SetValues: map[string]string{

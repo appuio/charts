@@ -32,7 +32,7 @@ func Test_Service_GivenTypeNodePort_WhenNodePortDefine_ThenRenderNodePort(t *tes
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"metrics.service.nodePort": fmt.Sprintf("%d", expectedPort),
-			"metrics.service.type": "NodePort",
+			"metrics.service.type":     "NodePort",
 		},
 	}
 

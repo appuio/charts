@@ -63,6 +63,7 @@ The following table lists the configurable parameters of the k8up chart. For the
 | `k8up.backupImage.repository` | The backup runner image repository                      | `docker.io/vshn/wrestic`
 | `k8up.backupImage.tag`        | The backup runner image tag                             | see `values.yaml` for latest supported version
 | `k8up.envVars`                | Allows the specification of additional environment variables for the k8up operator | `[]`
+| `k8up.timezone`               | Specifies the timezone K8up is using for scheduling. Empty value defaults to the timezone in which Kubernetes is deployed. Accepts `tz database` compatible entries, e.g. `Europe/Zurich` | `""`
 | `rbac.create`                 | Create cluster roles and rolebinding                    | `true`
 | `metrics.service.type` | Service type of the metrics endpoint | `ClusterIP`
 | `metrics.service.port` | Service port of the metrics endpoint | `8080`
