@@ -32,6 +32,10 @@ spec:
             - name: BACKUP_IMAGE
               value: "{{ .repository}}:{{ .tag }}"
           {{- end }}
+          {{- with .Values.k8up.timezone }}
+            - name: TZ
+              value: {{ . }}
+          {{- end }}
           {{- if .Values.k8up.envVars }}
             {{- toYaml .Values.k8up.envVars | nindent 12 }}
           {{- end }}
