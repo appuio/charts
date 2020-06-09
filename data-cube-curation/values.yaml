@@ -34,7 +34,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/zazuko/datacube
-  tag: api_0.2.0
+  tag: "{{ .Chart.AppVersion }}"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
