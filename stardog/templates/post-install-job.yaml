@@ -1,4 +1,5 @@
 {{- if or .Release.IsInstall .Values.stardog.users }}
+{{- if gt .Values.replicaCount 0 }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -90,4 +91,5 @@ spec:
       - name: config
         configMap:
           name: {{ template "stardog.fullname" . }}-config
+{{- end }}
 {{- end }}
