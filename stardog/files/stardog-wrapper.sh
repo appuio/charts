@@ -151,7 +151,7 @@ if $ensure_role_grants; then
     grant_object=${grant_arr[2]}
     log "Granting '${action_name}' permission to role '${role_name}' for '${grant_object}'"
     grant_command="${admin_bin} role grant --passwd ${admin_pw} --action ${action_name} --object ${grant_object} ${role_name}"
-    grep -E "(already has)|(Successfully)" - < <(${grant_command}) || ${grant_command}
+    grep -E "(exists)|(Successfully)" - < <(${grant_command}) || ${grant_command}
 fi
 
 if $assign_role; then
