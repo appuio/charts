@@ -106,7 +106,7 @@ spec:
                 name: {{ $sparqlSecretName }}
                 key: graphStoreEndpoint
                 optional: false
-          - name: GRAPH_STORE_USERNAME
+          - name: GRAPH_STORE_USER
             valueFrom:
               secretKeyRef:
                 name: {{ $sparqlSecretName }}
