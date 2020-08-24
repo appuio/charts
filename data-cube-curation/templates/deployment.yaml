@@ -155,6 +155,22 @@ spec:
                 name: {{ $fullName }}
                 key: gitlabPipelineBranch
 
+          - name: AUTH_ISSUER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authIssuer
+          - name: AUTH_CLIENT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authClientId
+          - name: AUTH_AUDIENCE
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authAudience
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
