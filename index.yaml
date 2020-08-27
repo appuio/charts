@@ -3,7 +3,7 @@ entries:
   baas-operator:
   - apiVersion: v1
     appVersion: v0.1.3
-    created: "2020-07-30T08:02:57.538570261Z"
+    created: "2020-08-27T08:29:16.289156614Z"
     deprecated: true
     description: Backup as a Service Operator
     digest: 7214d1752ef23608d73c78368b8ea63fe925758f8313e7f1a6025008889bfe44
@@ -16,7 +16,7 @@ entries:
     version: 1.2.5
   - apiVersion: v1
     appVersion: v0.1.3
-    created: "2020-07-30T08:02:57.538288484Z"
+    created: "2020-08-27T08:29:16.288874152Z"
     description: Backup as a Service Operator
     digest: 679346b794f56ca65c79571785563e2da738edd50b6d42f888284255ba7781b5
     maintainers:
@@ -28,7 +28,7 @@ entries:
     version: 1.2.4
   - apiVersion: v1
     appVersion: v0.1.3
-    created: "2020-07-30T08:02:57.538019275Z"
+    created: "2020-08-27T08:29:16.288607329Z"
     description: Backup as a Service Operator
     digest: 5a7696aaf42c6366a82bad7e3c566038736b944f995b083c73fa1cb4ef524fa9
     maintainers:
@@ -40,7 +40,7 @@ entries:
     version: 1.2.3
   - apiVersion: v1
     appVersion: v0.1.3
-    created: "2020-07-30T08:02:57.537771892Z"
+    created: "2020-08-27T08:29:16.288324699Z"
     description: Backup as a Service Operator
     digest: 42534abd4a8a7ee49166ca4c6acf8fc5525e2b8f9bb4323d61bd9e76cb356951
     maintainers:
@@ -52,7 +52,7 @@ entries:
     version: 1.2.2
   - apiVersion: v1
     appVersion: v0.1.3
-    created: "2020-07-30T08:02:57.537514581Z"
+    created: "2020-08-27T08:29:16.288035236Z"
     description: Backup as a Service Operator
     digest: 9236755605bcd952be46097a28ea731c4bff88479de49e22998991a818e85bf1
     maintainers:
@@ -64,7 +64,7 @@ entries:
     version: 1.2.1
   - apiVersion: v1
     appVersion: v0.1.0
-    created: "2020-07-30T08:02:57.537259871Z"
+    created: "2020-08-27T08:29:16.287681241Z"
     description: Backup as a Service Operator
     digest: fb4ff9f57056813ef7a9941bce884198356bf7ccacef39b3347b673223b583fd
     maintainers:
@@ -76,7 +76,7 @@ entries:
     version: 1.2.0
   - apiVersion: v1
     appVersion: v0.0.10
-    created: "2020-07-30T08:02:57.537006675Z"
+    created: "2020-08-27T08:29:16.287171121Z"
     description: Backup as a Service Operator
     digest: 3d6292c567c675089558674fbdb4de9941f660fe40f93096201d5a49161c80c2
     maintainers:
@@ -88,7 +88,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: v0.0.9
-    created: "2020-07-30T08:02:57.536764643Z"
+    created: "2020-08-27T08:29:16.28681431Z"
     description: Backup as a Service Operator
     digest: 0c1e22eb38be15e49f7b6a7e9083689090febca004ebfd324a71faff9142ff27
     maintainers:
@@ -99,7 +99,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v1
-    created: "2020-07-30T08:02:57.53651202Z"
+    created: "2020-08-27T08:29:16.286457644Z"
     description: Backup as a Service Operator
     digest: 4a4174ac224956fc4522afdc08f7060deaadfc44ad5d1a5954e0ac40ab76ca74
     maintainers:
@@ -110,7 +110,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.2.tgz
     version: 1.0.2
   - apiVersion: v1
-    created: "2020-07-30T08:02:57.536240963Z"
+    created: "2020-08-27T08:29:16.286122916Z"
     description: Backup as a Service Operator
     digest: 7ed7ffdbf356e4778645492bbe18d1a97a1aa0af79c3c03cd7212d0e9cc9d415
     maintainers:
@@ -121,7 +121,7 @@ entries:
     - https://charts.appuio.ch/baas-operator-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: "2020-07-30T08:02:57.535964336Z"
+    created: "2020-08-27T08:29:16.285789685Z"
     description: Backup as a Service Operator
     digest: 90f108d28fe79801976074275c43d440797d5ff6b161ec250702aac2e686de5b
     maintainers:
@@ -133,8 +133,18 @@ entries:
     version: 1.0.0
   data-cube-curation:
   - apiVersion: v1
+    appVersion: 0.4.0
+    created: "2020-08-27T08:29:16.29198014Z"
+    description: RDF Data Cube curation service
+    digest: 4522f0186fa92a4d243d5aa9c24d63e9206bd9c37e981d2cf1e98ab7d3cab339
+    home: https://github.com/zazuko/data-cube-curation
+    name: data-cube-curation
+    urls:
+    - https://charts.appuio.ch/data-cube-curation-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
     appVersion: 0.3.1
-    created: "2020-07-30T08:02:57.541298364Z"
+    created: "2020-08-27T08:29:16.29147882Z"
     description: RDF Data Cube curation service
     digest: fefd38b5059f6701a4e6e34011f7a3a9fe2e2521020089483d5f5b8484e68e5f
     home: https://github.com/zazuko/data-cube-curation
@@ -144,7 +154,7 @@ entries:
     version: 0.1.4
   - apiVersion: v1
     appVersion: 0.3.1
-    created: "2020-07-30T08:02:57.540761107Z"
+    created: "2020-08-27T08:29:16.290971796Z"
     description: RDF Data Cube curation service
     digest: 1aea0ef658ef0d4c5358f5673ea51fc1c396906f36f05f4f7efc0b27f593fb1a
     home: https://github.com/zazuko/data-cube-curation
@@ -154,7 +164,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-07-30T08:02:57.540228597Z"
+    created: "2020-08-27T08:29:16.290532773Z"
     description: RDF Data Cube curation service
     digest: 7e864e94193986ad664e33a12a5521db1619320f0176e8e64ca779185c343b5e
     home: https://github.com/zazuko/data-cube-curation
@@ -164,7 +174,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 0.2.0
-    created: "2020-07-30T08:02:57.539714493Z"
+    created: "2020-08-27T08:29:16.290054775Z"
     description: RDF Data Cube curation service
     digest: 49c3c00368c92b000fc95ab7b13f6209b8e3eaed09c379ee2e1a1af5ee57e53d
     home: https://github.com/zazuko/data-cube-curation
@@ -174,7 +184,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: 0.2.0
-    created: "2020-07-30T08:02:57.539168278Z"
+    created: "2020-08-27T08:29:16.28960274Z"
     description: RDF Data Cube curation service
     digest: 2d626056c76ab34c4abbfa34f58f29f3ea5b75555df1dbee3cc759eb270c893c
     home: https://github.com/zazuko/data-cube-curation
@@ -185,7 +195,7 @@ entries:
   exoip:
   - apiVersion: v1
     appVersion: v0.4.3
-    created: "2020-07-30T08:02:57.54364642Z"
+    created: "2020-08-27T08:29:16.293077861Z"
     description: Deploy exoip as a DaemonSet
     digest: b79b4efcd566f1b9a21587e8cac550da548c20b8c582fdb581e75fc09bf1b9c7
     maintainers:
@@ -197,7 +207,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: v0.4.3
-    created: "2020-07-30T08:02:57.542877247Z"
+    created: "2020-08-27T08:29:16.292795714Z"
     description: Deploy exoip as a DaemonSet
     digest: d37644008fe1774b08d093fedbcaadf94775d30aa06a90986a339322eecd32ca
     name: exoip
@@ -206,7 +216,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: v0.4.3
-    created: "2020-07-30T08:02:57.541877986Z"
+    created: "2020-08-27T08:29:16.292536704Z"
     description: Deploy exoip as a DaemonSet
     digest: a6847104f068aee0084ba92c85d4c1654688677a28093484707985f74ce1b214
     name: exoip
@@ -215,7 +225,7 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: v0.4.3
-    created: "2020-07-30T08:02:57.541593129Z"
+    created: "2020-08-27T08:29:16.29226314Z"
     description: Deploy exoip as a DaemonSet
     digest: 7a6bdb5ff48309e0b512f01a372aa16b721b9849e7bb136192187fa62fb7b1e3
     name: exoip
@@ -225,7 +235,7 @@ entries:
   haproxy:
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-07-30T08:02:57.547058243Z"
+    created: "2020-08-27T08:29:16.295516976Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: 6e15101c5624985dfdd704330c5c1b4fc6c9c5fd119016e9d97b470c98a0d138
     maintainers:
@@ -237,7 +247,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-07-30T08:02:57.546571135Z"
+    created: "2020-08-27T08:29:16.294966864Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: 11382acdf1ff63ea5d653a74c23c8b1cec703d844089fc2737045411440276ca
     maintainers:
@@ -249,7 +259,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-07-30T08:02:57.546144992Z"
+    created: "2020-08-27T08:29:16.294495467Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: 17e72582d42052327f15b79388649a13f02af778c62141237aa8b573e6f8586e
     maintainers:
@@ -261,7 +271,7 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-07-30T08:02:57.545692014Z"
+    created: "2020-08-27T08:29:16.293972697Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: c2dcb2955b513698685d511ea95f3f5e03047d2e9be0f1752d59b4146f1075c4
     maintainers:
@@ -273,7 +283,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-07-30T08:02:57.544649668Z"
+    created: "2020-08-27T08:29:16.293493582Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: 450ccdc9d186d1756927f5dab2545b5ac5b51632fe7778c10fde2f91d221d382
     maintainers:
@@ -286,7 +296,7 @@ entries:
   k8up:
   - apiVersion: v1
     appVersion: v0.1.10
-    created: "2020-07-30T08:02:57.560318228Z"
+    created: "2020-08-27T08:29:16.310358926Z"
     description: k8up Operator
     digest: eb0be49c96c8eeaba156890c16eb05ffd479e791af7401f2fcc991958151a620
     home: https://vshn.github.io/k8up/
@@ -305,7 +315,7 @@ entries:
     version: 0.6.1
   - apiVersion: v1
     appVersion: v0.1.9
-    created: "2020-07-30T08:02:57.558739274Z"
+    created: "2020-08-27T08:29:16.307637516Z"
     description: k8up Operator
     digest: 705a3e4729fbda34382115d39d38d2ac9482c9c0b552945b374e6d7734cfcdc6
     home: https://vshn.github.io/k8up/
@@ -324,7 +334,7 @@ entries:
     version: 0.6.0
   - apiVersion: v1
     appVersion: v0.1.9
-    created: "2020-07-30T08:02:57.556027042Z"
+    created: "2020-08-27T08:29:16.305974093Z"
     description: k8up Operator
     digest: 1a0af6ea606570f2275cbcedae5f24abc11292718a6942f50d967c5ebd291f2a
     home: https://vshn.github.io/k8up/
@@ -343,7 +353,7 @@ entries:
     version: 0.5.1
   - apiVersion: v1
     appVersion: v0.1.9
-    created: "2020-07-30T08:02:57.553304907Z"
+    created: "2020-08-27T08:29:16.30434484Z"
     description: k8up Operator
     digest: de50132fbe9d52eadf1bc7ac6e1f9e7dbdbdcb3ebed2dbd901fdc211682f0ceb
     home: https://vshn.github.io/k8up/
@@ -362,7 +372,7 @@ entries:
     version: 0.5.0
   - apiVersion: v1
     appVersion: v0.1.9
-    created: "2020-07-30T08:02:57.5517274Z"
+    created: "2020-08-27T08:29:16.302701445Z"
     description: k8up Operator
     digest: d511cd44366e0b8936ab03c9e7e549ad34522e0dac49ccfd8674814750ca408a
     home: https://vshn.github.io/k8up/
@@ -381,7 +391,7 @@ entries:
     version: 0.4.0
   - apiVersion: v1
     appVersion: v0.1.8
-    created: "2020-07-30T08:02:57.550552865Z"
+    created: "2020-08-27T08:29:16.301641575Z"
     description: k8up Operator
     digest: 580b1bc3fbc097c52bf77b0460777569fb30c19c96bc3ef9a2c98c3eb87f31ff
     home: https://vshn.github.io/k8up/
@@ -400,7 +410,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: v0.1.6
-    created: "2020-07-30T08:02:57.549484641Z"
+    created: "2020-08-27T08:29:16.300520037Z"
     description: k8up Operator
     digest: 718a8a94b2d3e02528168b05e1f6f8cc00df79576745c5615b2da31092e057d5
     home: https://vshn.github.io/k8up/
@@ -419,7 +429,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: v0.1.6
-    created: "2020-07-30T08:02:57.549126219Z"
+    created: "2020-08-27T08:29:16.300186641Z"
     description: k8up Operator
     digest: c3211fd92797df7c301810e5b2927ca9ffc4de9910879272041cac76c7ade772
     home: https://vshn.github.io/k8up/
@@ -438,7 +448,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: v0.1.4
-    created: "2020-07-30T08:02:57.548755248Z"
+    created: "2020-08-27T08:29:16.299844307Z"
     description: k8up Operator
     digest: 89d8b79f56f677273ef9350693fcdcb4f563566637a268e74c76cccf444a3aff
     home: https://vshn.github.io/k8up/
@@ -457,7 +467,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: v0.1.4
-    created: "2020-07-30T08:02:57.548428009Z"
+    created: "2020-08-27T08:29:16.299338906Z"
     description: k8up Operator
     digest: 439798990c8651403573e76d5b5d92467fd63004382d1580c7ff507c6f097e93
     home: https://vshn.github.io/k8up/
@@ -476,7 +486,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: v0.1.4
-    created: "2020-07-30T08:02:57.548088497Z"
+    created: "2020-08-27T08:29:16.297898892Z"
     description: k8up Operator
     digest: 90dfb960075bbda8c24508aca1da8458f4437d1298fa82b3ce134d6565222c77
     home: https://vshn.github.io/k8up/
@@ -495,7 +505,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: v0.1.4
-    created: "2020-07-30T08:02:57.547750711Z"
+    created: "2020-08-27T08:29:16.297095852Z"
     description: k8up Operator
     digest: f06fdbc191bad6f249fdc64cefb48469604cbbea0d703aedf9f5c52f02785e4c
     home: https://vshn.github.io/k8up/
@@ -514,7 +524,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: v0.1.4
-    created: "2020-07-30T08:02:57.547391537Z"
+    created: "2020-08-27T08:29:16.295842483Z"
     description: k8up Operator
     digest: 5ed903843cf7da7b57328e9d5727b76231c3a64dc119e87ae2ec8fd0b4ecd9ef
     home: https://vshn.github.io/k8up/
@@ -534,7 +544,7 @@ entries:
   keycloak:
   - apiVersion: v1
     appVersion: 5.0.0
-    created: "2020-07-30T08:02:57.575207434Z"
+    created: "2020-08-27T08:29:16.323656664Z"
     dependencies:
     - name: keycloak
       repository: https://codecentric.github.io/helm-charts
@@ -567,7 +577,7 @@ entries:
     version: 5.0.0
   - apiVersion: v1
     appVersion: 5.0.0
-    created: "2020-07-30T08:02:57.568305671Z"
+    created: "2020-08-27T08:29:16.319012764Z"
     dependencies:
     - name: keycloak
       repository: https://codecentric.github.io/helm-charts
@@ -599,7 +609,7 @@ entries:
     version: 4.12.0
   - apiVersion: v1
     appVersion: 5.0.0
-    created: "2020-07-30T08:02:57.572474807Z"
+    created: "2020-08-27T08:29:16.321100701Z"
     dependencies:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
@@ -631,7 +641,7 @@ entries:
     version: 4.8.0
   - apiVersion: v1
     appVersion: 4.8.3.Final
-    created: "2020-07-30T08:02:57.566195932Z"
+    created: "2020-08-27T08:29:16.316872254Z"
     dependencies:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
@@ -663,7 +673,7 @@ entries:
     version: 4.1.1
   - apiVersion: v1
     appVersion: 4.8.3.Final
-    created: "2020-07-30T08:02:57.563570249Z"
+    created: "2020-08-27T08:29:16.314802754Z"
     dependencies:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
@@ -695,7 +705,7 @@ entries:
     version: 4.1.0
   - apiVersion: v1
     appVersion: 4.1.0.Final
-    created: "2020-07-30T08:02:57.561410751Z"
+    created: "2020-08-27T08:29:16.312672687Z"
     description: Open Source Identity and Access Management For Modern Applications
       and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
@@ -724,7 +734,7 @@ entries:
   maxscale:
   - apiVersion: v1
     appVersion: 2.2.20
-    created: "2020-07-30T08:02:57.57717348Z"
+    created: "2020-08-27T08:29:16.327608152Z"
     description: MaxScale Helm Chart
     digest: df2eba6d1d16d1cd6785dfedf7df7bd0bba690e9f6982a2a4f641bca9aff00be
     home: https://mariadb.com/products/technology/maxscale
@@ -737,7 +747,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 2.2.20
-    created: "2020-07-30T08:02:57.576798895Z"
+    created: "2020-08-27T08:29:16.327063592Z"
     description: MaxScale Helm Chart
     digest: 9d336fda297db6d10f8040e649102d8b498302fedae6dce45dcbf52c6dfeb21a
     home: https://mariadb.com/products/technology/maxscale
@@ -750,7 +760,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: 2.2.19
-    created: "2020-07-30T08:02:57.576422607Z"
+    created: "2020-08-27T08:29:16.326137899Z"
     description: MaxScale Helm Chart
     digest: a6ae4ae783efdc3a40dcd2c3a568c12c3aa8ee561155692b3118f6a8f6e643b5
     home: https://mariadb.com/products/technology/maxscale
@@ -763,7 +773,7 @@ entries:
     version: 1.0.4
   - apiVersion: v1
     appVersion: 2.2.19
-    created: "2020-07-30T08:02:57.576052355Z"
+    created: "2020-08-27T08:29:16.325290377Z"
     description: MaxScale Helm Chart
     digest: 6f7ec64bcf4122a2585ea3ca7f52773a36d91c0a8ed81849d12580d6a1f77a6d
     home: https://mariadb.com/products/technology/maxscale
@@ -773,7 +783,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: 2.2.15
-    created: "2020-07-30T08:02:57.575678938Z"
+    created: "2020-08-27T08:29:16.324499923Z"
     description: MaxScale Helm Chart
     digest: 82ccb25596ce6c3674880f8179559c2c637878db2fadeb21ec09ad9b1a455689
     home: https://mariadb.com/products/technology/maxscale
@@ -784,7 +794,7 @@ entries:
   openshift-oauth-proxy:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2020-07-30T08:02:57.578486768Z"
+    created: "2020-08-27T08:29:16.328867747Z"
     description: OpenShift oauth-proxy
     digest: ee5c50597a9a7bd81e543071d398a89cefe283cca4ee2dd2fd4982778a963e62
     maintainers:
@@ -796,7 +806,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2020-07-30T08:02:57.578194536Z"
+    created: "2020-08-27T08:29:16.328547279Z"
     description: OpenShift oauth-proxy
     digest: 6798f0d9c132089722b866d9c3d46ebf733f93f7dfdf4fa43fb046a5ae759c57
     maintainers:
@@ -808,7 +818,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2020-07-30T08:02:57.577894167Z"
+    created: "2020-08-27T08:29:16.328229014Z"
     description: OpenShift oauth-proxy
     digest: 8e784d176af6c39fc46d855e4b696efccad8b4165e13dd07075c75e5b78e94b1
     maintainers:
@@ -820,7 +830,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2020-07-30T08:02:57.577528086Z"
+    created: "2020-08-27T08:29:16.327915372Z"
     description: OpenShift oauth-proxy
     digest: ee61705b2a0a0d6fb3407308e92b12baff0198489616cbee96991873f8b597f0
     maintainers:
@@ -833,7 +843,7 @@ entries:
   openshift-route:
   - apiVersion: v1
     appVersion: v1
-    created: "2020-07-30T08:02:57.580009303Z"
+    created: "2020-08-27T08:29:16.330273735Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: 83c9c77a1f0f08a8ebd376d68d4435a2cb84f1dafdc8fa39f136247d695035b3
     name: openshift-route
@@ -842,7 +852,7 @@ entries:
     version: 1.1.2
   - apiVersion: v1
     appVersion: v1
-    created: "2020-07-30T08:02:57.579731128Z"
+    created: "2020-08-27T08:29:16.329980959Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: e18b62fb258236b5a5434d9fa2beb986656d29ad13c9aedd198b5a66a616621a
     name: openshift-route
@@ -851,7 +861,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: v1
-    created: "2020-07-30T08:02:57.579438245Z"
+    created: "2020-08-27T08:29:16.329712565Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: f5f357c50dc80de55c23920aabebd2007db1f7e675014fd7831814ecbb1c2fdb
     name: openshift-route
@@ -860,7 +870,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: v1
-    created: "2020-07-30T08:02:57.579084556Z"
+    created: "2020-08-27T08:29:16.329415069Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: d39b026199711bbafb5cc1d90b34a0b39da48dd37874642f27c35209702453e4
     name: openshift-route
@@ -869,7 +879,7 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: v1
-    created: "2020-07-30T08:02:57.578771086Z"
+    created: "2020-08-27T08:29:16.329149261Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: 713c62a8274b5cce63386875c73b4b9b8ac57e78e43fa2f00cec8c2cff236fb0
     name: openshift-route
@@ -879,7 +889,7 @@ entries:
   prometheus:
   - apiVersion: v1
     appVersion: 2.4.2
-    created: "2020-07-30T08:02:57.602763923Z"
+    created: "2020-08-27T08:29:16.352733396Z"
     deprecated: true
     description: Prometheus is a monitoring system and time series database.
     digest: 9aefe5dc853d603faabd5f858daf9f87525b8c56440d7c6fc4558e74e55be2e6
@@ -900,7 +910,7 @@ entries:
     version: 0.0.7
   - apiVersion: v1
     appVersion: 2.4.2
-    created: "2020-07-30T08:02:57.599713671Z"
+    created: "2020-08-27T08:29:16.347679268Z"
     description: Prometheus is a monitoring system and time series database.
     digest: 8ff8e022d06b7345b4179e15fe553920d58256e0d4059c2bfa376f090b332be3
     home: https://prometheus.io/
@@ -920,7 +930,7 @@ entries:
     version: 0.0.6
   - apiVersion: v1
     appVersion: 2.4.2
-    created: "2020-07-30T08:02:57.595089564Z"
+    created: "2020-08-27T08:29:16.345274225Z"
     description: Prometheus is a monitoring system and time series database.
     digest: 18f849146fca2ee8796f988c7f695edd242b285907b5674c0b1bf18640788515
     home: https://prometheus.io/
@@ -940,7 +950,7 @@ entries:
     version: 0.0.5
   - apiVersion: v1
     appVersion: 2.4.2
-    created: "2020-07-30T08:02:57.592631482Z"
+    created: "2020-08-27T08:29:16.342864511Z"
     description: Prometheus is a monitoring system and time series database.
     digest: a972e9daa30fa29359606d89ee18e7c0fc473da1a2ebf1429e7378f4ed1b6fa7
     home: https://prometheus.io/
@@ -960,7 +970,7 @@ entries:
     version: 0.0.4
   - apiVersion: v1
     appVersion: 2.4.2
-    created: "2020-07-30T08:02:57.590070915Z"
+    created: "2020-08-27T08:29:16.340448583Z"
     description: Prometheus is a monitoring system and time series database.
     digest: 42908b83975324cd52da0fb9c57fab84ae972e6dc99c9d5b83e2425474b95d59
     home: https://prometheus.io/
@@ -980,7 +990,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-07-30T08:02:57.587642133Z"
+    created: "2020-08-27T08:29:16.335205812Z"
     description: Prometheus is a monitoring system and time series database.
     digest: 679f5570e1131c69b1de43c1f567ee30463083fe97a4099d43ffc2ea04fa1bbf
     home: https://prometheus.io/
@@ -1000,7 +1010,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-07-30T08:02:57.584365715Z"
+    created: "2020-08-27T08:29:16.332721292Z"
     description: Prometheus is a monitoring system and time series database.
     digest: 5ff214c04376ac8458c78521626bcd71e09a326f6014f10a14096cf7f2378f7a
     home: https://prometheus.io/
@@ -1021,7 +1031,7 @@ entries:
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: v0.17.0
-    created: "2020-07-30T08:02:57.605687104Z"
+    created: "2020-08-27T08:29:16.355295489Z"
     description: Prometheus Blackbox Exporter
     digest: 0f947aa8cf10a20f26b55bdf5e0fb979a2651b08c629a1aa3a21a919b6da6c46
     home: https://github.com/prometheus/blackbox_exporter
@@ -1040,7 +1050,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: 0.16.0
-    created: "2020-07-30T08:02:57.605212446Z"
+    created: "2020-08-27T08:29:16.354855538Z"
     description: Prometheus Blackbox Exporter
     digest: d4a8d7b499a7095453a301566cfc2ee6a3e382a9485f542ad309fef344994d27
     home: https://github.com/prometheus/blackbox_exporter
@@ -1059,7 +1069,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 0.16.0
-    created: "2020-07-30T08:02:57.60474755Z"
+    created: "2020-08-27T08:29:16.354450598Z"
     description: Prometheus Blackbox Exporter
     digest: 34a8a93939bff9333386b9ed31e61897c148b4de0affffcc26bd2346cd5cf46b
     home: https://github.com/prometheus/blackbox_exporter
@@ -1078,7 +1088,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 0.12.0
-    created: "2020-07-30T08:02:57.60420277Z"
+    created: "2020-08-27T08:29:16.35402657Z"
     description: Prometheus Blackbox Exporter
     digest: 743501588cf6128f71edb7cf9ad14d89f5373c4cde5174ec05467526bc328d0c
     home: https://github.com/prometheus/blackbox_exporter
@@ -1097,7 +1107,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: 0.12.0
-    created: "2020-07-30T08:02:57.603755495Z"
+    created: "2020-08-27T08:29:16.353614835Z"
     description: Prometheus Blackbox Exporter
     digest: abc38db36280377e25b3f61b8472b23b140da0c3bb7007d9788da587f249f886
     home: https://github.com/prometheus/blackbox_exporter
@@ -1116,7 +1126,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 0.12.0
-    created: "2020-07-30T08:02:57.603271589Z"
+    created: "2020-08-27T08:29:16.353198479Z"
     description: Prometheus Blackbox Exporter
     digest: 211fee66093eb0a26e957336b28b5da453d81e3048555d8e06b1334bf4829513
     home: https://github.com/prometheus/blackbox_exporter
@@ -1135,7 +1145,7 @@ entries:
     version: 0.1.1
   secret:
   - apiVersion: v1
-    created: "2020-07-30T08:02:57.606030672Z"
+    created: "2020-08-27T08:29:16.355610799Z"
     description: Deploy arbitrary secrets
     digest: 19a6f5c74d430b044ce4295111c4b6ecfe97f3fd96d4bb150a1d79ec8b7a1cb6
     maintainers:
@@ -1146,7 +1156,7 @@ entries:
     - https://charts.appuio.ch/secret-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v1
-    created: "2020-07-30T08:02:57.605869216Z"
+    created: "2020-08-27T08:29:16.355461559Z"
     description: Deploy arbitrary secrets
     digest: b7604a17122c6b74679976d911fe6c967f05e775a072e7d00618e37b0ba6460e
     maintainers:
@@ -1159,7 +1169,7 @@ entries:
   signalilo:
   - apiVersion: v1
     appVersion: v0.6.0
-    created: "2020-07-30T08:02:57.611601756Z"
+    created: "2020-08-27T08:29:16.36038844Z"
     description: Alertmanager to Icinga2 bridge
     digest: e4d876ae778bd62fc5b3d6a0190338ed4f3b26e5499adbf1e83ea8586da48588
     home: https://git.vshn.net/vshn/signalilo
@@ -1179,7 +1189,7 @@ entries:
     version: 0.5.0
   - apiVersion: v1
     appVersion: v0.5.0
-    created: "2020-07-30T08:02:57.610612647Z"
+    created: "2020-08-27T08:29:16.359505113Z"
     description: Alertmanager to Icinga2 bridge
     digest: 58856f925e5d9e7b660a9abcde5b45867ab8deaf033941483e9f65693aa748e8
     home: https://git.vshn.net/vshn/signalilo
@@ -1199,7 +1209,7 @@ entries:
     version: 0.4.0
   - apiVersion: v1
     appVersion: v0.4.0
-    created: "2020-07-30T08:02:57.609686617Z"
+    created: "2020-08-27T08:29:16.358723067Z"
     description: Alertmanager to Icinga2 bridge
     digest: a97929de281276ee812f51f6cef2461bbcc32e5850ead6e254521e140a6b65b5
     home: https://git.vshn.net/vshn/signalilo
@@ -1219,7 +1229,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-07-30T08:02:57.608974782Z"
+    created: "2020-08-27T08:29:16.358345743Z"
     description: Alertmanager to Icinga2 bridge
     digest: 1a3f446a81236cd37ab74d9bd17aa8d0384b624bf14ddc1739c6ed630bb23b72
     home: https://git.vshn.net/vshn/signalilo
@@ -1239,7 +1249,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 0.2.0
-    created: "2020-07-30T08:02:57.608579696Z"
+    created: "2020-08-27T08:29:16.357921711Z"
     description: Alertmanager to Icinga2 bridge
     digest: 1cbaca3fd20d0bfa5293d7a5576dd68674d7c34561d849bdc1508e77f1691270
     home: https://git.vshn.net/vshn/signalilo
@@ -1259,7 +1269,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 0.1.1
-    created: "2020-07-30T08:02:57.608122545Z"
+    created: "2020-08-27T08:29:16.357550902Z"
     description: Alertmanager to Icinga2 bridge
     digest: f71e5b8b9134c992d35c6f4bf60cf096e8c6772212d9c42d95decefdf4f58afb
     home: https://git.vshn.net/vshn/signalilo
@@ -1279,7 +1289,7 @@ entries:
     version: 0.1.0
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2020-07-30T08:02:57.607733203Z"
+    created: "2020-08-27T08:29:16.357172477Z"
     description: Alertmanager to Icinga2 bridge
     digest: e2ea88228ca680986639ff7914bec368344f17419d60264f779cccefa6e6561a
     home: https://git.vshn.net/vshn/signalilo
@@ -1299,7 +1309,7 @@ entries:
     version: 0.0.4
   - apiVersion: v1
     appVersion: 0.0.3
-    created: "2020-07-30T08:02:57.607327619Z"
+    created: "2020-08-27T08:29:16.356779992Z"
     description: Alertmanager to Icinga2 bridge
     digest: 84618f18d64e2086dcebba47473c7e0cdc99926b1e19c6901463367527785559
     home: https://git.vshn.net/vshn/signalilo
@@ -1319,7 +1329,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: 0.0.2
-    created: "2020-07-30T08:02:57.606892412Z"
+    created: "2020-08-27T08:29:16.356401004Z"
     description: Alertmanager to Icinga2 bridge
     digest: 4ac4259680d25a84c1ec17a53d9fc53ef6e6bc6a127cea61b96f324e5b6f96e0
     home: https://git.vshn.net/vshn/signalilo
@@ -1339,7 +1349,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: 0.0.1
-    created: "2020-07-30T08:02:57.606454998Z"
+    created: "2020-08-27T08:29:16.355947828Z"
     description: Alertmanager to Icinga2 bridge
     digest: a57f7fd7b1e2d22b4889e879ea59553cbe39720bc050e8d93b19d8ddac098567
     home: https://git.vshn.net/vshn/signalilo
@@ -1360,7 +1370,7 @@ entries:
   snappass:
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.637844633Z"
+    created: "2020-08-27T08:29:16.38680074Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1374,7 +1384,7 @@ entries:
     version: 0.2.13
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.633253554Z"
+    created: "2020-08-27T08:29:16.381571895Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1388,7 +1398,7 @@ entries:
     version: 0.2.12
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.629935986Z"
+    created: "2020-08-27T08:29:16.378322623Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1402,7 +1412,7 @@ entries:
     version: 0.2.11
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.627065203Z"
+    created: "2020-08-27T08:29:16.375651185Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1416,7 +1426,7 @@ entries:
     version: 0.2.10
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.668143154Z"
+    created: "2020-08-27T08:29:16.415445229Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1430,7 +1440,7 @@ entries:
     version: 0.2.9
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.663817028Z"
+    created: "2020-08-27T08:29:16.412710148Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1444,7 +1454,7 @@ entries:
     version: 0.2.8
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.660241369Z"
+    created: "2020-08-27T08:29:16.407256245Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1458,7 +1468,7 @@ entries:
     version: 0.2.7
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.657301798Z"
+    created: "2020-08-27T08:29:16.404500936Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1472,7 +1482,7 @@ entries:
     version: 0.2.6
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.654356982Z"
+    created: "2020-08-27T08:29:16.401777811Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1486,7 +1496,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.648440832Z"
+    created: "2020-08-27T08:29:16.396654322Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1500,7 +1510,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.64526891Z"
+    created: "2020-08-27T08:29:16.393505622Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1514,7 +1524,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.642091814Z"
+    created: "2020-08-27T08:29:16.390511054Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1528,7 +1538,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.621806674Z"
+    created: "2020-08-27T08:29:16.37032106Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1542,7 +1552,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.618669645Z"
+    created: "2020-08-27T08:29:16.367251129Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1556,7 +1566,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: v1.4.2
-    created: "2020-07-30T08:02:57.615657284Z"
+    created: "2020-08-27T08:29:16.364430671Z"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -1571,7 +1581,7 @@ entries:
   stardog:
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.772944545Z"
+    created: "2020-08-27T08:29:16.510246178Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1590,7 +1600,7 @@ entries:
     version: 0.2.8
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.767826898Z"
+    created: "2020-08-27T08:29:16.506139095Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1609,7 +1619,7 @@ entries:
     version: 0.2.7
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.765284116Z"
+    created: "2020-08-27T08:29:16.503888579Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1628,7 +1638,7 @@ entries:
     version: 0.2.6
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.763121744Z"
+    created: "2020-08-27T08:29:16.501740914Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1647,7 +1657,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.760894171Z"
+    created: "2020-08-27T08:29:16.499739414Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1666,7 +1676,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.758693909Z"
+    created: "2020-08-27T08:29:16.497656766Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1685,7 +1695,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.753828154Z"
+    created: "2020-08-27T08:29:16.492830622Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1704,7 +1714,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.751410703Z"
+    created: "2020-08-27T08:29:16.490563005Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1723,7 +1733,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.74901992Z"
+    created: "2020-08-27T08:29:16.488371633Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1742,7 +1752,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.746557963Z"
+    created: "2020-08-27T08:29:16.486119163Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1761,7 +1771,7 @@ entries:
     version: 0.1.4
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.744335726Z"
+    created: "2020-08-27T08:29:16.483969815Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1780,7 +1790,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.739891216Z"
+    created: "2020-08-27T08:29:16.480568122Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1799,7 +1809,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.737105166Z"
+    created: "2020-08-27T08:29:16.477228037Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1818,7 +1828,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.734941038Z"
+    created: "2020-08-27T08:29:16.4750842Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1837,7 +1847,7 @@ entries:
     version: 0.1.0
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.710460362Z"
+    created: "2020-08-27T08:29:16.458546368Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1856,7 +1866,7 @@ entries:
     version: 0.0.25
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.707980228Z"
+    created: "2020-08-27T08:29:16.456529599Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1875,7 +1885,7 @@ entries:
     version: 0.0.24
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.705783131Z"
+    created: "2020-08-27T08:29:16.454456906Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1894,7 +1904,7 @@ entries:
     version: 0.0.23
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.703611375Z"
+    created: "2020-08-27T08:29:16.449922322Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1913,7 +1923,7 @@ entries:
     version: 0.0.22
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.701467593Z"
+    created: "2020-08-27T08:29:16.447902505Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1932,7 +1942,7 @@ entries:
     version: 0.0.21
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.699329778Z"
+    created: "2020-08-27T08:29:16.445878794Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1951,7 +1961,7 @@ entries:
     version: 0.0.20
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.693136073Z"
+    created: "2020-08-27T08:29:16.442305278Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1970,7 +1980,7 @@ entries:
     version: 0.0.19
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.69103087Z"
+    created: "2020-08-27T08:29:16.43909234Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1989,7 +1999,7 @@ entries:
     version: 0.0.18
   - apiVersion: v1
     appVersion: 6.2.3
-    created: "2020-07-30T08:02:57.688845467Z"
+    created: "2020-08-27T08:29:16.435675953Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2008,7 +2018,7 @@ entries:
     version: 0.0.17
   - apiVersion: v1
     appVersion: 6.2.2
-    created: "2020-07-30T08:02:57.686705024Z"
+    created: "2020-08-27T08:29:16.433558335Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2027,7 +2037,7 @@ entries:
     version: 0.0.16
   - apiVersion: v1
     appVersion: 6.2.2
-    created: "2020-07-30T08:02:57.684578402Z"
+    created: "2020-08-27T08:29:16.431504374Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2046,7 +2056,7 @@ entries:
     version: 0.0.15
   - apiVersion: v1
     appVersion: 6.2.2
-    created: "2020-07-30T08:02:57.679792229Z"
+    created: "2020-08-27T08:29:16.429405849Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2065,7 +2075,7 @@ entries:
     version: 0.0.14
   - apiVersion: v1
     appVersion: 6.2.2
-    created: "2020-07-30T08:02:57.67777253Z"
+    created: "2020-08-27T08:29:16.427381256Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2084,7 +2094,7 @@ entries:
     version: 0.0.13
   - apiVersion: v1
     appVersion: 6.2.2
-    created: "2020-07-30T08:02:57.675744654Z"
+    created: "2020-08-27T08:29:16.424249187Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2103,7 +2113,7 @@ entries:
     version: 0.0.12
   - apiVersion: v1
     appVersion: 6.2.1
-    created: "2020-07-30T08:02:57.673712117Z"
+    created: "2020-08-27T08:29:16.420864157Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2122,7 +2132,7 @@ entries:
     version: 0.0.11
   - apiVersion: v1
     appVersion: 6.2.1
-    created: "2020-07-30T08:02:57.67175253Z"
+    created: "2020-08-27T08:29:16.418873604Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2141,7 +2151,7 @@ entries:
     version: 0.0.10
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.732753444Z"
+    created: "2020-08-27T08:29:16.473035894Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2160,7 +2170,7 @@ entries:
     version: 0.0.9
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.730787993Z"
+    created: "2020-08-27T08:29:16.47123381Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2179,7 +2189,7 @@ entries:
     version: 0.0.8
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.728357065Z"
+    created: "2020-08-27T08:29:16.469500016Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2198,7 +2208,7 @@ entries:
     version: 0.0.7
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.725894709Z"
+    created: "2020-08-27T08:29:16.466561126Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2217,7 +2227,7 @@ entries:
     version: 0.0.6
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.721230612Z"
+    created: "2020-08-27T08:29:16.463599018Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2236,7 +2246,7 @@ entries:
     version: 0.0.5
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.71749349Z"
+    created: "2020-08-27T08:29:16.461826559Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2255,7 +2265,7 @@ entries:
     version: 0.0.4
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.714057958Z"
+    created: "2020-08-27T08:29:16.4601921Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2274,7 +2284,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: 6.1.3
-    created: "2020-07-30T08:02:57.695140119Z"
+    created: "2020-08-27T08:29:16.443882033Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2293,7 +2303,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: 6.1.2
-    created: "2020-07-30T08:02:57.669778776Z"
+    created: "2020-08-27T08:29:16.417070497Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -2313,7 +2323,7 @@ entries:
   trifid:
   - apiVersion: v1
     appVersion: 2.3.5
-    created: "2020-07-30T08:02:57.775927224Z"
+    created: "2020-08-27T08:29:16.513962354Z"
     description: Trifid Helm chart
     digest: dd27db33bcd856b52dc89d750cd3f2a7319bb30e0b9eb64d50c4fce84e4c964a
     home: https://github.com/zazuko/trifid
@@ -2323,7 +2333,7 @@ entries:
     version: 1.2.0
   - apiVersion: v1
     appVersion: 2.3.3
-    created: "2020-07-30T08:02:57.775452483Z"
+    created: "2020-08-27T08:29:16.513517141Z"
     description: Trifid Helm chart
     digest: 1e2440e7d5f3563871d3a31bd55768b73f29fffc1316fbc35ef0fd9ecc11f725
     home: https://github.com/zazuko/trifid
@@ -2333,7 +2343,7 @@ entries:
     version: 1.1.2
   - apiVersion: v1
     appVersion: 2.3.3
-    created: "2020-07-30T08:02:57.774931315Z"
+    created: "2020-08-27T08:29:16.513075531Z"
     description: Trifid Helm chart
     digest: 06b63630c055eea52fa785005770ac3bd2e9def0ec5eae736ab79e296cf54b0c
     home: https://github.com/zazuko/trifid
@@ -2343,7 +2353,7 @@ entries:
     version: 1.1.1
   - apiVersion: v1
     appVersion: 2.3.3
-    created: "2020-07-30T08:02:57.774247858Z"
+    created: "2020-08-27T08:29:16.51240133Z"
     description: Trifid Helm chart
     digest: 3ed7ea91449da958944a88504968e4152790c96581b8e4ede2de701a94ecda0c
     home: https://github.com/zazuko/trifid
@@ -2353,7 +2363,7 @@ entries:
     version: 1.1.0
   - apiVersion: v1
     appVersion: 2.3.2
-    created: "2020-07-30T08:02:57.77360377Z"
+    created: "2020-08-27T08:29:16.511721388Z"
     description: Trifid Helm chart
     digest: 746d57fd2a98f2c42b63c67ad20765a9f830bb3e0a4efe24f32c9751055a8672
     home: https://github.com/zazuko/trifid
@@ -2361,4 +2371,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2020-07-30T08:02:57.535503532Z"
+generated: "2020-08-27T08:29:16.285173215Z"
