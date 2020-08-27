@@ -28,7 +28,10 @@ dataCubeCuration:
     pipeline: ""
     branch: ""
     token: ""
-
+  auth:
+    issuer: ""
+    clientId: ""
+    audience: ""
 
 replicaCount: 1
 
