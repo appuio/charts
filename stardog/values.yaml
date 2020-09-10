@@ -81,7 +81,7 @@ persistence:
   # storageClass: -
 
 metrics:
-  enabled: true
+  enabled: false
   prometheusOperator: false
   image:
     registry: docker.io
