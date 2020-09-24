@@ -32,6 +32,7 @@ dataCubeCuration:
     issuer: ""
     clientId: ""
     audience: ""
+    # accessRequest: ""
 
 replicaCount: 1
 

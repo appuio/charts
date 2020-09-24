@@ -13,6 +13,9 @@ data:
   authIssuer: {{ required "A valid dataCubeCuration.auth.issuer entry is required!" .Values.dataCubeCuration.auth.issuer | quote }}
   authClientId: {{ required "A valid dataCubeCuration.auth.clientId entry is required!" .Values.dataCubeCuration.auth.clientId | quote }}
   authAudience: {{ required "A valid dataCubeCuration.auth.audience entry is required!" .Values.dataCubeCuration.auth.audience | quote }}
+{{- if .Values.dataCubeCuration.auth.accessRequest }}
+  authAccessRequest: {{ .Values.dataCubeCuration.auth.accessRequest | quote }}
+{{- end }}
 {{- if .Values.dataCubeCuration.debug }}
   debug: {{ .Values.dataCubeCuration.debug | quote }}
 {{- end -}}
