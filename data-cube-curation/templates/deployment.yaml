@@ -170,6 +170,12 @@ spec:
               configMapKeyRef:
                 name: {{ $fullName }}
                 key: authAudience
+          - name: AUTH_ACCESS_REQUEST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authAccessRequest
+                optional: true
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
