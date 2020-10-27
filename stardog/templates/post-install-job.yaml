@@ -1,4 +1,4 @@
-{{- if or .Release.IsInstall .Values.stardog.users }}
+{{- if and (or .Release.IsInstall .Values.stardog.users) .Values.replicaCount }}
 apiVersion: batch/v1
 kind: Job
 metadata:

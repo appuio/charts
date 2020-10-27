@@ -106,7 +106,7 @@ spec:
                 name: {{ $sparqlSecretName }}
                 key: graphStoreEndpoint
                 optional: false
-          - name: GRAPH_STORE_USERNAME
+          - name: GRAPH_STORE_USER
             valueFrom:
               secretKeyRef:
                 name: {{ $sparqlSecretName }}
@@ -154,6 +154,28 @@ spec:
               configMapKeyRef:
                 name: {{ $fullName }}
                 key: gitlabPipelineBranch
+
+          - name: AUTH_ISSUER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authIssuer
+          - name: AUTH_CLIENT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authClientId
+          - name: AUTH_AUDIENCE
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authAudience
+          - name: AUTH_ACCESS_REQUEST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: authAccessRequest
+                optional: true
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

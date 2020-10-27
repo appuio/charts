@@ -10,6 +10,12 @@ data:
   s3Bucket: {{ required "A valid dataCubeCuration.s3.bucket entry is required!" .Values.dataCubeCuration.s3.bucket | quote }}
   gitlabPipeline: {{ required "A valid dataCubeCuration.gitlab.pipeline entry is required!" .Values.dataCubeCuration.gitlab.pipeline | quote }}
   gitlabPipelineBranch: {{ required "A valid dataCubeCuration.gitlab.branch entry is required!" .Values.dataCubeCuration.gitlab.branch | quote }}
+  authIssuer: {{ required "A valid dataCubeCuration.auth.issuer entry is required!" .Values.dataCubeCuration.auth.issuer | quote }}
+  authClientId: {{ required "A valid dataCubeCuration.auth.clientId entry is required!" .Values.dataCubeCuration.auth.clientId | quote }}
+  authAudience: {{ required "A valid dataCubeCuration.auth.audience entry is required!" .Values.dataCubeCuration.auth.audience | quote }}
+{{- if .Values.dataCubeCuration.auth.accessRequest }}
+  authAccessRequest: {{ .Values.dataCubeCuration.auth.accessRequest | quote }}
+{{- end }}
 {{- if .Values.dataCubeCuration.debug }}
   debug: {{ .Values.dataCubeCuration.debug | quote }}
 {{- end -}}
