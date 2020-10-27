@@ -57,7 +57,7 @@ trap cleanup 0 1 2 3 6 15
 
 # Dependency repos (we still have to download them manually, even if they are added in requirements.yaml)
 # (https://github.com/helm/helm/issues/6005)
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add codecentric https://codecentric.github.io/helm-charts
 helm repo add jetstack https://charts.jetstack.io
