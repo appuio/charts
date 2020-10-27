@@ -68,11 +68,26 @@ spec:
             - -c
             - |
               set -e
-              BACKUP_TARGET="s3://${S3_ENDPOINT}/${S3_BUCKET_NAME}/${S3_PATH_PREFIX}/$(date --utc +%Y-%m-%d_%H%M)?AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY}&AWS_SECRET_ACCESS_KEY=${S3_SECRET_KEY}&region=${S3_REGION}"
-              /opt/stardog/bin/stardog-admin db status --passwd "${STARDOG_ADMIN_PW}" {{ $db.name | quote }}
-              /opt/stardog/bin/stardog-admin db backup --passwd "${STARDOG_ADMIN_PW}" \
-                --to "${BACKUP_TARGET}" \
-                {{ $db.name | quote }}
+              BACKUP_DATE=$(date --utc +%Y-%m-%d_%H%M)
+              DATABASE_NAME={{ $db.name | quote }}
+              CURRENT_TRIPLE_COUNT=$(/opt/stardog/bin/stardog data size --exact "${DATABASE_NAME}" --passwd "${STARDOG_ADMIN_PW}" | cut -d " " -f 2 | tr -d ",")
+              echo "${DATABASE_NAME} has ${CURRENT_TRIPLE_COUNT} triples."
+              BACKUP_TARGET="s3://${S3_ENDPOINT}/${S3_BUCKET_NAME}/${S3_PATH_PREFIX}/${BACKUP_DATE}?AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY}&AWS_SECRET_ACCESS_KEY=${S3_SECRET_KEY}&region=${S3_REGION}"
+              /opt/stardog/bin/stardog-admin db status --passwd "${STARDOG_ADMIN_PW}" "${DATABASE_NAME}"
+              /opt/stardog/bin/stardog-admin db backup --passwd "${STARDOG_ADMIN_PW}" --to "${BACKUP_TARGET}" "${DATABASE_NAME}"
+              PERCENT_USE=$(df --output=pcent -h /var/opt/stardog | tail -n 1 | tr -d "%")
+              if [ "${PERCENT_USE}" -gt "60" ]; then echo "not enough space to test restore: ${PERCENT_USE}% used" ; exit 1; fi
+              RESTORE_TARGET="s3://${S3_ENDPOINT}/${S3_BUCKET_NAME}/${S3_PATH_PREFIX}/${BACKUP_DATE}/${DATABASE_NAME}?AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY}&AWS_SECRET_ACCESS_KEY=${S3_SECRET_KEY}&region=${S3_REGION}"
+              RESTORE_NAME="${DATABASE_NAME}_restore_test_${BACKUP_DATE}"
+              /opt/stardog/bin/stardog-admin db restore --passwd "${STARDOG_ADMIN_PW}" --name "${RESTORE_NAME}" "${RESTORE_TARGET}"
+              RESTORED_TRIPLE_COUNT=$(/opt/stardog/bin/stardog data size --exact "${RESTORE_NAME}" --passwd "${STARDOG_ADMIN_PW}" | cut -d " " -f 2 | tr -d ",")
+              echo "After backup-and-restore: ${RESTORED_TRIPLE_COUNT} triples."
+              /opt/stardog/bin/stardog-admin db drop --passwd "${STARDOG_ADMIN_PW}" "${RESTORE_NAME}"
+              SAME_COUNT=$((${CURRENT_TRIPLE_COUNT} == ${RESTORED_TRIPLE_COUNT} ? 0 : 1 ))
+              exit ${SAME_COUNT}
+            volumeMounts:
+            - name: data
+              mountPath: /var/opt/stardog
           restartPolicy: Never
           imagePullSecrets:
           {{- if $.Values.image.existingPullSecret }}
@@ -80,4 +95,8 @@ spec:
           {{- else }}
             - name: {{ $fullName }}-pullsecret
           {{- end }}
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: data-{{ $fullName }}-0
 {{- end }}
