@@ -1,0 +1,28 @@
+resources:
+# Simple resource example
+- |
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: example-secret
+  stringData:
+    some: secret
+# Example with templated values
+- |
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: {{ include "generic.fullname" $ }}
+    labels:
+      {{- include "generic.labels" $ | nindent 4 }}
+  spec:
+    type: ClusterIP
+    ports:
+      - port: 8080
+        targetPort: http
+        {{- with .Values.protocol }}
+        protocol: {{ . }}
+        {{- end }}
+        name: http
+    selector:
+      {{- include "generic.selectorLabels" $ | nindent 4 }}

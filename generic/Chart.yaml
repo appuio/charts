@@ -1,0 +1,8 @@
+apiVersion: v1
+name: generic
+version: 0.1.0
+description: A Helm chart to create generic Kubernetes resources
+icon: https://kubernetes.io/images/wheel.svg
+maintainers:
+  - name: APPUiO Team
+    email: info@appuio.ch
