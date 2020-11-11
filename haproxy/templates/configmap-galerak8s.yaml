@@ -17,7 +17,7 @@ data:
 
     
     resolvers mydns
-      nameserver dns1 {{ $galera.nameserver }}
+      parse-resolv-conf
       accepted_payload_size 8192 # allow larger DNS payloads
 
     defaults
