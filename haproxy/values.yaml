@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/haproxytech/haproxy-debian
-  tag: 2.1
+  tag: 2.2
   pullPolicy: IfNotPresent
 
 ingress:
@@ -44,6 +44,18 @@ haproxy:
     # - address: galera-node-1
     #   port: 3306
     #   backup: false
+
+  galerak8s:
+    nameserver: 10.43.0.10:53 # This should be your kubedns service
+    balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    check:
+      enabled: true
+      mysql:
+        enabled: true # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20mysql-check
+        user: haproxy
+    dnsservicename: mycluster-mariadb-galera-headless
+    port: 3306
+    nodeCount: 3
 
 resources:
   limits:

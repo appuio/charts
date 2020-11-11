@@ -1,0 +1,45 @@
+{{- if eq .Values.haproxy.config "galerak8s"}}
+{{- $galera := .Values.haproxy.galerak8s -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "haproxy.fullname" . }}-galerak8s"
+  labels:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    helm.sh/chart: {{ include "haproxy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  haproxy.cfg: |-
+    global
+      log stdout local0
+      stats socket :9000 mode 660 level admin
+
+    
+    resolvers mydns
+      nameserver dns1 {{ $galera.nameserver }}
+      accepted_payload_size 8192 # allow larger DNS payloads
+
+    defaults
+      log global
+
+      option dontlognull
+      timeout connect 5s
+      timeout client 10s
+      timeout server 10s
+
+    frontend galera-in
+      bind *:{{ .Values.haproxy.frontendPort }}
+      mode tcp
+      option clitcpka
+      default_backend galera-nodes
+
+    backend galera-nodes
+      mode tcp
+      option srvtcpka
+      balance {{ $galera.balance }}
+
+      {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
+      server-template node- {{ $galera.nodeCount}} {{ $galera.dnsservicename}}:{{ default "3306" $galera.port }} check resolvers mydns init-addr none
+
+{{- end }}
