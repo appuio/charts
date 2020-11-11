@@ -40,6 +40,6 @@ data:
       balance {{ $galera.balance }}
 
       {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
-      server-template node- {{ $galera.nodeCount}} {{ $galera.dnsservicename}}:{{ default "3306" $galera.port }} check resolvers mydns init-addr none
+      server-template node- {{ $galera.nodeCount}} {{ $galera.dnsservicename}}:{{ default "3306" $galera.port }} {{ if $galera.check.enabled }} check{{ end }} resolvers mydns init-addr none
 
 {{- end }}
