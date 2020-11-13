@@ -79,3 +79,19 @@ Set `haproxy.config` to `galera` to use the Galera configuration.
 | `haproxy.galera.nodes.backup` | If this node should be used as a backup node | true
 
 To use `mysql-check`, configure a user `haproxy` in the database (see: http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-option%20mysql-check for more information).
+
+### galerak8s
+
+Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.galerak8s.balance` | What balance mode HAProxy should use | source
+| `haproxy.galerak8s.check.enabled` | If check should be enabled | true
+| `haproxy.galerak8s.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
+| `haproxy.galerak8s.check.mysql.user` | The database user to use for mysql-check | haproxy
+| `haproxy.galerak8s.dnsservicename` | The DNS Record for service discovery | mycluster-mariadb-galera-headless
+| `haproxy.galerak8s.nodeCount` | Max number of nodes in the backend | 3
+| `haproxy.galerak8s.port` | Port of the Galera node | 3306
+
+
