@@ -90,10 +90,8 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.check.enabled` | If check should be enabled | true
 | `haproxy.galerak8s.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
 | `haproxy.galerak8s.check.mysql.user` | The database user to use for mysql-check | haproxy
-| `haproxy.galerak8s.nameserver` | The DNS server to use for service lookup | 10.43.0.10:53
 | `haproxy.galerak8s.dnsservicename` | The DNS Record for service discovery | mycluster-mariadb-galera-headless
 | `haproxy.galerak8s.nodeCount` | Max number of nodes in the backend | 3
 | `haproxy.galerak8s.port` | Port of the Galera node | 3306
-
 
 
