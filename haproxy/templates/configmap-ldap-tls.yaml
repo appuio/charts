@@ -25,6 +25,20 @@ data:
       timeout  check 15s
       timeout  check 15s
 
+    {{- if .Values.metrics.enabled }}
+    frontend stats
+      mode http
+      bind *:9000
+
+      stats enable
+      stats uri /stats
+      stats refresh 3s
+      stats admin if TRUE
+
+      option http-use-htx
+      http-request use-service prometheus-exporter if { path /metrics }
+    {{ end }}
+
     frontend frontend
       bind *:{{ .Values.haproxy.frontendPort }}
       mode tcp

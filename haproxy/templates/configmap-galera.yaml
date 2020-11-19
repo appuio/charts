@@ -22,6 +22,20 @@ data:
       timeout client 10s
       timeout server 10s
 
+    {{- if .Values.metrics.enabled }}
+    frontend stats
+      mode http
+      bind *:9000
+
+      stats enable
+      stats uri /stats
+      stats refresh 3s
+      stats admin if TRUE
+
+      option http-use-htx
+      http-request use-service prometheus-exporter if { path /metrics }
+    {{ end }}
+
     frontend galera-in
       bind *:{{ .Values.haproxy.frontendPort }}
       mode tcp

@@ -21,9 +21,15 @@ ingress:
     enabled: true
     secretName: # tls-haproxy
 
+## Extra sidecar containers to add to the deployment
+sidecarContainers: []
+
+
 service:
   port: 30636
   type: ClusterIP
+  ## Extra ports to add to the service (e.g. for sidecar containers)
+  additionalPorts: []
 
 haproxy:
   config: ldap-tls
@@ -55,6 +61,48 @@ haproxy:
     dnsservicename: mycluster-mariadb-galera-headless
     port: 3306
     nodeCount: 3
+
+  redisk8s:
+    check:
+      enabled: true
+      redis:
+        auth: ""
+    dnsservicename: redis-access-headless
+    port: 6379
+    nodeCount: 3
+    
+metrics:
+  enabled: true
+
+  serviceMonitor:
+    enabled: false
+    # namespace: monitoring
+    # interval: 10s
+    selector:
+      prometheus: kube-prometheus
+
+  prometheusRule:
+    enabled: false
+    additionalLabels: {}
+    #namespace: ""
+    # rules:
+    # - alert: redis_no_backends
+    #   expr: haproxy_backend_active_servers{proxy="redis"} < 1
+    #   for: 15s
+    #   labels:
+    #     severity: page      
+    #   annotations:
+    #     summary: HAProxy reports all servers are unhealthy for redis.
+    rules: []
+
+  service:
+    type: ClusterIP
+    ## Use serviceLoadBalancerIP to request a specific static IP,
+    ## otherwise leave blank
+    # loadBalancerIP:
+    annotations: {}
+    labels: {}
+
 
 resources:
   limits:

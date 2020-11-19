@@ -27,6 +27,10 @@ spec:
             - name: frontend
               containerPort: {{ .Values.haproxy.frontendPort }}
               protocol: TCP
+            {{- if .Values.metrics.enabled }}
+            - name: metrics
+              containerPort: 9000
+            {{ end }}
           readinessProbe:
             tcpSocket:
               port: frontend
@@ -42,6 +46,9 @@ spec:
           volumeMounts:
             - name: haproxy-config
               mountPath: /etc/haproxy/
+      {{- if .Values.sidecarContainers }}
+{{ toYaml .Values.sidecarContainers | indent 8 }}
+      {{- end }}
       volumes:
         - name: haproxy-config
           configMap:
