@@ -54,22 +54,24 @@ create your own configmap and values.
 | `sidecarContainers` | extra sidecar containers to add to the deployment | `[]`
 | `haproxy.frontendPort` | Port for the Proxy to listen on the frontend | 30636
 | `haproxy.config`       | Suffix of the used config-map | ldap-tls
+| `haproxy.check.existingSecret.name` | Use existing secret with authentication credentials for check commands.  | 
+| `haproxy.check.existingSecret.key` | Key in secret which contains the authentication credentials for the check command  | `auth-credentials`
 | `nodeSelector` | Pod node selector | `{}`
 | `tolerations` | Pod tolerations | `[]`
 | `affinity` | Pod affinity rules | `{}`
-| `resources` | HaProxy resource requests/limits | `{ limits: { cpu: 100m, memory: 128Mi }, requests: { cpu: 100m, memory 128Mi } }`
+| `resources` | HAProxy resource requests/limits | `{ limits: { cpu: 100m, memory: 128Mi }, requests: { cpu: 100m, memory 128Mi } }`
 
 
 ### Metrics
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `metrics.enabled`      | Enables /stats and /metrics endpoint in haproxy | true
-| `metrics.serviceMonitor.monitor` | If true, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be true) | false
+| `metrics.serviceMonitor.enabled` | If true, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be true) | false
 | `metrics.serviceMonitor.namespace` | Optional namespace which Prometheus is running in |
 | `metrics.serviceMonitor.interval` | How frequently to scrape metrics (use by default, falling back to Prometheus' default) | 
 | `metrics.serviceMonitor.selector` | Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install | `{ prometheus: kube-prometheus }`
 | `metrics.service.type` | Kubernetes Service type (haproxy metrics) | `ClusterIP`
-| `metrics.service.annotations` | Annotations for the services to monitor (redis master and redis slave service) | `{}`
+| `metrics.service.annotations` | Annotations for the metrics service | `{}`
 | `metrics.service.labels` | Additional labels for the metrics service | `{}`
 | `metrics.service.loadBalancerIP` | LoadBalancer IP if haproxy metrics service type is LoadBalancer | `{}`
 | `metrics.prometheusRule.enabled` | 	Set this to true to create prometheusRules for Prometheus operator | false
@@ -120,12 +122,12 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 
 ### redisk8s
 
-Set `haproxy.config` to `redisk8s` to use the Redus configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/
+Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/
 
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `haproxy.redisk8s.check.enabled` | If check should be enabled | true
-| `haproxy.redisk8s.check.redis.auth` | If Authentication credentials for Redis | 
+| `haproxy.redisk8s.check.redis.auth` | Authentication credentials for Redis. `haproxy.check.existingSecret` overwrites this  | 
 | `haproxy.redisk8s.dnsservicename` | The DNS Record for service discovery | redis-access-headless
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | 3
 | `haproxy.redisk8s.port` | Port of the Galera node | 6379

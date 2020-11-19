@@ -35,6 +35,12 @@ haproxy:
   config: ldap-tls
   frontendPort: 30636
 
+  check:
+    existingSecret: 
+      name: "" # Use existing secret with authentication credentials for checks.
+      key: "auth-credentials" 
+
+
   ldapTls:
     certificatePath: /etc/ssl/certs/ca-certificates.crt
     # backend: ldap-example.org

@@ -30,7 +30,6 @@ data:
       stats enable
       stats uri /stats
       stats refresh 3s
-      stats admin if TRUE
 
       option http-use-htx
       http-request use-service prometheus-exporter if { path /metrics }

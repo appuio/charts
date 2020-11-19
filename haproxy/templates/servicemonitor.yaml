@@ -27,7 +27,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ template "haproxy.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/component: "metrics"
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}

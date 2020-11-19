@@ -34,7 +34,6 @@ data:
       stats enable
       stats uri /stats
       stats refresh 3s
-      stats admin if TRUE
 
       option http-use-htx
       http-request use-service prometheus-exporter if { path /metrics }
@@ -52,8 +51,11 @@ data:
       {{ if $redisk8s.check.enabled }}
       option tcp-check
       tcp-check connect
-      tcp-check send AUTH\ {{ $redisk8s.check.auth }}\r\n
+
+      {{- if or ($redisk8s.check.redis.auth) ( .Values.haproxy.check.existingSecret) }}
+      tcp-check send AUTH\ "${CHECK_AUTH_CREDENTIALS}"\r\n
       tcp-check expect string +OK
+      {{- end }}
 
       tcp-check send PING\r\n
       tcp-check expect string +PONG
