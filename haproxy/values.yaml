@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/haproxytech/haproxy-debian
-  tag: 2.2
+  tag: 2.3.1
   pullPolicy: IfNotPresent
 
 ingress:
@@ -40,6 +40,9 @@ haproxy:
       name: "" # Use existing secret with authentication credentials for checks.
       key: "auth-credentials" 
 
+  securityContext: {}
+    # runAsUser: 1000
+    # fsGroup: 1000
 
   ldapTls:
     certificatePath: /etc/ssl/certs/ca-certificates.crt
