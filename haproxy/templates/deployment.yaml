@@ -23,10 +23,21 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: CHECK_AUTH_CREDENTIALS
+            valueFrom:
+              secretKeyRef:
+                name: {{ if not (empty .Values.haproxy.check.existingSecret.name) }}{{ .Values.haproxy.check.existingSecret.name}}{{ else }}{{ include "haproxy.fullname" . }}-check-auth {{ end }}
+                key: {{ if not (empty .Values.haproxy.check.existingSecret.name) }}{{ .Values.haproxy.check.existingSecret.key}}{{ else }}auth-credentials{{ end }}
+                optional: true
           ports:
             - name: frontend
               containerPort: {{ .Values.haproxy.frontendPort }}
               protocol: TCP
+            {{- if .Values.metrics.enabled }}
+            - name: metrics
+              containerPort: 9000
+            {{ end }}
           readinessProbe:
             tcpSocket:
               port: frontend
@@ -42,6 +53,9 @@ spec:
           volumeMounts:
             - name: haproxy-config
               mountPath: /etc/haproxy/
+      {{- if .Values.sidecarContainers }}
+{{ toYaml .Values.sidecarContainers | indent 8 }}
+      {{- end }}
       volumes:
         - name: haproxy-config
           configMap:

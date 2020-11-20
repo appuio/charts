@@ -14,6 +14,9 @@ spec:
       targetPort: {{ .Values.haproxy.frontendPort }}
       protocol: TCP
       name: frontend
+    {{- if .Values.service.additionalPorts }}
+{{ toYaml .Values.service.additionalPorts | indent 4 }}
+    {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "haproxy.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
