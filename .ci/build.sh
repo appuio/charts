@@ -32,16 +32,6 @@ for chart in $charts; do
   chart=${chart:2}
   chart_changed=false
 
-  echo "----> Build dependencies for ${chart}"
-  helm dependency build "$chart"
-
-  # Run go test if there are chart unit tests
-  if [[ -f "$chart/test/go.mod" ]]; then
-    pushd "$chart/test"
-    echo "----> Running unit tests for ${chart}"
-    go test ./...
-    popd
-  fi
   for file in $changed_files; do
     if [[ $file != "$chart/test/"* && $file == "$chart/"* ]]; then
       chart_changed=true
@@ -56,7 +46,18 @@ for chart in $charts; do
 
   any_chart_changed=true
 
+  echo "----> Build dependencies for ${chart}"
+  helm dependency build "$chart"
+
   helm lint "$chart"
+
+  # Run go test if there are chart unit tests
+  if [[ -f "$chart/test/go.mod" ]]; then
+    pushd "$chart/test"
+    echo "----> Running unit tests for ${chart}"
+    go test ./...
+    popd
+  fi
 
   echo "----> Packaging ${chart}"
   helm package \
