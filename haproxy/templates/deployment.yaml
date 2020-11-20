@@ -37,7 +37,7 @@ spec:
             {{- if .Values.metrics.enabled }}
             - name: metrics
               containerPort: 9000
-            {{ end }}
+            {{- end }}
           readinessProbe:
             tcpSocket:
               port: frontend

@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
-  haproxy.cfg: |-
+  haproxy.cfg: |
     global
       log stdout local0
 
@@ -33,7 +33,7 @@ data:
 
       option http-use-htx
       http-request use-service prometheus-exporter if { path /metrics }
-    {{ end }}
+    {{- end }}
 
     frontend galera-in
       bind *:{{ .Values.haproxy.frontendPort }}
