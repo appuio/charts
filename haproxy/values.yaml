@@ -40,6 +40,9 @@ haproxy:
       name: "" # Use existing secret with authentication credentials for checks.
       key: "auth-credentials" 
 
+  securityContext: {}
+    # runAsUser: 1000
+    # fsGroup: 1000
 
   ldapTls:
     certificatePath: /etc/ssl/certs/ca-certificates.crt

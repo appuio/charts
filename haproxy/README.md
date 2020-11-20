@@ -41,7 +41,7 @@ create your own configmap and values.
 |---                     | ---                    | ---
 | `replicaCount`         | Number of replicas for the proxy. | 1
 | `image.repository`     | Repository for the base image | docker.io/haproxytech/haproxy-debian
-| `image.tag`            | Tag of the base image | 2.1
+| `image.tag`            | Tag of the base image | `2.3.1`
 | `image.pullPolicy`     | Determines when the image is pulled | IfNotPresent
 | `ingress.enabled`      | If an ingress object should be created | false
 | `ingress.annotations`  | Annotations to set on the ingress object |
@@ -54,8 +54,9 @@ create your own configmap and values.
 | `sidecarContainers` | extra sidecar containers to add to the deployment | `[]`
 | `haproxy.frontendPort` | Port for the Proxy to listen on the frontend | 30636
 | `haproxy.config`       | Suffix of the used config-map | ldap-tls
-| `haproxy.check.existingSecret.name` | Use existing secret with authentication credentials for check commands.  | 
+| `haproxy.check.existingSecret.name` | Use existing secret with authentication credentials for check commands. |
 | `haproxy.check.existingSecret.key` | Key in secret which contains the authentication credentials for the check command  | `auth-credentials`
+| `haproxy.securityContext` | Security context for the pod to be used | `{}`
 | `nodeSelector` | Pod node selector | `{}`
 | `tolerations` | Pod tolerations | `[]`
 | `affinity` | Pod affinity rules | `{}`
