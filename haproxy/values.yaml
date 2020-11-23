@@ -50,6 +50,10 @@ haproxy:
 
   galera:
     balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    timeout:
+      connect: 5s
+      client: 10800s
+      server: 10800s
     check:
       enabled: true
       mysql:
@@ -61,7 +65,11 @@ haproxy:
     #   backup: false
 
   galerak8s:
-    balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    balance: first # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    timeout:
+      connect: 5s
+      client: 10800s
+      server: 10800s
     check:
       enabled: true
       mysql:

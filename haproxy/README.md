@@ -97,6 +97,11 @@ Set `haproxy.config` to `galera` to use the Galera configuration.
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `haproxy.galera.balance` | What balance mode HAProxy should use | source
+| `haproxy.galera.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | 5s
+| `haproxy.galera.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or
+  send data | 10800s
+| `haproxy.galera.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or
+  send data | 10800s
 | `haproxy.galera.check.enabled` | If check should be enabled | true
 | `haproxy.galera.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
 | `haproxy.galera.check.mysql.user` | The database user to use for mysql-check | haproxy
@@ -113,7 +118,12 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
-| `haproxy.galerak8s.balance` | What balance mode HAProxy should use | source
+| `haproxy.galerak8s.balance` | What balance mode HAProxy should use | first
+| `haproxy.galerak8s.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | 5s
+| `haproxy.galerak8s.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or
+  send data | 10800s
+| `haproxy.galerak8s.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or
+  send data | 10800s
 | `haproxy.galerak8s.check.enabled` | If check should be enabled | true
 | `haproxy.galerak8s.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
 | `haproxy.galerak8s.check.mysql.user` | The database user to use for mysql-check | haproxy
