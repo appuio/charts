@@ -24,9 +24,9 @@ data:
       log global
 
       option dontlognull
-      timeout connect 5s
-      timeout client 10s
-      timeout server 10s
+      timeout connect {{ $galera.timeout.connect }}
+      timeout client {{ $galera.timeout.client }}
+      timeout server {{ $galera.timeout.client }}
 
     {{- if .Values.metrics.enabled }}
     frontend stats

@@ -48,10 +48,11 @@ create your own configmap and values.
 | `ingress.hosts`        | Array of host names which the ingress should resolve |
 | `ingress.tls.enabled`  | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`| Name of the secret containing the TLS certificate and key |
-| `service.port` | 	Kubernetes Service port (haproxy) | `30636`
+| `service.port` | Kubernetes Service port (haproxy) | `30636`
 | `service.type` | Kubernetes Service type (haproxy) | `ClusterIP`
-| `service.additionalPorts` | additional Ports to be added to the haproxy service (e.g. for sidecars) | `[]`
-| `sidecarContainers` | extra sidecar containers to add to the deployment | `[]`
+| `service.additionalPorts` | Additional Ports to be added to the haproxy service (e.g. for sidecars) | `[]`
+| `sidecarContainers` | Extra sidecar containers to add to the deployment | `[]`
+| `affinity`          | Affinity for pod assignment | `{}` (evaluated as a template)
 | `haproxy.frontendPort` | Port for the Proxy to listen on the frontend | 30636
 | `haproxy.config`       | Suffix of the used config-map | ldap-tls
 | `haproxy.check.existingSecret.name` | Use existing secret with authentication credentials for check commands. |
@@ -75,9 +76,9 @@ create your own configmap and values.
 | `metrics.service.annotations` | Annotations for the metrics service | `{}`
 | `metrics.service.labels` | Additional labels for the metrics service | `{}`
 | `metrics.service.loadBalancerIP` | LoadBalancer IP if haproxy metrics service type is LoadBalancer | `{}`
-| `metrics.prometheusRule.enabled` | 	Set this to true to create prometheusRules for Prometheus operator | false
-| `metrics.prometheusRule.additionalLabels` | 	Additional labels that can be used so prometheusRules will be discovered by Prometheus | `{}`
-| `metrics.prometheusRule.namespace` |	Namespace where prometheusRules resource should be created | Same namespace as haproxy
+| `metrics.prometheusRule.enabled` | Set this to true to create prometheusRules for Prometheus operator | false
+| `metrics.prometheusRule.additionalLabels` | Additional labels that can be used so prometheusRules will be discovered by Prometheus | `{}`
+| `metrics.prometheusRule.namespace` | Namespace where prometheusRules resource should be created | Same namespace as haproxy
 | `metrics.prometheusRule.rules` | Rules to be created, check values for an example. | []
 
 
@@ -97,6 +98,11 @@ Set `haproxy.config` to `galera` to use the Galera configuration.
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
 | `haproxy.galera.balance` | What balance mode HAProxy should use | source
+| `haproxy.galera.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | 5s
+| `haproxy.galera.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or
+  send data | 10800s
+| `haproxy.galera.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or
+  send data | 10800s
 | `haproxy.galera.check.enabled` | If check should be enabled | true
 | `haproxy.galera.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
 | `haproxy.galera.check.mysql.user` | The database user to use for mysql-check | haproxy
@@ -113,7 +119,12 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
-| `haproxy.galerak8s.balance` | What balance mode HAProxy should use | source
+| `haproxy.galerak8s.balance` | What balance mode HAProxy should use | first
+| `haproxy.galerak8s.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | 5s
+| `haproxy.galerak8s.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or
+  send data | 10800s
+| `haproxy.galerak8s.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or
+  send data | 10800s
 | `haproxy.galerak8s.check.enabled` | If check should be enabled | true
 | `haproxy.galerak8s.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | true
 | `haproxy.galerak8s.check.mysql.user` | The database user to use for mysql-check | haproxy
@@ -132,4 +143,3 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.dnsservicename` | The DNS Record for service discovery | redis-access-headless
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | 3
 | `haproxy.redisk8s.port` | Port of the Galera node | 6379
-

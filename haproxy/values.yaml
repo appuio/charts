@@ -25,6 +25,11 @@ ingress:
 sidecarContainers: []
 
 
+## Affinity for pod assignment. Evaluated as a template.
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+##
+affinity: {}
+
 service:
   port: 30636
   type: ClusterIP
@@ -50,6 +55,10 @@ haproxy:
 
   galera:
     balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    timeout:
+      connect: 5s
+      client: 10800s
+      server: 10800s
     check:
       enabled: true
       mysql:
@@ -61,7 +70,11 @@ haproxy:
     #   backup: false
 
   galerak8s:
-    balance: source # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    balance: first # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    timeout:
+      connect: 5s
+      client: 10800s
+      server: 10800s
     check:
       enabled: true
       mysql:
@@ -79,7 +92,7 @@ haproxy:
     dnsservicename: redis-access-headless
     port: 6379
     nodeCount: 3
-    
+
 metrics:
   enabled: true
 
