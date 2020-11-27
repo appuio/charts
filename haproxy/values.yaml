@@ -25,6 +25,11 @@ ingress:
 sidecarContainers: []
 
 
+## Affinity for pod assignment. Evaluated as a template.
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+##
+affinity: {}
+
 service:
   port: 30636
   type: ClusterIP
@@ -87,7 +92,7 @@ haproxy:
     dnsservicename: redis-access-headless
     port: 6379
     nodeCount: 3
-    
+
 metrics:
   enabled: true
 
