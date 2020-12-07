@@ -61,6 +61,9 @@ create your own configmap and values.
 | `nodeSelector` | Pod node selector | `{}`
 | `tolerations` | Pod tolerations | `[]`
 | `affinity` | Pod affinity rules | `{}`
+| `podDisruptionBudget.create` | If true, create a pod disruption budget for pods. | `true`
+| `podDisruptionBudget.minAvailable` | Minimum number / percentage of pods that should remain scheduled | `nil`
+| `podDisruptionBudget.maxUnavailable` | Maximum number / percentage of pods that may be made unavailable | `1`
 | `resources` | HAProxy resource requests/limits | `{ limits: { cpu: 100m, memory: 128Mi }, requests: { cpu: 100m, memory 128Mi } }`
 
 
