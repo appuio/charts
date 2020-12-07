@@ -3,13 +3,13 @@
     "config:base",
     ":gitSignOff"
   ],
+  "bumpVersion": "minor",
   "ignorePaths": [
     "prometheus/*",
     "keycloak/*"
   ],
   "helm-values": {
-    "fileMatch": ["(^|/)values\\.yaml$"],
-    "bumpVersion": "minor"
+    "fileMatch": ["(^|/)values\\.yaml$"]
   },
   "packageRules": [
     {

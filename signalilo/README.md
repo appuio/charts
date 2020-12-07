@@ -37,7 +37,7 @@ Parameter | Description | Default
 `replicaCount` | Number of replicas to run | `1`
 `image.registry` | Image registry | `docker.io`
 `image.repository` | Image repository | `vshn/signalilo`
-`image.tag` | Image tag | `v0.4.0`
+`image.tag` | Image tag | `v0.8.0`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.username` | Username to pull the image | `""`
 `image.password` | Password to pull the image | `""`
