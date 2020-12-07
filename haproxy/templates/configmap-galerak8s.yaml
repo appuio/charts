@@ -13,9 +13,7 @@ data:
   haproxy.cfg: |
     global
       log stdout local0
-      stats socket :9000 mode 660 level admin
 
-    
     resolvers mydns
       parse-resolv-conf
       accepted_payload_size 8192 # allow larger DNS payloads
