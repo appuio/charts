@@ -125,6 +125,12 @@ metrics:
     annotations: {}
     labels: {}
 
+podDisruptionBudget:
+  ## Specifies whether a Pod disruption budget should be created
+  ##
+  create: true
+  # minAvailable: 1
+  maxUnavailable: 1
 
 resources:
   limits:
