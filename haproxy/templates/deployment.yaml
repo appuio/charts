@@ -18,6 +18,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "haproxy.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/configmap: {{ include (print .Template.BasePath "/configmap-" .Values.haproxy.config ".yaml") . | sha256sum }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
