@@ -1,0 +1,16 @@
+apiVersion: v1
+name: stardog-userrole-operator
+version: 0.0.1
+appVersion: 0.0.1
+description: Stardog Helm Chart
+sources:
+  - https://github.com/vshn/stardog-userrole-operator
+keywords:
+  - stardog
+  - operator
+  - appuio
+  - user
+  - role
+maintainers:
+  - name: APPUiO Team
+    email: info@appuio.ch

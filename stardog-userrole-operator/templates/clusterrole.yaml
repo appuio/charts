@@ -1,0 +1,117 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}-manager
+  labels:
+{{ include "stardog-operator.labels" . | indent 4 }}
+rules:
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardoginstances
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardoginstances/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardogroles
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardogroles/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardogusers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - stardog.vshn.ch
+    resources:
+      - stardogusers/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+
+{{- if .Values.metrics.proxy.enabled }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}-proxy
+  labels:
+{{ include "stardog-operator.labels" . | indent 4 }}
+rules:
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+{{- end }}
+
+{{- if .Values.metrics.service.enabled }}
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}-metrics-reader
+  labels:
+{{ include "stardog-operator.labels" . | indent 4 }}
+rules:
+  - nonResourceURLs:
+      - /metrics
+    verbs:
+      - get
+{{- end -}}

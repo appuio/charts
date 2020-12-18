@@ -1,0 +1,32 @@
+# enabled by default by can be disabled
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}-manager
+  labels:
+{{ include "stardog-operator.labels" . | indent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "stardog-operator.fullname" . }}-manager
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "stardog-operator.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+{{- if .Values.metrics.proxy.enabled }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}-proxy
+  labels:
+{{ include "stardog-operator.labels" . | indent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "stardog-operator.fullname" . }}-proxy
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "stardog-operator.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end -}}

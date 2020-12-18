@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "stardog-operator.fullname" . }}
+  labels:
+    app.kubernetes.io/component: server
+{{ include "stardog-operator.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "stardog-operator.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        {{- include "stardog-operator.selectorLabels" . | nindent 8 }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      serviceAccountName: {{ template "stardog-operator.serviceAccountName" . }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: manager
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --metrics-addr=127.0.0.1:8080
+            - --enable-leader-election
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 8080
+              name: metrics
+        {{- if .Values.metrics.proxy.enabled }}
+        - name: kube-rbac-proxy
+          image: gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+          args:
+            - --secure-listen-address=0.0.0.0:8443
+            - --upstream=http://127.0.0.1:8080/
+            - --logtostderr=true
+            - --v=10
+          ports:
+            - containerPort: 8443
+              name: https
+        {{- end -}}
