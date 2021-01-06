@@ -22,9 +22,9 @@ data:
       log global
 
       option dontlognull
-      timeout connect 5s
-      timeout client 10s
-      timeout server 10s
+      timeout connect {{ $redisk8s.timeout.connect }}
+      timeout client {{ $redisk8s.timeout.client }}
+      timeout server {{ $redisk8s.timeout.client }}
 
     {{- if .Values.metrics.enabled }}
     frontend stats

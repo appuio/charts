@@ -86,6 +86,10 @@ haproxy:
     nodeCount: 3
 
   redisk8s:
+    timeout:
+      connect: 5s
+      client: 60s
+      server: 60s
     check:
       enabled: true
       redis:

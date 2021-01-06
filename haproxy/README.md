@@ -138,6 +138,9 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
+| `haproxy.redisk8s.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | `5s`
+| `haproxy.redisk8s.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or send data | `60s`
+| `haproxy.redisk8s.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or send data | `60s`
 | `haproxy.redisk8s.check.enabled` | If check should be enabled | `true`
 | `haproxy.redisk8s.check.redis.auth` | Authentication credentials for Redis. `haproxy.check.existingSecret` overwrites this |
 | `haproxy.redisk8s.dnsservicename` | The DNS Record for service discovery | `redis-access-headless`
