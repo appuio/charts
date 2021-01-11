@@ -1,0 +1,94 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.3.0
+  creationTimestamp: null
+  name: stardoginstances.stardog.vshn.ch
+spec:
+  group: stardog.vshn.ch
+  names:
+    kind: StardogInstance
+    listKind: StardogInstanceList
+    plural: stardoginstances
+    singular: stardoginstance
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: StardogInstance contains information about a Stardog server or
+        cluster.
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: StardogInstanceSpec defines the desired state of StardogInstance
+          properties:
+            adminCredentials:
+              description: AdminCredentials references the credentials that gives
+                administrative access to the Stardog instance. This is used by the
+                Operator to make changes in the roles, permissions and users.
+              properties:
+                namespace:
+                  description: Namespace specifies the namespace of the Secret referenced
+                    in SecretRef. Defaults to .metadata.namespace.
+                  type: string
+                secretRef:
+                  description: SecretRef references the v1/Secret name which contains
+                    the "username" and "password" keys.
+                  type: string
+              type: object
+            serverUrl:
+              description: ServerUrl describes the url of the Stardog Instance
+              type: string
+          type: object
+        status:
+          description: StardogInstanceStatus defines the observed state of StardogInstance
+          properties:
+            conditions:
+              description: Conditions contain the states of the StardogInstance. A
+                StardogInstance is considered Ready when the Admin user can make authorized
+                REST API calls.
+              items:
+                description: StardogCondition describes a status condition of a StardogRole
+                properties:
+                  lastTransitionTime:
+                    format: date-time
+                    type: string
+                  message:
+                    type: string
+                  reason:
+                    type: string
+                  status:
+                    type: string
+                  type:
+                    type: string
+                required:
+                  - status
+                  - type
+                type: object
+              type: array
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
