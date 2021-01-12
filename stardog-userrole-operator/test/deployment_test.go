@@ -73,7 +73,7 @@ func Test_Deployment_ShouldRender_ImagePullSecrets(t *testing.T) {
 }
 
 func Test_Deployment_ShouldRender_CorrectImage(t *testing.T) {
-	expectedImage := "docker.io/vshn/stardog-userrole-operator:0.0.1"
+	expectedImage := "docker.io/vshn/stardog-userrole-operator:0.0.2"
 	options := &helm.Options{}
 
 	got := renderDeployment(t, options, false)
@@ -82,7 +82,7 @@ func Test_Deployment_ShouldRender_CorrectImage(t *testing.T) {
 }
 
 func Test_Deployment_WhenProxyEnabled_ThenEnableRBACContainer(t *testing.T) {
-	expectedBaseImage := "docker.io/vshn/stardog-userrole-operator:0.0.1"
+	expectedBaseImage := "docker.io/vshn/stardog-userrole-operator:0.0.2"
 	expectedProxyImage := "gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0"
 	options := &helm.Options{
 		SetValues: map[string]string{
