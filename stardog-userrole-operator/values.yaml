@@ -1,8 +1,8 @@
 image:
   registry: docker.io
   repository: vshn/stardog-userrole-operator
-  tag: 0.0.1
-  pullPolicy: IfNotPresent
+  tag: 0.0.2
+  pullPolicy: Always
 
 imagePullSecrets: []
 
