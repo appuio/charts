@@ -76,6 +76,8 @@ create your own configmap and values.
 | `metrics.serviceMonitor.namespace` | Optional namespace which Prometheus is running in |
 | `metrics.serviceMonitor.interval` | How frequently to scrape metrics (use by default, falling back to Prometheus' default) |
 | `metrics.serviceMonitor.selector` | Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install | `{ prometheus: kube-prometheus }`
+| `metrics.serviceMonitor.relabelings` | ServiceMonitor relabelings. Value is evaluated as a template | `[]`
+| `metrics.serviceMonitor.metricRelabelings` | ServiceMonitor metricRelabelings. Value is evaluated as a template | `[]`
 | `metrics.service.type` | Kubernetes Service type (haproxy metrics) | `ClusterIP`
 | `metrics.service.annotations` | Annotations for the metrics service | `{}`
 | `metrics.service.labels` | Additional labels for the metrics service | `{}`
