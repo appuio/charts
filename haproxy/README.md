@@ -42,7 +42,7 @@ create your own configmap and values.
 | `replicaCount`          | Number of replicas for the proxy. | `1`
 | `image.registry`        | Registry of the image | `docker.io`
 | `image.repository`      | Repository of the image | `haproxytech/haproxy-debian`
-| `image.tag`             | Tag of the image | `2.3.2`
+| `image.tag`             | Tag of the image | `2.3.4`
 | `image.pullPolicy`      | Determines when the image is pulled | `IfNotPresent`
 | `ingress.enabled`       | If an ingress object should be created | `false`
 | `ingress.annotations`   | Annotations to set on the ingress object |
