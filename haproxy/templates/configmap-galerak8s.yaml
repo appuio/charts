@@ -12,7 +12,7 @@ metadata:
 data:
   haproxy.cfg: |
     global
-      log stdout local0
+      log stdout format raw local0
 
     resolvers mydns
       parse-resolv-conf
@@ -36,12 +36,15 @@ data:
       stats refresh 3s
 
       option http-use-htx
+      option dontlog-normal
+      option httplog
       http-request use-service prometheus-exporter if { path /metrics }
     {{- end }}
 
     frontend galera-in
       bind *:{{ .Values.haproxy.frontendPort }}
       mode tcp
+      option tcplog
       option clitcpka
       default_backend galera-nodes
 
@@ -51,5 +54,5 @@ data:
       balance {{ $galera.balance }}
 
       {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
-      server-template node- {{ $galera.nodeCount}} {{ $galera.dnsservicename}}:{{ default "3306" $galera.port }} {{ if $galera.check.enabled }} check{{ end }} resolvers mydns init-addr none
+      server-template node- {{ $galera.nodeCount}} {{ $galera.dnsservicename}}:{{ default "3306" $galera.port }} {{ if $galera.check.enabled }}check {{ end }}resolvers mydns init-addr none
 {{- end }}

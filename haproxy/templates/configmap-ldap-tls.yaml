@@ -11,7 +11,7 @@ metadata:
 data:
   haproxy.cfg: |
     global
-      log stdout local0
+      log stdout format raw local0
       maxconn  2048
       tune.bufsize  400000
       tune.ssl.default-dh-param  2048
@@ -35,12 +35,15 @@ data:
       stats refresh 3s
 
       option http-use-htx
+      option dontlog-normal
+      option httplog
       http-request use-service prometheus-exporter if { path /metrics }
     {{- end }}
 
     frontend frontend
       bind *:{{ .Values.haproxy.frontendPort }}
       mode tcp
+      option tcplog
       default_backend backend
 
     backend backend
