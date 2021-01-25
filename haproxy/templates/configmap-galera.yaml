@@ -26,20 +26,7 @@ data:
       timeout client {{ $galera.timeout.client }}
       timeout server {{ $galera.timeout.client }}
 
-    {{- if .Values.metrics.enabled }}
-    frontend stats
-      mode http
-      bind *:9000
-
-      stats enable
-      stats uri /stats
-      stats refresh 3s
-
-      option http-use-htx
-      option dontlog-normal
-      option httplog
-      http-request use-service prometheus-exporter if { path /metrics }
-    {{- end }}
+    {{- include "haproxy.metricsConfig" . | nindent 4 }}
 
     frontend galera-in
       bind *:{{ .Values.haproxy.frontendPort }}
