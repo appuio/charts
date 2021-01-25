@@ -41,14 +41,25 @@ spec:
               containerPort: 9000
             {{- end }}
           readinessProbe:
+          {{- if .Values.metrics.enabled }}
+            httpGet:
+              path: /healthz
+              port: metrics
+          {{- else }}
             tcpSocket:
               port: frontend
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          {{- end }}
+            initialDelaySeconds: 3
           livenessProbe:
+          {{- if .Values.metrics.enabled }}
+            httpGet:
+              path: /healthz
+              port: metrics
+          {{- else }}
             tcpSocket:
               port: frontend
-            initialDelaySeconds: 15
+          {{- end }}
+            initialDelaySeconds: 120
             periodSeconds: 20
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

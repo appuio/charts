@@ -30,3 +30,22 @@ Create chart name and version as used by the chart label.
 {{- define "haproxy.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+HAProxy config for stats and metrics
+*/}}
+{{- define "haproxy.metricsConfig" -}}
+{{- if .Values.metrics.enabled }}
+frontend stats
+  mode http
+  bind *:9000
+  stats enable
+  stats uri /stats
+  stats refresh 3s
+  monitor-uri /healthz
+  option http-use-htx
+  option dontlog-normal
+  option httplog
+  http-request use-service prometheus-exporter if { path /metrics }
+{{- end }}
+{{- end -}}
