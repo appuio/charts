@@ -12,8 +12,8 @@ Parameter | Description | Default
 `serviceAccount.name` | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the fullname template | ``
 `apiService.create` | Create the v1beta1.metrics.k8s.io API service | `true`
 `hostNetwork.enabled` | Enable hostNetwork mode | `false`
-`image.repository` | Image repository | `k8s.gcr.io/metrics-server-amd64`
-`image.tag` | Image tag | `v0.3.2`
+`image.repository` | Image repository | `k8s.gcr.io/metrics-server/metrics-server`
+`image.tag` | Image tag | `v0.3.7`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `imagePullSecrets` | Image pull secrets | `[]`
 `args` | Command line arguments | `[]`
