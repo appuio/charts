@@ -13,10 +13,7 @@ data:
   haproxy.cfg: |
     global
       log stdout format raw local0
-
-    resolvers mydns
-      parse-resolv-conf
-      accepted_payload_size 8192 # allow larger DNS payloads
+    {{ include "haproxy.resolversConfig" . | nindent 4 }}
 
     defaults
       log global
