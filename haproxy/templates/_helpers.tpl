@@ -49,3 +49,16 @@ frontend stats
   http-request use-service prometheus-exporter if { path /metrics }
 {{- end }}
 {{- end -}}
+
+{{/*
+HAProxy config for dns resolver
+*/}}
+{{- define "haproxy.resolversConfig" -}}
+resolvers mydns
+  parse-resolv-conf
+  accepted_payload_size 8192 # allow larger DNS payloads
+  hold valid 3s
+  hold timeout 3s
+  hold other 3s
+  resolve_retries 999
+{{- end -}}
