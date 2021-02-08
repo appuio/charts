@@ -24,7 +24,6 @@ spec:
     interval: 3s
     path: /admin/status/prometheus
     port: stardog
-    interval: 3s
     scrapeTimeout: 3s
   jobLabel: app.kubernetes.io/instance
   podTargetLabels:
