@@ -42,7 +42,9 @@ frontend stats
   stats enable
   stats uri /stats
   stats refresh 3s
+  acl server_stopping stopping
   monitor-uri /healthz
+  monitor fail if server_stopping
   option http-use-htx
   option dontlog-normal
   option httplog
