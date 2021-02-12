@@ -1,8 +1,9 @@
 package test
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/assert"
@@ -18,12 +19,14 @@ func Test_Deployment_ShouldRender_EnvironmentVariables(t *testing.T) {
 	wantTag := "tag"
 	wantVar := "BACKUP_IMAGE"
 	wantTimezone := "Europe/Zurich"
+	wantCpuRequest := "10m"
 	options := &helm.Options{
 		ValuesFiles: []string{"testdata/deployment_1.yaml"},
 		SetValues: map[string]string{
-			"k8up.backupImage.repository": wantRepo,
-			"k8up.backupImage.tag":        wantTag,
-			"k8up.timezone":               wantTimezone,
+			"k8up.backupImage.repository":       wantRepo,
+			"k8up.backupImage.tag":              wantTag,
+			"k8up.timezone":                     wantTimezone,
+			"k8up.globalResources.requests.cpu": wantCpuRequest,
 		},
 	}
 
@@ -34,8 +37,12 @@ func Test_Deployment_ShouldRender_EnvironmentVariables(t *testing.T) {
 	assert.Equalf(t, wantRepo+":"+wantTag, envs[0].Value, "Deployment does not use required Env Value from %s", wantVar)
 	assert.Equal(t, "TZ", envs[1].Name)
 	assert.Equal(t, wantTimezone, envs[1].Value)
-	assert.Equal(t, "VARIABLE", envs[2].Name, "Deployment does not use configured Env Name")
-	assert.Equal(t, "VALUE", envs[2].Value, "Deployment does not use configured Env Value")
+	assert.Equal(t, "BACKUP_OPERATOR_NAMESPACE", envs[3].Name)
+	assert.Equal(t, "metadata.namespace", envs[3].ValueFrom.FieldRef.FieldPath)
+	assert.Equal(t, "BACKUP_GLOBALCPU_REQUEST", envs[4].Name, "Deployment does not use configured Env Name")
+	assert.Equal(t, wantCpuRequest, envs[4].Value, "Deployment does not use configured Env Value")
+	assert.Equal(t, "VARIABLE", envs[5].Name, "Deployment does not use configured Env Name")
+	assert.Equal(t, "VALUE", envs[5].Value, "Deployment does not use configured Env Value")
 }
 
 func Test_Deployment_ShouldRender_Affinity(t *testing.T) {

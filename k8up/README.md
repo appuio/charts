@@ -1,81 +1,98 @@
 # K8up - Kubernetes and OpenShift Backup Operator based on restic
 
-[K8up](https://github.com/vshn/k8up) is a Kubernetes operator which simplifies the process of application data backup in a kubernetes cluster. It is based on [restic](https://restic.net/).
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v1.0.0](https://img.shields.io/badge/AppVersion-v1.0.0-informational?style=flat-square)
+
+<!---
+This README.md file is automatically generated with helm-docs!
+
+Edit the README.gotmpl.md template instead.
+-->
 
 ## TL;DR;
 
-```console
+**K8up Documentation**: https://k8up.io/
+
+```bash
+# Install CRDs for K8s >= 1.16:
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.0/k8up-crd.yaml
+# Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.0/k8up-crd-legacy.yaml
+
 helm repo add appuio https://charts.appuio.ch
 helm install k8up appuio/k8up
 ```
 
-## Introduction
+## Handling CRDs
 
-This chart bootstraps a [K8up](https://vshn.github.io/k8up/) operator on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. To start backing up your application data just create a schedule object in the namespace you would like to backup. For more information on K8up and its capabilities please check the [documentation](https://vshn.github.io/k8up/)
+* Always upgrade the CRDs before upgrading the Helm release.
+* Watch out for breaking changes in the K8up release notes.
 
-## Prerequisites Details
+## Source Code
 
-As the K8up operator is working cluster wide it needs an appropriate cluster role and rolebinding. If your executing user or tiller (the server-side component of Helm v2) doesnt have the sufficient privileges to define roles and rolebindings, it might be that you need to define these per hand with elevated privileges.
+* <https://github.com/vshn/k8up>
+* <https://github.com/vshn/wrestic>
 
-K8up uses Wrestic as a backup runner, to learn more about it, please visit [wrestic on github](https://github.com/vshn/wrestic/tree/master).
+<!---
+The values below are generated with helm-docs!
 
-## Installing the Chart
+Document your changes in values.yaml and let `make helm-docs` generate this section.
+-->
+## Values
 
-To install the chart with the release name `k8up`:
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
+| image.registry | string | `"quay.io"` | Operator image registry |
+| image.repository | string | `"vshn/k8up"` | Operator image repository |
+| image.tag | string | `"v1.0.0"` | Operator image tag (version) |
+| imagePullSecrets | list | `[]` |  |
+| k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
+| k8up.backupImage.tag | string | `"v0.1.9"` | The backup runner image tag |
+| k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
+| k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
+| k8up.globalResources | object | empty values, [see supported units][supported-units] | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
+| k8up.globalResources.limits.cpu | string | `""` | Global CPU resource limit |
+| k8up.globalResources.limits.memory | string | `""` | Global Memory resource limit |
+| k8up.globalResources.requests.cpu | string | `""` | Global CPU resource requests |
+| k8up.globalResources.requests.memory | string | `""` | Global Memory resource requests |
+| k8up.operatorNamespace | string | `""` | Specifies the namespace in which K8up's `EffectiveSchedules` are stored. Defaults to release namespace if left empty. |
+| k8up.timezone | string | `""` | Specifies the timezone K8up is using for scheduling. Empty value defaults to the timezone in which Kubernetes is deployed. Accepts `tz database` compatible entries, e.g. `Europe/Zurich` |
+| metrics.prometheusRule.additionalLabels | object | `{}` | Add labels to the PrometheusRule object |
+| metrics.prometheusRule.additionalRules | list | `[]` | Provide additional alert rules in addition to the defaults |
+| metrics.prometheusRule.createDefaultRules | bool | `true` | Whether the default rules should be installed |
+| metrics.prometheusRule.enabled | bool | `false` | Whether to enable PrometheusRule manifest for [Prometheus Operator][prometheus-operator] |
+| metrics.prometheusRule.namespace | string | `""` | If the object should be installed in a different namespace than operator |
+| metrics.service.nodePort | int | `0` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` |
+| metrics.service.port | int | `8080` |  |
+| metrics.service.type | string | `"ClusterIP"` |  |
+| metrics.serviceMonitor.additionalLabels | object | `{}` | Add labels to the ServiceMonitor object |
+| metrics.serviceMonitor.enabled | bool | `false` | Whether to enable ServiceMonitor manifests for [Prometheus Operator][prometheus-operator] |
+| metrics.serviceMonitor.namespace | string | `""` | If the object should be installed in a different namespace than operator |
+| metrics.serviceMonitor.scrapeInterval | string | `"60s"` | Scrape interval to collect metrics |
+| nodeSelector | object | `{}` |  |
+| podSecurityContext | object | `{}` |  |
+| rbac.create | bool | `true` | Create cluster roles and rolebinding. May need elevated permissions to create cluster roles and -bindings. |
+| replicaCount | int | `1` | How many operator pods should run. Note: Operator features leader election for K8s 1.16 and later, so that only 1 pod is reconciling/scheduling jobs. Follower pods reduce interruption time as they're on hot standby when leader is unresponsive. |
+| resources.limits.memory | string | `"256Mi"` |  |
+| resources.requests.cpu | string | `"20m"` |  |
+| resources.requests.memory | string | `"128Mi"` |  |
+| securityContext | object | `{}` |  |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| tolerations | list | `[]` |  |
 
-```console
-helm install k8up appuio/k8up
-```
+## Upgrading from Charts 0.x to 1.x
 
-## Uninstalling the Chart
+* In `image.repository` the registry domain was moved into its own parameter `image.registry`.
+* K8up 1.x features leader election, this enables rolling updates and multiple replicas.
+  `k8up.enableLeaderElection` defaults to `true`. Disable this for older Kubernetes versions (<= 1.15)
+* `replicaCount` is now configurable, defaults to `1`.
+* Note: Deployment strategy type has changed from `Recreate` to `RollingUpdate`.
+* CRDs need to be installed separately, they are no longer included in this chart.
 
-To uninstall/delete the `k8up` deployment:
-
-```console
-helm delete k8up
-```
-
-## Installing the Chart (without cluster-admin)
-
-```console
-helm fetch appuio/k8up --untar
-helm template ./k8up/ -s templates/clusterrole.yaml -s templates/clusterrolebinding.yaml | kubectl apply -f -
-rm -rf ./k8up/
-helm install k8up appuio/k8up --set rbac.enabled=false
-```
-
-## Uninstalling the Chart (without cluster-admin)
-
-```console
-helm delete k8up
-helm fetch appuio/k8up --untar
-helm template ./k8up/ -s templates/clusterrole.yaml -s templates/clusterrolebinding.yaml | kubectl delete -f -
-rm -rf ./k8up/
-```
-
-## Configuration
-
-The following table lists the configurable parameters of the k8up chart. For the usual parameters and defaults please consult `values.yaml`.
-
-| Parameter                     | Description                                             | Default
-| ---                           | ---                                                     | ---
-| `image.tag`                   | The operator image tag (version)                        | see `values.yaml` for latest supported version
-| `k8up.backupImage.repository` | The backup runner image repository                      | `docker.io/vshn/wrestic`
-| `k8up.backupImage.tag`        | The backup runner image tag                             | see `values.yaml` for latest supported version
-| `k8up.envVars`                | Allows the specification of additional environment variables for the k8up operator | `[]`
-| `k8up.timezone`               | Specifies the timezone K8up is using for scheduling. Empty value defaults to the timezone in which Kubernetes is deployed. Accepts `tz database` compatible entries, e.g. `Europe/Zurich` | `""`
-| `rbac.create`                 | Create cluster roles and rolebinding                    | `true`
-| `metrics.service.type` | Service type of the metrics endpoint | `ClusterIP`
-| `metrics.service.port` | Service port of the metrics endpoint | `8080`
-| `metrics.service.nodePort` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` | `0`
-| `metrics.serviceMonitor.enabled` | Whether to enable ServiceMonitor manifests for [Prometheus Operator](https://github.com/coreos/prometheus-operator) | `false`
-| `metrics.serviceMonitor.scrapeInterval` | Scrape interval to collect K8up metrics | `60s`
-| `metrics.serviceMonitor.namespace` | If the object should be installed in a different namespace than K8up | `""`
-| `metrics.serviceMonitor.additionalLabels` | Add labels to the ServiceMonitor object | `{}`
-| `metrics.prometheusRule.enabled` | Whether to enable PrometheusRule manifest for [Prometheus Operator](https://github.com/coreos/prometheus-operator) | `false`
-| `metrics.prometheusRule.namespace` | If the object should be installed in a different namespace than K8up | `""`
-| `metrics.prometheusRule.additionalLabels` | Add labels to the PrometheusRule object | `{}`
-| `metrics.prometheusRule.createDefaultRules` | Whether the K8up default rules should be installed | `false`
-| `metrics.prometheusRule.additionalRules` | Provide additional alert rules in addition to the defaults | `{}`
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+<!---
+Link references from values.yaml
+-->
+[supported-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+[prometheus-operator]: https://github.com/coreos/prometheus-operator

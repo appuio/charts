@@ -35,8 +35,8 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "k8up.labels" -}}
-app.kubernetes.io/name: {{ include "k8up.name" . }}
 helm.sh/chart: {{ include "k8up.chart" . }}
+app.kubernetes.io/name: {{ include "k8up.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
@@ -50,6 +50,15 @@ Selector labels
 {{- define "k8up.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "k8up.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
+Static labels
+*/}}
+{{- define "k8up.staticLabels" -}}
+app.kubernetes.io/name: {{ include "k8up.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
