@@ -1,11 +1,12 @@
 package test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 
-	monitoringv1 "github.com/coreos/prometheus-operator/pkg/apis/monitoring/v1"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/gruntwork-io/terratest/modules/helm"
+	monitoringv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 )
 
 var (
