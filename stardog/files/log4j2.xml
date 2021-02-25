@@ -12,7 +12,7 @@
 	</Properties>
 	<Appenders>
 		<Console name="STDOUT" target="SYSTEM_OUT">
-			<JsonLayout compact="true" eventEol="true" includeStacktrace="true" stacktraceAsString="true" />
+			<JsonLayout compact="true" eventEol="true" includeStacktrace="true" />
 		</Console>
 	</Appenders>
 	<Loggers>

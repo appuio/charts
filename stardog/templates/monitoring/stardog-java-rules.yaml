@@ -12,74 +12,11 @@ metadata:
     role: alert-rules
 spec:
   groups:
-  - name: Java Internas
-    # Appendix: JMX metrics https://sysdig.com/blog/jmx-monitoring-custom-metrics/
-    rules:
-    - alert: JavaCollectionUsageThresholdExceeded
-      expr: java_lang_memorypool_collectionusagethresholdexceeded{ {{ $ns_selector }} } > 0
-      for: 1m
-      annotations:
-        summary: The Java collection usage threshold has been exceeded
-        description: The memory usage of a memory pool is greater than or equal to its collection usage threshold after the Java virtual machine has expended effort in recycling unused objects in that memory pool.
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: critical
-    - alert: JavaMemoryPoolInvalid
-      expr: java_lang_memorypool_valid{ {{ $ns_selector }} } != 1
-      for: 1m
-      annotations:
-        summary: A Java memory pool has become invalid
-        description: A memory pool becomes invalid once the Java virtual machine removes it from the memory system.
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: critical
-    - alert: JavaGarbageCollectorInvalid
-      expr: java_lang_garbagecollector_valid{ {{ $ns_selector }} } != 1
-      for: 1m
-      annotations:
-        summary: A Java garbage collector has become invalid
-        description: Tests if this memory manager is valid in the Java virtual machine.
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: critical
-    - alert: JavaGarbageCollectionTimeExceeded
-      expr: java_lang_garbagecollector_lastgcinfo_duration{ {{ $ns_selector }} } > 10000
-      for: 1m
-      annotations:
-        summary: Java garbage collection time exeeded
-        description: The approximate garbage collection time exceeded 10s ({{ "{{" }} $value {{ "}}" }}ms).
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: warning
-    - alert: JavaFileDescriptorsRunningOut
-      expr: java_lang_operatingsystem_maxfiledescriptorcount{ {{ $ns_selector }} } - java_lang_operatingsystem_openfiledescriptorcount{ {{ $ns_selector }} } < 1000
-      for: 1m
-      annotations:
-        summary: Java file descriptors are running out
-        description: There are less than 1000 free file descriptors left to be used ({{ "{{" }} $value {{ "}}" }}).
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: warning
-    - alert: JavaCPULoad
-      expr: java_lang_operatingsystem_processcpuload{ {{ $ns_selector }} } / java_lang_operatingsystem_availableprocessors{ {{ $ns_selector }} } > 1
-      for: 30m
-      annotations:
-        summary: High CPU load
-        description: The CPU load was over 100% in the last 30 minutes ({{ "{{" }} $value {{ "}}" }}).
-      labels:
-        env: {{ .Release.Name }}
-        app: stardog
-        severity: warning
 
   - name: Memory Usage
     rules:
       - alert: JavaLowHeapMemory
-        expr: java_lang_memory_heapmemoryusage_max{ {{ $ns_selector }} } - java_lang_memory_heapmemoryusage_used{ {{ $ns_selector }} } < 128 * 1024 * 1024
+        expr: dbms_memory_heap_max{ {{ $ns_selector }} } - dbms_memory_heap_used{ {{ $ns_selector }} } < 128 * 1024 * 1024
         for: 1m
         annotations:
           summary: Java Low Heap Memory

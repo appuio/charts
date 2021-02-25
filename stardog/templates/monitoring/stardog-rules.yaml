@@ -15,7 +15,7 @@ spec:
   - name: Stardog
     rules:
     - alert: StardogOpenConnections
-      expr: stardog_database_openconnections{ {{ $ns_selector }} } > 32
+      expr: databases_openConnections{ {{ $ns_selector }} } > 32
       for: 1m
       annotations:
         summary: Too many open connections
@@ -25,7 +25,7 @@ spec:
         app: stardog
         severity: critical
     - alert: StardogLicenseExpire
-      expr: stardog_dbms_license_expiration_value{ {{ $ns_selector }} } < 42
+      expr: dbms_license_expiration{ {{ $ns_selector }} } < 42
       for: 10m
       annotations:
         summary: Stardog license about to expire

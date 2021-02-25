@@ -59,7 +59,7 @@ spec:
             - |
               set -e
               sed "s|\$ZOOKEEPER_USERNAME|$ZOOKEEPER_USERNAME|g; s|\$ZOOKEEPER_PASSWORD|$ZOOKEEPER_PASSWORD|g" ${STARDOG_HOME}/stardog.properties.tpl > ${STARDOG_HOME}/stardog.properties
-              /opt/stardog/bin/stardog-admin server start --foreground --web-console
+              /opt/stardog/bin/stardog-admin server start --foreground
           env:
             {{- if and .Values.zookeeper.enabled .Values.zookeeper.auth.enabled }}
             - name: ZOOKEEPER_USERNAME
@@ -72,6 +72,8 @@ spec:
             {{- end }}
             - name: STARDOG_SERVER_JAVA_ARGS
               value: "{{ .Values.stardog.javaArgs }} -XX:ParallelGCThreads=2 -Dstardog.license.location=/run/secrets/stardog/stardog-license-key.bin"
+            - name: STARDOG_HOME
+              value: /var/opt/stardog/data7/
           ports:
             - name: stardog
               containerPort: 5820
@@ -80,12 +82,13 @@ spec:
               mountPath: /run/secrets/stardog/
               readOnly: true
             - name: data
-              mountPath: /var/opt/stardog/
+              mountPath: /var/opt/stardog/data7/
+              subPath: data7/
             - name: config
-              mountPath: /var/opt/stardog/stardog.properties.tpl
+              mountPath: /var/opt/stardog/data7/stardog.properties.tpl
               subPath: stardog.properties
             - name: config
-              mountPath: /var/opt/stardog/log4j2.xml
+              mountPath: /var/opt/stardog/data7/log4j2.xml
               subPath: log4j2.xml
             - name: tmp
               mountPath: /tmp/
