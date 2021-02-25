@@ -105,7 +105,7 @@ affinityTopologyKey: kubernetes.io/hostname
 
 # Only applies when stardog's replicaCount is >= 2
 zookeeper:
-  enabled: true
+  enabled: false
   replicaCount: 3
   updateStrategy: OnDelete
   allowAnonymousLogin: false
