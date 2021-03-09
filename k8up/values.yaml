@@ -35,7 +35,7 @@ k8up:
     # -- The backup runner image repository
     repository: quay.io/vshn/wrestic
     # -- The backup runner image tag
-    tag: v0.1.9
+    tag: v0.2.2
 
   # -- Specifies the timezone K8up is using for scheduling.
   # Empty value defaults to the timezone in which Kubernetes is deployed.
