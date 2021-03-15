@@ -233,6 +233,7 @@ github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79/go.mod h1:Fecb
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.1-0.20190118093823-f849b5445de4/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.9.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
+github.com/gruntwork-io/go-commons v0.8.0/go.mod h1:gtp0yTtIBExIZp7vyIV9I0XQkVwiQZze678hvDXof78=
 github.com/gruntwork-io/gruntwork-cli v0.5.1 h1:mVmVsFubUSLSCO8bGigI63HXzvzkC0uWXzm4dd9pXRg=
 github.com/gruntwork-io/gruntwork-cli v0.5.1/go.mod h1:IBX21bESC1/LGoV7jhXKUnTQTZgQ6dYRsoj/VqxUSZQ=
 github.com/gruntwork-io/gruntwork-cli v0.7.0/go.mod h1:jp6Z7NcLF2avpY8v71fBx6hds9eOFPELSuD/VPv7w00=
@@ -248,6 +249,7 @@ github.com/gruntwork-io/terratest v0.27.2/go.mod h1:ONEOU6Fv3a1rN16Z5t5yWbV57DkV
 github.com/gruntwork-io/terratest v0.32.7/go.mod h1:0iy7d56CziX3R4ZUn570HMElr4WgBKoKNa8Hzex7bvo=
 github.com/gruntwork-io/terratest v0.32.8/go.mod h1:FckR+7ks472IJfSKUPfPvnJfSxV1LKGWGMJ9m/LHegE=
 github.com/gruntwork-io/terratest v0.32.9/go.mod h1:FckR+7ks472IJfSKUPfPvnJfSxV1LKGWGMJ9m/LHegE=
+github.com/gruntwork-io/terratest v0.32.11/go.mod h1:9YwOlGbCEOBRL8cvTdfEiTDWcj/f81j/o8FBYpOgdS4=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/go-multierror v1.1.0/go.mod h1:spPvp8C1qA32ftKqdAHm4hHTbPw+vmowP0z+KUhOZdA=
 github.com/hashicorp/golang-lru v0.5.0/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
