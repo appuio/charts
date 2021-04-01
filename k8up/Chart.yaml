@@ -6,8 +6,8 @@ keywords:
   - backup
   - operator
   - restic
-version: 1.0.4
-appVersion: v1.0.3
+version: 1.0.5
+appVersion: v1.0.4
 sources:
   - https://github.com/vshn/k8up
   - https://github.com/vshn/wrestic
