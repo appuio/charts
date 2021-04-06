@@ -3,7 +3,7 @@ module test
 go 1.15
 
 require (
-	github.com/gruntwork-io/terratest v0.32.18
+	github.com/gruntwork-io/terratest v0.32.21
 	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.46.0
 	github.com/stretchr/testify v1.7.0
 	k8s.io/api v0.20.2
