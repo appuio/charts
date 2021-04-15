@@ -34,7 +34,7 @@ appVersion: ## Replaces "appVersion" in Chart.yaml with 'image.tag' from values.
 	$(SED_BIN) -i -e 's/^appVersion.*/appVersion: $(APP_VERSION)/' Chart.yaml
 
 .PHONY: update
-update: rbac appVersion ## Updates all templates
+update: rbac appVersion helm-docs ## Updates all templates
 
 .PHONY: helm-docs
 helm-docs: ## Generate README documentation with helm-docs

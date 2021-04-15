@@ -1,6 +1,6 @@
 # K8up - Kubernetes and OpenShift Backup Operator based on restic
 
-![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: v1.0.4](https://img.shields.io/badge/AppVersion-v1.0.4-informational?style=flat-square)
+![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![AppVersion: v1.0.5](https://img.shields.io/badge/AppVersion-v1.0.5-informational?style=flat-square)
 
 <!---
 This README.md file is automatically generated with helm-docs!
@@ -14,9 +14,9 @@ Edit the README.gotmpl.md template instead.
 
 ```bash
 # Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.4/k8up-crd.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.4/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd-legacy.yaml
 
 helm repo add appuio https://charts.appuio.ch
 helm install k8up appuio/k8up
@@ -45,7 +45,7 @@ Document your changes in values.yaml and let `make helm-docs` generate this sect
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
 | image.registry | string | `"quay.io"` | Operator image registry |
 | image.repository | string | `"vshn/k8up"` | Operator image repository |
-| image.tag | string | `"v1.0.4"` | Operator image tag (version) |
+| image.tag | string | `"v1.0.5"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
 | k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
 | k8up.backupImage.tag | string | `"v0.2.3"` | The backup runner image tag |
