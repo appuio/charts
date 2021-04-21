@@ -56,14 +56,14 @@ k8up:
   # @default -- empty values, [see supported units][supported-units]
   globalResources:
     requests:
-      # -- Global CPU resource requests
+      # -- Global CPU resource requests applied to jobs. See [supported-units][supported-units].
       cpu: ""
-      # -- Global Memory resource requests
+      # -- Global Memory resource requests applied to jobs. See [supported-units][supported-units].
       memory: ""
     limits:
-      # -- Global CPU resource limit
+      # -- Global CPU resource limit applied to jobs. See [supported-units][supported-units].
       cpu: ""
-      # -- Global Memory resource limit
+      # -- Global Memory resource limit applied to jobs. See [supported-units][supported-units].
       memory: ""
 
 podSecurityContext: {}
@@ -111,7 +111,10 @@ rbac:
 
 resources:
   limits:
+    # -- Memory limit of K8up operator. See [supported-units][supported-units].
     memory: 256Mi
   requests:
+    # -- CPU request of K8up operator. See [supported-units][supported-units].
     cpu: 20m
+    # -- Memory request of K8up operator. See [supported-units][supported-units].
     memory: 128Mi
