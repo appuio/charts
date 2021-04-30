@@ -28,7 +28,7 @@ hostNetwork:
 
 image:
   repository: k8s.gcr.io/metrics-server/metrics-server
-  tag: v0.3.7
+  tag: v0.4.4
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
