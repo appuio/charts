@@ -22,7 +22,7 @@ func Test_PostInstallJob_GivenReplicaCount_WhenZero_ThenDoNotRenderJob(t *testin
 	output, err := helm.RenderTemplateE(t, options, helmChartPath, releaseName, tplPostInstallJob)
 
 	assert.Error(t, err)
-	assert.Equal(t, "Error: could not find template templates/post-install-job.yaml in chart", output)
+	assert.Equal(t, "", output)
 }
 
 func Test_PostInstallJob_GivenReplicaCount_WhenGreaterThanZero_ThenRenderJob(t *testing.T) {
