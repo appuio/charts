@@ -11,7 +11,7 @@ image:
   registry: stardog-eps-docker.jfrog.io
   # username:
   # password:
-  tag: 7.4.2
+  tag: 7.6.3
   pullPolicy: IfNotPresent
   # existingPullSecret: my-image-pull-secret
 
@@ -105,7 +105,7 @@ affinityTopologyKey: kubernetes.io/hostname
 
 # Only applies when stardog's replicaCount is >= 2
 zookeeper:
-  enabled: false
+  enabled: true
   replicaCount: 3
   updateStrategy: OnDelete
   allowAnonymousLogin: false
