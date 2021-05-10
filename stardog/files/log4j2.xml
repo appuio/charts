@@ -16,7 +16,7 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Root level="INFO">
+		<Root level="DEBUG">
 			<AppenderRef ref="STDOUT"/>
 		</Root>
 		<Logger name="com.complexible.stardog" level="INFO" additivity="false">
@@ -34,7 +34,7 @@
 			<AppenderRef ref="STDOUT"/>
 		</Logger>
 		<!-- redirect all zookeeper records to its own log file -->
-		<Logger name="org.apache.zookeeper" level="INFO" additivity="false">
+		<Logger name="org.apache.zookeeper" level="DEBUG" additivity="false">
 			<AppenderRef ref="STDOUT"/>
 		</Logger>
 
