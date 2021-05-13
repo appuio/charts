@@ -7,6 +7,10 @@ metadata:
     helm.sh/chart: {{ include "maxscale.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{- with .Values.service.rwsplit.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.rwsplit.type }}
   ports:
