@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service-rwsplit.type }}
+  type: {{ .Values.service.rwsplit.type }}
   ports:
     - name: rw-split
       port: 3306
