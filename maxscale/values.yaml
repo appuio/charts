@@ -30,8 +30,10 @@ service:
   port: 3306
   masteronly:
     type: LoadBalancer
+    annotations: {}
   rwsplit:
     type: LoadBalancer
+    annotations: {}
 
 resources: {}
 # We usually recommend not to specify default resources and to leave
