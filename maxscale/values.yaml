@@ -28,6 +28,10 @@ fullnameOverride: ""
 service:
   type: ClusterIP
   port: 3306
+  masteronly:
+    type: LoadBalancer
+  rwsplit:
+    type: LoadBalancer
 
 resources: {}
 # We usually recommend not to specify default resources and to leave
