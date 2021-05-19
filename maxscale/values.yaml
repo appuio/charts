@@ -29,10 +29,10 @@ service:
   type: ClusterIP
   port: 3306
   masteronly:
-    type: LoadBalancer
+    type: ClusterIP
     annotations: {}
   rwsplit:
-    type: LoadBalancer
+    type: ClusterIP
     annotations: {}
 
 resources: {}
