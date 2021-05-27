@@ -1,5 +1,5 @@
 resources:
-  - github.com/vshn/k8up/config/rbac?ref=v1.0.5
+  - github.com/vshn/k8up/config/rbac?ref=v1.1.0
 
 namePrefix: PREFIX-
 namespace: "{{ .Release.Namespace }}"
