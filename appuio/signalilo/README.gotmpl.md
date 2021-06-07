@@ -1,17 +1,3 @@
-# signalilo
-
-![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
-
-Alertmanager to Icinga2 bridge
-
-**Homepage:** <https://git.vshn.net/vshn/signalilo>
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install signalilo appuio/signalilo
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -49,13 +35,3 @@ Parameter | Description | Default
 `nodeSelector` | Pod node selector | `{}`
 `tolerations` | Pod tolerations | `[]`
 `affinity` | Pod affinity rules | `{}`
-
-## Source Code
-
-* <https://git.vshn.net/vshn/signalilo>
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
