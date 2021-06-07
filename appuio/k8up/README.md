@@ -1,26 +1,29 @@
-# K8up - Kubernetes and OpenShift Backup Operator based on restic
+# k8up
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![AppVersion: v1.0.5](https://img.shields.io/badge/AppVersion-v1.0.5-informational?style=flat-square)
+![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![AppVersion: v1.0.5](https://img.shields.io/badge/AppVersion-v1.0.5-informational?style=flat-square)
 
-<!---
-This README.md file is automatically generated with helm-docs!
+Kubernetes and OpenShift Backup Operator based on restic
 
-Edit the README.gotmpl.md template instead.
--->
+**Homepage:** <https://k8up.io/>
 
-## TL;DR;
+## Installation
 
-**K8up Documentation**: https://k8up.io/
-
+```bash
+helm repo add appuio https://charts.appuio.ch
+helm install k8up appuio/k8up
+```
 ```bash
 # Install CRDs for K8s >= 1.16:
 kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
 kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd-legacy.yaml
-
-helm repo add appuio https://charts.appuio.ch
-helm install k8up appuio/k8up
 ```
+
+<!---
+The README.md file is automatically generated with helm-docs!
+
+Edit the README.gotmpl.md template instead.
+-->
 
 ## Handling CRDs
 
@@ -35,7 +38,7 @@ helm install k8up appuio/k8up
 <!---
 The values below are generated with helm-docs!
 
-Document your changes in values.yaml and let `make helm-docs` generate this section.
+Document your changes in values.yaml and let `make docs:helm` generate this section.
 -->
 ## Values
 
@@ -51,7 +54,7 @@ Document your changes in values.yaml and let `make helm-docs` generate this sect
 | k8up.backupImage.tag | string | `"v0.2.3"` | The backup runner image tag |
 | k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
-| k8up.globalResources | object | empty values, [see supported units][supported-units] | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
+| k8up.globalResources | object | empty values, [see supported units][resource-units] | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
 | k8up.globalResources.limits.cpu | string | `""` | Global CPU resource limit |
 | k8up.globalResources.limits.memory | string | `""` | Global Memory resource limit |
 | k8up.globalResources.requests.cpu | string | `""` | Global CPU resource requests |
@@ -91,8 +94,13 @@ Document your changes in values.yaml and let `make helm-docs` generate this sect
 * Note: Deployment strategy type has changed from `Recreate` to `RollingUpdate`.
 * CRDs need to be installed separately, they are no longer included in this chart.
 
+## Source Code
+
+* <https://github.com/vshn/k8up>
+* <https://github.com/vshn/wrestic>
+
 <!---
-Link references from values.yaml
+Common/Useful Link references from values.yaml
 -->
-[supported-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 [prometheus-operator]: https://github.com/coreos/prometheus-operator

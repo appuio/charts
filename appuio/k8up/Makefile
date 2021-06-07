@@ -10,7 +10,6 @@ SHELL := bash
 APP_VERSION ?= $(shell grep -E "^  tag: " values.yaml | cut -d " " -f 4 | sed s/\"//g)
 
 SED_BIN := sed
-HELM_DOCS_IMAGE := jnorwood/helm-docs:v1.5.0
 
 REPLACE_RBAC_LABEL := {{- include "k8up.staticLabels" . | nindent 4 }}
 REPLACE_NAME_PREFIX := {{ include "k8up.fullname" . }}-
@@ -34,15 +33,7 @@ appVersion: ## Replaces "appVersion" in Chart.yaml with 'image.tag' from values.
 	$(SED_BIN) -i -e 's/^appVersion.*/appVersion: $(APP_VERSION)/' Chart.yaml
 
 .PHONY: update
-update: rbac appVersion helm-docs ## Updates all templates
-
-.PHONY: helm-docs
-helm-docs: ## Generate README documentation with helm-docs
-	@docker run --rm --volume "${PWD}:/helm-docs" -u $(shell id -u) $(HELM_DOCS_IMAGE)  --template-files README.gotmpl.md
-
-.PHONY: test
-test: ## Run unit tests for this chart
-	@cd test && go test ./...
+update: rbac appVersion ## Updates all templates
 
 .PHONY: help
 help: ## Show this help
