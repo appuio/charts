@@ -4,18 +4,25 @@ image:
   tag: v1.1.0
   pullPolicy: IfNotPresent
 
+# -- Extra arguments to pass to the oauth-proxy
 extraArgs:
 #  - name: openshift-delegate-urls
 #    value: '{"/": {"resource": "namespaces", "verb": "get"}}'
 
 proxy:
+  # -- Upstream url
   upstream: http://localhost:9090
+  # -- OpenShift Subject Access Review
   openshiftSar: '{"resource": "namespaces", "verb": "get"}'
 
 route:
+  # -- Add annotations to route
   annotations:
     kubernetes.io/tls-acme: "true"
+  # -- Enable tls for the route
   tls: true
+  # --  Define route host
+  host: ""
 
 resources:
   requests:
