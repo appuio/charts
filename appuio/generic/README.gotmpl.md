@@ -1,15 +1,3 @@
-# generic
-
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square)
-
-A Helm chart to create generic Kubernetes resources
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install generic appuio/generic
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -37,9 +25,3 @@ The following named templates are provided as helpers:
 * `generic.chart` - Chart name and version
 * `generic.labels` - Common labels
 * `generic.selectorLabels` - Selector (name and instance) labels
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
