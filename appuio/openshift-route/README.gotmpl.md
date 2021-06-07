@@ -1,15 +1,3 @@
-# openshift-route
-
-![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![AppVersion: v1](https://img.shields.io/badge/AppVersion-v1-informational?style=flat-square)
-
-A Helm chart for OpenShift that simply creates a Route object
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install openshift-route appuio/openshift-route
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -65,9 +53,3 @@ tls:
 ```
 
 You can find more information on Routes in the [Documentation](https://docs.openshift.com/container-platform/3.9/architecture/networking/routes.html).
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
