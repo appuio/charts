@@ -19,7 +19,7 @@ func Test_Deployment(t *testing.T) {
 	existingSecret := "secret-key-secret"
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"redis.port": redisPort,
+			"redis.port":              redisPort,
 			"snappass.existingSecret": existingSecret,
 		},
 	}

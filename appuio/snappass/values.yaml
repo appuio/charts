@@ -11,23 +11,33 @@ nameOverride: ""
 fullnameOverride: ""
 
 redis:
+  # -- Enables the Redis Helm chart dependency
   enabled: true
 
 snappass:
   debug:
+    # -- If the debug mode should be enabled
     enabled: false
   ssl:
+    # -- Enables SSL on application level
     enabled: false
-  # staticUrl:
-  # urlPrefix:
-  # secretKey:
-  # existingSecret:
+  # -- Location of static assets
+  staticUrl: ""
+  # -- URL Prefix (e.g. when running SnapPass behind a reverse proxy)
+  urlPrefix: ""
+  # -- Secret key used to sign cookies
+  secretKey: ""
+  # -- Existing secret with a `secretKey` field, used to sign cookies
+  existingSecret: ""
   redis:
-    # host:
+    host: ""
     port: 6379
-    # password: 
+    password: ""
+    # -- Existing secret with a `redis-password` field, used to authenticate against Redis
+    #existingSecret: ""
+    #existingSecretPasswordKey: ""
     db: 0
-    # prefix:
+    prefix: ""
 
 serviceAccount:
   # Specifies whether a service account should be created

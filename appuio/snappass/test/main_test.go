@@ -2,5 +2,5 @@ package test
 
 var (
 	helmChartPath = ".."
-	releaseName = "test-release"
+	releaseName   = "test-release"
 )

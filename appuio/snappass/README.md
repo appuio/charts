@@ -1,62 +1,80 @@
-# SnapPass Chart
+# snappass
 
-[SnapPass](https://github.com/pinterest/snappass) - A web app that lets you share passwords securely.
+![Version: 0.2.14](https://img.shields.io/badge/Version-0.2.14-informational?style=flat-square) ![AppVersion: v1.4.2](https://img.shields.io/badge/AppVersion-v1.4.2-informational?style=flat-square)
 
-## TL;DR;
+A Helm chart for SnapPass
 
-```console
-helm install appuio/snappass
+**Homepage:** <https://github.com/pinterest/snappass>
+
+## Installation
+
+```bash
+helm repo add appuio https://charts.appuio.ch
+helm install snappass appuio/snappass
 ```
+<!---
+The README.md file is automatically generated with helm-docs!
 
-## Configuration
+Edit the README.gotmpl.md template instead.
+-->
 
-The following table lists the configurable chart specific parameters. For default values consult `values.yaml`.
+## Values
 
-| Parameter                                    | Description |
-| ---                                          | --- |
-| `redis.enabled`                              | Enables the Redis Helm chart dependency |
-| `snappass.debug.enabled`                     | If the debug mode should be enabled |
-| `snappass.ssl.enabled`                       | Enables SSL on application level |
-| `snappass.staticUrl`                         | Location of static assets |
-| `snappass.urlPrefix`                         | URL Prefix (e.g. when running SnapPass behind a reverse proxy) |
-| `snappass.secretKey`                         | Secret key used to sign cookies |
-| `snappass.existingSecret`                    | Existing secret with a `secretKey` field, used to sign cookies |
-| `snappass.redis.host`                        | Redis host |
-| `snappass.redis.port`                        | Redis port |
-| `snappass.redis.password`                    | Redis password |
-| `snappass.redis.existingSecret`              | Existing secret with a `redis-password` field, used to authenticate against Redis |
-| `snappass.redis.db`                          | Redis DB |
-| `snappass.redis.prefix`                      | Redis prefix |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"docker.io/samueldg/snappass"` |  |
+| image.tag | string | `"latest@sha256:3987195edbe623a9a7400fbb68318059d4fc8c20d48f73a6bd52598e56b3b9b3"` |  |
+| imagePullSecrets | list | `[]` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"chart-example.local"` |  |
+| ingress.hosts[0].paths | list | `[]` |  |
+| ingress.tls | list | `[]` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| podSecurityContext | object | `{}` |  |
+| redis.enabled | bool | `true` | Enables the Redis Helm chart dependency |
+| replicaCount | int | `1` |  |
+| resources.limits.cpu | string | `"500m"` |  |
+| resources.limits.memory | string | `"256Mi"` |  |
+| resources.requests.cpu | string | `"100m"` |  |
+| resources.requests.memory | string | `"128Mi"` |  |
+| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| securityContext.readOnlyRootFilesystem | bool | `true` |  |
+| securityContext.runAsNonRoot | bool | `true` |  |
+| securityContext.runAsUser | int | `1000` |  |
+| service.port | int | `80` |  |
+| service.type | string | `"ClusterIP"` |  |
+| serviceAccount.create | bool | `false` |  |
+| serviceAccount.name | string | `nil` |  |
+| snappass.debug.enabled | bool | `false` | If the debug mode should be enabled |
+| snappass.existingSecret | string | `""` | Existing secret with a `secretKey` field, used to sign cookies |
+| snappass.redis.db | int | `0` | Existing secret with a `redis-password` field, used to authenticate against Redis |
+| snappass.redis.host | string | `""` |  |
+| snappass.redis.password | string | `""` |  |
+| snappass.redis.port | int | `6379` |  |
+| snappass.redis.prefix | string | `""` |  |
+| snappass.secretKey | string | `""` | Secret key used to sign cookies |
+| snappass.ssl.enabled | bool | `false` | Enables SSL on application level |
+| snappass.staticUrl | string | `""` | Location of static assets |
+| snappass.urlPrefix | string | `""` | URL Prefix (e.g. when running SnapPass behind a reverse proxy) |
+| tolerations | list | `[]` |  |
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+## Source Code
 
-```console
-helm install --name my-release appuio/snappass
-```
+* <https://github.com/pinterest/snappass>
 
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
+## Requirements
 
-```console
-helm install --name my-release -f values.yaml appuio/snappass
-```
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | redis | 10.7.4 |
 
-> **Tip**: You can use the default [values.yaml](values.yaml)
-
-
-## Testing
-
-### Template testing
-
-This chart uses some Go code to test the generated templates against the
-Kubernetes client API. With this we are more flexible than `helm lint`, as
-linting would not catch errors such as: "If we are in clustered mode, we expect
-an init container, otherwise not". The test code would also catch typos in a
-limited manner (e.g. if `initContainer` is spelled `initcontainer`, it will
-generate an error).
-
-```console
-cd snappass
-helm dep build
-cd test
-go test -v ./...
-```
+<!---
+Common/Useful Link references from values.yaml
+-->
+[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+[prometheus-operator]: https://github.com/coreos/prometheus-operator

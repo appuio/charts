@@ -11,6 +11,7 @@ import (
 )
 
 var tplSecretRedis = []string{"templates/secret-redis.yaml"}
+
 func Test_Secret_Should_UseValuesRedisPassword(t *testing.T) {
 	redisPassword := "xyHpnHNruMGGC9XfsKwZ7ArPqZytxvP468YDMGHFH3rgCJdq87YLGAY47rAAppXr"
 
