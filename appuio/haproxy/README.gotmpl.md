@@ -1,15 +1,3 @@
-# haproxy
-
-![Version: 1.3.8](https://img.shields.io/badge/Version-1.3.8-informational?style=flat-square) ![AppVersion: 2.3.5](https://img.shields.io/badge/AppVersion-2.3.5-informational?style=flat-square)
-
-A Helm chart for HAProxy which can be customized by a config map.
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install haproxy appuio/haproxy
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -58,6 +46,7 @@ create your own configmap and values.
 | `podDisruptionBudget.maxUnavailable` | Maximum number / percentage of pods that may be made unavailable | `1`
 | `resources` | HAProxy resource requests/limits | `{ limits: { cpu: 100m, memory: 128Mi }, requests: { cpu: 100m, memory 128Mi } }`
 
+
 ### Metrics
 | Parameter              | Description            | Default
 |---                     | ---                    | ---
@@ -76,6 +65,7 @@ create your own configmap and values.
 | `metrics.prometheusRule.additionalLabels` | Additional labels that can be used so prometheusRules will be discovered by Prometheus | `{}`
 | `metrics.prometheusRule.namespace` | Namespace where prometheusRules resource should be created | Same namespace as haproxy
 | `metrics.prometheusRule.rules` | Rules to be created, check values for an example. | `[]`
+
 
 ### ldap-tls
 
@@ -137,9 +127,3 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.dnsservicename` | The DNS Record for service discovery | `redis-access-headless`
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.redisk8s.port` | Port of the Galera node | `6379`
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
