@@ -1,17 +1,3 @@
-# prometheus-blackbox-exporter
-
-![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![AppVersion: v0.17.0](https://img.shields.io/badge/AppVersion-v0.17.0-informational?style=flat-square)
-
-Prometheus Blackbox Exporter
-
-**Homepage:** <https://github.com/prometheus/blackbox_exporter>
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install prometheus-blackbox-exporter appuio/prometheus-blackbox-exporter
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -47,13 +33,3 @@ The following table lists the configurable parameters of the Blackbox-Exporter c
 | `service.type`                         | type of service to create                       | `ClusterIP`                   |
 | `service.port`                         | port for the blackbox http service              | `9115`                        |
 | `service.externalIPs`                  | list of external ips                            | []                            |
-
-## Source Code
-
-* <https://github.com/prometheus/blackbox_exporter>
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
