@@ -1,17 +1,3 @@
-# metrics-server
-
-![Version: 2.12.1](https://img.shields.io/badge/Version-2.12.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.7](https://img.shields.io/badge/AppVersion-0.3.7-informational?style=flat-square)
-
-Metrics Server is a cluster-wide aggregator of resource usage data.
-
-**Homepage:** <https://github.com/kubernetes-incubator/metrics-server>
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install metrics-server appuio/metrics-server
-```
 <!---
 The README.md file is automatically generated with helm-docs!
 
@@ -56,13 +42,3 @@ Parameter | Description | Default
 `testImage.repository` | Image repository and name for test pod.  See also `imagePullSecrets` | `busybox`
 `testImage.tag` | Image tag for test pod | `latest`
 `testImage.pullPolicy` | Image pull policy for test pod | `IfNotPresent`
-
-## Source Code
-
-* <https://github.com/kubernetes-incubator/metrics-server>
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator
