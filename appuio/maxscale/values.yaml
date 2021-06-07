@@ -1,14 +1,20 @@
----
 # Default values for maxscale.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- IP or Hostname of the 1. Galera node
 db1Address: db1.example.com
+# -- IP or Hostname of the 2. Galera node
 db2Address: db2.example.com
+# -- IP or Hostname of the 3. Galera node
 db3Address: db3.example.com
+# -- MaxScale service user name
 serviceUser: maxscale
+# -- MaxScale service user password
 servicePassword: secret
+# -- MaxScale monitor user name
 monitorUser: maxscale
+# -- MaxScale monitor user password
 monitorPassword: secret
 
 ## MaxScale passwords using an existing secret
