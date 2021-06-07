@@ -1,17 +1,3 @@
-# stardog
-
-![Version: 0.7.3](https://img.shields.io/badge/Version-0.7.3-informational?style=flat-square) ![AppVersion: 7.6.4](https://img.shields.io/badge/AppVersion-7.6.4-informational?style=flat-square)
-
-Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
-
-**Homepage:** <https://www.stardog.com/>
-
-## Installation
-
-```bash
-helm repo add appuio https://charts.appuio.ch
-helm install stardog appuio/stardog
-```
 Don't forget to create a secret with your Stardog license first:
 
 ```console
@@ -76,15 +62,3 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.auth.serverPasswords`             | Password to use for ZooKeeper servers (delimited by `,`). Will be generated if unset |
 | `zookeeper.metrics.enabled`                  | Enable ZooKeeper Proemtheus exporter |
 | `zookeeper.metrics.prometheusOperator`       | Enable Proemtheus Operator integration (requires the operator to be installed) |
-
-## Requirements
-
-| Repository | Name | Version |
-|------------|------|---------|
-| https://charts.bitnami.com/bitnami | zookeeper | 5.14.4 |
-
-<!---
-Common/Useful Link references from values.yaml
--->
-[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-[prometheus-operator]: https://github.com/coreos/prometheus-operator

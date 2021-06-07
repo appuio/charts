@@ -14,8 +14,8 @@ var tplPostInstallJob = []string{"templates/post-install-job.yaml"}
 func Test_PostInstallJob_GivenReplicaCount_WhenZero_ThenDoNotRenderJob(t *testing.T) {
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"stardog.adminPassword":     adminPassword,
-			"replicaCount":	"0",
+			"stardog.adminPassword": adminPassword,
+			"replicaCount":          "0",
 		},
 	}
 
@@ -28,8 +28,8 @@ func Test_PostInstallJob_GivenReplicaCount_WhenZero_ThenDoNotRenderJob(t *testin
 func Test_PostInstallJob_GivenReplicaCount_WhenGreaterThanZero_ThenRenderJob(t *testing.T) {
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"stardog.adminPassword":     adminPassword,
-			"replicaCount":	"1",
+			"stardog.adminPassword": adminPassword,
+			"replicaCount":          "1",
 		},
 	}
 
