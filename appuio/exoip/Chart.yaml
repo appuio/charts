@@ -3,7 +3,7 @@ apiVersion: v1
 appVersion: "v0.4.3"
 description: Deploy exoip as a DaemonSet
 name: exoip
-version: 1.0.3
+version: 1.0.4
 maintainers:
   - name: APPUiO Team
     email: info@appuio.ch
