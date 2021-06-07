@@ -31,8 +31,8 @@ func Test_Service_WhenProxyServicePortOverridden_ThenRenderNewPort(t *testing.T)
 	expectedPort := int32(9090)
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"metrics.proxy.port": fmt.Sprintf("%d", expectedPort),
-			"metrics.proxy.enabled": fmt.Sprintf("%s","true"),
+			"metrics.proxy.port":    fmt.Sprintf("%d", expectedPort),
+			"metrics.proxy.enabled": fmt.Sprintf("%s", "true"),
 		},
 	}
 
@@ -47,7 +47,7 @@ func Test_Service_WhenProxyServiceEnabled_ThenRenderBothPorts(t *testing.T) {
 	expectedPort := int32(8080)
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"metrics.proxy.enabled": fmt.Sprintf("%s","true"),
+			"metrics.proxy.enabled": fmt.Sprintf("%s", "true"),
 		},
 	}
 

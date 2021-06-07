@@ -1,56 +1,50 @@
-# Stardog User and Role Operator - Kubernetes Operator that manages Stardog Users and Roles
+# stardog-userrole-operator
 
-[Stardog User and Role Operator](https://github.com/vshn/stardog-userrole-operator) is a Kubernetes operator which helps to maintain users and roles of [Stardog](https://www.stardog.com/) using Kubernetes CRDs.
+![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
-## TL;DR;
+Stardog User and Role Operator
 
-```console
+## Installation
+
+```bash
 helm repo add appuio https://charts.appuio.ch
 helm install stardog-userrole-operator appuio/stardog-userrole-operator
 ```
+<!---
+The README.md file is automatically generated with helm-docs!
 
-## Introduction
+Edit the README.gotmpl.md template instead.
+-->
 
-This chart bootstraps a [Stardog User and Role Operator](https://vshn.github.io/stardog-userrole-operator/) operator on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+## Values
 
-## Installing the Chart
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.clusterAccess.enabled | bool | `true` | Enable cluster access to operator |
+| image.pullPolicy | string | `"Always"` |  |
+| image.registry | string | `"docker.io"` |  |
+| image.repository | string | `"vshn/stardog-userrole-operator"` |  |
+| image.tag | string | `"0.0.2"` |  |
+| imagePullSecrets | list | `[]` |  |
+| leaderElection.enabled | bool | `false` | Enable leader election for multiple replicas |
+| metrics.proxy.enabled | bool | `false` | Enable metrics via service behind a authenticated proxy |
+| metrics.proxy.image | string | `"gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0"` | Proxy image |
+| metrics.proxy.port | int | `8443` |  |
+| metrics.service.enabled | bool | `true` |  |
+| metrics.service.port | int | `8080` |  |
+| replicaCount | int | `1` |  |
+| resources.limits.cpu | string | `"100m"` |  |
+| resources.limits.memory | string | `"100Mi"` |  |
+| resources.requests.cpu | string | `"30m"` |  |
+| resources.requests.memory | string | `"20Mi"` |  |
+| serviceAccount.create | bool | `true` |  |
 
-To install the chart with the release name `stardog-userrole-operator`:
+## Source Code
 
-```console
-helm install stardog-userrole-operator appuio/stardog-userrole-operator
-```
+* <https://github.com/vshn/stardog-userrole-operator>
 
-## Uninstalling the Chart
-
-To uninstall/delete the `stardog-userrole-operator` deployment:
-
-```console
-helm delete stardog-userrole-operator
-```
-
-## Configuration
-
-The following table lists the configurable parameters of the stardog-userrole-operator chart. For the usual parameters and defaults please consult `values.yaml`.
-
-| Parameter                     | Description                                                               | Default
-| ---                           | ---                                                                       | ---
-| `image.registry`              | Stardog User and Role Operator image registry                             | docker.io
-| `image.repository`            | Stardog User and Role Operator image repository                           | vshn/stardog-userrole-operator
-| `image.tag`                   | Stardog User and Role Operator image tag (version)                        | 0.0.1
-| `image.pullPolicy`            | Stardog User and Role Operator image pull policy from repository          | IfNotPresent
-| `imagePullSecrets`            | Stardog User and Role Operator image pull secrets for registry            | []
-| `replicaCount`                | Stardog User and Role Operator number of replicas                         | 1
-| `leaderElection.enabled`      | Enable leader election for multiple replicas                              | false
-| `config.clusterAccess.enabled`| Enable cluster access to operator                                         | true
-| `serviceAccount.create`       | Create a custom service account for the operator                          | true
-| `serviceAccount.name`         | Name of service account                                                   | not set
-| `resources.limits`            | Resource limits                                                           | cpu 100m, memory 100Mi
-| `resources.requests`          | Resource requests                                                         | cpu 30m, memory 20Mi
-| `metrics.service.enabled`     | Metrics service                                                           | true
-| `metrics.service.port`        | Metrics service port                                                      | 8080
-| `metrics.proxy.image  `       | Proxy image                                                               | false
-| `metrics.proxy.enabled`       | Enable metrics via service behind a authenticated proxy                   | false
-| `metrics.proxy.port`          | Metrics Port                                                              | 8443
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+<!---
+Common/Useful Link references from values.yaml
+-->
+[resource-units]: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+[prometheus-operator]: https://github.com/coreos/prometheus-operator

@@ -16,7 +16,7 @@ var (
 func Test_ClusterRoleBinding_GivenDefaultValues_ThenRenderTemplate(t *testing.T) {
 	expectedManagerName := releaseName + "-stardog-userrole-operator-manager"
 	roleRefManagerName := releaseName + "-stardog-userrole-operator-manager"
-	serviceAccount :=  releaseName + "-stardog-userrole-operator"
+	serviceAccount := releaseName + "-stardog-userrole-operator"
 	options := &helm.Options{}
 
 	clusterRoleBinding := renderClusterRoleBinding(t, options, false)
@@ -32,7 +32,7 @@ func Test_ClusterRoleBinding_GivenProxyCRB_ThenRenderBothTemplates(t *testing.T)
 	roleRefManagerName := releaseName + "-stardog-userrole-operator-manager"
 	expectedProxyName := releaseName + "-stardog-userrole-operator-proxy"
 	roleRefProxyName := releaseName + "-stardog-userrole-operator-proxy"
-	serviceAccount :=  releaseName + "-stardog-userrole-operator"
+	serviceAccount := releaseName + "-stardog-userrole-operator"
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"metrics.proxy.enabled": "true",

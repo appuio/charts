@@ -17,7 +17,7 @@ func Test_Role_GivenLeaderElectionTrue_ThenRenderTemplate(t *testing.T) {
 	expectedName := releaseName + "-stardog-userrole-operator-leader-election"
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"leaderElection.enabled": fmt.Sprintf("%s","true"),
+			"leaderElection.enabled": fmt.Sprintf("%s", "true"),
 		},
 	}
 

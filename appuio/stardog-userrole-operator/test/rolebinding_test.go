@@ -19,7 +19,7 @@ func Test_RoleBinding_GivenElectionLeader_ThenRenderTemplate(t *testing.T) {
 	expectedSAName := releaseName + "-stardog-userrole-operator"
 	options := &helm.Options{
 		SetValues: map[string]string{
-			"leaderElection.enabled": fmt.Sprintf("%s","true"),
+			"leaderElection.enabled": fmt.Sprintf("%s", "true"),
 		},
 	}
 

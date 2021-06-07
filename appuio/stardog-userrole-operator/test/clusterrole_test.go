@@ -43,7 +43,6 @@ func Test_ClusterRole_WhenProxyValues_ThenRenderAllClusterRoles(t *testing.T) {
 	assert.Equal(t, expectedMetricsName, (*clusterRoles)[2].Name, "ClusterRole metrics reader has a wrong name")
 }
 
-
 func renderClusterRole(t *testing.T, options *helm.Options, wantErr bool) *[]v1.ClusterRole {
 	output, err := helm.RenderTemplateE(t, options, helmChartPath, releaseName, tplClusterRole)
 	if wantErr {
