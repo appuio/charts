@@ -1,6 +1,8 @@
 apiVersion: v1
 name: trifid
-description: Trifid Helm chart
-version: 1.2.0
+description: Trifid provides a lightweight and easy way to access Linked Data URIs via HTTP.
+version: 1.2.1
 appVersion: 2.3.5
 home: "https://github.com/zazuko/trifid"
+sources:
+- https://github.com/zazuko/trifid
