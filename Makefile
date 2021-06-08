@@ -39,3 +39,10 @@ lint\:vet: ## Run go vet against code
 lint: lint\:fmt lint\:vet ## All-in-one linting and checks for uncommitted changes
 	@echo 'Check for uncommitted changes ...'
 	git diff --exit-code
+
+.PHONY: prepare
+prepare: ## Prepare the charts for testing
+	@echo --- Preparing charts
+	@find appuio -type f -name Makefile | sed 's|/[^/]*$$||' | xargs -I '%' make -C '%' prepare
+	@echo 'Check for uncommitted changes ...'
+	git diff --exit-code

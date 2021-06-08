@@ -15,6 +15,10 @@ REPLACE_RBAC_LABEL := {{- include "k8up.staticLabels" . | nindent 4 }}
 REPLACE_NAME_PREFIX := {{ include "k8up.fullname" . }}-
 REPLACE_SA_NAME := {{ include "k8up.serviceAccountName" . }}
 
+.PHONY: help
+help: ## Show this help
+	@grep -E -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = "(: ).*?## "}; {gsub(/\\:/,":",$$1)}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
 .PHONY: rbac
 rbac: templates/rbac.yaml ## Update the RBAC templates by building them from Kustomize
 
@@ -35,6 +39,7 @@ appVersion: ## Replaces "appVersion" in Chart.yaml with 'image.tag' from values.
 .PHONY: update
 update: rbac appVersion ## Updates all templates
 
-.PHONY: help
-help: ## Show this help
-	@grep -E -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+#
+# "Interface" for parent Makefile
+#
+prepare: update ## Prepare helm chart
