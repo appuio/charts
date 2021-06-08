@@ -1,5 +1,11 @@
 SHELL := /usr/bin/env bash
 
+MAKEFLAGS += --warn-undefined-variables
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := help
+.DELETE_ON_ERROR:
+.SUFFIXES:
+
 MASTER_BRANCH=master
 SOURCE_README=README.gotmpl
 TARGET_README=README.md
@@ -34,6 +40,14 @@ lint\:fmt: ## Run go fmt against code
 .PHONY: lint\:vet
 lint\:vet: ## Run go vet against code
 	go vet ./...
+
+.PHONY: lint\:versions
+lint\:versions: ## Checks if chart versions have been changed
+	@echo --- Detecting version bumps in the charts
+	@echo "    If this target fails, one of the listed charts below has not its version updated!"
+	@changed_dirs=$$(git diff --dirstat=files,0 origin/master..HEAD -- appuio | awk '{if (!/\.github/) print $$2}') ; \
+	  echo $$changed_dirs ; echo ;  \
+	  for dir in $$changed_dirs; do git diff origin/master..HEAD -- "$${dir}Chart.yaml" | grep -H --label=$$dir "+version"; done
 
 .PHONY: lint
 lint: lint\:fmt lint\:vet ## All-in-one linting and checks for uncommitted changes

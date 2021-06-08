@@ -23,3 +23,22 @@ jobs:
             ${{ runner.os }}-go-
       - name: Run all linters
         run: make lint
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate Chart documentation
+        run: make docs
+      - name: Check if documentation is on par with Chart changes
+        run: git diff --exit-code
+
+  chart-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Verify chart versions have been updated
+        run: make lint:versions
