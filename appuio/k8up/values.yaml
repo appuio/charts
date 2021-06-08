@@ -10,7 +10,7 @@ image:
   # -- Operator image repository
   repository: vshn/k8up
   # -- Operator image tag (version)
-  tag: v1.0.5
+  tag: v1.1.0
 
 imagePullSecrets: []
 serviceAccount:
@@ -35,7 +35,7 @@ k8up:
     # -- The backup runner image repository
     repository: quay.io/vshn/wrestic
     # -- The backup runner image tag
-    tag: v0.2.3
+    tag: v0.3.1
 
   # -- Specifies the timezone K8up is using for scheduling.
   # Empty value defaults to the timezone in which Kubernetes is deployed.
@@ -53,17 +53,17 @@ k8up:
   # -- Specify the resource requests and limits that the Pods should
   # have when they are scheduled by K8up. You are still able to override those
   # via K8up resources, but this gives cluster administrators custom defaults.
-  # @default -- empty values, [see supported units][resource-units]
+  # @default -- empty values
   globalResources:
     requests:
-      # -- Global CPU resource requests
+      # -- Global CPU resource requests applied to jobs. See [supported units][resource-units].
       cpu: ""
-      # -- Global Memory resource requests
+      # -- Global Memory resource requests applied to jobs. See [supported units][resource-units].
       memory: ""
     limits:
-      # -- Global CPU resource limit
+      # -- Global CPU resource limit applied to jobs. See [supported units][resource-units].
       cpu: ""
-      # -- Global Memory resource limit
+      # -- Global Memory resource limit applied to jobs. See [supported units][resource-units].
       memory: ""
 
 podSecurityContext: {}
@@ -111,7 +111,10 @@ rbac:
 
 resources:
   limits:
+    # -- Memory limit of K8up operator. See [supported units][resource-units].
     memory: 256Mi
   requests:
+    # -- CPU request of K8up operator. See [supported units][resource-units].
     cpu: 20m
+    # -- Memory request of K8up operator. See [supported units][resource-units].
     memory: 128Mi

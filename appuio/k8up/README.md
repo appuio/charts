@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![AppVersion: v1.0.5](https://img.shields.io/badge/AppVersion-v1.0.5-informational?style=flat-square)
+![Version: 1.0.8](https://img.shields.io/badge/Version-1.0.8-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -14,9 +14,9 @@ helm install k8up appuio/k8up
 ```
 ```bash
 # Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.1.0/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.0.5/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.1.0/k8up-crd-legacy.yaml
 ```
 
 <!---
@@ -48,17 +48,17 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
 | image.registry | string | `"quay.io"` | Operator image registry |
 | image.repository | string | `"vshn/k8up"` | Operator image repository |
-| image.tag | string | `"v1.0.5"` | Operator image tag (version) |
+| image.tag | string | `"v1.1.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
 | k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
-| k8up.backupImage.tag | string | `"v0.2.3"` | The backup runner image tag |
+| k8up.backupImage.tag | string | `"v0.3.1"` | The backup runner image tag |
 | k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
-| k8up.globalResources | object | empty values, [see supported units][resource-units] | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
-| k8up.globalResources.limits.cpu | string | `""` | Global CPU resource limit |
-| k8up.globalResources.limits.memory | string | `""` | Global Memory resource limit |
-| k8up.globalResources.requests.cpu | string | `""` | Global CPU resource requests |
-| k8up.globalResources.requests.memory | string | `""` | Global Memory resource requests |
+| k8up.globalResources | object | empty values | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
+| k8up.globalResources.limits.cpu | string | `""` | Global CPU resource limit applied to jobs. See [supported units][resource-units]. |
+| k8up.globalResources.limits.memory | string | `""` | Global Memory resource limit applied to jobs. See [supported units][resource-units]. |
+| k8up.globalResources.requests.cpu | string | `""` | Global CPU resource requests applied to jobs. See [supported units][resource-units]. |
+| k8up.globalResources.requests.memory | string | `""` | Global Memory resource requests applied to jobs. See [supported units][resource-units]. |
 | k8up.operatorNamespace | string | `""` | Specifies the namespace in which K8up's `EffectiveSchedules` are stored. Defaults to release namespace if left empty. |
 | k8up.timezone | string | `""` | Specifies the timezone K8up is using for scheduling. Empty value defaults to the timezone in which Kubernetes is deployed. Accepts `tz database` compatible entries, e.g. `Europe/Zurich` |
 | metrics.prometheusRule.additionalLabels | object | `{}` | Add labels to the PrometheusRule object |
@@ -77,9 +77,9 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | podSecurityContext | object | `{}` |  |
 | rbac.create | bool | `true` | Create cluster roles and rolebinding. May need elevated permissions to create cluster roles and -bindings. |
 | replicaCount | int | `1` | How many operator pods should run. Note: Operator features leader election for K8s 1.16 and later, so that only 1 pod is reconciling/scheduling jobs. Follower pods reduce interruption time as they're on hot standby when leader is unresponsive. |
-| resources.limits.memory | string | `"256Mi"` |  |
-| resources.requests.cpu | string | `"20m"` |  |
-| resources.requests.memory | string | `"128Mi"` |  |
+| resources.limits.memory | string | `"256Mi"` | Memory limit of K8up operator. See [supported units][resource-units]. |
+| resources.requests.cpu | string | `"20m"` | CPU request of K8up operator. See [supported units][resource-units]. |
+| resources.requests.memory | string | `"128Mi"` | Memory request of K8up operator. See [supported units][resource-units]. |
 | securityContext | object | `{}` |  |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
