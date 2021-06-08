@@ -25,13 +25,3 @@ jobs:
             ${{ runner.os }}-go-
       - name: Run Chart unit tests
         run: make prepare test
-
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Generate Chart documentation
-        run: make docs
-      - name: Check if documentation is on par with Chart changes
-        run: git diff --exit-code
