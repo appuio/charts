@@ -134,6 +134,16 @@ entries:
   data-cube-curation:
   - apiVersion: v1
     appVersion: 0.6.1
+    created: "2021-06-08T09:46:49.624717324Z"
+    description: RDF Data Cube curation service
+    digest: d972d93fbec7cd8ae8f2ddc36da7e9f2e53f0d9c027fe07a29354406868d565a
+    home: https://github.com/zazuko/data-cube-curation
+    name: data-cube-curation
+    urls:
+    - https://github.com/appuio/charts/releases/download/data-cube-curation-0.3.1/data-cube-curation-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
+    appVersion: 0.6.1
     created: "2021-05-10T09:05:04.284318947Z"
     description: RDF Data Cube curation service
     digest: 0ea1b47275bb11fd05607b31e4b8928a768565e3cccf632e974b8bafad206acc
@@ -205,6 +215,18 @@ entries:
   exoip:
   - apiVersion: v1
     appVersion: v0.4.3
+    created: "2021-06-08T09:46:49.733907931Z"
+    description: Deploy exoip as a DaemonSet
+    digest: 00ca372061f0803b59ec368fb8f2aa68eece098ba84d5c21cb89860426ee0726
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: exoip
+    urls:
+    - https://github.com/appuio/charts/releases/download/exoip-1.0.4/exoip-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: v0.4.3
     created: "2021-05-10T09:05:04.285374646Z"
     description: Deploy exoip as a DaemonSet
     digest: b79b4efcd566f1b9a21587e8cac550da548c20b8c582fdb581e75fc09bf1b9c7
@@ -244,6 +266,18 @@ entries:
     version: 1.0.0
   generic:
   - apiVersion: v1
+    created: "2021-06-08T09:46:49.849450167Z"
+    description: A Helm chart to create generic Kubernetes resources
+    digest: d42cdcaaed7abc43a1907331478b6c60e7d434fa684d9b22f089565c2b14fa50
+    icon: https://kubernetes.io/images/wheel.svg
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: generic
+    urls:
+    - https://github.com/appuio/charts/releases/download/generic-0.1.1/generic-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
     created: "2021-05-10T09:05:04.286244029Z"
     description: A Helm chart to create generic Kubernetes resources
     digest: bfc59796c4a6f74dde258273c26ff94e6080a433180e29150c2803c822564e7c
@@ -256,6 +290,18 @@ entries:
     - https://charts.appuio.ch/generic-0.1.0.tgz
     version: 0.1.0
   haproxy:
+  - apiVersion: v1
+    appVersion: 2.3.5
+    created: "2021-06-08T09:46:49.978297313Z"
+    description: A Helm chart for HAProxy which can be customized by a config map.
+    digest: 174ad6da4f57acc16c652db0b37a4dc9596dae481cd362b8dbad1e046d0a1e8a
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: haproxy
+    urls:
+    - https://github.com/appuio/charts/releases/download/haproxy-1.3.8/haproxy-1.3.8.tgz
+    version: 1.3.8
   - apiVersion: v1
     appVersion: 2.3.5
     created: "2021-05-10T09:05:04.305368317Z"
@@ -521,6 +567,26 @@ entries:
     - https://charts.appuio.ch/haproxy-0.0.1.tgz
     version: 0.0.1
   k8up:
+  - apiVersion: v2
+    appVersion: v1.0.5
+    created: "2021-06-08T09:46:50.095627599Z"
+    description: Kubernetes and OpenShift Backup Operator based on restic
+    digest: 690a4db6745c62c7e2224da5722d17a559935e21fc7f5f35b9281ff9df1612a8
+    home: https://k8up.io/
+    keywords:
+    - backup
+    - operator
+    - restic
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: k8up
+    sources:
+    - https://github.com/vshn/k8up
+    - https://github.com/vshn/wrestic
+    urls:
+    - https://github.com/appuio/charts/releases/download/k8up-1.0.7/k8up-1.0.7.tgz
+    version: 1.0.7
   - apiVersion: v2
     appVersion: v1.0.5
     created: "2021-05-10T09:05:04.325559147Z"
@@ -936,7 +1002,8 @@ entries:
       repository: https://codecentric.github.io/helm-charts
       version: 4.12.0
     deprecated: true
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: 7c0015bb0a328b52cef3e495bc028b5b2f6e265614792e448fbff64f4a49036f
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -967,7 +1034,8 @@ entries:
     - name: keycloak
       repository: https://codecentric.github.io/helm-charts
       version: 4.12.0
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: 5dc42338c8046aa64c10bdfdf819e6de7b1d7b6a8881095e18eed31f0ac7e7a3
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -998,7 +1066,8 @@ entries:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.8.0
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: 0c079177a3456facc7897e0e0c5801815bae6877da13d4cc0fa18f3bf375528e
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -1029,7 +1098,8 @@ entries:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.5.0
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: a3f6e1e56cb1087795889628e91edd17239164d8fd1858baff858141ea8e8ec6
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -1060,7 +1130,8 @@ entries:
     - name: keycloak
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.5.0
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: 55ffcdb3a317e08c1d1c4e0913cdaef3d610e98a8547347aa00c0b46a55b9012
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -1087,7 +1158,8 @@ entries:
   - apiVersion: v1
     appVersion: 4.1.0.Final
     created: "2021-05-10T09:05:04.32751477Z"
-    description: Open Source Identity and Access Management For Modern Applications and Services
+    description: Open Source Identity and Access Management For Modern Applications
+      and Services
     digest: 55867942322f470ffba2c571c713a09869efd96e9c6f1e8d86ce13a44fb05fee
     home: https://www.keycloak.org/
     icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
@@ -1112,6 +1184,19 @@ entries:
     - https://charts.appuio.ch/keycloak-3.1.0.tgz
     version: 3.1.0
   maxscale:
+  - apiVersion: v1
+    appVersion: 2.2.20
+    created: "2021-06-08T09:46:50.200582853Z"
+    description: MaxScale Helm Chart
+    digest: 8fda4dbee7972ac5c45b2e4f337e9a6702126897040f0e632c62a8d11ec14d43
+    home: https://mariadb.com/products/technology/maxscale
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: maxscale
+    urls:
+    - https://github.com/appuio/charts/releases/download/maxscale-1.1.2/maxscale-1.1.2.tgz
+    version: 1.1.2
   - apiVersion: v1
     appVersion: 2.2.20
     created: "2021-05-10T09:05:04.340873478Z"
@@ -1174,6 +1259,24 @@ entries:
   metrics-server:
   - apiVersion: v2
     appVersion: 0.3.7
+    created: "2021-06-08T09:46:50.3306381Z"
+    description: Metrics Server is a cluster-wide aggregator of resource usage data.
+    digest: 5ec047b06fb551a92ac6379c906acc485fcf3c151e95ac536c854f0c95c1ee05
+    home: https://github.com/kubernetes-incubator/metrics-server
+    keywords:
+    - metrics-server
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-incubator/metrics-server
+    type: application
+    urls:
+    - https://github.com/appuio/charts/releases/download/metrics-server-2.12.1/metrics-server-2.12.1.tgz
+    version: 2.12.1
+  - apiVersion: v2
+    appVersion: 0.3.7
     created: "2021-05-10T09:05:04.343971388Z"
     description: Metrics Server is a cluster-wide aggregator of resource usage data.
     digest: 5c72ab65180900a8c9f8de29f1f23a191e2ebd1bde0be4c08fad35712a0858be
@@ -1208,6 +1311,18 @@ entries:
     - https://charts.appuio.ch/metrics-server-2.11.4.tgz
     version: 2.11.4
   openshift-oauth-proxy:
+  - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2021-06-08T09:46:50.44826071Z"
+    description: OpenShift oauth-proxy
+    digest: db9a131ce5811975eaca29f7d8d7e90b77f521c094aa3fbb8091f95d269c73de
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: openshift-oauth-proxy
+    urls:
+    - https://github.com/appuio/charts/releases/download/openshift-oauth-proxy-0.2.3/openshift-oauth-proxy-0.2.3.tgz
+    version: 0.2.3
   - apiVersion: v1
     appVersion: 1.1.0
     created: "2021-05-10T09:05:04.346456364Z"
@@ -1257,6 +1372,15 @@ entries:
     - https://charts.appuio.ch/openshift-oauth-proxy-0.1.0.tgz
     version: 0.1.0
   openshift-route:
+  - apiVersion: v1
+    appVersion: v1
+    created: "2021-06-08T09:46:50.568503138Z"
+    description: A Helm chart for OpenShift that simply creates a Route object
+    digest: bb2085ff4527c07409e5df74da9dc05ff7c18d700273dad0736b5b06a1ace17c
+    name: openshift-route
+    urls:
+    - https://github.com/appuio/charts/releases/download/openshift-route-1.1.3/openshift-route-1.1.3.tgz
+    version: 1.1.3
   - apiVersion: v1
     appVersion: v1
     created: "2021-05-10T09:05:04.347871218Z"
@@ -1447,6 +1571,25 @@ entries:
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: v0.17.0
+    created: "2021-06-08T09:46:50.691884829Z"
+    description: Prometheus Blackbox Exporter
+    digest: 245fc040d54ae1f79fe528b9b5654c211444232824a7070b2ea85d6359448255
+    home: https://github.com/prometheus/blackbox_exporter
+    keywords:
+    - prometheus
+    - blackbox
+    - monitoring
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: prometheus-blackbox-exporter
+    sources:
+    - https://github.com/prometheus/blackbox_exporter
+    urls:
+    - https://github.com/appuio/charts/releases/download/prometheus-blackbox-exporter-0.3.1/prometheus-blackbox-exporter-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
+    appVersion: v0.17.0
     created: "2021-05-10T09:05:04.370175896Z"
     description: Prometheus Blackbox Exporter
     digest: 0f947aa8cf10a20f26b55bdf5e0fb979a2651b08c629a1aa3a21a919b6da6c46
@@ -1561,6 +1704,17 @@ entries:
     version: 0.1.1
   secret:
   - apiVersion: v1
+    created: "2021-06-08T09:46:50.803418531Z"
+    description: Deploy arbitrary secrets
+    digest: 72c3f02c17d765ffe21496a2870335ca5c48350e174a7b150ec802466d52bc28
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: secret
+    urls:
+    - https://github.com/appuio/charts/releases/download/secret-1.0.2/secret-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
     created: "2021-05-10T09:05:04.370558475Z"
     description: Deploy arbitrary secrets
     digest: 19a6f5c74d430b044ce4295111c4b6ecfe97f3fd96d4bb150a1d79ec8b7a1cb6
@@ -1583,6 +1737,26 @@ entries:
     - https://charts.appuio.ch/secret-1.0.0.tgz
     version: 1.0.0
   signalilo:
+  - apiVersion: v1
+    appVersion: v0.8.0
+    created: "2021-06-08T09:46:50.912454425Z"
+    description: Alertmanager to Icinga2 bridge
+    digest: ba5b49832ba3d0055e57e2248c5999e130eb00660ef01e69d8875e8e62a88af8
+    home: https://git.vshn.net/vshn/signalilo
+    keywords:
+    - prometheus
+    - alertmanager
+    - webhook
+    - icinga2
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: signalilo
+    sources:
+    - https://git.vshn.net/vshn/signalilo
+    urls:
+    - https://github.com/appuio/charts/releases/download/signalilo-0.5.2/signalilo-0.5.2.tgz
+    version: 0.5.2
   - apiVersion: v1
     appVersion: v0.8.0
     created: "2021-05-10T09:05:04.377669537Z"
@@ -1806,6 +1980,23 @@ entries:
   snappass:
   - apiVersion: v1
     appVersion: v1.4.2
+    created: "2021-06-08T09:46:51.019958891Z"
+    dependencies:
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.7.4
+    description: A Helm chart for SnapPass
+    digest: 04413059ffaf37a1e99aae9425a91cf9107b2067b7f16ceb75b73c716ca5c978
+    home: https://github.com/pinterest/snappass
+    name: snappass
+    sources:
+    - https://github.com/pinterest/snappass
+    urls:
+    - https://github.com/appuio/charts/releases/download/snappass-0.2.14/snappass-0.2.14.tgz
+    version: 0.2.14
+  - apiVersion: v1
+    appVersion: v1.4.2
     created: "2021-05-10T09:05:04.401312932Z"
     dependencies:
     - condition: redis.enabled
@@ -2015,6 +2206,26 @@ entries:
     - https://charts.appuio.ch/snappass-0.1.0.tgz
     version: 0.1.0
   stardog:
+  - apiVersion: v1
+    appVersion: 7.6.4
+    created: "2021-06-08T09:46:51.148276293Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.bitnami.com/bitnami
+      version: 5.14.4
+    description: Stardog is the world’s leading knowledge graph platform for the enterprise.
+      Stardog makes it fast and easy to turn enterprise data into knowledge.
+    digest: c66470d48439a7b49bcc6bad69670bfb7c7aa6e8f9f31b3fd1d84934b72805ec
+    home: https://www.stardog.com/
+    icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: stardog
+    urls:
+    - https://github.com/appuio/charts/releases/download/stardog-0.7.3/stardog-0.7.3.tgz
+    version: 0.7.3
   - apiVersion: v1
     appVersion: 7.6.3
     created: "2021-05-10T09:05:04.533486367Z"
@@ -2816,6 +3027,26 @@ entries:
   stardog-userrole-operator:
   - apiVersion: v1
     appVersion: 0.0.2
+    created: "2021-06-08T09:46:51.268316605Z"
+    description: Stardog User and Role Operator
+    digest: 743c9b09962e9f4688b6a9ec22012d842cf60682d6adde1542ee9cb73d105615
+    keywords:
+    - stardog
+    - operator
+    - appuio
+    - user
+    - role
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: stardog-userrole-operator
+    sources:
+    - https://github.com/vshn/stardog-userrole-operator
+    urls:
+    - https://github.com/appuio/charts/releases/download/stardog-userrole-operator-0.0.4/stardog-userrole-operator-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v1
+    appVersion: 0.0.2
     created: "2021-05-10T09:05:04.537965795Z"
     description: Stardog User and Role Operator
     digest: 629740f770b98023a11595b48ff09293f178562381ffd306877e8da7d41baa5e
@@ -2877,6 +3108,19 @@ entries:
   trifid:
   - apiVersion: v1
     appVersion: 2.3.5
+    created: "2021-06-08T09:46:51.390191269Z"
+    description: Trifid provides a lightweight and easy way to access Linked Data
+      URIs via HTTP.
+    digest: c7205db469f64932b00c287a70f0eefc340609f0fb390e940089120eef4d2ee6
+    home: https://github.com/zazuko/trifid
+    name: trifid
+    sources:
+    - https://github.com/zazuko/trifid
+    urls:
+    - https://github.com/appuio/charts/releases/download/trifid-1.2.1/trifid-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v1
+    appVersion: 2.3.5
     created: "2021-05-10T09:05:04.543719301Z"
     description: Trifid Helm chart
     digest: dd27db33bcd856b52dc89d750cd3f2a7319bb30e0b9eb64d50c4fce84e4c964a
@@ -2925,4 +3169,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-10T09:05:04.274698359Z"
+generated: "2021-06-08T09:46:51.392105429Z"
