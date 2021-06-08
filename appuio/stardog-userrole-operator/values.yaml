@@ -1,0 +1,46 @@
+image:
+  registry: docker.io
+  repository: vshn/stardog-userrole-operator
+  tag: 0.0.2
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+replicaCount: 1
+# nameOverride: ""
+# fullnameOverride: ""
+
+leaderElection:
+  # -- Enable leader election for multiple replicas
+  enabled: false
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # name: stardog-operator
+
+config:
+  clusterAccess:
+    # -- Enable cluster access to operator
+    enabled: true
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 100Mi
+  requests:
+    cpu: 30m
+    memory: 20Mi
+
+metrics:
+  service:
+    enabled: true
+    port: 8080
+  proxy:
+    # -- Proxy image
+    image: gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+    # -- Enable metrics via service behind a authenticated proxy
+    enabled: false
+    port: 8443
