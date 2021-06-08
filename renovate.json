@@ -4,10 +4,6 @@
     ":gitSignOff"
   ],
   "bumpVersion": "minor",
-  "ignorePaths": [
-    "prometheus/*",
-    "keycloak/*"
-  ],
   "helm-values": {
     "fileMatch": ["(^|/)values\\.yaml$"]
   },
@@ -16,5 +12,8 @@
       "packagePatterns": ["^k8s.io", "^sigs.k8s.io"],
       "enabled": false
     }
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
   ]
 }
