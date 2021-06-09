@@ -266,6 +266,18 @@ entries:
     version: 1.0.0
   generic:
   - apiVersion: v1
+    created: "2021-06-09T08:50:06.725414907Z"
+    description: A Helm chart to create generic Kubernetes resources
+    digest: d0e689667f5b2867c03b6b602dc1f657047cafd9d2540b3ea7b0d84c576e8206
+    icon: https://kubernetes.io/images/wheel.svg
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: generic
+    urls:
+    - https://github.com/appuio/charts/releases/download/generic-0.1.2/generic-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
     created: "2021-06-08T09:46:49.849450167Z"
     description: A Helm chart to create generic Kubernetes resources
     digest: d42cdcaaed7abc43a1907331478b6c60e7d434fa684d9b22f089565c2b14fa50
@@ -3189,4 +3201,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-08T09:46:51.392105429Z"
+generated: "2021-06-09T08:50:06.726269903Z"
