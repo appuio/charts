@@ -45,9 +45,9 @@ lint\:vet: ## Run go vet against code
 lint\:versions: ## Checks if chart versions have been changed
 	@echo --- Detecting version bumps in the charts
 	@echo "    If this target fails, one of the listed charts below has not its version updated!"
-	@changed_dirs=$$(git diff --dirstat=files,0 origin/master..HEAD -- appuio | awk '{if (!/\.github/) print $$2}') ; \
-	  echo $$changed_dirs ; echo ;  \
-	  for dir in $$changed_dirs; do git diff origin/master..HEAD -- "$${dir}Chart.yaml" | grep -H --label=$$dir "+version"; done
+	@changed_charts=$$(git diff --dirstat=files,0 origin/master..HEAD -- appuio | cut -d '/' -f 2 | uniq) ; \
+	  echo $$changed_charts ; echo ;  \
+	  for dir in $$changed_charts; do git diff origin/master..HEAD -- "appuio/$${dir}/Chart.yaml" | grep -H --label=$${dir} "+version"; done
 
 .PHONY: lint
 lint: lint\:fmt lint\:vet ## All-in-one linting and checks for uncommitted changes
