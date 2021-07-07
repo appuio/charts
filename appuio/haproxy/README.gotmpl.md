@@ -112,6 +112,7 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.dnsservicename` | The DNS Record for service discovery | `mycluster-mariadb-galera-headless`
 | `haproxy.galerak8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.galerak8s.port` | Port of the Galera node | `3306`
+| `haproxy.galerak8s.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
 
 ### redisk8s
 
@@ -127,3 +128,19 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.dnsservicename` | The DNS Record for service discovery | `redis-access-headless`
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.redisk8s.port` | Port of the Galera node | `6379`
+| `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
+
+
+## Galera and Redis metrics
+
+By setting the `haproxy.galerak8s.metrics.enabled` or `haproxy.redisk8s.metrics.enabled` parameters, you can expose the metrics of the backend pods.
+
+For Galera the endpoints are:
+* `<haproxy_service_ip>:9090/metrics/mariadb-0/metrics`
+* `<haproxy_service_ip>:9090/metrics/mariadb-1/metrics`
+* `...`
+
+For Redis the endpoints are:
+* `<haproxy_service_ip>:9090/metrics/redis-0/metrics`
+* `<haproxy_service_ip>:9090/metrics/redis-1/metrics`
+* `...`

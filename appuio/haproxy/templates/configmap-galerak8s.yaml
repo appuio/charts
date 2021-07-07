@@ -32,6 +32,8 @@ data:
       option clitcpka
       default_backend galera-nodes
 
+    {{- include "haproxy.galeraMetricsConfig" . | nindent 4 }}
+
     backend galera-nodes
       mode tcp
       option srvtcpka

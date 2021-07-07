@@ -11,12 +11,12 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: haproxy
     # kubernetes.io/tls-acme: "true"
-  
+
   ## Hosts for the ingress
   hosts:
     # - one.example.org
     # - two.example.org
-  
+
   ## TLS configuration
   tls:
     enabled: true
@@ -24,7 +24,6 @@ ingress:
 
 ## Extra sidecar containers to add to the deployment
 sidecarContainers: []
-
 
 ## Affinity for pod assignment. Evaluated as a template.
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
@@ -42,9 +41,9 @@ haproxy:
   frontendPort: 30636
 
   check:
-    existingSecret: 
+    existingSecret:
       name: "" # Use existing secret with authentication credentials for checks.
-      key: "auth-credentials" 
+      key: "auth-credentials"
 
   securityContext: {}
     # runAsUser: 1000
@@ -84,6 +83,8 @@ haproxy:
     dnsservicename: mycluster-mariadb-galera-headless
     port: 3306
     nodeCount: 3
+    metrics:
+      enabled: false
 
   redisk8s:
     timeout:
@@ -97,6 +98,8 @@ haproxy:
     dnsservicename: redis-access-headless
     port: 6379
     nodeCount: 3
+    metrics:
+      enabled: false
 
 metrics:
   enabled: true
@@ -135,7 +138,7 @@ metrics:
     #   expr: haproxy_backend_active_servers{proxy="redis"} < 1
     #   for: 15s
     #   labels:
-    #     severity: page      
+    #     severity: page
     #   annotations:
     #     summary: HAProxy reports all servers are unhealthy for redis.
     rules: []
@@ -157,8 +160,8 @@ podDisruptionBudget:
 
 resources:
   limits:
-   cpu: 100m
-   memory: 128Mi
+    cpu: 100m
+    memory: 128Mi
   requests:
-   cpu: 100m
-   memory: 128Mi
+    cpu: 100m
+    memory: 128Mi

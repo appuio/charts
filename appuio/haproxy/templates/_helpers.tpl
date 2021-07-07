@@ -64,3 +64,45 @@ resolvers mydns
   hold other 3s
   resolve_retries 999
 {{- end -}}
+
+{{/*
+HAProxy config for galera metrics
+*/}}
+{{- define "haproxy.galeraMetricsConfig" -}}
+{{- if .Values.haproxy.galerak8s.metrics.enabled }}
+frontend galeraMetrics
+  mode http
+  bind *:9090
+  {{- range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
+  use_backend galera-node-{{$i}} if { path -i -m beg /metrics/mariadb-{{$i}} }
+  {{- end }}
+
+{{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
+backend galera-node-{{$i}}
+  mode http
+  server node-{{$i}} mariadb-{{$i}}.mariadb:9104
+  http-request set-path '%[path,regsub(^/metrics/mariadb-{{$i}}/,/)]'
+{{- end }}
+{{- end }}
+{{- end -}}
+
+{{/*
+HAProxy config for redis metrics
+*/}}
+{{- define "haproxy.redisMetricsConfig" -}}
+{{- if .Values.haproxy.redisk8s.metrics.enabled }}
+frontend redisMetrics
+  mode http
+  bind *:9090
+  {{- range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
+  use_backend redis-node-{{$i}} if { path -i -m beg /metrics/redis-{{$i}} }
+  {{- end }}
+
+{{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
+backend redis-node-{{$i}}
+  mode http
+  server node-{{$i}} redis-{{$i}}.redis-headless:9121
+  http-request set-path '%[path,regsub(^/metrics/redis-{{$i}}/,/)]'
+{{- end }}
+{{- end }}
+{{- end -}}

@@ -32,6 +32,8 @@ data:
       option clitcpka
       default_backend redis-nodes
 
+    {{- include "haproxy.redisMetricsConfig" . | nindent 4 }}
+
     backend redis-nodes
       mode tcp
 
