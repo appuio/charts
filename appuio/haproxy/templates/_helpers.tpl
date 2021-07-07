@@ -101,7 +101,7 @@ frontend redisMetrics
 {{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-{{$i}}
   mode http
-  server node-{{$i}} redis-{{$i}}.redis-headless:9121
+  server node-{{$i}} redis-node-{{$i}}.redis-headless:9121
   http-request set-path '%[path,regsub(^/metrics/redis-{{$i}}/,/)]'
 {{- end }}
 {{- end }}
