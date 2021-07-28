@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 1.0.9](https://img.shields.io/badge/Version-1.0.9-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -65,6 +65,7 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | metrics.prometheusRule.additionalRules | list | `[]` | Provide additional alert rules in addition to the defaults |
 | metrics.prometheusRule.createDefaultRules | bool | `true` | Whether the default rules should be installed |
 | metrics.prometheusRule.enabled | bool | `false` | Whether to enable PrometheusRule manifest for [Prometheus Operator][prometheus-operator] |
+| metrics.prometheusRule.legacyRules | bool | `false` | Create default rules for kube-state-metrics < v1.5.0 Needed for OpenShift 3.x |
 | metrics.prometheusRule.namespace | string | `""` | If the object should be installed in a different namespace than operator |
 | metrics.service.nodePort | int | `0` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` |
 | metrics.service.port | int | `8080` |  |

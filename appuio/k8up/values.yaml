@@ -101,6 +101,9 @@ metrics:
     additionalLabels: {}
     # -- Whether the default rules should be installed
     createDefaultRules: true
+    # -- Create default rules for kube-state-metrics < v1.5.0
+    # Needed for OpenShift 3.x
+    legacyRules: false
     # -- Provide additional alert rules in addition to the defaults
     additionalRules: []
 
