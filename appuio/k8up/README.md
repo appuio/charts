@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 1.0.8](https://img.shields.io/badge/Version-1.0.8-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
+![Version: 1.0.9](https://img.shields.io/badge/Version-1.0.9-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -51,7 +51,7 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | image.tag | string | `"v1.1.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
 | k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
-| k8up.backupImage.tag | string | `"v0.3.1"` | The backup runner image tag |
+| k8up.backupImage.tag | string | `"v0.3.2"` | The backup runner image tag |
 | k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
 | k8up.globalResources | object | empty values | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
