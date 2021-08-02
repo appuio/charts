@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 1.0.9](https://img.shields.io/badge/Version-1.0.9-informational?style=flat-square) ![AppVersion: v1.1.0](https://img.shields.io/badge/AppVersion-v1.1.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v1.2.0](https://img.shields.io/badge/AppVersion-v1.2.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -14,9 +14,9 @@ helm install k8up appuio/k8up
 ```
 ```bash
 # Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.1.0/k8up-crd.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.2.0/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.1.0/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.2.0/k8up-crd-legacy.yaml
 ```
 
 <!---
@@ -48,7 +48,7 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
 | image.registry | string | `"quay.io"` | Operator image registry |
 | image.repository | string | `"vshn/k8up"` | Operator image repository |
-| image.tag | string | `"v1.1.0"` | Operator image tag (version) |
+| image.tag | string | `"v1.2.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
 | k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
 | k8up.backupImage.tag | string | `"v0.3.2"` | The backup runner image tag |
@@ -65,6 +65,8 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | metrics.prometheusRule.additionalRules | list | `[]` | Provide additional alert rules in addition to the defaults |
 | metrics.prometheusRule.createDefaultRules | bool | `true` | Whether the default rules should be installed |
 | metrics.prometheusRule.enabled | bool | `false` | Whether to enable PrometheusRule manifest for [Prometheus Operator][prometheus-operator] |
+| metrics.prometheusRule.jobFailedRulesFor | list | `["archive","backup","check","prune","restore"]` | Create default rules for the given job types. Valid values are "archive", "backup", "check", "prune", and "restore". |
+| metrics.prometheusRule.legacyRules | bool | `false` | Create default rules for kube-state-metrics < v1.5.0 Needed for OpenShift 3.x |
 | metrics.prometheusRule.namespace | string | `""` | If the object should be installed in a different namespace than operator |
 | metrics.service.nodePort | int | `0` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` |
 | metrics.service.port | int | `8080` |  |
