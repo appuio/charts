@@ -65,6 +65,7 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | metrics.prometheusRule.additionalRules | list | `[]` | Provide additional alert rules in addition to the defaults |
 | metrics.prometheusRule.createDefaultRules | bool | `true` | Whether the default rules should be installed |
 | metrics.prometheusRule.enabled | bool | `false` | Whether to enable PrometheusRule manifest for [Prometheus Operator][prometheus-operator] |
+| metrics.prometheusRule.jobFailedRulesFor | list | `["archive","backup","check","prune","restore"]` | Create default rules for the given job types. Valid values are "archive", "backup", "check", "prune", and "restore". |
 | metrics.prometheusRule.legacyRules | bool | `false` | Create default rules for kube-state-metrics < v1.5.0 Needed for OpenShift 3.x |
 | metrics.prometheusRule.namespace | string | `""` | If the object should be installed in a different namespace than operator |
 | metrics.service.nodePort | int | `0` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` |

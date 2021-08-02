@@ -104,6 +104,9 @@ metrics:
     # -- Create default rules for kube-state-metrics < v1.5.0
     # Needed for OpenShift 3.x
     legacyRules: false
+    # -- Create default rules for the given job types.
+    # Valid values are "archive", "backup", "check", "prune", and "restore".
+    jobFailedRulesFor: ["archive", "backup", "check", "prune", "restore"]
     # -- Provide additional alert rules in addition to the defaults
     additionalRules: []
 

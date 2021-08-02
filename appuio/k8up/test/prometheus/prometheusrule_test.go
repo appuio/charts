@@ -72,6 +72,26 @@ func Test_PrometheusRule_GivenEnabled_WhenCreateDefaultRulesEnabled_ThenRenderDe
 	assert.GreaterOrEqual(t, len(rule.Spec.Groups[0].Rules), 4)
 }
 
+func Test_PrometheusRule_GivenEnabled_ConfigureEnabledRules(t *testing.T) {
+	renderWithRulesFor := func(rules []string) []monitoringv1.Rule {
+		options := &helm.Options{
+			SetValues: map[string]string{
+				"metrics.prometheusRule.enabled":           "true",
+				"metrics.prometheusRule.jobFailedRulesFor": "{" + strings.Join(rules, ",") + "}",
+			},
+		}
+		output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplPrometheusRule)
+		rule := monitoringv1.PrometheusRule{}
+		helm.UnmarshalK8SYaml(t, output, &rule)
+		return rule.Spec.Groups[0].Rules
+	}
+
+	rules := []string{"backup"}
+	assert.Len(t, findFailedRules(renderWithRulesFor(rules)), 1)
+	rules = append(rules, "restore", "prune")
+	assert.Len(t, findFailedRules(renderWithRulesFor(rules)), 3)
+}
+
 var legacyRuleSubjects = map[string]struct {
 	legacyRulesEnabled  bool
 	expectRuleToContain string
@@ -98,18 +118,9 @@ func Test_PrometheusRule_GivenEnabled_LegacyRules(t *testing.T) {
 			rule := monitoringv1.PrometheusRule{}
 			helm.UnmarshalK8SYaml(t, output, &rule)
 
-			findFailedRule := func(rules []monitoringv1.Rule) *monitoringv1.Rule {
-				for _, rule := range rules {
-					if strings.HasSuffix(rule.Alert, "Failed") {
-						return &rule
-					}
-				}
-				return nil
-			}
-
-			failedRule := findFailedRule(rule.Spec.Groups[0].Rules)
-			assert.NotNil(t, failedRule)
-			assert.Contains(t, failedRule.Expr.String(), tC.expectRuleToContain)
+			failedRules := findFailedRules(rule.Spec.Groups[0].Rules)
+			assert.NotEmpty(t, failedRules)
+			assert.Contains(t, failedRules[0].Expr.String(), tC.expectRuleToContain)
 		})
 	}
 }
@@ -154,4 +165,14 @@ func Test_PrometheusRule_GivenEnabled_WhenCreateDefaultRulesEnabledAndAdditional
 	amount := len(rule.Spec.Groups[0].Rules)
 	assert.GreaterOrEqual(t, amount, 2)
 	assert.Equal(t, "MyCustomRule", rule.Spec.Groups[0].Rules[amount-1].Alert)
+}
+
+func findFailedRules(rules []monitoringv1.Rule) []monitoringv1.Rule {
+	failedRules := make([]monitoringv1.Rule, 0, len(rules))
+	for _, rule := range rules {
+		if strings.HasSuffix(rule.Alert, "Failed") {
+			failedRules = append(failedRules, rule)
+		}
+	}
+	return failedRules
 }

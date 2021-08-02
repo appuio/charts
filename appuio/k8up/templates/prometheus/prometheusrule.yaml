@@ -37,7 +37,7 @@ spec:
             severity: critical
           annotations:
             summary: "K8up jobs are stuck in {{ "{{ $labels.namespace }}" }} for the last 24 hours."
-        {{- range tuple "archive" "backup" "check" "prune" "restore" }}
+        {{- range .Values.metrics.prometheusRule.jobFailedRulesFor }}
         - alert: K8up{{- . | title -}}Failed
           expr: (sum(kube_job_status_failed) by({{ $jobNameLabel }}, namespace) * on({{ $jobNameLabel }}, namespace) group_right() kube_job_labels{label_k8up_syn_tools_type="{{- . -}}"}) > 0
           for: 1m
