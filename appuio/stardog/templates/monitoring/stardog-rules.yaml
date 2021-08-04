@@ -44,4 +44,25 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: "{{ "{{ if lt $value 2.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
+    {{- if .Values.ingress.enabled }}
+    - alert: HttpCheck
+      expr: probe_success{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} != 1
+      for: 1m
+      annotations:
+        summary: Http check failed
+        description: "Http check failed on {{ "{{" }} $labels.instance {{ "}}" }}"
+      labels:
+        env: {{ .Release.Name }}
+        severity: critical
+        oncall: "{{ "{{ if eq $labels.env \\\"prod\\\" }}" }}true{{ "{{ else }}" }}false{{" {{ end }} "}}"
+    - alert: CertExpirySoon
+      expr: probe_ssl_earliest_cert_expiry{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} - time() < 86400 * 30
+      for: 10m
+      annotations:
+        summary: SSL ertificate expires in less than 30 days
+        description: "SSL certificate on {{ "{{" }} $labels.instance {{ "}}" }} expires is in less than 30 days"
+      labels:
+        env: {{ .Release.Name }}
+        severity: warning
+    {{- end }}
 {{- end }}
