@@ -1,0 +1,27 @@
+annotations:
+  category: Database
+apiVersion: v2
+appVersion: 6.2.1
+dependencies:
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+  - bitnami-common
+  version: 1.x.x
+description: Open source, advanced key-value store. It is often referred to as a data
+  structure server since keys can contain strings, hashes, lists, sets and sorted
+  sets.
+home: https://github.com/appuio/charts/tree/master/appuio/redis
+icon: https://github.com/appuio/charts/blob/master/appuio/redis/logo.png
+keywords:
+- redis
+- keyvalue
+- database
+maintainers:
+  - name: APPUiO Team
+    email: info@appuio.ch
+name: redis
+sources:
+- https://github.com/bitnami/bitnami-docker-redis
+- http://redis.io/
+version: 1.0.0
