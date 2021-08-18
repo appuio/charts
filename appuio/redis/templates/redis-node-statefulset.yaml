@@ -164,11 +164,7 @@ spec:
               command:
                 - sh
                 - -c
-                {{- if .Values.sentinel.enabled }}
                 - /health/ping_liveness_local.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
-                {{- else }}
-                - /health/ping_liveness_local_and_master.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
-                {{- end }}
           {{- else if .Values.slave.customLivenessProbe }}
           livenessProbe: {{- toYaml .Values.slave.customLivenessProbe | nindent 12 }}
           {{- end }}
@@ -183,11 +179,7 @@ spec:
               command:
                 - sh
                 - -c
-                {{- if .Values.sentinel.enabled }}
                 - /health/ping_readiness_local.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
-                {{- else }}
-                - /health/ping_readiness_local_and_master.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
-                {{- end }}
           {{- else if .Values.slave.customReadinessProbe }}
           readinessProbe: {{- toYaml .Values.slave.customReadinessProbe | nindent 12 }}
           {{- end }}
@@ -214,7 +206,7 @@ spec:
             - name: redis-certificates
               mountPath: /opt/bitnami/redis/certs
               readOnly: true
-            {{- end }}            
+            {{- end }}
             {{- if .Values.extraVolumeMounts }}
             {{- include "common.tplvalues.render" ( dict "value" .Values.extraVolumeMounts "context" $ ) | nindent 12 }}
             {{- end }}
