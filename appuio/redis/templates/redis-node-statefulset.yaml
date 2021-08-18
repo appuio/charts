@@ -179,7 +179,7 @@ spec:
               command:
                 - sh
                 - -c
-                - /health/ping_readiness_local.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
+                - /health/extended_readiness_local.sh {{ .Values.slave.livenessProbe.timeoutSeconds }}
           {{- else if .Values.slave.customReadinessProbe }}
           readinessProbe: {{- toYaml .Values.slave.customReadinessProbe | nindent 12 }}
           {{- end }}
