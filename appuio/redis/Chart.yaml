@@ -12,7 +12,7 @@ description: Open source, advanced key-value store. It is often referred to as a
   structure server since keys can contain strings, hashes, lists, sets and sorted
   sets.
 home: https://github.com/appuio/charts/tree/master/appuio/redis
-icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+icon: https://github.com/appuio/charts/blob/master/appuio/redis/logo.png
 keywords:
 - redis
 - keyvalue
@@ -24,4 +24,4 @@ name: redis
 sources:
 - https://github.com/bitnami/bitnami-docker-redis
 - http://redis.io/
-version: 13.0.1
+version: 1.0.0
