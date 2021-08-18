@@ -1798,6 +1798,38 @@ entries:
     urls:
     - https://charts.appuio.ch/prometheus-blackbox-exporter-0.1.1.tgz
     version: 0.1.1
+  redis:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.2.1
+    created: "2021-08-18T12:09:49.400998885Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: e17a5235828d17b8b325f82d6eac188087ce14ef352aba10efffb811ac35c457
+    home: https://github.com/appuio/charts/tree/master/appuio/redis
+    icon: https://github.com/appuio/charts/blob/master/appuio/redis/logo.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - https://github.com/appuio/charts/releases/download/redis-1.0.0/redis-1.0.0.tgz
+    version: 1.0.0
   secret:
   - apiVersion: v1
     created: "2021-06-08T09:46:50.803418531Z"
@@ -3285,4 +3317,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-06T16:05:26.739826025Z"
+generated: "2021-08-18T12:09:49.401934591Z"
