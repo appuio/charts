@@ -1838,6 +1838,37 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.1
+    created: "2021-08-27T12:01:14.959924509Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: fc7dffc7b38ca8a64c90bfb9516495ce2101d4c80a6334867a06913c796afd34
+    home: https://github.com/appuio/charts/tree/master/appuio/redis
+    icon: https://github.com/appuio/charts/blob/master/appuio/redis/logo.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - https://github.com/appuio/charts/releases/download/redis-1.1.0/redis-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.2.1
     created: "2021-08-18T12:09:49.400998885Z"
     dependencies:
     - name: common
@@ -3372,4 +3403,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-27T07:46:52.266703317Z"
+generated: "2021-08-27T12:01:14.961092363Z"
