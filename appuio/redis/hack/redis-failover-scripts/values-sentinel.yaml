@@ -1,0 +1,26 @@
+password: Fbma0DPVG7
+cluster:
+  slaveCount: 3
+podDisruptionBudget:
+  enabled: true
+  minAvailable: ""
+  maxUnavailable: 1
+slave:
+  podAnnotations:
+    restart: Wed Aug 18 15:29:07 CEST 2021
+  persistence:
+    size: 16Gi
+  readinessProbe:
+    initialDelaySeconds: 30
+sentinel:
+  enabled: true
+  staticID: true
+  downAfterMilliseconds: 3000
+  failoverTimeout: 5000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 32Mi
+    limits:
+      cpu: 200m
+      memory: 64Mi

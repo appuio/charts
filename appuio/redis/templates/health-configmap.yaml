@@ -9,6 +9,39 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
 data:
+  {{- $files := .Files }}
+  {{- range tuple "node_ready.lua" }}
+  {{ . }}: |- {{ range $files.Lines . }}
+    {{ . }}{{ end }}
+  {{- end }}
+  extended_readiness_local.sh: |-
+    #!/bin/bash
+{{- if .Values.usePasswordFile }}
+    password_aux=`cat ${REDIS_PASSWORD_FILE}`
+    export REDIS_PASSWORD=$password_aux
+{{- end }}
+    export REDISCLI_AUTH="$REDIS_PASSWORD"
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h localhost \
+{{- if .Values.tls.enabled }}
+        -p $REDIS_TLS_PORT \
+        --tls \
+        --cacert {{ template "redis.tlsCACert" . }} \
+        {{- if .Values.tls.authClients }}
+          --cert {{ template "redis.tlsCert" . }} \
+          --key {{ template "redis.tlsCertKey" . }} \
+        {{- end }}
+{{- else }}
+        -p $REDIS_PORT \
+{{- end }}
+        --eval /health/node_ready.lua
+    )
+    if [ "$response" != "ready" ]; then
+      echo "$response"
+      exit 1
+    fi
   ping_readiness_local.sh: |-
     #!/bin/bash
 {{- if .Values.usePasswordFile }}
