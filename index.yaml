@@ -1279,6 +1279,41 @@ entries:
     urls:
     - https://charts.appuio.ch/keycloak-3.1.0.tgz
     version: 3.1.0
+  mariadb-galera:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 10.5.12
+    created: "2021-08-27T07:46:52.265835307Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: MariaDB Galera is a multi-master database cluster solution for synchronous
+      replication and high availability.
+    digest: d286705084511f3eeb541e6c1c35b4769cc1f4b4ca69e79a8763b213a1f5259c
+    home: https://github.com/appuio/charts/tree/master/appuio/mariadb-galera
+    icon: https://raw.githubusercontent.com/appuio/charts/master/appuio/mariadb-galera/icon.png
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    - prometheus
+    - galera
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: mariadb-galera
+    sources:
+    - https://github.com/bitnami/bitnami-docker-mariadb-galera
+    - https://github.com/prometheus/mysqld_exporter
+    - https://mariadb.org
+    urls:
+    - https://github.com/appuio/charts/releases/download/mariadb-galera-1.0.0/mariadb-galera-1.0.0.tgz
+    version: 1.0.0
   maxscale:
   - apiVersion: v1
     appVersion: 2.2.20
@@ -3337,4 +3372,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-19T10:29:46.063590012Z"
+generated: "2021-08-27T07:46:52.266703317Z"
