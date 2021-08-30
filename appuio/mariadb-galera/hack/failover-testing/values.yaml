@@ -1,0 +1,37 @@
+fullnameOverride: mariadb
+extraEnvVars:
+  - name: MARIADB_GALERA_FORCE_SAFETOBOOTSTRAP
+    value: "no"
+startupProbe:
+  enabled: true
+  # Allow up to 20 minutes for DB to initialize
+  failureThreshold: 108
+  initialDelaySeconds: 10
+livenessProbe:
+  initialDelaySeconds: 10
+metrics:
+  enabled: false
+  extraFlags:
+    - --exporter.log_slow_filter
+    - --collect.engine_innodb_status
+  serviceMonitor:
+    enabled: true
+    interval: 10s
+    scrapeTimeout: 3s
+    relabelings:
+      - sourceLabels: [__address__]
+        targetLabel: service_level
+        replacement: standard
+persistence:
+  enabled: true
+podDisruptionBudget:
+  create: true
+  minAvailable: ""
+  maxUnavailable: 1
+rootUser:
+  forcePassword: true
+  password: "G076VpoTDOOFLnEQ0ns"
+galera:
+  mariabackup:
+    password: "G076VpoTDOOFLnEQ0ns"
+    forcePassword: true
