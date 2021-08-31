@@ -1006,3 +1006,8 @@ podDisruptionBudget:
   enabled: false
   minAvailable: 1
   # maxUnavailable: 1
+
+## @param forceUpdate Force update the StatefulSet.
+## If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
+##
+forceUpdate: false
