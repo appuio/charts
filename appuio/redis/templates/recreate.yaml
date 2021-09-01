@@ -1,4 +1,4 @@
-{{- if .Values.forceUpdate }}
+{{- if and .Values.sentinel.enabled .Values.sentinel.forceUpdate }}
 ---
 apiVersion: v1
 kind: ServiceAccount
