@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: sts-deleter
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
   annotations:
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
@@ -12,7 +12,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: sts-deleter-role
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
   annotations:
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
@@ -25,24 +25,24 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: sts-deleter-rolebinding
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
   annotations:
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 roleRef:
   kind: Role
-  name: sts-deleter-role
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
   apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
-    name: sts-deleter
+    name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
     namespace: "{{ .Release.Namespace }}"
 ---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-delete-sts-for-upgrade"
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
   annotations:
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-5"
@@ -53,10 +53,10 @@ spec:
   backoffLimit: 0
   template:
     metadata:
-      name: "{{ .Release.Name }}-delete-sts-for-upgrade"
+      name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
     spec:
       restartPolicy: Never
-      serviceAccountName: sts-deleter
+      serviceAccountName: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
       containers:
         - name: pre-upgrade-delete-sts
           image: "docker.io/bitnami/kubectl"
