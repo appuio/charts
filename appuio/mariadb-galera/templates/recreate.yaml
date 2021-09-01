@@ -5,20 +5,18 @@ kind: ServiceAccount
 metadata:
   name: sts-deleter
   annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: sts-deleter-role
   annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
 rules:
   - apiGroups: ["", "apps"]
     resources: ["statefulsets"]
@@ -29,10 +27,9 @@ kind: RoleBinding
 metadata:
   name: sts-deleter-rolebinding
   annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-6"
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
 roleRef:
   kind: Role
   name: sts-deleter-role
@@ -47,11 +44,10 @@ kind: Job
 metadata:
   name: "{{ .Release.Name }}-delete-sts-for-upgrade"
   annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-weight": "-5"
     "helm.sh/hook-delete-policy": hook-succeeded
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   # Don't retry
   backoffLimit: 0
