@@ -622,9 +622,9 @@ slave:
   # -- Kubernetes Spread Constraints for pod assignment
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
   ##
-  # - maxSkew: 1
-  #   topologyKey: node
-  #   whenUnsatisfiable: DoNotSchedule
+  ## - maxSkew: 1
+  ##   topologyKey: node
+  ##   whenUnsatisfiable: DoNotSchedule
   spreadConstraints: {}
 
   # -- Enable shared process namespace in a pod.
