@@ -102,7 +102,7 @@ Edit the README.gotmpl.md template instead.
 | metrics.serviceMonitor.namespace | string | `""` | Optional namespace which Prometheus is running in |
 | metrics.serviceMonitor.relabelings | list | `[]` | RelabelConfigs to apply to samples before scraping |
 | metrics.serviceMonitor.scrapeTimeout | string | `""` | Timeout after which the scrape is ended |
-| metrics.serviceMonitor.selector | object | `{"prometheus":"kube-prometheus"}` | [object] ServiceMonitor selector labels. Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install. |
+| metrics.serviceMonitor.selector | object | `{"prometheus":"kube-prometheus"}` | ServiceMonitor selector labels. Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install. |
 | nameOverride | string | `""` |  |
 | nodeAffinityPreset.key | string | `""` | Node label key to match. Ignored if `affinity` is set. |
 | nodeAffinityPreset.type | string | `""` | Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard` |
