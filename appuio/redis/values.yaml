@@ -13,16 +13,16 @@ global:
 ## ref: https://hub.docker.com/r/bitnami/redis/tags/
 ##
 image:
+  # -- Redis image registry
   registry: docker.io
+  # -- Redis image repository
   repository: bitnami/redis
-  ## Bitnami Redis(TM) image tag
+  # -- Redis image tag (immutable tags are recommended)
   ## ref: https://github.com/bitnami/bitnami-docker-redis#supported-tags-and-respective-dockerfile-links
-  ##
   tag: 6.2.1-debian-10-r36
-  ## Specify a imagePullPolicy
-  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  # -- Redis image pull policy
+  # Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-  ##
   pullPolicy: IfNotPresent
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
@@ -42,32 +42,32 @@ image:
 ## Cluster settings
 ##
 cluster:
+  # -- Enable clustering
   enabled: true
+  # -- Number of slaves
   slaveCount: 2
 
-## Use redis sentinel in the redis pod. This will disable the master and slave services and
-## create one redis service with ports to the sentinel and the redis instances
-##
 sentinel:
+  # -- Enable sentinel
+  # This will disable the master and slave services and create one redis service with ports to the sentinel and the redis instances
   enabled: false
-  ## Require password authentication on the sentinel itself
+  # -- Require password authentication on the sentinel itself
   ## ref: https://redis.io/topics/sentinel
   ##
   usePassword: true
   ## Bitnami Redis(TM) Sentintel image version
   ## ref: https://hub.docker.com/r/bitnami/redis-sentinel/tags/
-  ##
   image:
+    # -- Sentinel image registry
     registry: docker.io
+    # -- Sentinel image repository
     repository: bitnami/redis-sentinel
-    ## Bitnami Redis(TM) image tag
+    # -- Sentinel image tag
     ## ref: https://github.com/bitnami/bitnami-docker-redis-sentinel#supported-tags-and-respective-dockerfile-links
-    ##
     tag: 6.2.1-debian-10-r35
-    ## Specify a imagePullPolicy
-    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    # -- Sentinel image pull policy
+    # Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-    ##
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -83,20 +83,18 @@ sentinel:
   parallelSyncs: 1
   port: 26379
 
-  ## Delay seconds when cleaning nodes IPs
-  ## When starting it will clean the sentinels IP (RESET "*") in all the nodes
-  ## This is the delay time before sending the command to the next node
+  # -- Delay seconds when cleaning nodes IPs.
+  # When starting it will clean the sentinels IP (RESET "*") in all the nodes.
+  # This is the delay time before sending the command to the next node.
   ##
   cleanDelaySeconds: 5
 
-  ## Additional Redis(TM) configuration for the sentinel nodes
+  # -- Additional Redis(TM) configuration for the sentinel nodes
   ## ref: https://redis.io/topics/config
-  ##
   configmap:
-  ## Enable or disable static sentinel IDs for each replicas
-  ## If disabled each sentinel will generate a random id at startup
-  ## If enabled, each replicas will have a constant ID on each start-up
-  ##
+  # --Enable or disable static sentinel IDs for each replicas.
+  # If disabled each sentinel will generate a random id at startup.
+  # If enabled, each replicas will have a constant ID on each start-up.
   staticID: false
   ## Configure extra options for Redis(TM) Sentinel liveness and readiness probes
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
@@ -126,15 +124,13 @@ sentinel:
   ## Redis(TM) Sentinel Service properties
   ##
   service:
-    ##  Redis(TM) Sentinel Service type
-    ##
+    # --  Redis(TM) Sentinel Service type
     type: ClusterIP
     sentinelPort: 26379
     redisPort: 6379
 
-    ## External traffic policy (when service type is LoadBalancer)
+    # -- External traffic policy (when service type is LoadBalancer)
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-    ##
     externalTrafficPolicy: Cluster
 
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
@@ -143,19 +139,18 @@ sentinel:
     # sentinelNodePort:
     # redisNodePort:
 
-    ## Provide any additional annotations which may be required. This can be used to
-    ## set the LoadBalancer service type to internal only.
+    # -- Provide any additional annotations which may be required. 
+    # This can be used to set the LoadBalancer service type to internal only.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
     ##
     annotations: {}
     labels: {}
     loadBalancerIP:
 
-  ## Additional commands to run prior to starting Redis(TM) node with sentinel
-  ##
+  # -- Additional commands to run prior to starting Redis(TM) node with sentinel
   preExecCmds: ""
 
-  ## An array to add extra env var to the sentinel node configurations
+  # -- An array to add extra env var to the sentinel node configurations
   ## For example:
   ## extraEnvVars:
   ##  - name: name
@@ -167,26 +162,29 @@ sentinel:
   ##
   extraEnvVars: []
 
-  ## ConfigMap with extra env vars:
-  ##
+  # -- ConfigMap with extra env vars:
   extraEnvVarsCM: []
 
-  ## Secret with extra env vars:
-  ##
+  # -- Secret with extra env vars:
   extraEnvVarsSecret: []
 
   ## Prometheus Exporter / Metrics for Redis Sentinel Exporter
   ##
   metrics:
+    # -- Enable Prometheus Exporter / Metrics for Redis Sentinel Exporter
     enabled: false
 
     ## Bitnami Redis Sentinel Exporter image
     ## ref: https://hub.docker.com/r/bitnami/redis-sentinel-exporter/tags/
     ##
     image:
+      # -- Sentinel Exporter image registry
       registry: docker.io
+      # -- Sentinel Exporter image repository
       repository: bitnami/redis-sentinel-exporter
+      # -- Sentinel Exporter image tag
       tag: 1.7.1-debian-10-r109
+      # -- Sentinel Exporter pull policy
       pullPolicy: IfNotPresent
       ## Optionally specify an array of imagePullSecrets.
       ## Secrets must be manually created in the namespace.
@@ -195,7 +193,7 @@ sentinel:
       # pullSecrets:
       #   - myRegistryKeySecretName
 
-    ## Sentinel metrics exporter resource requests and limits
+    # -- Sentinel metrics exporter resource requests and limits
     ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
     ##
     resources:
@@ -210,6 +208,10 @@ sentinel:
       ##
       limits: {}
       requests: {}
+
+    ## -- Force update the StatefulSet.
+    ## If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
+    forceUpdate: false
 
     ## Extra arguments for Sentinel metrics exporter, for example:
     ## extraArgs:
@@ -232,14 +234,13 @@ sentinel:
         prometheus: kube-prometheus
 
     service:
+      # --  Metrics Service type
       type: ClusterIP
 
-      ## Metrics port
-      ##
+      # -- Metrics port
       port: 9355
-      ## External traffic policy (when service type is LoadBalancer)
+      # -- External traffic policy (when service type is LoadBalancer)
       ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-      ##
       externalTrafficPolicy: Cluster
 
       ## Use serviceLoadBalancerIP to request a specific static IP, otherwise leave blank
@@ -248,13 +249,11 @@ sentinel:
       annotations: {}
       labels: {}
 
-## Specifies the Kubernetes Cluster's Domain Name.
-##
+# -- Specifies the Kubernetes Cluster's Domain Name.
 clusterDomain: cluster.local
 
 networkPolicy:
-  ## Specifies whether a NetworkPolicy should be created
-  ##
+  # -- Specifies whether a NetworkPolicy should be created
   enabled: false
 
   ## The Policy model to apply. When set to false, only pods with the correct
@@ -264,43 +263,39 @@ networkPolicy:
   ##
   # allowExternal: true
 
-  ## Allow connections from other namespaces. Just set label for namespace and set label for pods (optional).
-  ##
+  # -- Allow connections from other namespaces. 
+  # Just set label for namespace and set label for pods (optional).
   ingressNSMatchLabels: {}
   ingressNSPodMatchLabels: {}
 
 serviceAccount:
-  ## Specifies whether a ServiceAccount should be created
-  ##
+  # -- Specifies whether a ServiceAccount should be created
   create: false
-  ## The name of the ServiceAccount to use.
-  ## If not set and create is true, a name is generated using the fullname template
-  ##
+  # -- The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
   name:
   ## Add annotations to service account
   # annotations:
   #   iam.gke.io/gcp-service-account: "sa@project.iam.gserviceaccount.com"
 
 rbac:
-  ## Specifies whether RBAC resources should be created
-  ##
+  # -- Specifies whether RBAC resources should be created
   create: false
 
   role:
-    ## Rules to create. It follows the role specification
-    # rules:
-    #  - apiGroups:
-    #    - extensions
-    #    resources:
-    #      - podsecuritypolicies
-    #    verbs:
-    #      - use
-    #    resourceNames:
-    #      - gce.unprivileged
+    # -- Rules to create. It follows the role specification
+    ## rules:
+    ##  - apiGroups:
+    ##    - extensions
+    ##    resources:
+    ##      - podsecuritypolicies
+    ##    verbs:
+    ##      - use
+    ##    resourceNames:
+    ##      - gce.unprivileged
     rules: []
 
-## Redis(TM) pod Security Context
-##
+# -- Redis(TM) pod Security Context
 securityContext:
   enabled: true
   fsGroup: 1001
@@ -312,20 +307,17 @@ securityContext:
   # - name: net.core.somaxconn
   #   value: "10000"
 
-## Container Security Context
+# -- Container Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-##
 containerSecurityContext:
   enabled: true
   runAsUser: 1001
 
-## Use password authentication
-##
+# -- Use password authentication
 usePassword: true
-## Redis(TM) password (both master and slave)
-## Defaults to a random 10-character alphanumeric string if not set and usePassword is true
+# -- Redis(TM) password (both master and slave).
+# Defaults to a random 10-character alphanumeric string if not set and usePassword is true.
 ## ref: https://github.com/bitnami/bitnami-docker-redis#setting-the-server-password-on-first-run
-##
 password: ""
 ## Use existing secret (ignores previous password)
 # existingSecret:
@@ -333,8 +325,7 @@ password: ""
 ##
 # existingSecretPasswordKey:
 
-## Mount secrets as files instead of environment variables
-##
+# -- Mount secrets as files instead of environment variables
 usePasswordFile: false
 
 ## Persist data to a persistent volume (Redis(TM) Master)
@@ -346,29 +337,24 @@ persistence:
   ##
   existingClaim:
 
-# Redis(TM) port
+# -- Redis(TM) port
 redisPort: 6379
 
 ##
 ## TLS configuration
 ##
 tls:
-  # Enable TLS traffic
+  # -- Enable TLS traffic
   enabled: false
-  #
-  # Whether to require clients to authenticate or not.
+  # -- Whether to require clients to authenticate or not.
   authClients: true
-  #
-  # Name of the Secret that contains the certificates
+  # -- Name of the Secret that contains the certificates
   certificatesSecret:
-  #
-  # Certificate filename
+  # -- Certificate filename
   certFilename:
-  #
-  # Certificate Key filename
+  # -- Certificate Key filename
   certKeyFilename:
-  #
-  # CA Certificate filename
+  # -- CA Certificate filename
   certCAFilename:
   #
   # File containing DH params (in order to support DH based ciphers)
@@ -378,24 +364,20 @@ tls:
 ## Redis(TM) Master parameters
 ##
 master:
-  ## Redis(TM) command arguments
+  # -- Redis(TM) command arguments
   ##
   ## Can be used to specify command line arguments, for example:
   ## Note `exec` is prepended to command
-  ##
   command: "/run.sh"
-  ## Additional commands to run prior to starting Redis(TM)
-  ##
+  # -- Additional commands to run prior to starting Redis(TM)
   preExecCmds: ""
-  ## Additional Redis(TM) configuration for the master nodes
+  # -- Additional Redis(TM) configuration for the master nodes
   ## ref: https://redis.io/topics/config
-  ##
   configmap:
-  ## Deployment pod host aliases
+  # -- Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
-  ##
   hostAliases: []
-  ## Redis(TM) additional command line flags
+  # -- Redis(TM) additional command line flags
   ##
   ## Can be used to specify command line flags, for example:
   ## extraFlags:
@@ -403,7 +385,7 @@ master:
   ##  - "--repl-backlog-size 1024mb"
   ##
   extraFlags: []
-  ## Comma-separated list of Redis(TM) commands to disable
+  # -- Comma-separated list of Redis(TM) commands to disable
   ##
   ## Can be used to disable Redis(TM) commands for security reasons.
   ## Commands will be completely disabled by renaming each to an empty string.
@@ -413,10 +395,11 @@ master:
     - FLUSHDB
     - FLUSHALL
 
-  ## Redis(TM) Master additional pod labels and annotations
+  # -- Redis(TM) Master additional pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
   ##
   podLabels: {}
+  # -- Redis(TM) Master additional pod annotations
   podAnnotations: {}
 
   ## Redis(TM) Master resource requests and limits
@@ -430,16 +413,15 @@ master:
   ##
   # schedulerName:
 
-  # Enable shared process namespace in a pod.
+  # -- Enable shared process namespace in a pod.
   # If set to false (default), each container will run in separate namespace, redis will have PID=1.
-  # If set to true, the /pause will run as init process and will reap any zombie PIDs,
-  # for example, generated by a custom exec probe running longer than a probe timeoutSeconds.
-  # Enable this only if customLivenessProbe or customReadinessProbe is used and zombie PIDs are accumulating.
-  # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
+  # If set to true, the /pause will run as init process and will reap any zombie PIDs.
+  ## for example, generated by a custom exec probe running longer than a probe timeoutSeconds.
+  ## Enable this only if customLivenessProbe or customReadinessProbe is used and zombie PIDs are accumulating.
+  ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
   shareProcessNamespace: false
-  ## Configure extra options for Redis(TM) Master liveness and readiness probes
+  ## Configure extra options for Redis(TM) Master liveness
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
-  ##
   livenessProbe:
     enabled: true
     initialDelaySeconds: 5
@@ -447,6 +429,7 @@ master:
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
+  ## Configure extra options for Redis(TM) Master readiness probes
   readinessProbe:
     enabled: true
     initialDelaySeconds: 5
@@ -483,21 +466,19 @@ master:
   ##
   # nodeSelector: {"beta.kubernetes.io/arch": "amd64"}
   # tolerations: []
-  ## Redis(TM) Master pod/node affinity/anti-affinity
-  ##
+  # -- Redis(TM) Master pod/node affinity/anti-affinity
   affinity: {}
 
   ## Redis(TM) Master Service properties
   ##
   service:
-    ##  Redis(TM) Master Service type
-    ##
+    # --  Redis(TM) Master Service type
     type: ClusterIP
+    # --  Redis(TM) Master Service port
     port: 6379
 
-    ## External traffic policy (when service type is LoadBalancer)
+    # -- External traffic policy (when service type is LoadBalancer)
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-    ##
     externalTrafficPolicy: Cluster
 
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
@@ -505,11 +486,13 @@ master:
     ##
     # nodePort:
 
-    ## Provide any additional annotations which may be required. This can be used to
+    # -- Provide any additional annotations
+    ## This can be used to
     ## set the LoadBalancer service type to internal only.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
     ##
     annotations: {}
+    # -- Provide any additional labels
     labels: {}
     loadBalancerIP:
     # loadBalancerSourceRanges: ["10.0.0.0/8"]
@@ -518,14 +501,12 @@ master:
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   ##
   persistence:
+    # -- Enable persistence using Persistent Volume Claims
     enabled: true
-    ## The path the volume will be mounted at, useful when using different
-    ## Redis(TM) images.
-    ##
+    # -- The path the volume will be mounted at, useful when using different Redis(TM) images.
     path: /data
-    ## The subdirectory of the volume to mount to, useful in dev environments
-    ## and one PV for multiple services.
-    ##
+    # -- The subdirectory of the volume to mount to.
+    ## Useful in dev environments and one PV for multiple services.
     subPath: ""
     ## redis data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -538,9 +519,8 @@ master:
     accessModes:
       - ReadWriteOnce
     size: 8Gi
-    ## Persistent Volume selectors
+    # -- Persistent Volume selectors
     ## https://kubernetes.io/docs/concepts/storage/persistent-volumes/#selector
-    ##
     matchLabels: {}
     matchExpressions: {}
     volumes:
@@ -561,11 +541,10 @@ master:
       labels: {}
       annotations: {}
 
-  ## Redis(TM) Master pod priorityClassName
-  ##
+  # -- Redis(TM) Master pod priorityClassName
   priorityClassName: null
 
-  ## An array to add extra env vars
+  # -- An array to add extra env vars
   ## For example:
   ## extraEnvVars:
   ##  - name: name
@@ -577,11 +556,11 @@ master:
   ##
   extraEnvVars: []
 
-  ## ConfigMap with extra env vars:
+  # -- ConfigMap with extra env vars:
   ##
   extraEnvVarsCM: []
 
-  ## Secret with extra env vars:
+  # -- Secret with extra env vars:
   ##
   extraEnvVarsSecret: []
 
@@ -594,14 +573,12 @@ slave:
   ## Slave Service properties
   ##
   service:
-    ## Redis(TM) Slave Service type
-    ##
+    # -- Redis(TM) Slave Service type
     type: ClusterIP
-    ## Redis(TM) port
-    ##
+    # -- Redis(TM) port
     port: 6379
 
-    ## External traffic policy (when service type is LoadBalancer)
+    # -- External traffic policy (when service type is LoadBalancer)
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     ##
     externalTrafficPolicy: Cluster
@@ -611,62 +588,53 @@ slave:
     ##
     # nodePort:
 
-    ## Provide any additional annotations which may be required. This can be used to
-    ## set the LoadBalancer service type to internal only.
+    # -- Provide any additional annotations which may be required. 
+    ## This can be used to set the LoadBalancer service type to internal only.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-    ##
     annotations: {}
     labels: {}
     loadBalancerIP:
     # loadBalancerSourceRanges: ["10.0.0.0/8"]
 
-  ## Redis(TM) slave port
-  ##
+  # -- Redis(TM) slave port
   port: 6379
-  ## Deployment pod host aliases
+  # -- Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
-  ##
   hostAliases: []
-  ## Can be used to specify command line arguments, for example:
+  # -- Can be used to specify command line arguments
   ## Note `exec` is prepended to command
-  ##
   command: "/run.sh"
-  ## Additional commands to run prior to starting Redis(TM)
-  ##
+  # -- Additional commands to run prior to starting Redis(TM)
   preExecCmds: ""
-  ## Additional Redis(TM) configuration for the slave nodes
+  # -- Additional Redis(TM) configuration for the slave nodes
   ## ref: https://redis.io/topics/config
-  ##
   configmap:
-  ## Redis(TM) extra flags
-  ##
+  # -- Redis(TM) extra flags
   extraFlags: []
-  ## List of Redis(TM) commands to disable
-  ##
+  # -- List of Redis(TM) commands to disable
   disableCommands:
     - FLUSHDB
     - FLUSHALL
 
-  ## Redis(TM) Slave pod/node affinity/anti-affinity
-  ##
+  # -- Redis(TM) Slave pod/node affinity/anti-affinity
   affinity: {}
 
-  ## Kubernetes Spread Constraints for pod assignment
+  # -- Kubernetes Spread Constraints for pod assignment
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
   ##
-  # - maxSkew: 1
-  #   topologyKey: node
-  #   whenUnsatisfiable: DoNotSchedule
+  ## - maxSkew: 1
+  ##   topologyKey: node
+  ##   whenUnsatisfiable: DoNotSchedule
   spreadConstraints: {}
 
-  # Enable shared process namespace in a pod.
-  # If set to false (default), each container will run in separate namespace, redis will have PID=1.
-  # If set to true, the /pause will run as init process and will reap any zombie PIDs,
-  # for example, generated by a custom exec probe running longer than a probe timeoutSeconds.
-  # Enable this only if customLivenessProbe or customReadinessProbe is used and zombie PIDs are accumulating.
-  # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
+  # -- Enable shared process namespace in a pod.
+  ## If set to false (default), each container will run in separate namespace, redis will have PID=1.
+  ## If set to true, the /pause will run as init process and will reap any zombie PIDs,
+  ## for example, generated by a custom exec probe running longer than a probe timeoutSeconds.
+  ## Enable this only if customLivenessProbe or customReadinessProbe is used and zombie PIDs are accumulating.
+  ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
   shareProcessNamespace: false
-  ## Configure extra options for Redis(TM) Slave liveness and readiness probes
+  ## Configure extra options for Redis(TM) Slave liveness probes
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
   ##
   livenessProbe:
@@ -676,6 +644,7 @@ slave:
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
+  ## Configure extra options for Redis(TM) Slave readiness probes
   readinessProbe:
     enabled: true
     initialDelaySeconds: 5
@@ -721,26 +690,24 @@ slave:
   ##
   # schedulerName:
 
-  ## Redis(TM) slave pod Annotation and Labels
-  ##
+  # -- Redis(TM) slave pod Labels
   podLabels: {}
+  # -- Redis(TM) slave pod Annotations
   podAnnotations: {}
 
-  ## Redis(TM) slave pod priorityClassName
+  # -- Redis(TM) slave pod priorityClassName
   priorityClassName: null
 
-  ## Enable persistence using Persistent Volume Claims
-  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-  ##
+  
   persistence:
+    # -- Enable persistence using Persistent Volume Claims
+    ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
     enabled: true
-    ## The path the volume will be mounted at, useful when using different
-    ## Redis(TM) images.
-    ##
+    # -- The path the volume will be mounted at.
+    ## Useful when using different Redis(TM) images.
     path: /data
-    ## The subdirectory of the volume to mount to, useful in dev environments
-    ## and one PV for multiple services.
-    ##
+    # -- The subdirectory of the volume to mount to
+    ## Useful in dev environments and one PV for multiple services.
     subPath: ""
     ## redis data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -773,7 +740,7 @@ slave:
       labels: {}
       annotations: {}
 
-  ## An array to add extra env vars
+  # -- An array to add extra env vars
   ## For example:
   ## extraEnvVars:
   ##  - name: name
@@ -785,23 +752,28 @@ slave:
   ##
   extraEnvVars: []
 
-  ## ConfigMap with extra env vars:
+  # -- ConfigMap with extra env vars:
   ##
   extraEnvVarsCM: []
 
-  ## Secret with extra env vars:
+  # -- Secret with extra env vars:
   ##
   extraEnvVarsSecret: []
 
 ## Prometheus Exporter / Metrics
 ##
 metrics:
+  # -- Enable Prometheus Exporter 
   enabled: false
 
   image:
+    # -- Exporter image registry
     registry: docker.io
+    # -- Exporter image repository
     repository: bitnami/redis-exporter
+    # --  Exporter image tag
     tag: 1.20.0-debian-10-r16
+    # --  Exporter pull policy
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -810,8 +782,8 @@ metrics:
     # pullSecrets:
     #   - myRegistryKeySecretName
 
-  # A way to specify an alternative redis hostname, if you set a local endpoint in hostAliases for example
-  # Useful for certificate CN/SAN matching
+  # -- A way to specify an alternative redis hostname
+  ## if you set a local endpoint in hostAliases for example Useful for certificate CN/SAN matching
   redisTargetHost: "localhost"
 
   ## Metrics exporter resource requests and limits
@@ -824,8 +796,7 @@ metrics:
   ##   check-keys: myKey,myOtherKey
   # extraArgs: {}
 
-  ## Metrics exporter pod Annotation and Labels
-  ##
+  # -- Metrics exporter pod Annotation
   podAnnotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "9121"
@@ -908,14 +879,13 @@ metrics:
     #          Redis(TM) instance {{ "{{ $labels.instance }}" }} has evicted {{ "{{ $value }}" }} keys in the last 5 minutes.
     rules: []
 
-  ## Metrics exporter pod priorityClassName
+  # -- Metrics exporter pod priorityClassName
   priorityClassName: null
   service:
     type: ClusterIP
 
-    ## External traffic policy (when service type is LoadBalancer)
+    # -- External traffic policy (when service type is LoadBalancer)
     ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-    ##
     externalTrafficPolicy: Cluster
 
     ## Use serviceLoadBalancerIP to request a specific static IP,
@@ -959,7 +929,7 @@ volumePermissions:
   securityContext:
     runAsUser: 0
 
-## Redis(TM) config file
+# -- Redis(TM) config file
 ## ref: https://redis.io/topics/config
 ##
 configmap: |-
@@ -995,14 +965,13 @@ sysctlImage:
 ## ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/
 ##
 podSecurityPolicy:
-  ## Specifies whether a PodSecurityPolicy should be created
-  ##
+  # -- Specifies whether a PodSecurityPolicy should be created
   create: false
 
 ## Define a disruption budget
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
-##
 podDisruptionBudget:
+  # -- Create a disruption budget
   enabled: false
   minAvailable: 1
   # maxUnavailable: 1
