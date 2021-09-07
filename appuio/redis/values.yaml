@@ -83,6 +83,11 @@ sentinel:
   parallelSyncs: 1
   port: 26379
 
+
+  ## -- Force update the StatefulSet.
+  ## If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
+  forceUpdate: false
+
   # -- Delay seconds when cleaning nodes IPs.
   # When starting it will clean the sentinels IP (RESET "*") in all the nodes.
   # This is the delay time before sending the command to the next node.
@@ -209,9 +214,6 @@ sentinel:
       limits: {}
       requests: {}
 
-    ## -- Force update the StatefulSet.
-    ## If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
-    forceUpdate: false
 
     ## Extra arguments for Sentinel metrics exporter, for example:
     ## extraArgs:

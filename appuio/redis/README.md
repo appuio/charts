@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -122,6 +122,7 @@ Edit the README.gotmpl.md template instead.
 | sentinel.extraEnvVarsCM | list | `[]` | ConfigMap with extra env vars: |
 | sentinel.extraEnvVarsSecret | list | `[]` | Secret with extra env vars: |
 | sentinel.failoverTimeout | int | `18000` |  |
+| sentinel.forceUpdate | bool | `false` |  |
 | sentinel.image.pullPolicy | string | `"IfNotPresent"` | Sentinel image pull policy Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent' |
 | sentinel.image.registry | string | `"docker.io"` | Sentinel image registry |
 | sentinel.image.repository | string | `"bitnami/redis-sentinel"` | Sentinel image repository |
@@ -135,7 +136,6 @@ Edit the README.gotmpl.md template instead.
 | sentinel.livenessProbe.timeoutSeconds | int | `5` |  |
 | sentinel.masterSet | string | `"mymaster"` |  |
 | sentinel.metrics.enabled | bool | `false` | Enable Prometheus Exporter / Metrics for Redis Sentinel Exporter |
-| sentinel.metrics.forceUpdate | bool | `false` |  |
 | sentinel.metrics.image.pullPolicy | string | `"IfNotPresent"` | Sentinel Exporter pull policy |
 | sentinel.metrics.image.registry | string | `"docker.io"` | Sentinel Exporter image registry |
 | sentinel.metrics.image.repository | string | `"bitnami/redis-sentinel-exporter"` | Sentinel Exporter image repository |
