@@ -44,7 +44,7 @@ Edit the README.gotmpl.md template instead.
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
 | forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. |
-| forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to contain kubectl. |
+| forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to have `kubectl` in its `$PATH` |
 | fullnameOverride | string | `""` | String to fully override common.names.fullname template with a string |
 | galera.bootstrap.bootstrapFromNode | string | `""` | Node to bootstrap from, you will need to change this parameter in case you want to bootstrap from other node |
 | galera.bootstrap.forceSafeToBootstrap | bool | `false` | Force `safe_to_bootstrap: 1` in `grastate.date` file. This will set safe_to_bootstrap=1 in the node indicated by bootstrapFromNode. |
