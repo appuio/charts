@@ -123,7 +123,7 @@ Edit the README.gotmpl.md template instead.
 | sentinel.extraEnvVarsSecret | list | `[]` | Secret with extra env vars: |
 | sentinel.failoverTimeout | int | `18000` |  |
 | sentinel.forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. |
-| sentinel.forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to contain kubectl. |
+| sentinel.forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to contain `kubectl` in its `$PATH`. |
 | sentinel.image.pullPolicy | string | `"IfNotPresent"` | Sentinel image pull policy Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent' |
 | sentinel.image.registry | string | `"docker.io"` | Sentinel image registry |
 | sentinel.image.repository | string | `"bitnami/redis-sentinel"` | Sentinel image repository |
