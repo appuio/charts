@@ -84,9 +84,11 @@ sentinel:
   port: 26379
 
 
-  ## -- Force update the StatefulSet.
-  ## If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
+  # -- Force update the StatefulSet.
+  # If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
   forceUpdate: false
+  # -- Image used to recreate the StatefulSet. Needs to contain kubectl.
+  forceUpdateKubectlImage: "quay.io/bitnami/kubectl"
 
   # -- Delay seconds when cleaning nodes IPs.
   # When starting it will clean the sentinels IP (RESET "*") in all the nodes.
