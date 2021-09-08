@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -122,7 +122,8 @@ Edit the README.gotmpl.md template instead.
 | sentinel.extraEnvVarsCM | list | `[]` | ConfigMap with extra env vars: |
 | sentinel.extraEnvVarsSecret | list | `[]` | Secret with extra env vars: |
 | sentinel.failoverTimeout | int | `18000` |  |
-| sentinel.forceUpdate | bool | `false` |  |
+| sentinel.forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. |
+| sentinel.forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to contain `kubectl` in its `$PATH`. |
 | sentinel.image.pullPolicy | string | `"IfNotPresent"` | Sentinel image pull policy Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent' |
 | sentinel.image.registry | string | `"docker.io"` | Sentinel image registry |
 | sentinel.image.repository | string | `"bitnami/redis-sentinel"` | Sentinel image repository |
