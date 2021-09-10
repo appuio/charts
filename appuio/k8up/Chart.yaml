@@ -6,11 +6,10 @@ keywords:
   - backup
   - operator
   - restic
-version: 1.1.0
-appVersion: v1.2.0
+version: 1.2.0
+appVersion: v2.0.0
 sources:
   - https://github.com/vshn/k8up
-  - https://github.com/vshn/wrestic
 maintainers:
   - name: APPUiO Team
     email: info@appuio.ch
