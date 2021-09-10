@@ -10,7 +10,7 @@ image:
   # -- Operator image repository
   repository: vshn/k8up
   # -- Operator image tag (version)
-  tag: v1.2.0
+  tag: v2.0.0
 
 imagePullSecrets: []
 serviceAccount:
@@ -33,9 +33,9 @@ k8up:
 
   backupImage:
     # -- The backup runner image repository
-    repository: quay.io/vshn/wrestic
+    repository: quay.io/vshn/k8up
     # -- The backup runner image tag
-    tag: v0.3.2
+    tag: v2.0.0
 
   # -- Specifies the timezone K8up is using for scheduling.
   # Empty value defaults to the timezone in which Kubernetes is deployed.
