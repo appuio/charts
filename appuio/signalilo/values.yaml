@@ -48,6 +48,12 @@ config:
 # - name: SIGNALILO_ICINGA_KEEP_FOR
 #   value: "168h"
 
+# Extra volumes for the Signalilo deployment. Optional.
+extraVolumes: []
+
+# Extra volumeMounts for the Signalilo deployment. Optional.
+extraVolumeMounts: []
+
 securityContext:
   enabled: false
   runAsUser: 999
