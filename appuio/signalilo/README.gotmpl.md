@@ -28,6 +28,8 @@ Parameter | Description | Default
 `config.alertmanager_bearer_token_secret` | Pre-existing secret for bearer token for incoming webhooks (the secret is expected to have a key `alertmanager_bearer_token`) |
 `config.alertmanager_port` | Port for incoming webhooks from Alertmanager | `8888`
 `extraEnvVars` | Extra Signalilo configuration (see values.yaml for optional configuration values, and their defaults) | `[]`
+`extraVolumes` | Extra Signalilo extra volumes | `[]`
+`extraVolumeMounts` | Extra Signalilo extra volume mounts | `[]`
 `securityContext.enabled` | Enable security context for the pod | `false`
 `securityContext.runAsUser` | User to run the pod as | `999`
 `securityContext.fsGroup` | fs group to use for the pod | `999`

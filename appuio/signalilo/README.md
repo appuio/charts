@@ -1,6 +1,6 @@
 # signalilo
 
-![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
 
 Alertmanager to Icinga2 bridge
 
@@ -42,6 +42,8 @@ Parameter | Description | Default
 `config.alertmanager_bearer_token_secret` | Pre-existing secret for bearer token for incoming webhooks (the secret is expected to have a key `alertmanager_bearer_token`) |
 `config.alertmanager_port` | Port for incoming webhooks from Alertmanager | `8888`
 `extraEnvVars` | Extra Signalilo configuration (see values.yaml for optional configuration values, and their defaults) | `[]`
+`extraVolumes` | Extra Signalilo extra volumes | `[]`
+`extraVolumeMounts` | Extra Signalilo extra volume mounts | `[]`
 `securityContext.enabled` | Enable security context for the pod | `false`
 `securityContext.runAsUser` | User to run the pod as | `999`
 `securityContext.fsGroup` | fs group to use for the pod | `999`
