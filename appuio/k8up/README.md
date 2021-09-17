@@ -14,9 +14,9 @@ helm install k8up appuio/k8up
 ```
 ```bash
 # Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v2.0.0/k8up-crd.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.0.0/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v2.0.0/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.0.0/k8up-crd-legacy.yaml
 ```
 
 <!---
@@ -32,7 +32,7 @@ Edit the README.gotmpl.md template instead.
 
 ## Source Code
 
-* <https://github.com/vshn/k8up>
+* <https://github.com/k8up-io/k8up>
 
 <!---
 The values below are generated with helm-docs!
@@ -45,11 +45,11 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
-| image.registry | string | `"quay.io"` | Operator image registry |
-| image.repository | string | `"vshn/k8up"` | Operator image repository |
+| image.registry | string | `"ghcr.io"` | Operator image registry |
+| image.repository | string | `"k8up-io/k8up"` | Operator image repository |
 | image.tag | string | `"v2.0.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
-| k8up.backupImage.repository | string | `"quay.io/vshn/k8up"` | The backup runner image repository |
+| k8up.backupImage.repository | string | `"ghcr.io/k8up-io/k8up"` | The backup runner image repository |
 | k8up.backupImage.tag | string | `"v2.0.0"` | The backup runner image tag |
 | k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |

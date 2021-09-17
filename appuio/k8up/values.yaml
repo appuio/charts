@@ -6,9 +6,9 @@ image:
   # -- Operator image pull policy
   pullPolicy: IfNotPresent
   # -- Operator image registry
-  registry: quay.io
+  registry: ghcr.io
   # -- Operator image repository
-  repository: vshn/k8up
+  repository: k8up-io/k8up
   # -- Operator image tag (version)
   tag: v2.0.0
 
@@ -33,7 +33,7 @@ k8up:
 
   backupImage:
     # -- The backup runner image repository
-    repository: quay.io/vshn/k8up
+    repository: ghcr.io/k8up-io/k8up
     # -- The backup runner image tag
     tag: v2.0.0
 

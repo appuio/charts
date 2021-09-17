@@ -1,8 +1,8 @@
 ```bash
 # Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd.yaml
 # Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd-legacy.yaml
 ```
 
 <!---
