@@ -72,7 +72,7 @@ spec:
           volumeMounts:
           {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
           {{- end }}
-      {{- with .Values.extraVolumes }}
+      {{- if .Values.extraVolumes }}
       volumes:
         {{- toYaml .Values.extraVolumes | nindent 8 }}
       {{- end }}
