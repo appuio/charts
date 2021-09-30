@@ -65,8 +65,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  # Don't retry
-  backoffLimit: 0
+  backoffLimit: 3
   template:
     metadata:
       name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
