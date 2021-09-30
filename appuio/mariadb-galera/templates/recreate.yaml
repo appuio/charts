@@ -20,7 +20,7 @@ metadata:
 rules:
   - apiGroups: ["", "apps"]
     resources: ["statefulsets"]
-    verbs: ["delete"]
+    verbs: ["delete", "get", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -49,8 +49,7 @@ metadata:
     "helm.sh/hook-delete-policy": hook-succeeded
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 spec:
-  # Don't retry
-  backoffLimit: 0
+  backoffLimit: 3
   template:
     metadata:
       name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
@@ -60,13 +59,13 @@ spec:
       containers:
         - name: pre-upgrade-delete-sts
           image: {{ .Values.forceUpdateKubectlImage }}
-          command:
-            - "kubectl"
-            - "-n"
-            - "{{ .Release.Namespace }}"
-            - "delete"
-            - "sts"
-            - '{{ printf "%s" (include "common.names.fullname" .) }}'
-            - "--cascade=orphan"
-            - "--ignore-not-found"
+          command: [ "/bin/bash", "/scripts/delete.sh" ]
+          volumeMounts:
+            - name: scripts
+              mountPath: /scripts/
+      volumes:
+        - name: scripts
+          configMap:
+            name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
+            defaultMode: 0755
 {{- end }}

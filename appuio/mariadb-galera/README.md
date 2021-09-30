@@ -1,6 +1,6 @@
 # mariadb-galera
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
 
 MariaDB Galera is a multi-master database cluster solution for synchronous replication and high availability.
 
@@ -43,8 +43,8 @@ Edit the README.gotmpl.md template instead.
 | extraInitContainers | list | `[]` | Additional init containers (this value is evaluated as a template) |
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
-| forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. |
-| forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to have `kubectl` in its `$PATH` |
+| forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. Currently only changes to PVC size are supported. |
+| forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to have `kubectl` and `jq` in its `$PATH` |
 | fullnameOverride | string | `""` | String to fully override common.names.fullname template with a string |
 | galera.bootstrap.bootstrapFromNode | string | `""` | Node to bootstrap from, you will need to change this parameter in case you want to bootstrap from other node |
 | galera.bootstrap.forceSafeToBootstrap | bool | `false` | Force `safe_to_bootstrap: 1` in `grastate.date` file. This will set safe_to_bootstrap=1 in the node indicated by bootstrapFromNode. |
