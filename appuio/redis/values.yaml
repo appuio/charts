@@ -86,8 +86,9 @@ sentinel:
 
   # -- Force update the StatefulSet.
   # If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size.
+  # Currently only supports changes in PVC size.
   forceUpdate: false
-  # -- Image used to recreate the StatefulSet. Needs to contain `kubectl` in its `$PATH`.
+  # -- Image used to recreate the StatefulSet. Needs to have `kubectl` and `jq` in its `$PATH`.
   forceUpdateKubectlImage: "quay.io/bitnami/kubectl"
 
   # -- Delay seconds when cleaning nodes IPs.

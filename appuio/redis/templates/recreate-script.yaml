@@ -1,0 +1,35 @@
+{{- if and .Values.sentinel.enabled .Values.sentinel.forceUpdate }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-sts-deleter" (include "common.names.fullname" .) }}
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "-6"
+  labels:
+    app: {{ template "redis.name" . }}
+    chart: {{ template "redis.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  delete.sh: |
+    #!/bin/bash
+
+    NAME="{{ printf "%s-node" (include "common.names.fullname" .) }}"
+    NAMEPACE="{{ .Release.Namespace }}"
+
+    # Check if delete is necessary
+    FOUND=$(kubectl -n $NAMEPACE get sts $NAME -o json)
+
+    SIZE="{{ .Values.slave.persistence.size }}"
+    FOUNDSIZE=$(echo -En $FOUND | jq -r '.spec.volumeClaimTemplates[] | select(.metadata.name=="redis-data") | .spec.resources.requests.storage')
+
+    if [[ $FOUNDSIZE != $SIZE ]]; then
+      kubectl -n $NAMEPACE delete sts $NAME --cascade=orphan --ignore-not-found --wait=true 
+      # There is a consistency issue. It seems that it is not guaranteed that the helm controller sees the deletion before noticing the job completion.
+      # It is generally hard to find clear consistency guarantees of the Kubernetes API server.
+      # My hope is that an additional read forces the delete to be committed.
+      while kubectl -n $NAMEPACE get sts $NAME; do sleep 1; done
+      sleep 2 # Let's wait a bit to reduce the race condition likelihood if I'm wrong.
+    fi
+{{- end }}
