@@ -43,7 +43,7 @@ metadata:
   name: {{ include "k8up.fullname" . }}-k8up-edit
 rules:
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - '*'
   verbs:
@@ -64,7 +64,7 @@ metadata:
   name: {{ include "k8up.fullname" . }}-k8up-view
 rules:
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - '*'
   verbs:
@@ -93,7 +93,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - archives
   verbs:
@@ -105,7 +105,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - archives/finalizers
   - archives/status
@@ -114,7 +114,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - backups
   verbs:
@@ -126,7 +126,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - backups/finalizers
   - backups/status
@@ -135,7 +135,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - checks
   verbs:
@@ -147,7 +147,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - checks/finalizers
   - checks/status
@@ -156,7 +156,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - effectiveschedules
   verbs:
@@ -168,13 +168,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - effectiveschedules/finalizers
   verbs:
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - prebackuppods
   verbs:
@@ -186,7 +186,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - prebackuppods/finalizers
   - prebackuppods/status
@@ -195,7 +195,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - prunes
   verbs:
@@ -207,7 +207,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - prunes/finalizers
   - prunes/status
@@ -216,7 +216,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - restores
   verbs:
@@ -228,7 +228,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - restores/finalizers
   - restores/status
@@ -237,7 +237,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - schedules
   verbs:
@@ -249,7 +249,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - backup.appuio.ch
+  - k8up.io
   resources:
   - schedules/finalizers
   - schedules/status
