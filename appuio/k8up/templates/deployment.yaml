@@ -24,6 +24,7 @@ spec:
         - name: k8up-operator
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: operator
           env:
           {{- with .Values.k8up.backupImage }}
             - name: BACKUP_IMAGE
