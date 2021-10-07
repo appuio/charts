@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: vshn/signalilo
-  tag: v0.8.0
+  tag: v0.10.0
   pullPolicy: IfNotPresent
   # username:
   # password:
