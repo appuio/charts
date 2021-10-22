@@ -1,7 +1,7 @@
 image:
   registry: docker.io
   repository: vshn/stardog-userrole-operator
-  tag: 0.0.2
+  tag: v0.1.1
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -25,6 +25,11 @@ config:
   clusterAccess:
     # -- Enable cluster access to operator
     enabled: true
+  env:
+    # -- Reconciliation frequency of CRD
+    RECONCILIATION_FREQUENCY: "30s"
+    # -- Reconciliation frequency of CRD on error
+    RECONCILIATION_FREQUENCY_ON_ERROR: "5m"
 
 resources:
   limits:
