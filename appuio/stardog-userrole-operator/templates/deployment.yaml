@@ -29,7 +29,14 @@ spec:
             - --metrics-addr=127.0.0.1:8080
             {{- if .Values.leaderElection.enabled -}}
             - --enable-leader-election
+            {{- end -}}
+          {{- with .Values.config.env }}
+          env:
+            {{- range $key, $value := . }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
             {{- end }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           ports:
