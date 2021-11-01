@@ -30,3 +30,7 @@ data:
     metrics.reporter=jmx
     metrics.jmx.remote.access=true
     {{- end }}
+
+    {{- if .Values.spillinghack.enabled }}
+    dbms.spilling.max.file.length=0
+    {{- end }}
