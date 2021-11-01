@@ -1,8 +1,5 @@
 ```bash
-# Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd.yaml
-# Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/{{ template "chart.appVersion" . }}/k8up-crd.yaml
 ```
 
 <!---
@@ -34,3 +31,11 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 * `replicaCount` is now configurable, defaults to `1`.
 * Note: Deployment strategy type has changed from `Recreate` to `RollingUpdate`.
 * CRDs need to be installed separately, they are no longer included in this chart.
+
+## Upgrading from Charts 1.x to 2.x
+
+* Note: `image.repository` changed from `vshn/k8up` to `k8up-io/k8up`.
+* Note: `image.registry` changed from `quay.io` to `ghcr.io`.
+* Note: `image.tag` changed from `v1.x` to `v2.x`. Please see the [full changelog](https://github.com/k8up-io/k8up/releases/tag/v2.0.0).
+* `metrics.prometheusRule.legacyRules` has been removed (no support for OpenShift 3.11 anymore).
+* Note: `k8up.backupImage.repository` changed from `quay.io/vshn/wrestic` to `ghcr.io/k8up-io/k8up` (`wrestic` is not needed anymore in K8up v2).

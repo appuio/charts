@@ -6,11 +6,11 @@ image:
   # -- Operator image pull policy
   pullPolicy: IfNotPresent
   # -- Operator image registry
-  registry: quay.io
+  registry: ghcr.io
   # -- Operator image repository
-  repository: vshn/k8up
+  repository: k8up-io/k8up
   # -- Operator image tag (version)
-  tag: v1.2.0
+  tag: v2.0.0
 
 imagePullSecrets: []
 serviceAccount:
@@ -33,9 +33,9 @@ k8up:
 
   backupImage:
     # -- The backup runner image repository
-    repository: quay.io/vshn/wrestic
+    repository: ghcr.io/k8up-io/k8up
     # -- The backup runner image tag
-    tag: v0.3.2
+    tag: v2.0.0
 
   # -- Specifies the timezone K8up is using for scheduling.
   # Empty value defaults to the timezone in which Kubernetes is deployed.
@@ -43,7 +43,6 @@ k8up:
   timezone: ""
 
   # -- Specifies whether leader election should be enabled.
-  # Disable this for K8s versions < 1.16
   enableLeaderElection: true
 
   # -- Specifies the namespace in which K8up's `EffectiveSchedules` are stored.
@@ -101,9 +100,6 @@ metrics:
     additionalLabels: {}
     # -- Whether the default rules should be installed
     createDefaultRules: true
-    # -- Create default rules for kube-state-metrics < v1.5.0
-    # Needed for OpenShift 3.x
-    legacyRules: false
     # -- Create default rules for the given job types.
     # Valid values are "archive", "backup", "check", "prune", and "restore".
     jobFailedRulesFor: ["archive", "backup", "check", "prune", "restore"]

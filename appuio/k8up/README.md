@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v1.2.0](https://img.shields.io/badge/AppVersion-v1.2.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v2.0.0](https://img.shields.io/badge/AppVersion-v2.0.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -13,10 +13,7 @@ helm repo add appuio https://charts.appuio.ch
 helm install k8up appuio/k8up
 ```
 ```bash
-# Install CRDs for K8s >= 1.16:
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.2.0/k8up-crd.yaml
-# Install CRDs for K8s <= 1.15 (e.g. OpenShift 3.11):
-kubectl apply -f https://github.com/vshn/k8up/releases/download/v1.2.0/k8up-crd-legacy.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.0.0/k8up-crd.yaml
 ```
 
 <!---
@@ -32,8 +29,7 @@ Edit the README.gotmpl.md template instead.
 
 ## Source Code
 
-* <https://github.com/vshn/k8up>
-* <https://github.com/vshn/wrestic>
+* <https://github.com/k8up-io/k8up>
 
 <!---
 The values below are generated with helm-docs!
@@ -46,13 +42,13 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
-| image.registry | string | `"quay.io"` | Operator image registry |
-| image.repository | string | `"vshn/k8up"` | Operator image repository |
-| image.tag | string | `"v1.2.0"` | Operator image tag (version) |
+| image.registry | string | `"ghcr.io"` | Operator image registry |
+| image.repository | string | `"k8up-io/k8up"` | Operator image repository |
+| image.tag | string | `"v2.0.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
-| k8up.backupImage.repository | string | `"quay.io/vshn/wrestic"` | The backup runner image repository |
-| k8up.backupImage.tag | string | `"v0.3.2"` | The backup runner image tag |
-| k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. Disable this for K8s versions < 1.16 |
+| k8up.backupImage.repository | string | `"ghcr.io/k8up-io/k8up"` | The backup runner image repository |
+| k8up.backupImage.tag | string | `"v2.0.0"` | The backup runner image tag |
+| k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
 | k8up.globalResources | object | empty values | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
 | k8up.globalResources.limits.cpu | string | `""` | Global CPU resource limit applied to jobs. See [supported units][resource-units]. |
@@ -66,7 +62,6 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | metrics.prometheusRule.createDefaultRules | bool | `true` | Whether the default rules should be installed |
 | metrics.prometheusRule.enabled | bool | `false` | Whether to enable PrometheusRule manifest for [Prometheus Operator][prometheus-operator] |
 | metrics.prometheusRule.jobFailedRulesFor | list | `["archive","backup","check","prune","restore"]` | Create default rules for the given job types. Valid values are "archive", "backup", "check", "prune", and "restore". |
-| metrics.prometheusRule.legacyRules | bool | `false` | Create default rules for kube-state-metrics < v1.5.0 Needed for OpenShift 3.x |
 | metrics.prometheusRule.namespace | string | `""` | If the object should be installed in a different namespace than operator |
 | metrics.service.nodePort | int | `0` | Service node port of the metrics endpoint, requires `metrics.service.type=NodePort` |
 | metrics.service.port | int | `8080` |  |
@@ -96,10 +91,17 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 * Note: Deployment strategy type has changed from `Recreate` to `RollingUpdate`.
 * CRDs need to be installed separately, they are no longer included in this chart.
 
+## Upgrading from Charts 1.x to 2.x
+
+* Note: `image.repository` changed from `vshn/k8up` to `k8up-io/k8up`.
+* Note: `image.registry` changed from `quay.io` to `ghcr.io`.
+* Note: `image.tag` changed from `v1.x` to `v2.x`. Please see the [full changelog](https://github.com/k8up-io/k8up/releases/tag/v2.0.0).
+* `metrics.prometheusRule.legacyRules` has been removed (no support for OpenShift 3.11 anymore).
+* Note: `k8up.backupImage.repository` changed from `quay.io/vshn/wrestic` to `ghcr.io/k8up-io/k8up` (`wrestic` is not needed anymore in K8up v2).
+
 ## Source Code
 
-* <https://github.com/vshn/k8up>
-* <https://github.com/vshn/wrestic>
+* <https://github.com/k8up-io/k8up>
 
 <!---
 Common/Useful Link references from values.yaml

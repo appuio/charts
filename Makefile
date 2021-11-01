@@ -9,7 +9,7 @@ MAKEFLAGS += --warn-undefined-variables
 MASTER_BRANCH=master
 SOURCE_README=README.gotmpl
 TARGET_README=README.md
-CHARTS_DIR=charts/
+CHARTS_DIR=appuio
 
 HELM_DOCS_VERSION=v1.5.0
 
@@ -47,7 +47,7 @@ lint\:versions: ## Checks if chart versions have been changed
 	@echo "    If this target fails, one of the listed charts below has not its version updated!"
 	@changed_charts=$$(git diff --dirstat=files,0 origin/master..HEAD -- appuio | cut -d '/' -f 2 | uniq) ; \
 	  echo $$changed_charts ; echo ;  \
-	  for dir in $$changed_charts; do git diff origin/master..HEAD -- "appuio/$${dir}/Chart.yaml" | grep -H --label=$${dir} "+version"; done
+	  for dir in $$changed_charts; do git diff origin/master..HEAD -- "$(CHARTS_DIR)/$${dir}/Chart.yaml" | grep -H --label=$${dir} "+version"; done
 
 .PHONY: lint
 lint: lint\:fmt lint\:vet ## All-in-one linting and checks for uncommitted changes
