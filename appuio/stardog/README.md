@@ -58,6 +58,7 @@ The following table lists the configurable parameters chart. For default values 
 | `stardog.backup.s3AccessKey`                 | S3 API access key id |
 | `stardog.backup.s3SecretKey`                 | S3 API access secret key |
 | `stardog.backup.s3CredentialsExistingSecret` | Optionally existing secret with S3 credentials |
+| `spillinghack.enabled`                       | Set dbms.spilling.max.file.length to 0 to work around a possible bug where databases with query.memory.exceeds.strategy set to `FINISH_QUERY_EXECUTION` still manage to spill. This is a server-wide setting and affects all databases |
 | `ingress.enabled`                            | If an ingress object should be created |
 | `ingress.annotations`                        | Annotations to set on the ingress object |
 | `ingress.host`                               | Host name which the ingress should resolve |

@@ -97,6 +97,9 @@ tolerations: []
 
 affinityTopologyKey: kubernetes.io/hostname
 
+spillinghack:
+  enabled: false
+
 # Only applies when stardog's replicaCount is >= 2
 zookeeper:
   enabled: true
