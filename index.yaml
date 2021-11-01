@@ -604,6 +604,25 @@ entries:
     version: 0.0.1
   k8up:
   - apiVersion: v2
+    appVersion: v2.0.0
+    created: "2021-11-01T14:36:32.072715845Z"
+    description: Kubernetes and OpenShift Backup Operator based on restic
+    digest: 2a7aac681c9f3e0ef853d4a52f7b6ce4a2baeee6143ad4cc22cdba40448cab24
+    home: https://k8up.io/
+    keywords:
+    - backup
+    - operator
+    - restic
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: k8up
+    sources:
+    - https://github.com/k8up-io/k8up
+    urls:
+    - https://github.com/appuio/charts/releases/download/k8up-2.0.0/k8up-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: v1.2.0
     created: "2021-08-02T10:07:22.406309963Z"
     description: Kubernetes and OpenShift Backup Operator based on restic
@@ -3823,4 +3842,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-22T08:57:12.874662694Z"
+generated: "2021-11-01T14:36:32.073782086Z"
