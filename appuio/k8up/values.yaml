@@ -43,7 +43,6 @@ k8up:
   timezone: ""
 
   # -- Specifies whether leader election should be enabled.
-  # Disable this for K8s versions < 1.16
   enableLeaderElection: true
 
   # -- Specifies the namespace in which K8up's `EffectiveSchedules` are stored.
@@ -101,9 +100,6 @@ metrics:
     additionalLabels: {}
     # -- Whether the default rules should be installed
     createDefaultRules: true
-    # -- Create default rules for kube-state-metrics < v1.5.0
-    # Needed for OpenShift 3.x
-    legacyRules: false
     # -- Create default rules for the given job types.
     # Valid values are "archive", "backup", "check", "prune", and "restore".
     jobFailedRulesFor: ["archive", "backup", "check", "prune", "restore"]
