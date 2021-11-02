@@ -97,8 +97,8 @@ tolerations: []
 
 affinityTopologyKey: kubernetes.io/hostname
 
-spillinghack:
-  enabled: false
+memory:
+  spilling_max_file_length: 10G
 
 # Only applies when stardog's replicaCount is >= 2
 zookeeper:

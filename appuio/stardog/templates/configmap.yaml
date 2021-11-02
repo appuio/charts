@@ -31,6 +31,6 @@ data:
     metrics.jmx.remote.access=true
     {{- end }}
 
-    {{- if .Values.spillinghack.enabled }}
-    dbms.spilling.max.file.length=0
+    {{- if .Values.memory.spilling_max_file_length }}
+    spilling.max.file.length={{ .Values.memory.spilling_max_file_length }}
     {{- end }}
