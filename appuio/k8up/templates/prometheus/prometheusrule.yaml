@@ -15,7 +15,7 @@ spec:
       rules:
         {{- if .Values.metrics.prometheusRule.createDefaultRules }}
         - alert: K8upResticErrors
-          expr: baas_backup_restic_last_errors > 0
+          expr: k8up_backup_restic_last_errors > 0
           for: 1m
           labels:
             severity: critical
