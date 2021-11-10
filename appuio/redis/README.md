@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.3.1](https://img.shields.io/badge/Version-1.3.1-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.3.2](https://img.shields.io/badge/Version-1.3.2-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -66,7 +66,7 @@ Edit the README.gotmpl.md template instead.
 | master.readinessProbe.initialDelaySeconds | int | `5` |  |
 | master.readinessProbe.periodSeconds | int | `5` |  |
 | master.readinessProbe.successThreshold | int | `1` |  |
-| master.readinessProbe.timeoutSeconds | int | `1` |  |
+| master.readinessProbe.timeoutSeconds | int | `5` |  |
 | master.service.annotations | object | `{}` |  |
 | master.service.externalTrafficPolicy | string | `"Cluster"` | External traffic policy (when service type is LoadBalancer) |
 | master.service.labels | object | `{}` | Provide any additional labels |
@@ -158,7 +158,7 @@ Edit the README.gotmpl.md template instead.
 | sentinel.readinessProbe.initialDelaySeconds | int | `5` |  |
 | sentinel.readinessProbe.periodSeconds | int | `5` |  |
 | sentinel.readinessProbe.successThreshold | int | `1` |  |
-| sentinel.readinessProbe.timeoutSeconds | int | `1` |  |
+| sentinel.readinessProbe.timeoutSeconds | int | `5` |  |
 | sentinel.service.annotations | object | `{}` |  |
 | sentinel.service.externalTrafficPolicy | string | `"Cluster"` | External traffic policy (when service type is LoadBalancer) |
 | sentinel.service.labels | object | `{}` |  |
