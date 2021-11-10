@@ -570,7 +570,7 @@ livenessProbe:
   # -- How often to perform the probe
   periodSeconds: 10
   # -- When the probe times out
-  timeoutSeconds: 1
+  timeoutSeconds: 5
   # -- consecutive successes for the probe
   successThreshold: 1
   # -- Minimum consecutive failures for the probe
@@ -586,7 +586,7 @@ readinessProbe:
   # -- How often to perform the probe
   periodSeconds: 10
   # -- When the probe times out
-  timeoutSeconds: 1
+  timeoutSeconds: 5
   # -- Minimum consecutive successes for the probe
   successThreshold: 1
   # -- Minimum consecutive failures for the probe
@@ -603,7 +603,7 @@ startupProbe:
   # -- How often to perform the probe
   periodSeconds: 10
   # -- When the probe times out
-  timeoutSeconds: 1
+  timeoutSeconds: 5
   # -- Minimum consecutive successes for the probe
   successThreshold: 1
   ## Let's wait 600 seconds by default, it should give enough time in any cluster for mysql to init
