@@ -1,7 +1,8 @@
 {
   "extends": [
     "config:base",
-    ":gitSignOff"
+    ":gitSignOff",
+    ":disableDependencyDashboard"
   ],
   "bumpVersion": "minor",
   "helm-values": {
@@ -15,5 +16,11 @@
   ],
   "postUpdateOptions": [
     "gomodTidy"
+  ],
+  "labels": [
+    "dependency"
+  ],
+  "prBodyNotes": [
+    "- [ ] PR contains the label that identifies the chart, e.g. `chart/<chart-name>`"
   ]
 }
