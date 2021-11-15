@@ -9,7 +9,6 @@ tag="${GITHUB_REF##*/}"
 chart=$(echo ${tag} | grep --perl-regexp --only-matching '^([a-zA-Z0-9-]+)(?![0-9.]+)')
 
 tagPattern="${chart}-(.+)"
-labelPattern='^(?!\\['${chart}'\\])'
 chartLabel="chart/${chart}"
 
 echo ::group::Configuring changelog generator
