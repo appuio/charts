@@ -82,7 +82,7 @@ The following table lists the configurable parameters chart. For default values 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | zookeeper | 2.2.4 |
+| https://charts.bitnami.com/bitnami | zookeeper | 5.14.4 |
 
 <!---
 Common/Useful Link references from values.yaml
