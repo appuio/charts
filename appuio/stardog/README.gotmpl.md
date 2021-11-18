@@ -44,6 +44,7 @@ The following table lists the configurable parameters chart. For default values 
 | `stardog.backup.s3AccessKey`                 | S3 API access key id |
 | `stardog.backup.s3SecretKey`                 | S3 API access secret key |
 | `stardog.backup.s3CredentialsExistingSecret` | Optionally existing secret with S3 credentials |
+| `stardog.memory.spilling_max_file_length`    | Configure the maximum file length when spilling data to disk |
 | `ingress.enabled`                            | If an ingress object should be created |
 | `ingress.annotations`                        | Annotations to set on the ingress object |
 | `ingress.host`                               | Host name which the ingress should resolve |

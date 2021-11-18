@@ -30,3 +30,7 @@ data:
     metrics.reporter=jmx
     metrics.jmx.remote.access=true
     {{- end }}
+
+    {{- if .Values.memory.spilling_max_file_length }}
+    spilling.max.file.length={{ .Values.memory.spilling_max_file_length }}
+    {{- end }}

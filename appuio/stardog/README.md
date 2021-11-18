@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.7.9](https://img.shields.io/badge/Version-0.7.9-informational?style=flat-square) ![AppVersion: 7.7.2](https://img.shields.io/badge/AppVersion-7.7.2-informational?style=flat-square)
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![AppVersion: 7.7.2](https://img.shields.io/badge/AppVersion-7.7.2-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -58,6 +58,7 @@ The following table lists the configurable parameters chart. For default values 
 | `stardog.backup.s3AccessKey`                 | S3 API access key id |
 | `stardog.backup.s3SecretKey`                 | S3 API access secret key |
 | `stardog.backup.s3CredentialsExistingSecret` | Optionally existing secret with S3 credentials |
+| `stardog.memory.spilling_max_file_length`    | Configure the maximum file length when spilling data to disk |
 | `ingress.enabled`                            | If an ingress object should be created |
 | `ingress.annotations`                        | Annotations to set on the ingress object |
 | `ingress.host`                               | Host name which the ingress should resolve |
@@ -81,7 +82,7 @@ The following table lists the configurable parameters chart. For default values 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | zookeeper | 2.2.4 |
+| https://charts.bitnami.com/bitnami | zookeeper | 5.14.4 |
 
 <!---
 Common/Useful Link references from values.yaml
