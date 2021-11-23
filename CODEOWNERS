@@ -1,0 +1,26 @@
+# Code owners of APPUiO Helm charts
+
+# As a Code owner, you are requested for Pull Request reviews
+
+# Used by VSHN as part of product offering
+/appuio/k8up              @appuio/tarazed
+/appuio/mariadb-galera    @appuio/tarazed
+/appuio/redis             @appuio/tarazed
+/appuio/generic           @appuio/tarazed
+/appuio/openshift-route   @appuio/tarazed
+/appuio/secret            @appuio/tarazed
+/appuio/haproxy           @appuio/tarazed @anothertobi
+
+# Other charts
+/appuio/signalilo         @simu
+/appuio/maxscale          @mhutter @anothertobi
+/appuio/exoip             @mhutter @anothertobi
+
+# Stardog
+/appuio/stardog                    @ZuGao @psy-q
+/appuio/stardog-userrole-operator  @ZuGao @psy-q
+
+
+# Contributed charts
+/appuio/data-cube-curation @sandhose
+/appuio/trifid             @anothertobi @ZuGao
