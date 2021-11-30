@@ -1,6 +1,6 @@
 # k8up
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: v2.0.1](https://img.shields.io/badge/AppVersion-v2.0.1-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: v2.1.0](https://img.shields.io/badge/AppVersion-v2.1.0-informational?style=flat-square)
 
 Kubernetes and OpenShift Backup Operator based on restic
 
@@ -13,7 +13,7 @@ helm repo add appuio https://charts.appuio.ch
 helm install k8up appuio/k8up
 ```
 ```bash
-kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.0.1/k8up-crd.yaml
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.1.0/k8up-crd.yaml
 ```
 
 <!---
@@ -44,10 +44,10 @@ Document your changes in values.yaml and let `make docs:helm` generate this sect
 | image.pullPolicy | string | `"IfNotPresent"` | Operator image pull policy |
 | image.registry | string | `"ghcr.io"` | Operator image registry |
 | image.repository | string | `"k8up-io/k8up"` | Operator image repository |
-| image.tag | string | `"v2.0.1"` | Operator image tag (version) |
+| image.tag | string | `"v2.1.0"` | Operator image tag (version) |
 | imagePullSecrets | list | `[]` |  |
 | k8up.backupImage.repository | string | `"ghcr.io/k8up-io/k8up"` | The backup runner image repository |
-| k8up.backupImage.tag | string | `"v2.0.1"` | The backup runner image tag |
+| k8up.backupImage.tag | string | `"v2.1.0"` | The backup runner image tag |
 | k8up.enableLeaderElection | bool | `true` | Specifies whether leader election should be enabled. |
 | k8up.envVars | list | `[]` | envVars allows the specification of additional environment variables. See [values.yaml](values.yaml) how to specify See documentation which variables are supported. |
 | k8up.globalResources | object | empty values | Specify the resource requests and limits that the Pods should have when they are scheduled by K8up. You are still able to override those via K8up resources, but this gives cluster administrators custom defaults. |
