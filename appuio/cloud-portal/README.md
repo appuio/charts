@@ -37,6 +37,7 @@ Edit the README.gotmpl.md template instead.
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` | Annotations to add to the Pod spec. |
 | podSecurityContext | object | `{}` | Security context to add to the Pod spec. |
+| portal.config | object | `{}` | Arbitrary (nested) keys and values that are put as JSON into `config.json` as a static frontend asset. Don't put secret values here, as this file is publicly accessible. |
 | replicaCount | int | `1` |  |
 | resources.limits.memory | string | `"128Mi"` |  |
 | resources.requests.cpu | string | `"20m"` |  |

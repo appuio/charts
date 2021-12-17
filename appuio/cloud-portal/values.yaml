@@ -20,6 +20,11 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+portal:
+  # -- Arbitrary (nested) keys and values that are put as JSON into `config.json` as a static frontend asset.
+  # Don't put secret values here, as this file is publicly accessible.
+  config: {}
+
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
