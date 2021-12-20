@@ -777,7 +777,7 @@ metrics:
     # -- Exporter image repository
     repository: bitnami/redis-exporter
     # --  Exporter image tag
-    tag: 1.20.0-debian-10-r16
+    tag: 1.32.0-debian-10-r16
     # --  Exporter pull policy
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
