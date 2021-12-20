@@ -1,0 +1,24 @@
+{{- if .Values.route.enabled -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: "{{ default (include "cloud-portal.fullname" .) .Values.route.name }}"
+  labels:
+    {{- include "cloud-portal.labels" . | nindent 4 }}
+  {{- with .Values.route.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  host: {{ .Values.route.host }}
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: {{ include "cloud-portal.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+{{- end }}
