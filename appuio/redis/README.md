@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.3.2](https://img.shields.io/badge/Version-1.3.2-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.3.3](https://img.shields.io/badge/Version-1.3.3-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -83,7 +83,7 @@ Edit the README.gotmpl.md template instead.
 | metrics.image.pullPolicy | string | `"IfNotPresent"` | Exporter pull policy |
 | metrics.image.registry | string | `"docker.io"` | Exporter image registry |
 | metrics.image.repository | string | `"bitnami/redis-exporter"` | Exporter image repository |
-| metrics.image.tag | string | `"1.20.0-debian-10-r16"` | Exporter image tag |
+| metrics.image.tag | string | `"1.32.0-debian-10-r16"` | Exporter image tag |
 | metrics.podAnnotations."prometheus.io/port" | string | `"9121"` |  |
 | metrics.podAnnotations."prometheus.io/scrape" | string | `"true"` |  |
 | metrics.priorityClassName | string | `nil` | Metrics exporter pod priorityClassName |
