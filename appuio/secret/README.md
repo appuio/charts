@@ -1,6 +1,6 @@
 # secret
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Deploy arbitrary secrets
 
@@ -20,7 +20,7 @@ Edit the README.gotmpl.md template instead.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| secrets | list | `[]` |  |
+| secrets | object | `{}` | Dict with key/values. Each key is the name of the secret. Each value may contain an object with `.name`, `.type`, `.stringData`, `.data`, `.labels`, `.annotations`. If `.name` is not given, the key name is used. See an example in `values.yaml`. |
 
 <!---
 Common/Useful Link references from values.yaml
