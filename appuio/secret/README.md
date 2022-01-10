@@ -20,7 +20,7 @@ Edit the README.gotmpl.md template instead.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| secrets | object | `{}` | Dict with key/values. Each key is the name of the secret. Each value may contain an object with `.name`, `.type`, `.stringData`, `.data`, `.labels`, `.annotations`. If `.name` is not given, the key name is used. See an example in `values.yaml`. |
+| secrets | object | `{}` | Dict with key/values. Each key is the name of the secret. Each value may contain an object with `.name`, `.type`, `.stringData`, `.data`, `.labels`, `.annotations`. If `.name` is not given, the key name is used. You can pass additional templated stringData using `.stringDataTemplates`. See an example in `values.yaml`. |
 
 <!---
 Common/Useful Link references from values.yaml
