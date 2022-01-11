@@ -4,6 +4,9 @@ The README.md file is automatically generated with helm-docs!
 Edit the README.gotmpl.md template instead.
 -->
 
+Note: Properties suffixed with `Templates` support template functions and variables.
+All standard Helm functions are available (https://helm.sh/docs/chart_template_guide/function_list/).
+
 {{ template "chart.valuesSection" . }}
 
 ## Upgrade chart v1 to v2
