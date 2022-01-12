@@ -2340,6 +2340,18 @@ entries:
     - https://github.com/appuio/charts/releases/download/redis-1.0.0/redis-1.0.0.tgz
     version: 1.0.0
   secret:
+  - apiVersion: v2
+    created: "2022-01-12T09:26:36.944883109Z"
+    description: Deploy arbitrary secrets
+    digest: 9b5a2d13b0d52f86006650d9ff586dee379ed70dfa78cbcb8960aed96d1c373f
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: secret
+    type: application
+    urls:
+    - https://github.com/appuio/charts/releases/download/secret-1.1.0/secret-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v1
     created: "2021-06-08T09:46:50.803418531Z"
     description: Deploy arbitrary secrets
@@ -4066,4 +4078,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-03T14:28:11.392900374Z"
+generated: "2022-01-12T09:26:36.9463485Z"
