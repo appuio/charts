@@ -15,10 +15,10 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-api
   labels:
     {{- include "cloud-portal.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with .Values.ingress.backends.api.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -41,19 +41,19 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          - path: /
+          - path: /appuio-api
             {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
             pathType: Prefix
             {{- end }}
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: {{ $fullName }}-api
                 port:
-                  number: {{ $svcPort }}
+                  number: 443
               {{- else }}
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
+              serviceName: {{ $fullName }}-api
+              servicePort: 443
               {{- end }}
   {{- end }}
 {{- end }}

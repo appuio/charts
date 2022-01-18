@@ -24,3 +24,8 @@ metadata:
 spec:
   type: ExternalName
   externalName: {{ .Values.ingress.backends.api.externalName }}
+  ports:
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      name: https
