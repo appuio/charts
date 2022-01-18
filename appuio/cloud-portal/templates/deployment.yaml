@@ -48,12 +48,17 @@ spec:
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
+          {{- if .Values.portal.env }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "cloud-portal.fullname" . }}-env
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: config
           configMap:
-            name: {{ include "cloud-portal.fullname" . }}
+            name: {{ include "cloud-portal.fullname" . }}-frontend
             items:
               - key: config.json
                 path: config.json

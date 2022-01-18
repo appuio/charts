@@ -25,6 +25,12 @@ portal:
   # Don't put secret values here, as this file is publicly accessible.
   config: {}
 
+  # -- Arbitrary {key:string} values that are used to configure additional environment variables.
+  # They are meant to configure NGINX config files (envsubst)
+  env: {}
+  # example:
+  # SOME_KEY: VALUE
+
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true

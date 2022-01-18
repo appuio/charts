@@ -1,6 +1,6 @@
 # cloud-portal
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.0.1](https://img.shields.io/badge/AppVersion-v0.0.1-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.0.1](https://img.shields.io/badge/AppVersion-v0.0.1-informational?style=flat-square)
 
 APPUiO Cloud Portal (Web Frontend)
 
@@ -38,6 +38,7 @@ Edit the README.gotmpl.md template instead.
 | podAnnotations | object | `{}` | Annotations to add to the Pod spec. |
 | podSecurityContext | object | `{}` | Security context to add to the Pod spec. |
 | portal.config | object | `{}` | Arbitrary (nested) keys and values that are put as JSON into `config.json` as a static frontend asset. Don't put secret values here, as this file is publicly accessible. |
+| portal.env | object | `{}` | Arbitrary {key:string} values that are used to configure additional environment variables. They are meant to configure NGINX config files (envsubst) |
 | replicaCount | int | `1` |  |
 | resources.limits.memory | string | `"128Mi"` |  |
 | resources.requests.cpu | string | `"20m"` |  |
