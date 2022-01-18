@@ -65,8 +65,12 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
 
-  # -- See Kubernetes Docs for a guide to setup Ingress hosts
-  hosts: []
+  # -- Hostname to expose.
+  host: ""
+  backends:
+    api:
+      # -- DNS hostname of the API
+      externalName: ""
   # -- See Kubernetes Docs for a guide to setup TLS on Ingress
   tls: []
   #  - secretName: chart-example-tls

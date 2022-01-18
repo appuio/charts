@@ -30,8 +30,9 @@ Edit the README.gotmpl.md template instead.
 | image.tag | string | `"v0.0.1"` | Container image tag |
 | imagePullSecrets | list | `[]` | List of image pull secrets if custom image is behind authentication. |
 | ingress.annotations | object | `{}` | Additional annotations for the Ingress object |
+| ingress.backends.api.externalName | string | `""` | DNS hostname of the API |
 | ingress.enabled | bool | `false` | Whether to deploy an Ingress |
-| ingress.hosts | list | `[]` | See Kubernetes Docs for a guide to setup Ingress hosts |
+| ingress.host | string | `""` | Hostname to expose. |
 | ingress.tls | list | `[]` | See Kubernetes Docs for a guide to setup TLS on Ingress |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
