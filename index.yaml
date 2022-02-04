@@ -133,6 +133,23 @@ entries:
     version: 1.0.0
   cloud-portal:
   - apiVersion: v2
+    appVersion: v0.0.2
+    created: "2022-02-04T14:45:19.64220213Z"
+    description: APPUiO Cloud Portal (Web Frontend)
+    digest: 2bb58f64fd0cd477d3c2ecc6421e8b445e8f1885d9939e325d07bca373c2c8b8
+    home: https://appuio.cloud
+    icon: https://docs.appuio.cloud/user/_images/appuio.svg
+    keywords:
+    - appuio
+    - openshift
+    name: cloud-portal
+    sources:
+    - https://github.com/appuio/cloud-portal
+    type: application
+    urls:
+    - https://github.com/appuio/charts/releases/download/cloud-portal-0.2.1/cloud-portal-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: v0.0.1
     created: "2022-01-19T09:10:49.452212344Z"
     description: APPUiO Cloud Portal (Web Frontend)
@@ -4095,4 +4112,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-19T09:10:49.45556115Z"
+generated: "2022-02-04T14:45:19.643626556Z"
