@@ -10,7 +10,7 @@ image:
   # -- Location of the container image
   repository: appuio/cloud-portal
   # -- Container image tag
-  tag: v0.0.1
+  tag: v0.0.2
   # -- Container image pull policy.
   # If set to empty, then Kubernetes default behaviour applies.
   pullPolicy: IfNotPresent
