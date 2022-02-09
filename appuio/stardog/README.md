@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.8.2](https://img.shields.io/badge/Version-0.8.2-informational?style=flat-square) ![AppVersion: 7.8.1](https://img.shields.io/badge/AppVersion-7.8.1-informational?style=flat-square)
+![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![AppVersion: 7.8.1](https://img.shields.io/badge/AppVersion-7.8.1-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -77,7 +77,7 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.auth.serverPasswords`             | Password to use for ZooKeeper servers (delimited by `,`). Will be generated if unset |
 | `zookeeper.metrics.enabled`                  | Enable ZooKeeper Prometheus exporter |
 | `zookeeper.metrics.prometheusOperator`       | Enable Prometheus Operator integration (requires the operator to be installed) |
-| `zookeeper.sessionTimeout`       | Set the ZooKeeper [session timeout](https://docs.stardog.com/cluster/installation-and-setup/#connectionsession-timeouts) |
+| `zookeeper.sessionTimeout`                   | Set the ZooKeeper [session timeout](https://docs.stardog.com/cluster/installation-and-setup/#connectionsession-timeouts) |
 
 ## Requirements
 
