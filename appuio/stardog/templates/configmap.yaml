@@ -17,7 +17,7 @@ data:
     {{- if .Values.zookeeper.enabled -}}
     pack.enabled=true
     pack.zookeeper.address={{ template "stardog.zookeeperConnection" . }}
-    pack.session.timeout=15s
+    pack.session.timeout={{ .Values.zookeeper.sessionTimeout }}
     pack.curator.retry.count=42
     pack.node.join.retry.count=42
     {{- if .Values.zookeeper.auth.enabled }}
