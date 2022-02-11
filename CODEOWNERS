@@ -13,14 +13,14 @@
 
 # Other charts
 /appuio/signalilo         @simu
-/appuio/maxscale          @mhutter @anothertobi
-/appuio/exoip             @mhutter @anothertobi
+/appuio/maxscale          @appuio/pollux
+/appuio/exoip             @appuio/pollux
 
 # Stardog
-/appuio/stardog                    @ZuGao @psy-q
-/appuio/stardog-userrole-operator  @ZuGao @psy-q
+/appuio/stardog                    @appuio/pollux
+/appuio/stardog-userrole-operator  @appuio/pollux
 
 
 # Contributed charts
 /appuio/data-cube-curation @sandhose
-/appuio/trifid             @anothertobi @ZuGao
+/appuio/trifid             @appuio/pollux
