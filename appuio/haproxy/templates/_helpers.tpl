@@ -45,7 +45,6 @@ frontend stats
   acl server_stopping stopping
   monitor-uri /healthz
   monitor fail if server_stopping
-  option http-use-htx
   option dontlog-normal
   option httplog
   http-request use-service prometheus-exporter if { path /metrics }
