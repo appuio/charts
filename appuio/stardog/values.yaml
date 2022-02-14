@@ -106,6 +106,7 @@ zookeeper:
   replicaCount: 3
   updateStrategy: OnDelete
   allowAnonymousLogin: false
+  sessionTimeout: 15s
   auth:
     enabled: true
     clientUser: stardogClient
