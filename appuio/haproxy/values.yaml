@@ -85,6 +85,8 @@ haproxy:
     nodeCount: 3
     metrics:
       enabled: false
+      exposeLoadbalancer: true
+
 
   redisk8s:
     timeout:
@@ -100,6 +102,7 @@ haproxy:
     nodeCount: 3
     metrics:
       enabled: false
+      exposeLoadbalancer: true
 
 metrics:
   enabled: true
