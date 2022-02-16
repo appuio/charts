@@ -123,6 +123,7 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.galerak8s.port` | Port of the Galera node | `3306`
 | `haproxy.galerak8s.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
+| `haproxy.galerak8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Galera backends should be exposed in the haproxy service | `false`
 
 ### redisk8s
 
@@ -139,6 +140,7 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.redisk8s.port` | Port of the Galera node | `6379`
 | `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
+| `haproxy.redisk8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Redis backends should be exposed in the haproxy service | `false`
 
 ## Galera and Redis metrics
 
