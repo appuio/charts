@@ -25,7 +25,7 @@ spec:
         app: stardog
         severity: critical
     - alert: StardogLicenseExpire
-      expr: min(dbms_license_expiration{ {{ $ns_selector }} } without (instance, pod) < 42
+      expr: min(dbms_license_expiration{ {{ $ns_selector }} }) without (instance, pod) < 42
       for: 10m
       annotations:
         summary: Stardog license about to expire
