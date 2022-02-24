@@ -93,15 +93,15 @@ HAProxy config for galerak8s metrics
 frontend galeraMetrics
   mode http
   bind *:9090
+  option httplog
   {{- range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
-  use_backend galera-node-{{$i}} if { path -i -m beg /metrics/mariadb-{{$i}} }
+  use_backend galera-node-{{$i}} if { hdr_sub(host) -i mariadb-{{$i}} }
   {{- end }}
 
 {{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
 backend galera-node-{{$i}}
   mode http
   server node-{{$i}} mariadb-{{$i}}.mariadb:9104
-  http-request set-path '%[path,regsub(^/metrics/mariadb-{{$i}}/,/)]'
 {{- end }}
 {{- end }}
 {{- end -}}
@@ -114,15 +114,15 @@ HAProxy config for redis metrics
 frontend redisMetrics
   mode http
   bind *:9090
+  option httplog
   {{- range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
-  use_backend redis-node-{{$i}} if { path -i -m beg /metrics/redis-{{$i}} }
+  use_backend redis-node-{{$i}} if { hdr_sub(host) -i redis-{{$i}} }
   {{- end }}
 
 {{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-{{$i}}
   mode http
   server node-{{$i}} redis-node-{{$i}}.redis-headless:9121
-  http-request set-path '%[path,regsub(^/metrics/redis-{{$i}}/,/)]'
 {{- end }}
 {{- end }}
 {{- end -}}
