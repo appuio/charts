@@ -68,6 +68,9 @@ haproxy:
     # - address: galera-node-1
     #   port: 3306
     #   backup: false
+    metrics:
+      enabled: false
+      exposeLoadbalancer: true
 
   galerak8s:
     balance: first # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
@@ -86,7 +89,6 @@ haproxy:
     metrics:
       enabled: false
       exposeLoadbalancer: true
-
 
   redisk8s:
     timeout:

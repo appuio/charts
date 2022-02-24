@@ -14,7 +14,7 @@ spec:
       targetPort: {{ .Values.haproxy.frontendPort }}
       protocol: TCP
       name: frontend
-    {{- if and (or .Values.haproxy.redisk8s.metrics.exposeLoadbalancer .VAlues.haproxy.galerak8s.metrics.exposeLoadbalancer) (or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled})}
+    {{- if and (or .Values.haproxy.redisk8s.metrics.exposeLoadbalancer .Values.haproxy.galerak8s.metrics.exposeLoadbalancer .Values.haproxy.galera.metrics.exposeLoadbalancer) (or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled})}
     - port: 9090
       targetPort: metrics-backend
       protocol: TCP

@@ -68,6 +68,27 @@ resolvers mydns
 HAProxy config for galera metrics
 */}}
 {{- define "haproxy.galeraMetricsConfig" -}}
+{{- if .Values.haproxy.galera.metrics.enabled }}
+frontend galeraMetrics
+  mode http
+  bind *:9090
+  option httplog
+  {{- range $i, $node := .Values.haproxy.galera.nodes }}
+  use_backend galera-node-{{$i}} if { hdr_sub(host) -i mariadb-{{$i}} }
+  {{- end }}
+
+{{- range $i, $node := .Values.haproxy.galera.nodes }}
+backend galera-node-{{$i}}
+  mode http
+  server node-{{$i}} {{ $node.address }}:9104
+{{- end }}
+{{- end }}
+{{- end -}}
+
+{{/*
+HAProxy config for galerak8s metrics
+*/}}
+{{- define "haproxy.galerak8sMetricsConfig" -}}
 {{- if .Values.haproxy.galerak8s.metrics.enabled }}
 frontend galeraMetrics
   mode http
