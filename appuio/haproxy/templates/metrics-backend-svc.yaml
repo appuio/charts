@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: "metrics-backend"
 spec:
-  type: clusterIP
+  type: ClusterIP
   ports:
     - name: metrics
       port: 9090
