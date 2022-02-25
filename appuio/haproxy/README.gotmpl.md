@@ -93,6 +93,8 @@ Set `haproxy.config` to `galera` to use the Galera configuration.
 | `haproxy.galera.nodes.address` | Address of the Galera node |
 | `haproxy.galera.nodes.port` | Port of the Galera node | `3306`
 | `haproxy.galera.nodes.backup` | If this node should be used as a backup node | `true`
+| `haproxy.galera.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
+| `haproxy.galera.metrics.exposeLoadbalancer`| If the metric endpoint of the Galera backends should be exposed in the haproxy service | `true`
 
 To use `mysql-check`, configure a user `haproxy` in the database (see: http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-option%20mysql-check for more information).
 
@@ -113,6 +115,7 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.galerak8s.port` | Port of the Galera node | `3306`
 | `haproxy.galerak8s.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
+| `haproxy.galerak8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Galera backends should be exposed in the haproxy service | `true`
 
 ### redisk8s
 
@@ -129,6 +132,7 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.nodeCount` | Max number of nodes in the backend | `3`
 | `haproxy.redisk8s.port` | Port of the Galera node | `6379`
 | `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
+| `haproxy.redisk8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Redis backends should be exposed in the haproxy service | `true`
 
 
 ## Galera and Redis metrics
