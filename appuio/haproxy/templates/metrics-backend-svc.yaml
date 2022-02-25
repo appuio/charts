@@ -1,0 +1,22 @@
+{{- if (or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled)  }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "haproxy.fullname" . }}-metrics-backend
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    helm.sh/chart: {{ include "haproxy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: "metrics-backend"
+spec:
+  type: clusterIP
+  ports:
+    - name: metrics
+      port: 9090
+      targetPort: metrics-backend
+  selector:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
