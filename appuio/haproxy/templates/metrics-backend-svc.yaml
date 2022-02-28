@@ -5,7 +5,7 @@ metadata:
   name: {{ template "haproxy.fullname" . }}-metrics-backend
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}-metrics
     helm.sh/chart: {{ include "haproxy.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
