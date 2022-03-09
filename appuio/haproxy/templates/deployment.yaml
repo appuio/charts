@@ -40,7 +40,7 @@ spec:
             - name: metrics
               containerPort: 9000
             {{- end }}
-            {{- if or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled}}
+            {{- if or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled}}
             - name: metrics-backend
               containerPort: 9090
             {{- end }}
