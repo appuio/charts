@@ -1,6 +1,6 @@
 # mariadb-galera
 
-![Version: 1.2.2](https://img.shields.io/badge/Version-1.2.2-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
+![Version: 1.2.3](https://img.shields.io/badge/Version-1.2.3-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
 
 MariaDB Galera is a multi-master database cluster solution for synchronous replication and high availability.
 
@@ -41,8 +41,8 @@ Edit the README.gotmpl.md template instead.
 | extraEnvVarsSecret | string | `""` | Secret containing extra env vars to configure MariaDB Galera replicas |
 | extraFlags | string | `""` | MariaDB additional command line flags |
 | extraInitContainers | list | `[]` | Additional init containers (this value is evaluated as a template) |
-| extraVolumeMounts | list | `[]` |  |
-| extraVolumes | list | `[]` |  |
+| extraVolumeMounts | list | `[]` | Mount extra volume(s) |
+| extraVolumes | list | `[]` | Extra volumes |
 | forceUpdate | bool | `false` | Force update the StatefulSet. If enabled the chart will recreate the StatefulSet without touching the Pods (cascade orphan), allowing you to update locked field, such as PVC size. Currently only changes to PVC size are supported. |
 | forceUpdateKubectlImage | string | `"quay.io/bitnami/kubectl"` | Image used to recreate the StatefulSet. Needs to have `kubectl` and `jq` in its `$PATH` |
 | fullnameOverride | string | `""` | String to fully override common.names.fullname template with a string |
@@ -58,14 +58,14 @@ Edit the README.gotmpl.md template instead.
 | hostAliases | list | `[]` | Add deployment host aliases |
 | image.debug | bool | `false` | Specify if debug logs should be enabled |
 | image.pullPolicy | string | `"IfNotPresent"` | MariaDB Galera image pull policy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent' |
-| image.pullSecrets | list | `[]` |  |
+| image.pullSecrets | list | `[]` | Specify docker-registry secret names as an array |
 | image.registry | string | `"docker.io"` | MariaDB Galera image registry |
 | image.repository | string | `"bitnami/mariadb-galera"` | MariaDB Galera image repository |
 | image.tag | string | `"10.5.12-debian-10-r1"` | MariaDB Galera image tag (immutable tags are recommended) |
 | initdbScripts | object | `{}` | Specify dictionary of scripts to be run at first boot |
 | initdbScriptsConfigMap | string | `""` | ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`) |
 | ldap.base | string | `""` | LDAP base DN |
-| ldap.binddn | string | `""` |  |
+| ldap.binddn | string | `""` | DAP bind DN |
 | ldap.bindpw | string | `""` | LDAP bind password |
 | ldap.bslookup | string | `""` | LDAP base lookup |
 | ldap.enabled | bool | `false` | Enable LDAP support |
@@ -77,11 +77,11 @@ Edit the README.gotmpl.md template instead.
 | ldap.uri | string | `""` | LDAP URL beginning in the form `ldap |
 | livenessProbe.enabled | bool | `true` | Turn on and off liveness probe |
 | livenessProbe.failureThreshold | int | `3` | Minimum consecutive failures for the probe |
-| livenessProbe.initialDelaySeconds | int | `120` |  |
+| livenessProbe.initialDelaySeconds | int | `120` | Delay before liveness probe is initiated |
 | livenessProbe.periodSeconds | int | `10` | How often to perform the probe |
 | livenessProbe.successThreshold | int | `1` | consecutive successes for the probe |
 | livenessProbe.timeoutSeconds | int | `5` | When the probe times out |
-| mariadbConfiguration | string | `"[client]\nport=3306\nsocket=/opt/bitnami/mariadb/tmp/mysql.sock\nplugin_dir=/opt/bitnami/mariadb/plugin\n\n[mysqld]\ndefault_storage_engine=InnoDB\nbasedir=/opt/bitnami/mariadb\ndatadir=/bitnami/mariadb/data\nplugin_dir=/opt/bitnami/mariadb/plugin\ntmpdir=/opt/bitnami/mariadb/tmp\nsocket=/opt/bitnami/mariadb/tmp/mysql.sock\npid_file=/opt/bitnami/mariadb/tmp/mysqld.pid\nbind_address=0.0.0.0\n\n## Character set\n##\ncollation_server=utf8_unicode_ci\ninit_connect='SET NAMES utf8'\ncharacter_set_server=utf8\n\n## MyISAM\n##\nkey_buffer_size=32M\nmyisam_recover_options=FORCE,BACKUP\n\n## Safety\n##\nskip_host_cache\nskip_name_resolve\nmax_allowed_packet=16M\nmax_connect_errors=1000000\nsql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_AUTO_VALUE_ON_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ONLY_FULL_GROUP_BY\nsysdate_is_now=1\n\n## Binary Logging\n##\nlog_bin=mysql-bin\nexpire_logs_days=14\n# Disabling for performance per http://severalnines.com/blog/9-tips-going-production-galera-cluster-mysql\nsync_binlog=0\n# Required for Galera\nbinlog_format=row\n\n## Caches and Limits\n##\ntmp_table_size=32M\nmax_heap_table_size=32M\n# Re-enabling as now works with Maria 10.1.2\nquery_cache_type=1\nquery_cache_limit=4M\nquery_cache_size=256M\nmax_connections=500\nthread_cache_size=50\nopen_files_limit=65535\ntable_definition_cache=4096\ntable_open_cache=4096\n\n## InnoDB\n##\ninnodb=FORCE\ninnodb_strict_mode=1\n# Mandatory per https://github.com/codership/documentation/issues/25\ninnodb_autoinc_lock_mode=2\n# Per https://www.percona.com/blog/2006/08/04/innodb-double-write/\ninnodb_doublewrite=1\ninnodb_flush_method=O_DIRECT\ninnodb_log_files_in_group=2\ninnodb_log_file_size=128M\ninnodb_flush_log_at_trx_commit=1\ninnodb_file_per_table=1\n# 80% Memory is default reco.\n# Need to re-evaluate when DB size grows\ninnodb_buffer_pool_size=2G\ninnodb_file_format=Barracuda\n\n## Logging\n##\nlog_error=/opt/bitnami/mariadb/logs/mysqld.log\nslow_query_log_file=/opt/bitnami/mariadb/logs/mysqld.log\nlog_queries_not_using_indexes=1\nslow_query_log=1\n\n## SSL\n## Use extraVolumes and extraVolumeMounts to mount /certs filesystem\n# ssl_ca=/certs/ca.pem\n# ssl_cert=/certs/server-cert.pem\n# ssl_key=/certs/server-key.pem\n\n[galera]\nwsrep_on=ON\nwsrep_provider=/opt/bitnami/mariadb/lib/libgalera_smm.so\nwsrep_sst_method=mariabackup\nwsrep_slave_threads=4\nwsrep_cluster_address=gcomm://\nwsrep_cluster_name=galera\nwsrep_sst_auth=\"root:\"\n# Enabled for performance per https://mariadb.com/kb/en/innodb-system-variables/#innodb_flush_log_at_trx_commit\ninnodb_flush_log_at_trx_commit=2\n# MYISAM REPLICATION SUPPORT #\nwsrep_replicate_myisam=ON\n\n[mariadb]\nplugin_load_add=auth_pam\n\n## Data-at-Rest Encryption\n## Use extraVolumes and extraVolumeMounts to mount /encryption filesystem\n# plugin_load_add=file_key_management\n# file_key_management_filename=/encryption/keyfile.enc\n# file_key_management_filekey=FILE:/encryption/keyfile.key\n# file_key_management_encryption_algorithm=AES_CTR\n# encrypt_binlog=ON\n# encrypt_tmp_files=ON\n\n## InnoDB/XtraDB Encryption\n# innodb_encrypt_tables=ON\n# innodb_encrypt_temporary_tables=ON\n# innodb_encrypt_log=ON\n# innodb_encryption_threads=4\n# innodb_encryption_rotate_key_age=1\n\n## Aria Encryption\n# aria_encrypt_tables=ON\n# encrypt_tmp_disk_tables=ON"` | Configuration for the MariaDB server |
+| mariadbConfiguration | string | See values.yaml | Configuration for the MariaDB server |
 | metrics.enabled | bool | `false` | Start a side-car prometheus exporter |
 | metrics.extraFlags | list | `[]` | MariaDB Prometheus exporter additional command line flags |
 | metrics.image.pullPolicy | string | `"IfNotPresent"` | MariaDB Prometheus exporter image pull policy |
@@ -104,7 +104,7 @@ Edit the README.gotmpl.md template instead.
 | metrics.serviceMonitor.relabelings | list | `[]` | RelabelConfigs to apply to samples before scraping |
 | metrics.serviceMonitor.scrapeTimeout | string | `""` | Timeout after which the scrape is ended |
 | metrics.serviceMonitor.selector | object | `{"prometheus":"kube-prometheus"}` | ServiceMonitor selector labels. Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install. |
-| nameOverride | string | `""` |  |
+| nameOverride | string | `""` | String to partially override common.names.fullname template with a string (will prepend the release name) |
 | nodeAffinityPreset.key | string | `""` | Node label key to match. Ignored if `affinity` is set. |
 | nodeAffinityPreset.type | string | `""` | Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard` |
 | nodeAffinityPreset.values | list | `[]` | Node label values to match. Ignored if `affinity` is set. |
@@ -125,7 +125,7 @@ Edit the README.gotmpl.md template instead.
 | podDisruptionBudget.maxUnavailable | string | `""` | Maximum number / percentage of pods that may be made unavailable |
 | podDisruptionBudget.minAvailable | int | `1` | Minimum number / percentage of pods that should remain scheduled |
 | podLabels | object | `{}` | Extra labels for MariaDB Galera pods |
-| podManagementPolicy | string | `"OrderedReady"` | StatefulSet controller supports relax its ordering guarantees while preserving its uniqueness and identity guarantees.  There are two valid pod management policies: OrderedReady and Parallel |
+| podManagementPolicy | string | `"OrderedReady"` | StatefulSet controller supports relax its ordering guarantees while preserving its uniqueness and identity guarantees. There are two valid pod management policies: OrderedReady and Parallel |
 | priorityClassName | string | `""` | Priority Class Name for Statefulset |
 | rbac.create | bool | `false` | Specify whether RBAC resources should be created and used |
 | readinessProbe.enabled | bool | `true` | Turn on and off readiness probe |
@@ -135,8 +135,8 @@ Edit the README.gotmpl.md template instead.
 | readinessProbe.successThreshold | int | `1` | Minimum consecutive successes for the probe |
 | readinessProbe.timeoutSeconds | int | `5` | When the probe times out |
 | replicaCount | int | `3` | Desired number of cluster nodes |
-| resources.limits | object | `{}` |  |
-| resources.requests | object | `{}` |  |
+| resources.limits | object | `{}` | The resources limits for the container |
+| resources.requests | object | `{}` | The requested resources for the container |
 | rootUser.forcePassword | bool | `false` | Option to force users to specify a password. That is required for 'helm upgrade' to work properly. If it is not force, a random password will be generated. |
 | rootUser.password | string | `""` | Password for the admin user. Ignored if existing secret is provided. Password is ignored if existingSecret is specified. |
 | rootUser.user | string | `"root"` | Username for the admin user. |
@@ -156,8 +156,8 @@ Edit the README.gotmpl.md template instead.
 | serviceAccount.create | bool | `false` | Specify whether a ServiceAccount should be created |
 | serviceAccount.name | string | `""` | The name of the ServiceAccount to create If not set and create is true, a name is generated using the common.names.fullname template |
 | startupProbe.enabled | bool | `false` | Turn on and off startup probe |
-| startupProbe.failureThreshold | int | `48` |  |
-| startupProbe.initialDelaySeconds | int | `120` |  |
+| startupProbe.failureThreshold | int | `48` | Minimum consecutive failures for the probe |
+| startupProbe.initialDelaySeconds | int | `120` | Delay before startup probe is initiated |
 | startupProbe.periodSeconds | int | `10` | How often to perform the probe |
 | startupProbe.successThreshold | int | `1` | Minimum consecutive successes for the probe |
 | startupProbe.timeoutSeconds | int | `5` | When the probe times out |
