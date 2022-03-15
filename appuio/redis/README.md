@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.3.3](https://img.shields.io/badge/Version-1.3.3-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.3.4](https://img.shields.io/badge/Version-1.3.4-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -32,7 +32,7 @@ Edit the README.gotmpl.md template instead.
 | image.registry | string | `"docker.io"` | Redis image registry |
 | image.repository | string | `"bitnami/redis"` | Redis image repository |
 | image.tag | string | `"6.2.1-debian-10-r36"` | Redis image tag (immutable tags are recommended) |
-| master.affinity | object | `{}` |  |
+| master.affinity | object | `{}` | Redis(TM) Master pod/node affinity/anti-affinity |
 | master.command | string | `"/run.sh"` | Redis(TM) command arguments |
 | master.configmap | string | `nil` | Additional Redis(TM) configuration for the master nodes |
 | master.customLivenessProbe | object | `{}` |  |
@@ -67,13 +67,13 @@ Edit the README.gotmpl.md template instead.
 | master.readinessProbe.periodSeconds | int | `5` |  |
 | master.readinessProbe.successThreshold | int | `1` |  |
 | master.readinessProbe.timeoutSeconds | int | `5` |  |
-| master.service.annotations | object | `{}` |  |
+| master.service.annotations | object | `{}` | Provide any additional annotations |
 | master.service.externalTrafficPolicy | string | `"Cluster"` | External traffic policy (when service type is LoadBalancer) |
 | master.service.labels | object | `{}` | Provide any additional labels |
 | master.service.loadBalancerIP | string | `nil` |  |
 | master.service.port | int | `6379` | Redis(TM) Master Service port |
 | master.service.type | string | `"ClusterIP"` | Redis(TM) Master Service type |
-| master.shareProcessNamespace | bool | `false` |  |
+| master.shareProcessNamespace | bool | `false` | Enable shared process namespace in a pod. If set to false (default), each container will run in separate namespace, redis will have PID=1. If set to true, the /pause will run as init process and will reap any zombie PIDs. |
 | master.statefulset.annotations | object | `{}` |  |
 | master.statefulset.labels | object | `{}` |  |
 | master.statefulset.updateStrategy | string | `"RollingUpdate"` |  |
@@ -84,8 +84,7 @@ Edit the README.gotmpl.md template instead.
 | metrics.image.registry | string | `"docker.io"` | Exporter image registry |
 | metrics.image.repository | string | `"bitnami/redis-exporter"` | Exporter image repository |
 | metrics.image.tag | string | `"1.32.0-debian-10-r16"` | Exporter image tag |
-| metrics.podAnnotations."prometheus.io/port" | string | `"9121"` |  |
-| metrics.podAnnotations."prometheus.io/scrape" | string | `"true"` |  |
+| metrics.podAnnotations | object | `{"prometheus.io/port":"9121","prometheus.io/scrape":"true"}` | Metrics exporter pod Annotation |
 | metrics.priorityClassName | string | `nil` | Metrics exporter pod priorityClassName |
 | metrics.prometheusRule.additionalLabels | object | `{}` |  |
 | metrics.prometheusRule.enabled | bool | `false` |  |
@@ -101,7 +100,7 @@ Edit the README.gotmpl.md template instead.
 | metrics.serviceMonitor.relabelings | list | `[]` |  |
 | metrics.serviceMonitor.selector.prometheus | string | `"kube-prometheus"` |  |
 | networkPolicy.enabled | bool | `false` | Specifies whether a NetworkPolicy should be created |
-| networkPolicy.ingressNSMatchLabels | object | `{}` |  |
+| networkPolicy.ingressNSMatchLabels | object | `{}` | Allow connections from other namespaces.  Just set label for namespace and set label for pods (optional). |
 | networkPolicy.ingressNSPodMatchLabels | object | `{}` |  |
 | password | string | `""` | Redis(TM) password (both master and slave). Defaults to a random 10-character alphanumeric string if not set and usePassword is true. |
 | persistence.existingClaim | string | `nil` |  |
@@ -159,14 +158,14 @@ Edit the README.gotmpl.md template instead.
 | sentinel.readinessProbe.periodSeconds | int | `5` |  |
 | sentinel.readinessProbe.successThreshold | int | `1` |  |
 | sentinel.readinessProbe.timeoutSeconds | int | `5` |  |
-| sentinel.service.annotations | object | `{}` |  |
+| sentinel.service.annotations | object | `{}` | Provide any additional annotations which may be required.  This can be used to set the LoadBalancer service type to internal only. |
 | sentinel.service.externalTrafficPolicy | string | `"Cluster"` | External traffic policy (when service type is LoadBalancer) |
 | sentinel.service.labels | object | `{}` |  |
 | sentinel.service.loadBalancerIP | string | `nil` |  |
 | sentinel.service.redisPort | int | `6379` |  |
 | sentinel.service.sentinelPort | int | `26379` |  |
 | sentinel.service.type | string | `"ClusterIP"` | Redis(TM) Sentinel Service type |
-| sentinel.staticID | bool | `false` |  |
+| sentinel.staticID | bool | `false` | Enable or disable static sentinel IDs for each replicas. If disabled each sentinel will generate a random id at startup. If enabled, each replicas will have a constant ID on each start-up. |
 | sentinel.usePassword | bool | `true` | Require password authentication on the sentinel itself |
 | serviceAccount.create | bool | `false` | Specifies whether a ServiceAccount should be created |
 | serviceAccount.name | string | `nil` | The name of the ServiceAccount to use. If not set and create is true, a name is generated using the fullname template |
@@ -195,7 +194,7 @@ Edit the README.gotmpl.md template instead.
 | slave.persistence.size | string | `"8Gi"` |  |
 | slave.persistence.subPath | string | `""` | The subdirectory of the volume to mount to |
 | slave.podAnnotations | object | `{}` | Redis(TM) slave pod Annotations |
-| slave.podLabels | object | `{}` |  |
+| slave.podLabels | object | `{}` | Redis(TM) slave pod Labels |
 | slave.port | int | `6379` | Redis(TM) slave port |
 | slave.preExecCmds | string | `""` | Additional commands to run prior to starting Redis(TM) |
 | slave.priorityClassName | string | `nil` | Redis(TM) slave pod priorityClassName |
@@ -205,7 +204,7 @@ Edit the README.gotmpl.md template instead.
 | slave.readinessProbe.periodSeconds | int | `10` |  |
 | slave.readinessProbe.successThreshold | int | `1` |  |
 | slave.readinessProbe.timeoutSeconds | int | `10` |  |
-| slave.service.annotations | object | `{}` |  |
+| slave.service.annotations | object | `{}` | Provide any additional annotations which may be required.  |
 | slave.service.externalTrafficPolicy | string | `"Cluster"` | External traffic policy (when service type is LoadBalancer) |
 | slave.service.labels | object | `{}` |  |
 | slave.service.loadBalancerIP | string | `nil` |  |

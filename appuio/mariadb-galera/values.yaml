@@ -67,7 +67,7 @@ image:
   # -- Specify if debug logs should be enabled
   ## Set to true if you would like to see extra information on logs
   debug: false
-# -- StatefulSet controller supports relax its ordering guarantees while preserving its uniqueness and identity guarantees. 
+# -- StatefulSet controller supports relax its ordering guarantees while preserving its uniqueness and identity guarantees.
 # There are two valid pod management policies: OrderedReady and Parallel
 ## ref: https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#pod-management-policy
 ##
@@ -269,6 +269,7 @@ tls:
 # -- Configuration for the MariaDB server
 ## ref: https://mysql.com/kb/en/mysql/configuring-mysql-with-mycnf/#example-of-configuration-file
 ## Alternatively, you can put your my.cnf under the files/ directory
+# @default -- See values.yaml
 mariadbConfiguration: |-
   [client]
   port=3306
