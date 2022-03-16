@@ -1,6 +1,6 @@
 # openshift-route
 
-![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![AppVersion: v1](https://img.shields.io/badge/AppVersion-v1-informational?style=flat-square)
+![Version: 1.1.4](https://img.shields.io/badge/Version-1.1.4-informational?style=flat-square) ![AppVersion: v1](https://img.shields.io/badge/AppVersion-v1-informational?style=flat-square)
 
 A Helm chart for OpenShift that simply creates a Route object
 
@@ -16,55 +16,30 @@ The README.md file is automatically generated with helm-docs!
 Edit the README.gotmpl.md template instead.
 -->
 
-Be sure to also set the backend service, e.g. `helm install ... --set service.name=my-backend-service` or with a values file:
+This chart requires that `service.name` is set (`--set service.name=my-backend-service`).
 
-```yaml
-$ cat my-values.yaml
-service:
-  name: my-backend-service
-```
+## Values
 
-```bash
-helm install openshift-route appuio/openshift-route -f my-values.yaml
-```
-
-## Configuration
-
-The following table lists the configurable parameters of the chart. For defaults please consult `values.yaml`
-
-| Parameter | Description | Default
-| ---       | ---         | ---
-| `host` | The hostname that should be used. If left empty, OpenShift will generate one for you with defaults. | `""`
-| `nameOverride` | Overrides the name after the Chart name. Affects route name and hostname generation. | `""`
-| `fullnameOverride` | If you need to give a specific name to the route, override this, as it affects the hostname generated if `host` is left empty. | `""`
-| `path` | Subpath of the route. | `""`
-| `annotations` | Annotations on the route object. | `{}`
-| `labels` | Additional labels on the route object. | `{}`
-| `service.name` | The backend service name of the route. Required. | `""`
-| `service.targetPort` | The port of the backend service. The port is aware of the named ports of the service, so it can be a name too. | `http`
-| `service.weight` | Weight of the service endpoint. | `100`
-| `wildcardPolicy` | Wildcard Policy of the route. | `None`
-| `tls.enabled` | Whether to secure the Route with TLS. | `false`
-| `tls.termination` | TLS termination of the route. | `edge`
-| `tls.insecureEdgeTerminationPolicy` | What to do with non-HTTPS traffic (usually port 80) | `Redirect`
-| `tls.key` | Certificate private key in PEM format. | `""`
-| `tls.certificate` | Certificate in PEM format. | `""`
-| `tls.caCertificate` | CA (chain) of the certificate in PEM format. | `""`
-| `tls.destinationCACertificate` | CA of the backend in PEM format. Only relevant when `termination=reencrypt`. | `""`
-| `alternateBackends` | Up to 4 additional backends can be enabled to support the route. Consult the documentation. | `[]`
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
-
-When you specify certificates or keys in helmfile, please use the YAML multiline strings, e.g.
-```yaml
-tls:
-  certificate: |
-    -----BEGIN CERTIFICATE-----
-    ...
-    -----END CERTIFICATE-----
-```
-
-You can find more information on Routes in the [Documentation](https://docs.openshift.com/container-platform/3.9/architecture/networking/routes.html).
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| alternateBackends | list | `[]` | Up to 4 additional backends can be enabled to support the route. Consult the documentation. |
+| annotations | object | `{}` | Annotations on the route object. |
+| fullnameOverride | string | `""` | If you need to give a specific name to the route, override this, as it affects the hostname generated if `host` is left empty. |
+| host | string | `""` | The hostname that should be used. If left empty, OpenShift will generate one for you with defaults. |
+| labels | object | `{}` | Additional labels on the route object. |
+| nameOverride | string | `""` | Overrides the name after the Chart name. Affects route name and hostname generation. |
+| path | string | `""` | Subpath of the route. |
+| service.name | string | `""` | The backend service name of the route. **Required** |
+| service.targetPort | string | `"http"` | The port of the backend service. The port is aware of the named ports of the service, so it can be a name too. |
+| service.weight | int | `100` | Weight of the service endpoint. |
+| tls.caCertificate | string | `""` | CA (chain) of the certificate in PEM format. |
+| tls.certificate | string | `""` | Certificate in PEM format. |
+| tls.destinationCACertificate | string | `""` | CA of the backend in PEM format. Only relevant when `termination=reencrypt`. |
+| tls.enabled | bool | `false` | Whether to secure the Route with TLS. |
+| tls.insecureEdgeTerminationPolicy | string | `"Redirect"` | What to do with non-HTTPS traffic (usually port 80). |
+| tls.key | string | `""` | Certificate private key in PEM format. |
+| tls.termination | string | `"edge"` | TLS termination of the route. |
+| wildcardPolicy | string | `"None"` | Wildcard Policy of the route. |
 
 <!---
 Common/Useful Link references from values.yaml

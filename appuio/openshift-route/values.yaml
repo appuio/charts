@@ -2,33 +2,55 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-annotations:
+# -- Annotations on the route object.
+annotations: {}
 # kubernetes.io/acme-tls: "true"
 # haproxy.router.openshift.io/timeout: 5000ms
 # haproxy.router.openshift.io/ip_whitelist: 192.168.1.0/24 10.0.0.0/8
 
-labels:
+# -- Additional labels on the route object.
+labels: {}
 
+# -- The hostname that should be used.
+# If left empty, OpenShift will generate one for you with defaults.
 host: ""
+# -- Subpath of the route.
 path: ""
 
+# -- Wildcard Policy of the route.
 wildcardPolicy: None
 
+# -- Overrides the name after the Chart name.
+# Affects route name and hostname generation.
 nameOverride: ""
+# -- If you need to give a specific name to the route, override this, as it affects the hostname generated if `host` is left empty.
 fullnameOverride: ""
 
 tls:
+  # -- Whether to secure the Route with TLS.
   enabled: false
+  # -- TLS termination of the route.
   termination: edge
+  # -- What to do with non-HTTPS traffic (usually port 80).
   insecureEdgeTerminationPolicy: Redirect
-  key:
-  certificate:
-  caCertificate:
-  destinationCACertificate:
+  # -- Certificate private key in PEM format.
+  key: ""
+  # -- Certificate in PEM format.
+  certificate: ""
+  # -- CA (chain) of the certificate in PEM format.
+  caCertificate: ""
+  # -- CA of the backend in PEM format. Only relevant when `termination=reencrypt`.
+  destinationCACertificate: ""
 
 service:
+  # -- The backend service name of the route. **Required**
   name: ""
+  # -- The port of the backend service.
+  # The port is aware of the named ports of the service, so it can be a name too.
   targetPort: http
+  # -- Weight of the service endpoint.
   weight: 100
 
+# -- Up to 4 additional backends can be enabled to support the route.
+# Consult the documentation.
 alternateBackends: []
