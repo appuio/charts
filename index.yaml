@@ -1943,6 +1943,15 @@ entries:
   openshift-route:
   - apiVersion: v1
     appVersion: v1
+    created: "2022-03-16T11:52:10.032543969Z"
+    description: A Helm chart for OpenShift that simply creates a Route object
+    digest: 70a38ef6f12a5f741acb4684ddf08104960a9d0cb26371e021f21e2db6566c9d
+    name: openshift-route
+    urls:
+    - https://github.com/appuio/charts/releases/download/openshift-route-1.1.4/openshift-route-1.1.4.tgz
+    version: 1.1.4
+  - apiVersion: v1
+    appVersion: v1
     created: "2021-06-08T09:46:50.568503138Z"
     description: A Helm chart for OpenShift that simply creates a Route object
     digest: bb2085ff4527c07409e5df74da9dc05ff7c18d700273dad0736b5b06a1ace17c
@@ -4330,4 +4339,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-15T12:47:42.28685547Z"
+generated: "2022-03-16T11:52:10.034315291Z"
