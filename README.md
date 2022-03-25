@@ -11,6 +11,30 @@ Add the repo:
 helm repo add appuio https://charts.appuio.ch
 ```
 
+## List of Charts
+
+| Downloads & Changelog | Chart |
+| --- | --- |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/cloud-portal-0.4.0/total)](https://github.com/appuio/charts/releases/tag/cloud-portal-0.4.0) | [cloud-portal](appuio/cloud-portal/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/data-cube-curation-0.3.1/total)](https://github.com/appuio/charts/releases/tag/data-cube-curation-0.3.1) | [data-cube-curation](appuio/data-cube-curation/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/exoip-1.0.4/total)](https://github.com/appuio/charts/releases/tag/exoip-1.0.4) | [exoip](appuio/exoip/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/generic-0.1.2/total)](https://github.com/appuio/charts/releases/tag/generic-0.1.2) | [generic](appuio/generic/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/haproxy-1.7.5/total)](https://github.com/appuio/charts/releases/tag/haproxy-1.7.5) | [haproxy](appuio/haproxy/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/k8up-2.0.2/total)](https://github.com/appuio/charts/releases/tag/k8up-2.0.2) | [k8up](appuio/k8up/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/mariadb-galera-1.2.3/total)](https://github.com/appuio/charts/releases/tag/mariadb-galera-1.2.3) | [mariadb-galera](appuio/mariadb-galera/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/maxscale-1.1.2/total)](https://github.com/appuio/charts/releases/tag/maxscale-1.1.2) | [maxscale](appuio/maxscale/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/metrics-server-2.12.1/total)](https://github.com/appuio/charts/releases/tag/metrics-server-2.12.1) | [metrics-server](appuio/metrics-server/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/openshift-oauth-proxy-0.2.3/total)](https://github.com/appuio/charts/releases/tag/openshift-oauth-proxy-0.2.3) | [openshift-oauth-proxy](appuio/openshift-oauth-proxy/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/openshift-route-1.1.4/total)](https://github.com/appuio/charts/releases/tag/openshift-route-1.1.4) | [openshift-route](appuio/openshift-route/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/prometheus-blackbox-exporter-0.3.1/total)](https://github.com/appuio/charts/releases/tag/prometheus-blackbox-exporter-0.3.1) | [prometheus-blackbox-exporter](appuio/prometheus-blackbox-exporter/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/redis-1.3.4/total)](https://github.com/appuio/charts/releases/tag/redis-1.3.4) | [redis](appuio/redis/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/secret-1.1.0/total)](https://github.com/appuio/charts/releases/tag/secret-1.1.0) | [secret](appuio/secret/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/signalilo-0.7.0/total)](https://github.com/appuio/charts/releases/tag/signalilo-0.7.0) | [signalilo](appuio/signalilo/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/snappass-0.2.14/total)](https://github.com/appuio/charts/releases/tag/snappass-0.2.14) | [snappass](appuio/snappass/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.10.0/total)](https://github.com/appuio/charts/releases/tag/stardog-0.10.0) | [stardog](appuio/stardog/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-userrole-operator-0.1.0/total)](https://github.com/appuio/charts/releases/tag/stardog-userrole-operator-0.1.0) | [stardog-userrole-operator](appuio/stardog-userrole-operator/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/trifid-1.2.1/total)](https://github.com/appuio/charts/releases/tag/trifid-1.2.1) | [trifid](appuio/trifid/README.md) |
+
 ## Add / Update Charts
 
 New charts and versions will be built and published automatically as GitHub Releases. All charts use the Semantic Versioning release strategy.
