@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Generate Chart documentation
-        run: make docs -e go_cmd=go
+        run: make docs
       - name: Check if documentation is on par with Chart changes
         run: git diff --exit-code
 

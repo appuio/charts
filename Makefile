@@ -13,7 +13,11 @@ CHARTS_DIR=appuio
 
 HELM_DOCS_VERSION=v1.7.0
 
-go_cmd ?= docker run --rm -v $$(pwd):/go/src -u $$(id -u):$$(id -g) -w /go/src bitnami/golang go
+go_cmd := $(shell command -v go 2> /dev/null)
+
+ifndef go_cmd
+    go_cmd := docker run --rm -v $$(pwd):/go/src -u $$(id -u):$$(id -g) -w /go/src bitnami/golang go
+endif
 
 .PHONY: help
 help: ## Show this help
