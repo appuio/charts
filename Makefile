@@ -13,12 +13,18 @@ CHARTS_DIR=appuio
 
 HELM_DOCS_VERSION=v1.7.0
 
+go_cmd := $(shell command -v go 2> /dev/null)
+
+ifndef go_cmd
+    go_cmd := docker run --rm -v $$(pwd):/go/src -u $$(id -u):$$(id -g) -w /go/src bitnami/golang go
+endif
+
 .PHONY: help
 help: ## Show this help
 	@grep -E -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = "(: ).*?## "}; {gsub(/\\:/,":",$$1)}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: docs
-docs: docs\:helm
+docs: docs\:helm docs\:readme
 
 .PHONY: docs\:helm
 docs\:helm: ## Creates the Chart READMEs from template and values.yaml files
@@ -27,6 +33,10 @@ docs\:helm: ## Creates the Chart READMEs from template and values.yaml files
 		--template-files ./.github/helm-docs-header.gotmpl.md \
 		--template-files README.gotmpl.md \
 		--template-files ./.github/helm-docs-footer.gotmpl.md
+
+.PHONY: docs\:readme
+docs\:readme: ## Creates the root README from template
+	@$(go_cmd) run readme.go $(SOURCE_README) $(TARGET_README) $(CHARTS_DIR)/
 
 .PHONY: test
 test: ## Run Chart unit tests
