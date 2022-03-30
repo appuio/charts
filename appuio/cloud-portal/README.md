@@ -1,6 +1,6 @@
 # cloud-portal
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.0](https://img.shields.io/badge/AppVersion-v0.2.0-informational?style=flat-square)
+![Version: 0.4.1](https://img.shields.io/badge/Version-0.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square)
 
 APPUiO Cloud Portal (Web Frontend)
 
@@ -27,7 +27,7 @@ Edit the README.gotmpl.md template instead.
 | image.pullPolicy | string | `"IfNotPresent"` | Container image pull policy. If set to empty, then Kubernetes default behaviour applies. |
 | image.registry | string | `"ghcr.io"` | Container image registry |
 | image.repository | string | `"appuio/cloud-portal"` | Location of the container image |
-| image.tag | string | `"v0.2.0"` | Container image tag |
+| image.tag | string | `"v0.2.1"` | Container image tag |
 | imagePullSecrets | list | `[]` | List of image pull secrets if custom image is behind authentication. |
 | ingress.annotations | object | `{}` | Additional annotations for the Ingress object |
 | ingress.enabled | bool | `false` | Whether to deploy an Ingress |
