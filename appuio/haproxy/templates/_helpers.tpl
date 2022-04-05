@@ -80,7 +80,7 @@ frontend galeraMetrics
 {{- range $i, $node := .Values.haproxy.galera.nodes }}
 backend galera-node-{{$i}}
   mode http
-  server node-{{$i}} {{ $node.address }}:9104
+  server node-{{$i}} {{ $node.address }}:9104 check
 {{- end }}
 {{- end }}
 {{- end -}}
@@ -101,7 +101,7 @@ frontend galeraMetrics
 {{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
 backend galera-node-{{$i}}
   mode http
-  server node-{{$i}} mariadb-{{$i}}.mariadb:9104
+  server node-{{$i}} mariadb-{{$i}}.mariadb:9104 check
 {{- end }}
 {{- end }}
 {{- end -}}
@@ -122,7 +122,7 @@ frontend redisMetrics
 {{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-{{$i}}
   mode http
-  server node-{{$i}} redis-node-{{$i}}.redis-headless:9121
+  server node-{{$i}} redis-node-{{$i}}.redis-headless:9121 check
 {{- end }}
 {{- end }}
 {{- end -}}
