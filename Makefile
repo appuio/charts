@@ -11,7 +11,7 @@ SOURCE_README=README.gotmpl
 TARGET_README=README.md
 CHARTS_DIR=appuio
 
-HELM_DOCS_VERSION=v1.7.0
+HELM_DOCS_VERSION=v1.8.1
 
 go_cmd := $(shell command -v go 2> /dev/null)
 
