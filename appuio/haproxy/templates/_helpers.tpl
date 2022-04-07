@@ -101,7 +101,7 @@ frontend galeraMetrics
 {{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
 backend galera-node-{{$i}}
   mode http
-  server node-{{$i}} mariadb-{{$i}}.mariadb:9104 init-addr none check resolvers mydns
+  server node-{{$i}} mariadb-{{$i}}.mariadb.{{ .Release.Namespace }}.svc.cluster.local:9104 init-addr none check resolvers mydns
 {{- end }}
 {{- end }}
 {{- end -}}
@@ -122,7 +122,7 @@ frontend redisMetrics
 {{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-{{$i}}
   mode http
-  server node-{{$i}} redis-node-{{$i}}.redis-headless:9121 init-addr none check resolvers mydns
+  server node-{{$i}} redis-node-{{$i}}.redis-headless.{{ .Release.Namespace }}.svc.cluster.local:9121 init-addr none check resolvers mydns
 {{- end }}
 {{- end }}
 {{- end -}}
