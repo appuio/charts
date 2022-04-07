@@ -23,7 +23,6 @@ If release name contains chart name it will be used as a full name.
 {{- end -}}
 {{- end -}}
 {{- end -}}
-{{- $namespace := .Release.Namespace -}}
 
 {{/*
 Create chart name and version as used by the chart label.
@@ -99,6 +98,7 @@ frontend galeraMetrics
   use_backend galera-node-{{$i}} if { hdr_sub(host) -i mariadb-{{$i}} }
   {{- end }}
 
+{{- $namespace := .Release.Namespace -}}
 {{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
 backend galera-node-{{$i}}
   mode http
@@ -120,6 +120,7 @@ frontend redisMetrics
   use_backend redis-node-{{$i}} if { hdr_sub(host) -i redis-{{$i}} }
   {{- end }}
 
+{{- $namespace := .Release.Namespace -}}
 {{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-{{$i}}
   mode http
