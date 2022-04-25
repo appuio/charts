@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![AppVersion: 7.9.0](https://img.shields.io/badge/AppVersion-7.9.0-informational?style=flat-square)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![AppVersion: 7.9.0](https://img.shields.io/badge/AppVersion-7.9.0-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
