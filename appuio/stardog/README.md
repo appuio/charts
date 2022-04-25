@@ -78,6 +78,8 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.metrics.enabled`                  | Enable ZooKeeper Prometheus exporter |
 | `zookeeper.metrics.prometheusOperator`       | Enable Prometheus Operator integration (requires the operator to be installed) |
 | `zookeeper.sessionTimeout`                   | Set the ZooKeeper [session timeout](https://docs.stardog.com/cluster/installation-and-setup/#connectionsession-timeouts) |
+| `zookeeper.autopurge.snapRetainCount`        | How many snapshots ZooKeeper should keep when [autopurging](https://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#sc_strengthsAndLimitations) |
+| `zookeeper.autopurge.purgeInterval`        | Interval (in hours) for ZooKeeper autopurge |
 
 ## Requirements
 
