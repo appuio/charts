@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![AppVersion: 7.9.0](https://img.shields.io/badge/AppVersion-7.9.0-informational?style=flat-square)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![AppVersion: 7.9.0](https://img.shields.io/badge/AppVersion-7.9.0-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -78,6 +78,8 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.metrics.enabled`                  | Enable ZooKeeper Prometheus exporter |
 | `zookeeper.metrics.prometheusOperator`       | Enable Prometheus Operator integration (requires the operator to be installed) |
 | `zookeeper.sessionTimeout`                   | Set the ZooKeeper [session timeout](https://docs.stardog.com/cluster/installation-and-setup/#connectionsession-timeouts) |
+| `zookeeper.autopurge.snapRetainCount`        | How many snapshots ZooKeeper should keep when [autopurging](https://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#sc_strengthsAndLimitations) |
+| `zookeeper.autopurge.purgeInterval`        | Interval (in hours) for ZooKeeper autopurge |
 
 ## Requirements
 

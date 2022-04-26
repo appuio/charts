@@ -107,6 +107,8 @@ zookeeper:
   updateStrategy: OnDelete
   allowAnonymousLogin: false
   sessionTimeout: 15s
+  autopurge: # Without autopurge, the PV will run full
+    purgeInterval: 6 # In hours
   auth:
     enabled: true
     clientUser: stardogClient
