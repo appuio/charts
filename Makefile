@@ -11,8 +11,6 @@ SOURCE_README=README.gotmpl
 TARGET_README=README.md
 CHARTS_DIR=appuio
 
-HELM_DOCS_VERSION=v1.8.1
-
 go_cmd := $(shell command -v go 2> /dev/null)
 
 ifndef go_cmd
@@ -29,7 +27,7 @@ docs: docs\:helm docs\:readme
 .PHONY: docs\:helm
 docs\:helm: ## Creates the Chart READMEs from template and values.yaml files
 	@echo --- Generating Chart READMEs
-	@docker run --rm -v $$(pwd):/helm-docs -u $$(id -u) jnorwood/helm-docs:$(HELM_DOCS_VERSION) \
+	@$(go_cmd) run github.com/norwoodj/helm-docs/cmd/helm-docs \
 		--template-files ./.github/helm-docs-header.gotmpl.md \
 		--template-files README.gotmpl.md \
 		--template-files ./.github/helm-docs-footer.gotmpl.md
