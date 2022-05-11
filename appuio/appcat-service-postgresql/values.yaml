@@ -1,0 +1,80 @@
+# Default values for provider-postgresql.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- How many operator pods should run.
+# Follower pods reduce interruption time as they're on hot standby when leader is unresponsive.
+replicaCount: 1
+
+image:
+  # -- Operator image registry
+  registry: ghcr.io
+  # -- Operator image repository
+  repository: vshn/appcat-service-postgresql
+  # -- Operator image pull policy
+  # If set to empty, then Kubernetes default behaviour applies.
+  pullPolicy: IfNotPresent
+  # -- Operator image tag
+  tag: latest
+
+operator:
+  # -- Overrides arguments passed to the entrypoint
+  args: []
+
+# -- List of image pull secrets if custom image is behind authentication.
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and `.create` is `true`, a name is generated using the fullname template
+  name: ""
+
+# -- Annotations to add to the Pod spec.
+podAnnotations: {}
+
+# -- Security context to add to the Pod spec.
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# -- Container security context
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service port number
+  port: 80
+
+webhook:
+  # -- Certificate in PEM format for the ValidatingWebhookConfiguration.
+  caBundle: ""
+  # -- Certificate in PEM format for the TLS secret.
+  certificate: ""
+  # -- Private key in PEM format for the TLS secret.
+  privateKey: ""
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

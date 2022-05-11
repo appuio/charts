@@ -15,6 +15,7 @@ helm repo add appuio https://charts.appuio.ch
 
 | Downloads & Changelog | Chart |
 | --- | --- |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/appcat-service-postgresql-0.1.0/total)](https://github.com/appuio/charts/releases/tag/appcat-service-postgresql-0.1.0) | [appcat-service-postgresql](appuio/appcat-service-postgresql/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/cloud-portal-0.4.1/total)](https://github.com/appuio/charts/releases/tag/cloud-portal-0.4.1) | [cloud-portal](appuio/cloud-portal/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/data-cube-curation-0.3.1/total)](https://github.com/appuio/charts/releases/tag/data-cube-curation-0.3.1) | [data-cube-curation](appuio/data-cube-curation/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/exoip-1.0.4/total)](https://github.com/appuio/charts/releases/tag/exoip-1.0.4) | [exoip](appuio/exoip/README.md) |
