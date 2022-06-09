@@ -12,6 +12,6 @@ help: ## Show this help
 #
 # "Interface" for parent Makefile
 #
-prepare: ## Build dependencies for this chart
-	helm repo add bitnami https://charts.bitnami.com/bitnami
+prepare: ## Build dependencies for this chart - pinned to index.yaml before upstream cleanup (see: https://github.com/bitnami/charts/pull/10530)
+	helm repo add bitnami https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/
 	helm dep build

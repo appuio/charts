@@ -1,6 +1,6 @@
 # mariadb-galera
 
-![Version: 1.2.3](https://img.shields.io/badge/Version-1.2.3-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
+![Version: 1.2.4](https://img.shields.io/badge/Version-1.2.4-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
 
 MariaDB Galera is a multi-master database cluster solution for synchronous replication and high availability.
 
@@ -181,7 +181,7 @@ Edit the README.gotmpl.md template instead.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | common | 1.x.x |
+| https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/ | common | 1.x.x |
 
 <!---
 Common/Useful Link references from values.yaml

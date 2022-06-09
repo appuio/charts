@@ -21,17 +21,17 @@ helm repo add appuio https://charts.appuio.ch
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/generic-0.1.2/total)](https://github.com/appuio/charts/releases/tag/generic-0.1.2) | [generic](appuio/generic/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/haproxy-2.0.2/total)](https://github.com/appuio/charts/releases/tag/haproxy-2.0.2) | [haproxy](appuio/haproxy/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/k8up-2.0.4/total)](https://github.com/appuio/charts/releases/tag/k8up-2.0.4) | [k8up](appuio/k8up/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/mariadb-galera-1.2.3/total)](https://github.com/appuio/charts/releases/tag/mariadb-galera-1.2.3) | [mariadb-galera](appuio/mariadb-galera/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/mariadb-galera-1.2.4/total)](https://github.com/appuio/charts/releases/tag/mariadb-galera-1.2.4) | [mariadb-galera](appuio/mariadb-galera/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/maxscale-1.1.2/total)](https://github.com/appuio/charts/releases/tag/maxscale-1.1.2) | [maxscale](appuio/maxscale/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/metrics-server-2.12.1/total)](https://github.com/appuio/charts/releases/tag/metrics-server-2.12.1) | [metrics-server](appuio/metrics-server/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/openshift-oauth-proxy-0.2.3/total)](https://github.com/appuio/charts/releases/tag/openshift-oauth-proxy-0.2.3) | [openshift-oauth-proxy](appuio/openshift-oauth-proxy/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/openshift-route-1.1.4/total)](https://github.com/appuio/charts/releases/tag/openshift-route-1.1.4) | [openshift-route](appuio/openshift-route/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/prometheus-blackbox-exporter-0.3.1/total)](https://github.com/appuio/charts/releases/tag/prometheus-blackbox-exporter-0.3.1) | [prometheus-blackbox-exporter](appuio/prometheus-blackbox-exporter/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/redis-1.3.4/total)](https://github.com/appuio/charts/releases/tag/redis-1.3.4) | [redis](appuio/redis/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/redis-1.3.5/total)](https://github.com/appuio/charts/releases/tag/redis-1.3.5) | [redis](appuio/redis/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/secret-1.1.0/total)](https://github.com/appuio/charts/releases/tag/secret-1.1.0) | [secret](appuio/secret/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/signalilo-0.7.0/total)](https://github.com/appuio/charts/releases/tag/signalilo-0.7.0) | [signalilo](appuio/signalilo/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/snappass-0.2.14/total)](https://github.com/appuio/charts/releases/tag/snappass-0.2.14) | [snappass](appuio/snappass/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.11.0/total)](https://github.com/appuio/charts/releases/tag/stardog-0.11.0) | [stardog](appuio/stardog/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/snappass-0.2.15/total)](https://github.com/appuio/charts/releases/tag/snappass-0.2.15) | [snappass](appuio/snappass/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.11.1/total)](https://github.com/appuio/charts/releases/tag/stardog-0.11.1) | [stardog](appuio/stardog/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-userrole-operator-0.1.0/total)](https://github.com/appuio/charts/releases/tag/stardog-userrole-operator-0.1.0) | [stardog-userrole-operator](appuio/stardog-userrole-operator/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/trifid-1.2.2/total)](https://github.com/appuio/charts/releases/tag/trifid-1.2.2) | [trifid](appuio/trifid/README.md) |
 

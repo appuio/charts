@@ -4,7 +4,8 @@ apiVersion: v2
 appVersion: 6.2.1
 dependencies:
 - name: common
-  repository: https://charts.bitnami.com/bitnami
+  # Pinned to index.yaml before upstream cleanup (see: https://github.com/bitnami/charts/pull/10530)
+  repository: https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/
   tags:
   - bitnami-common
   version: 1.x.x
@@ -24,4 +25,4 @@ name: redis
 sources:
 - https://github.com/bitnami/bitnami-docker-redis
 - http://redis.io/
-version: 1.3.4
+version: 1.3.5
