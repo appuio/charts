@@ -1,8 +1,9 @@
 package test
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/assert"
@@ -83,7 +84,7 @@ func Test_Deployment_ShouldRender_CorrectImage(t *testing.T) {
 
 func Test_Deployment_WhenProxyEnabled_ThenEnableRBACContainer(t *testing.T) {
 	expectedBaseImage := "docker.io/vshn/stardog-userrole-operator:v0.1.1"
-	expectedProxyImage := "gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0"
+	expectedProxyImage := "gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0"
 	options := &helm.Options{
 		SetValues: map[string]string{
 			"metrics.proxy.enabled": "true",
