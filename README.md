@@ -32,7 +32,7 @@ helm repo add appuio https://charts.appuio.ch
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/signalilo-0.7.0/total)](https://github.com/appuio/charts/releases/tag/signalilo-0.7.0) | [signalilo](appuio/signalilo/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/snappass-0.2.15/total)](https://github.com/appuio/charts/releases/tag/snappass-0.2.15) | [snappass](appuio/snappass/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.11.1/total)](https://github.com/appuio/charts/releases/tag/stardog-0.11.1) | [stardog](appuio/stardog/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-userrole-operator-0.1.0/total)](https://github.com/appuio/charts/releases/tag/stardog-userrole-operator-0.1.0) | [stardog-userrole-operator](appuio/stardog-userrole-operator/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-userrole-operator-0.1.1/total)](https://github.com/appuio/charts/releases/tag/stardog-userrole-operator-0.1.1) | [stardog-userrole-operator](appuio/stardog-userrole-operator/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/trifid-1.2.2/total)](https://github.com/appuio/charts/releases/tag/trifid-1.2.2) | [trifid](appuio/trifid/README.md) |
 
 ## Add / Update Charts

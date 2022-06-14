@@ -1,6 +1,6 @@
 # stardog-userrole-operator
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 0.1.1](https://img.shields.io/badge/AppVersion-0.1.1-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![AppVersion: 0.1.1](https://img.shields.io/badge/AppVersion-0.1.1-informational?style=flat-square)
 
 Stardog User and Role Operator
 
@@ -30,7 +30,7 @@ Edit the README.gotmpl.md template instead.
 | imagePullSecrets | list | `[]` |  |
 | leaderElection.enabled | bool | `false` | Enable leader election for multiple replicas |
 | metrics.proxy.enabled | bool | `false` | Enable metrics via service behind a authenticated proxy |
-| metrics.proxy.image | string | `"gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0"` | Proxy image |
+| metrics.proxy.image | string | `"gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0"` | Proxy image |
 | metrics.proxy.port | int | `8443` |  |
 | metrics.service.enabled | bool | `true` |  |
 | metrics.service.port | int | `8080` |  |
