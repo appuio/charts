@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: haproxytech/haproxy-debian
-  tag: 2.6.0
+  tag: 2.6.1
   pullPolicy: IfNotPresent
 
 ingress:
