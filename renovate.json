@@ -22,5 +22,8 @@
   ],
   "prBodyNotes": [
     "- [ ] PR contains the label that identifies the chart, e.g. `chart/<chart-name>`"
+  ],
+  "ignorePaths": [
+    "**/appuio/k8up/**"
   ]
 }
