@@ -1,3 +1,12 @@
+# ⚠️ WE HAVE MOVED
+
+This chart is no longer maintained here.
+Instead, it is now available in the [K8up repository itself](https://github.com/k8up-io/k8up/tree/master/charts/k8up).
+
+To communicate a clear cut, we've released the chart in version `v3.0.0` with a few changes.
+The releases from `v3.0.0` and onwards are only available in the new location.
+All previously released chart versions remain in the APPUiO repository (`https://charts.appuio.ch`).
+
 # k8up
 
 ![Version: 2.0.5](https://img.shields.io/badge/Version-2.0.5-informational?style=flat-square) ![AppVersion: v2.3.2](https://img.shields.io/badge/AppVersion-v2.3.2-informational?style=flat-square)
@@ -16,12 +25,6 @@ helm install k8up appuio/k8up
 kubectl apply -f https://github.com/k8up-io/k8up/releases/download/v2.3.2/k8up-crd.yaml
 ```
 
-<!---
-The README.md file is automatically generated with helm-docs!
-
-Edit the README.gotmpl.md template instead.
--->
-
 ## Handling CRDs
 
 * Always upgrade the CRDs before upgrading the Helm release.
@@ -31,11 +34,6 @@ Edit the README.gotmpl.md template instead.
 
 * <https://github.com/k8up-io/k8up>
 
-<!---
-The values below are generated with helm-docs!
-
-Document your changes in values.yaml and let `make docs:helm` generate this section.
--->
 ## Values
 
 | Key | Type | Default | Description |
