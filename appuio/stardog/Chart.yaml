@@ -1,7 +1,7 @@
 apiVersion: v1
 name: stardog
-version: 0.11.1
-appVersion: 7.9.0
+version: 0.11.2
+appVersion: 8.0.1
 description: Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 home: "https://www.stardog.com/"
 icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
