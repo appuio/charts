@@ -2860,6 +2860,26 @@ entries:
     version: 1.0.0
   signalilo:
   - apiVersion: v1
+    appVersion: v0.11.0
+    created: "2022-09-06T21:07:37.71006103Z"
+    description: Alertmanager to Icinga2 bridge
+    digest: 293b5183956a322e4f7fbef17122789d52be47097400a4dc04650218ded8ec41
+    home: https://git.vshn.net/vshn/signalilo
+    keywords:
+    - prometheus
+    - alertmanager
+    - webhook
+    - icinga2
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: signalilo
+    sources:
+    - https://git.vshn.net/vshn/signalilo
+    urls:
+    - https://github.com/appuio/charts/releases/download/signalilo-0.8.0/signalilo-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v1
     appVersion: v0.10.0
     created: "2021-10-07T13:55:38.765743597Z"
     description: Alertmanager to Icinga2 bridge
@@ -4734,4 +4754,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2022-08-10T11:13:51.847647624Z"
+generated: "2022-09-06T21:07:37.712149651Z"
