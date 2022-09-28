@@ -13,5 +13,5 @@ help: ## Show this help
 # "Interface" for parent Makefile
 #
 prepare:
-	helm repo add bitnami https://charts.bitnami.com/bitnami
+	helm repo add bitnami-latest https://charts.bitnami.com/bitnami
 	helm dep build
