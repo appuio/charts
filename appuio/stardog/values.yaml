@@ -104,8 +104,8 @@ memory:
 zookeeper:
   enabled: true
   replicaCount: 3
-  updateStrategy: OnDelete
-  allowAnonymousLogin: false
+  updateStrategy:
+    type: OnDelete
   sessionTimeout: 15s
   autopurge: # Without autopurge, the PV will run full
     purgeInterval: 6 # In hours
