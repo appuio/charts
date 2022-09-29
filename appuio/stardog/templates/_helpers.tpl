@@ -37,7 +37,7 @@ Create chart name and version as used by the chart label.
 
 {{- define "stardog.zookeeper.fullname" -}}
 {{- $zookeeperContext := dict "Values" .Values.zookeeper "Release" .Release "Chart" (dict "Name" "zookeeper") -}}
-{{ template "zookeeper.fullname" $zookeeperContext }}
+{{ template "common.names.fullname" $zookeeperContext }}
 {{- end -}}
 
 {{/*

@@ -57,7 +57,6 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.enabled`                          | Enable ZooKeeper. Required for Stardog Cluster deployments |
 | `zookeeper.replicaCount`                     | Number of ZooKeeper instances to run. Should always be an odd number > 3 |
 | `zookeeper.updateStrategy`                   | [Update strategy](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies) of the ZooKeeper StatefulSet |
-| `zookeeper.allowAnonymousLogin`              | Allow anonymous logins to ZooKeeper |
 | `zookeeper.auth.enabled`                     | Enable ZooKeeper authentication |
 | `zookeeper.auth.clientPassword`              | Password to use for ZooKeeper clients. Will be generated if unset |
 | `zookeeper.auth.serverPasswords`             | Password to use for ZooKeeper servers (delimited by `,`). Will be generated if unset |

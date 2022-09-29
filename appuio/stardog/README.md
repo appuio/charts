@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.11.2](https://img.shields.io/badge/Version-0.11.2-informational?style=flat-square) ![AppVersion: 8.0.1](https://img.shields.io/badge/AppVersion-8.0.1-informational?style=flat-square)
+![Version: 0.12.0](https://img.shields.io/badge/Version-0.12.0-informational?style=flat-square) ![AppVersion: 8.1.0](https://img.shields.io/badge/AppVersion-8.1.0-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -71,7 +71,6 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.enabled`                          | Enable ZooKeeper. Required for Stardog Cluster deployments |
 | `zookeeper.replicaCount`                     | Number of ZooKeeper instances to run. Should always be an odd number > 3 |
 | `zookeeper.updateStrategy`                   | [Update strategy](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies) of the ZooKeeper StatefulSet |
-| `zookeeper.allowAnonymousLogin`              | Allow anonymous logins to ZooKeeper |
 | `zookeeper.auth.enabled`                     | Enable ZooKeeper authentication |
 | `zookeeper.auth.clientPassword`              | Password to use for ZooKeeper clients. Will be generated if unset |
 | `zookeeper.auth.serverPasswords`             | Password to use for ZooKeeper servers (delimited by `,`). Will be generated if unset |
@@ -85,7 +84,7 @@ The following table lists the configurable parameters chart. For default values 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/ | zookeeper | 5.14.4 |
+| https://charts.bitnami.com/bitnami | zookeeper | 8.1.2 |
 
 <!---
 Common/Useful Link references from values.yaml
