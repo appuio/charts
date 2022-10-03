@@ -46,6 +46,6 @@ Create ZooKeeper connection string.
 {{- define "stardog.zookeeperConnection" -}}
 {{- $zookeeperFullName := (include "stardog.zookeeper.fullname" $) }}
 {{- range $i, $e := until (int .Values.zookeeper.replicaCount) -}}
-{{- printf "%v-%v.%v-headless:%d," $zookeeperFullName $i $zookeeperFullName (int $.Values.zookeeper.service.port) -}}
+{{- printf "%v-%v.%v-headless:%d," $zookeeperFullName $i $zookeeperFullName (int $.Values.zookeeper.containerPorts.client) -}}
 {{- end -}}
 {{- end -}}
