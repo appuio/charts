@@ -105,6 +105,7 @@ zookeeper:
   enabled: true
   replicaCount: 3
   updateStrategy:
+    rollingUpdate: null
     type: OnDelete
   sessionTimeout: 15s
   autopurge: # Without autopurge, the PV will run full
