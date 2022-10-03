@@ -67,7 +67,7 @@ spec:
             - name: ZOOKEEPER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "stardog.zookeeper.fullname" . }}
+                  name: {{ template "stardog.zookeeper.fullname" . }}{{ "-auth" }}
                   key: client-password
             {{- end }}
             - name: STARDOG_SERVER_JAVA_ARGS
