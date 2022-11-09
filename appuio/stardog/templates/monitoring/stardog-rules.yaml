@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     role: alert-rules
+    monitoring.syn.tools/enabled: "true"
 spec:
   groups:
   - name: Stardog
