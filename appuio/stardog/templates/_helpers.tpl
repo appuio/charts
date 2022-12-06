@@ -40,6 +40,15 @@ Create chart name and version as used by the chart label.
 {{ template "common.names.fullname" $zookeeperContext }}
 {{- end -}}
 
+{{- define "prometheusRules.extraLabels" -}}
+{{- if .Values.metrics.extraRuleLabels -}}
+{{- range $key, $val := .Values.metrics.extraRuleLabels }}
+{{ $key }}: {{ $val | quote }}
+{{- end }}
+{{- else -}}
+{{- end -}}
+{{- end -}}
+
 {{/*
 Create ZooKeeper connection string.
 */}}

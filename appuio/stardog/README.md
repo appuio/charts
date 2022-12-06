@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.13.0](https://img.shields.io/badge/Version-0.13.0-informational?style=flat-square) ![AppVersion: 8.1.1](https://img.shields.io/badge/AppVersion-8.1.1-informational?style=flat-square)
+![Version: 0.14.0](https://img.shields.io/badge/Version-0.14.0-informational?style=flat-square) ![AppVersion: 8.1.1](https://img.shields.io/badge/AppVersion-8.1.1-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -64,6 +64,7 @@ The following table lists the configurable parameters chart. For default values 
 | `ingress.host`                               | Host name which the ingress should resolve |
 | `ingress.tls.enabled`                        | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`                     | Name of the secret containing the TLS certificate and key |
+| `metrics.extraRuleLabels`        | A hash of labels to add to every PrometheusRule |
 | `persistence.enabled`                        | Enable persistence using PVC |
 | `persistence.storageClass`                   | PVC storage class for Stardog data volume |
 | `persistence.size`                           | PVC storage request size for Stardog data volume |
