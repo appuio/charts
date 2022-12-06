@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     role: alert-rules
+    {{- include "prometheusRules.extraLabels" .Values.metrics.stardogRules.extraLabels | indent 4 }}
 spec:
   groups:
   - name: Stardog

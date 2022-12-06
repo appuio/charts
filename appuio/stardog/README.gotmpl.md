@@ -50,6 +50,8 @@ The following table lists the configurable parameters chart. For default values 
 | `ingress.host`                               | Host name which the ingress should resolve |
 | `ingress.tls.enabled`                        | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`                     | Name of the secret containing the TLS certificate and key |
+| `metrics.stardogRules.extraLabels`        | A hash of labels to add to Stardog's PrometheusRules |
+| `metrics.zookeeperRules.extraLabels`        | A hash of labels to add to ZooKeeper's PrometheusRules |
 | `persistence.enabled`                        | Enable persistence using PVC |
 | `persistence.storageClass`                   | PVC storage class for Stardog data volume |
 | `persistence.size`                           | PVC storage request size for Stardog data volume |
@@ -65,3 +67,4 @@ The following table lists the configurable parameters chart. For default values 
 | `zookeeper.sessionTimeout`                   | Set the ZooKeeper [session timeout](https://docs.stardog.com/cluster/installation-and-setup/#connectionsession-timeouts) |
 | `zookeeper.autopurge.snapRetainCount`        | How many snapshots ZooKeeper should keep when [autopurging](https://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#sc_strengthsAndLimitations) |
 | `zookeeper.autopurge.purgeInterval`        | Interval (in hours) for ZooKeeper autopurge |
+
