@@ -50,7 +50,8 @@ The following table lists the configurable parameters chart. For default values 
 | `ingress.host`                               | Host name which the ingress should resolve |
 | `ingress.tls.enabled`                        | If TLS should be enabled on the ingress |
 | `ingress.tls.secretName`                     | Name of the secret containing the TLS certificate and key |
-| `metrics.extraRuleLabels`        | A hash of labels to add to every PrometheusRule |
+| `metrics.stardogRules.extraLabels`        | A hash of labels to add to Stardog's PrometheusRules |
+| `metrics.zookeeperRules.extraLabels`        | A hash of labels to add to ZooKeeper's PrometheusRules |
 | `persistence.enabled`                        | Enable persistence using PVC |
 | `persistence.storageClass`                   | PVC storage class for Stardog data volume |
 | `persistence.size`                           | PVC storage request size for Stardog data volume |

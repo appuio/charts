@@ -41,12 +41,9 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{- define "prometheusRules.extraLabels" -}}
-{{- if .Values.metrics.extraRuleLabels -}}
-{{- range $key, $val := .Values.metrics.extraRuleLabels }}
+{{- range $key, $val := . }}
 {{ $key }}: {{ $val | quote }}
 {{- end }}
-{{- else -}}
-{{- end -}}
 {{- end -}}
 
 {{/*

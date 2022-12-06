@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     role: alert-rules
-    {{- include "prometheusRules.extraLabels" . | indent 4 }}
+    {{- include "prometheusRules.extraLabels" .Values.metrics.zookeeperRules.extraLabels | indent 4 }}
 spec:
   groups:
   - name: zookeeper
