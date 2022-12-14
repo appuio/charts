@@ -83,6 +83,10 @@ persistence:
 metrics:
   enabled: false
   prometheusOperator: false
+  stardogRules:
+    extraLabels: null
+  zookeeperRules:
+    extraLabels: null
   image:
     registry: docker.io
     repository: sscaling/jmx-prometheus-exporter
