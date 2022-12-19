@@ -67,6 +67,20 @@ resources:
     cpu: 200m
     memory: 128Mi
 
+ingress:
+  # -- enable ingress
+  enabled: false
+  # -- ingress annotations
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  # -- ingress hostnames
+  hosts: ["signalilo.local"]
+  # -- ingress TLS configuration
+  tls: []
+  #  - secretName: signalilo-tls
+  #    hosts:
+  #      - signalilo.local
+
 nodeSelector: {}
 
 tolerations: []

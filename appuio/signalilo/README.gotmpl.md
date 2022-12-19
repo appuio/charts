@@ -34,6 +34,10 @@ Parameter | Description | Default
 `securityContext.runAsUser` | User to run the pod as | `999`
 `securityContext.fsGroup` | fs group to use for the pod | `999`
 `resources` | Pod resource requests and limits | `{}`
+`ingress.enabled` | Enable ingress | `false`
+`ingress.annotations` | Ingress annotations | `{}`
+`ingress.hosts` | Ingress hostnames | `["signalilo.local"]`
+`ingress.tls` | Ingress TLS configuration | `[]`
 `nodeSelector` | Pod node selector | `{}`
 `tolerations` | Pod tolerations | `[]`
 `affinity` | Pod affinity rules | `{}`
