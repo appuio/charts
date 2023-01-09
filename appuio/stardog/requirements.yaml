@@ -1,5 +1,5 @@
 dependencies:
   - name: zookeeper
     version: 8.1.2
-    repository: https://charts.bitnami.com/bitnami
+    repository: https://raw.githubusercontent.com/bitnami/charts/b661ad0e6e3277fc5b5b2db197cba47174693712/bitnami/
     condition: zookeeper.enabled
