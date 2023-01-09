@@ -4,6 +4,11 @@ The README.md file is automatically generated with helm-docs!
 Edit the README.gotmpl.md template instead.
 -->
 
+## Deployment considerations
+
+It is recommended to deploy Signalilo only in the same cluster or network as the alertmanager instance, which is sending the alerts.
+Having Signalilo exposed to an alertmanager outside of it's network is untested. 
+
 ## Configuration
 
 The following table lists the configurable parameters of the Signalilo chart and their default values.
