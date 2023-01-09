@@ -1,6 +1,6 @@
 # signalilo
 
-![Version: 0.9.1](https://img.shields.io/badge/Version-0.9.1-informational?style=flat-square) ![AppVersion: v0.12.0](https://img.shields.io/badge/AppVersion-v0.12.0-informational?style=flat-square)
+![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![AppVersion: v0.12.0](https://img.shields.io/badge/AppVersion-v0.12.0-informational?style=flat-square)
 
 Alertmanager to Icinga2 bridge
 
@@ -17,6 +17,11 @@ The README.md file is automatically generated with helm-docs!
 
 Edit the README.gotmpl.md template instead.
 -->
+
+## Deployment considerations
+
+It is recommended to deploy Signalilo only in the same cluster or network as the alertmanager instance which is sending the alerts.
+Using Signalilo from an alertmanager instance in a different network is untested.
 
 ## Configuration
 
@@ -48,6 +53,10 @@ Parameter | Description | Default
 `securityContext.runAsUser` | User to run the pod as | `999`
 `securityContext.fsGroup` | fs group to use for the pod | `999`
 `resources` | Pod resource requests and limits | `{}`
+`ingress.enabled` | Enable ingress | `false`
+`ingress.annotations` | Ingress annotations | `{}`
+`ingress.hosts` | Ingress hostnames | `["signalilo.local"]`
+`ingress.tls` | Ingress TLS configuration | `[]`
 `nodeSelector` | Pod node selector | `{}`
 `tolerations` | Pod tolerations | `[]`
 `affinity` | Pod affinity rules | `{}`
