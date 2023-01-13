@@ -35,6 +35,9 @@ Parameter | Description | Default
 `extraEnvVars` | Extra Signalilo configuration (see values.yaml for optional configuration values, and their defaults) | `[]`
 `extraVolumes` | Extra Signalilo extra volumes | `[]`
 `extraVolumeMounts` | Extra Signalilo extra volume mounts | `[]`
+`serviceAccount.annotations` | Annotations to add to the service account | `{}`
+`serviceAccount.create` | Specifies whether a service account should be created | `true`
+`serviceAccount.name` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template | `""`
 `securityContext.enabled` | Enable security context for the pod | `false`
 `securityContext.runAsUser` | User to run the pod as | `999`
 `securityContext.fsGroup` | fs group to use for the pod | `999`
