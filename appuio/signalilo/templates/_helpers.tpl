@@ -38,3 +38,34 @@ Create image pull secret.
 {{- define "signalilo.imagePullSecret" -}}
 {{- printf "{\"auths\": {\"%s\": {\"auth\": \"%s\"}}}" ( required "Please specify the Docker registry" .Values.image.registry) (printf "%s:%s" (required "Please specify the Docker user name" .Values.image.username) ( required "Please specify the Docker password" .Values.image.password) | b64enc) | b64enc }}
 {{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "signalilo.labels" -}}
+helm.sh/chart: {{ include "signalilo.chart" . }}
+{{ include "signalilo.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "signalilo.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "signalilo.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "signalilo.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "signalilo.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}

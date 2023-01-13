@@ -8,7 +8,7 @@ keywords:
   - webhook
   - icinga2
 version: 0.10.0
-appVersion: v0.12.0
+appVersion: v0.13.0
 sources:
   - https://git.vshn.net/vshn/signalilo
 maintainers:
