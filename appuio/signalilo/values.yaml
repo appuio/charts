@@ -74,10 +74,11 @@ ingress:
   enabled: false
   className: ""
   annotations: {}
-    # cert-manager.io/cluster-issuer: letsencrypt-prod
-  # -- ingress hostnames
-  hosts: ["signalilo.local"]
-  # -- ingress TLS configuration
+  hosts:
+    - host: signalilo.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: signalilo-tls
   #    hosts:
