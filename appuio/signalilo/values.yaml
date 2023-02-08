@@ -72,7 +72,7 @@ resources:
 ingress:
   # -- enable ingress
   enabled: false
-  # -- ingress annotations
+  className: ""
   annotations: {}
     # cert-manager.io/cluster-issuer: letsencrypt-prod
   # -- ingress hostnames
