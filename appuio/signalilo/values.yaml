@@ -70,10 +70,11 @@ resources:
 # It is recommended to only use Signalilo inside the same cluster/network as the alertmanager instance sending the alerts.
 # Running Signalilo on a different network as the connected alertmanager is untested.
 ingress:
-  # -- enable ingress
   enabled: false
   className: ""
   annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: signalilo.local
       paths:
