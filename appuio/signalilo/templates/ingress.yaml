@@ -1,8 +1,9 @@
 {{- if .Values.ingress.enabled -}}
+{{- $fullName := include "signalilo.fullname" . -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "signalilo.fullname" }}
+  name: {{ $fullName }}
   labels:
     app.kubernetes.io/name: {{ include "signalilo.name" . }}
     helm.sh/chart: {{ include "signalilo.chart" . }}
@@ -21,7 +22,7 @@ spec:
           - path: /
             backend:
               service:
-                name: {{ include "signalilo.fullname" }}
+                name: {{ $fullName }}
                 port:
                   number: 80
     {{- end }}
