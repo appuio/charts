@@ -1,6 +1,6 @@
 # haproxy
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 2.6.1](https://img.shields.io/badge/AppVersion-2.6.1-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.6.1](https://img.shields.io/badge/AppVersion-2.6.1-informational?style=flat-square)
 
 A Helm chart for HAProxy which can be customized by a config map.
 
@@ -143,6 +143,13 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.port` | Port of the Galera node | `6379`
 | `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
 | `haproxy.redisk8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Redis backends should be exposed in the haproxy service | `true`
+
+### filterproxy
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `filterproxy.enabled` | Enables exposing an [exporter-filterproxy](https://github.com/vshn/exporter-filterproxy) that will be filtered based on the namespace | `false`
+| `filterproxy.url` | The URL of the exporter-filterproxy to expose | `""`
 
 ## Galera and Redis metrics
 

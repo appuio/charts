@@ -134,6 +134,12 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
 | `haproxy.redisk8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Redis backends should be exposed in the haproxy service | `true`
 
+### filterproxy
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `filterproxy.enabled` | Enables exposing an [exporter-filterproxy](https://github.com/vshn/exporter-filterproxy) that will be filtered based on the namespace | `false`
+| `filterproxy.url` | The URL of the exporter-filterproxy to expose | `""`
 
 ## Galera and Redis metrics
 
