@@ -79,14 +79,16 @@ resources:
 # It is recommended to only use Signalilo inside the same cluster/network as the alertmanager instance sending the alerts.
 # Running Signalilo on a different network as the connected alertmanager is untested.
 ingress:
-  # -- enable ingress
   enabled: false
-  # -- ingress annotations
+  className: ""
   annotations: {}
-    # cert-manager.io/cluster-issuer: letsencrypt-prod
-  # -- ingress hostnames
-  hosts: ["signalilo.local"]
-  # -- ingress TLS configuration
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: signalilo.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: signalilo-tls
   #    hosts:
