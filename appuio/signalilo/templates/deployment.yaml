@@ -21,6 +21,7 @@ spec:
       annotations:
         checksum/tokens-secret: {{ include (print .Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: {{ include "signalilo.serviceAccountName" . }}
       {{- if .Values.securityContext.enabled }}
       securityContext:
         fsGroup: {{ .Values.securityContext.fsGroup }}
