@@ -134,17 +134,37 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 | `haproxy.redisk8s.metrics.enabled`| If the metric endpoint of the Redis backends should be exposed in haproxy | `false`
 | `haproxy.redisk8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Redis backends should be exposed in the haproxy service | `true`
 
+### filterproxy
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.filterproxy.enabled` | Enables exposing an [exporter-filterproxy](https://github.com/vshn/exporter-filterproxy) that will be filtered based on the namespace | `false`
+| `haproxy.filterproxy.url` | The URL of the exporter-filterproxy to expose | `""`
 
 ## Galera and Redis metrics
 
 By setting the `haproxy.galerak8s.metrics.enabled` or `haproxy.redisk8s.metrics.enabled` parameters, you can expose the metrics of the backend pods.
 
-For Galera the endpoints are:
-* `<haproxy_service_ip>:9090/metrics/mariadb-0/metrics`
-* `<haproxy_service_ip>:9090/metrics/mariadb-1/metrics`
+For Galera the endpoints are either:
+* `<haproxy_service_ip>:9090/mariadb/0`
+* `<haproxy_service_ip>:9090/mariadb/1`
 * `...`
 
-For Redis the endpoints are:
-* `<haproxy_service_ip>:9090/metrics/redis-0/metrics`
-* `<haproxy_service_ip>:9090/metrics/redis-1/metrics`
+Or:
+* `mariadb-0.example.com:9090/metrics`
+* `mariadb-1.example.com:9090/metrics`
 * `...`
+
+When `mariadb-<nr>.example.com` resolves to the haproxy service IP.
+
+For Redis the endpoints are either:
+* `<haproxy_service_ip>:9090/redis/0`
+* `<haproxy_service_ip>:9090/redis/1`
+* `...`
+
+Or:
+* `redis-0.example.com:9090/metrics`
+* `redis-1.example.com:9090/metrics`
+* `...`
+
+When `redis-<nr>.example.com` resolves to the haproxy service IP.

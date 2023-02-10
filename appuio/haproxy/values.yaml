@@ -106,6 +106,12 @@ haproxy:
       enabled: false
       exposeLoadbalancer: true
 
+  filterproxy:
+    # Enables exposing an [exporter-filterproxy](https://github.com/vshn/exporter-filterproxy) that will be filtered using the namspace
+    enabled: false
+    # The URL of the exporter-filterproxy to expose
+    url: ""
+
 metrics:
   enabled: true
 
