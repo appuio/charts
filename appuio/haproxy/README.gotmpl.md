@@ -146,11 +146,11 @@ Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS servi
 By setting the `haproxy.galerak8s.metrics.enabled` or `haproxy.redisk8s.metrics.enabled` parameters, you can expose the metrics of the backend pods.
 
 For Galera the endpoints are:
-* `<haproxy_service_ip>:9090/metrics/mariadb-0/metrics`
-* `<haproxy_service_ip>:9090/metrics/mariadb-1/metrics`
+* `<haproxy_service_ip>:9090/mariadb/0`
+* `<haproxy_service_ip>:9090/mariadb/1`
 * `...`
 
 For Redis the endpoints are:
-* `<haproxy_service_ip>:9090/metrics/redis-0/metrics`
-* `<haproxy_service_ip>:9090/metrics/redis-1/metrics`
+* `<haproxy_service_ip>:9090/redis/0`
+* `<haproxy_service_ip>:9090/redis/1`
 * `...`
