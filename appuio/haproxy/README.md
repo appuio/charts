@@ -1,6 +1,6 @@
 # haproxy
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.6.1](https://img.shields.io/badge/AppVersion-2.6.1-informational?style=flat-square)
+![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 2.7.3](https://img.shields.io/badge/AppVersion-2.7.3-informational?style=flat-square)
 
 A Helm chart for HAProxy which can be customized by a config map.
 
@@ -33,7 +33,7 @@ create your own configmap and values.
 | `replicaCount`          | Number of replicas for the proxy. | `1`
 | `image.registry`        | Registry of the image | `docker.io`
 | `image.repository`      | Repository of the image | `haproxytech/haproxy-debian`
-| `image.tag`             | Tag of the image | `2.3.5`
+| `image.tag`             | Tag of the image | `2.7.3`
 | `image.pullPolicy`      | Determines when the image is pulled | `IfNotPresent`
 | `ingress.enabled`       | If an ingress object should be created | `false`
 | `ingress.annotations`   | Annotations to set on the ingress object |
