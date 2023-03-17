@@ -121,20 +121,4 @@ zookeeper:
     enabled: true
     serviceMonitor:
       enabled: true
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - stardog
-          topologyKey: kubernetes.io/hostname
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/component
-                operator: In
-                values:
-                - zookeeper
-          topologyKey: kubernetes.io/hostname
+  podAntiAffinityPreset: hard
