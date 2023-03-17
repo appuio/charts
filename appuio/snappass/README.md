@@ -1,6 +1,6 @@
 # snappass
 
-![Version: 0.2.15](https://img.shields.io/badge/Version-0.2.15-informational?style=flat-square) ![AppVersion: v1.4.2](https://img.shields.io/badge/AppVersion-v1.4.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v1.4.2](https://img.shields.io/badge/AppVersion-v1.4.2-informational?style=flat-square)
 
 A Helm chart for SnapPass
 
