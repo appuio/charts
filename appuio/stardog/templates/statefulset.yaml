@@ -111,11 +111,9 @@ spec:
         - name: jmx-exporter
           image: {{ .Values.metrics.image.registry }}/{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}
           imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
-          env:
-            - name: CONFIG_YML
-              value: /etc/jmx_exporter/jmx-exporter.yaml
-            - name: JVM_OPTS
-              value: -XX:MaxRAM=100M
+          args:
+            - "5556"
+            - "/etc/jmx_exporter/jmx-exporter.yaml"
           ports:
             - name: metrics
               containerPort: 5556
@@ -133,12 +131,7 @@ spec:
               port: metrics
             initialDelaySeconds: 15
           resources:
-            requests:
-              memory: 128Mi
-              cpu: 500m
-            limits:
-              memory: 128Mi
-              cpu: 500m
+            {{- toYaml .Values.metrics.resources | nindent 12 }}
       {{- end }}
       terminationGracePeriodSeconds: 600
       securityContext: {{ .Values.stardog.securityContext | toYaml | nindent 8 }}

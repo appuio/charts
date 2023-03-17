@@ -89,9 +89,16 @@ metrics:
     extraLabels: null
   image:
     registry: docker.io
-    repository: sscaling/jmx-prometheus-exporter
-    tag: 0.12.0
+    repository: bitnami/jmx-exporter
+    tag: 0.18.0
     pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 500m
+    limits:
+      memory: 128Mi
+      cpu: 1000m
 
 resources: {}
 
