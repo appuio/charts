@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.16.2](https://img.shields.io/badge/Version-0.16.2-informational?style=flat-square) ![AppVersion: 8.2.2](https://img.shields.io/badge/AppVersion-8.2.2-informational?style=flat-square)
+![Version: 0.17.0](https://img.shields.io/badge/Version-0.17.0-informational?style=flat-square) ![AppVersion: 8.2.2](https://img.shields.io/badge/AppVersion-8.2.2-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -25,6 +25,20 @@ Edit the README.gotmpl.md template instead.
 -->
 
 ## Configuration
+
+When using Stardog in clustered mode with `zookeeper.enabled=true`, it's best to also enable PodDisruptionBudgets:
+
+```yaml
+zookeeper:
+  enabled: true
+  pdb:
+    create: true
+    maxUnavailable: 1
+```
+
+Otherwise events such as draining a node can leave the cluster in a state where no cluster coordinator is left in charge, which often makes it impossible for the cluster to reassamble itself once pods become ready again.
+
+## Values
 
 The following table lists the configurable parameters chart. For default values consult `values.yaml`.
 
