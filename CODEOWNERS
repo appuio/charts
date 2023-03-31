@@ -9,7 +9,7 @@
 /appuio/generic           @appuio/tarazed
 /appuio/openshift-route   @appuio/tarazed
 /appuio/secret            @appuio/tarazed
-/appuio/haproxy           @appuio/tarazed @anothertobi
+/appuio/haproxy           @appuio/tarazed
 
 # Other charts
 /appuio/signalilo         @simu
