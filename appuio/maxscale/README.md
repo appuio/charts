@@ -1,6 +1,6 @@
 # maxscale
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 2.2.20](https://img.shields.io/badge/AppVersion-2.2.20-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 6.4.6](https://img.shields.io/badge/AppVersion-6.4.6-informational?style=flat-square)
 
 MaxScale Helm Chart
 
@@ -29,7 +29,7 @@ Edit the README.gotmpl.md template instead.
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"docker.io/appuio/maxscale"` |  |
-| image.tag | string | `"2.2.20"` |  |
+| image.tag | string | `"6.4.3"` |  |
 | metrics.enabled | bool | `false` |  |
 | metrics.image.pullPolicy | string | `"IfNotPresent"` |  |
 | metrics.image.repository | string | `"skord/maxscale_exporter"` |  |
