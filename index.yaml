@@ -1999,6 +1999,19 @@ entries:
     version: 1.0.0
   maxscale:
   - apiVersion: v1
+    appVersion: 6.4.6
+    created: "2023-05-17T12:19:57.331705326Z"
+    description: MaxScale Helm Chart
+    digest: ce586868c0d5ce3fbcd358659d3f1e9570ec5545153f56f1db1edf14821e11ad
+    home: https://mariadb.com/products/technology/maxscale
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: maxscale
+    urls:
+    - https://github.com/appuio/charts/releases/download/maxscale-2.0.0/maxscale-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v1
     appVersion: 2.2.20
     created: "2021-06-08T09:46:50.200582853Z"
     description: MaxScale Helm Chart
@@ -5195,4 +5208,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-03T14:24:55.945318143Z"
+generated: "2023-05-17T12:19:57.333098715Z"
