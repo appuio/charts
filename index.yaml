@@ -5121,6 +5121,19 @@ entries:
   trifid:
   - apiVersion: v1
     appVersion: 2.3.7
+    created: "2023-06-06T08:37:36.317600132Z"
+    description: Trifid provides a lightweight and easy way to access Linked Data
+      URIs via HTTP.
+    digest: 9c7529226b86633861cff4ee43ba38f29fff095fa2011bb790274c8376764f7a
+    home: https://github.com/zazuko/trifid
+    name: trifid
+    sources:
+    - https://github.com/zazuko/trifid
+    urls:
+    - https://github.com/appuio/charts/releases/download/trifid-2.0.0/trifid-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v1
+    appVersion: 2.3.7
     created: "2022-08-10T11:13:51.846394676Z"
     description: Trifid provides a lightweight and easy way to access Linked Data
       URIs via HTTP.
@@ -5208,4 +5221,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-17T12:19:57.333098715Z"
+generated: "2023-06-06T08:37:36.319252557Z"
