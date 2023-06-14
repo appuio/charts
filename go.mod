@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/gruntwork-io/terratest v0.40.7
 	github.com/norwoodj/helm-docs v1.9.1
-	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.51.2
+	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.66.0
 	github.com/stretchr/testify v1.7.2
 	k8s.io/api v0.20.6
 	k8s.io/apimachinery v0.20.6
