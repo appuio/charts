@@ -1,6 +1,6 @@
 # maxscale
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 6.4.6](https://img.shields.io/badge/AppVersion-6.4.6-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 6.4.8](https://img.shields.io/badge/AppVersion-6.4.8-informational?style=flat-square)
 
 MaxScale Helm Chart
 
@@ -28,8 +28,8 @@ Edit the README.gotmpl.md template instead.
 | db3Address | string | `"db3.example.com"` | IP or Hostname of the 3. Galera node |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"docker.io/appuio/maxscale"` |  |
-| image.tag | string | `"6.4.3"` |  |
+| image.repository | string | `"ghcr.io/appuio/maxscale-docker"` |  |
+| image.tag | string | `"6.4.6"` |  |
 | metrics.enabled | bool | `false` |  |
 | metrics.image.pullPolicy | string | `"IfNotPresent"` |  |
 | metrics.image.repository | string | `"skord/maxscale_exporter"` |  |
