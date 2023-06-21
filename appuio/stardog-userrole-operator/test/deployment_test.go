@@ -74,7 +74,7 @@ func Test_Deployment_ShouldRender_ImagePullSecrets(t *testing.T) {
 }
 
 func Test_Deployment_ShouldRender_CorrectImage(t *testing.T) {
-	expectedImage := "ghcr.io/vshn/stardog-userrole-operator:v0.2.0"
+	expectedImage := "ghcr.io/vshn/stardog-userrole-operator:v0.2.1"
 	options := &helm.Options{}
 
 	got := renderDeployment(t, options, false)
