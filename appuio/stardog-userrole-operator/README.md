@@ -27,7 +27,7 @@ Edit the README.gotmpl.md template instead.
 | image.pullPolicy | string | `"Always"` |  |
 | image.registry | string | `"ghcr.io"` |  |
 | image.repository | string | `"vshn/stardog-userrole-operator"` |  |
-| image.tag | string | `"v0.2.0"` |  |
+| image.tag | string | `"v0.2.1"` |  |
 | imagePullSecrets | list | `[]` |  |
 | leaderElection.enabled | bool | `false` | Enable leader election for multiple replicas |
 | metrics.proxy.enabled | bool | `false` | Enable metrics via service behind a authenticated proxy |
