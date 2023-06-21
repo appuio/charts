@@ -18,29 +18,29 @@ Edit the README.gotmpl.md template instead.
 
 ## Values
 
-| Key | Type | Default                                        | Description |
-|-----|------|------------------------------------------------|-------------|
-| config.clusterAccess.enabled | bool | `true`                                         | Enable cluster access to operator |
-| config.env.DISABLED_ENVIRONMENTS | string | `""`                                           | semicolon separated ex: "stardog-test;stardog-prod" |
-| config.env.RECONCILIATION_FREQUENCY | string | `"30s"`                                        | Reconciliation frequency of CRD |
-| config.env.RECONCILIATION_FREQUENCY_ON_ERROR | string | `"5m"`                                         | Reconciliation frequency of CRD on error |
-| image.pullPolicy | string | `"Always"`                                     |  |
-| image.registry | string | `"ghcr.io"`                                    |  |
-| image.repository | string | `"vshn/stardog-userrole-operator"`             |  |
-| image.tag | string | `"v0.2.2"`                                     |  |
-| imagePullSecrets | list | `[]`                                           |  |
-| leaderElection.enabled | bool | `false`                                        | Enable leader election for multiple replicas |
-| metrics.proxy.enabled | bool | `false`                                        | Enable metrics via service behind a authenticated proxy |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.clusterAccess.enabled | bool | `true` | Enable cluster access to operator |
+| config.env.DISABLED_ENVIRONMENTS | string | `""` | semicolon separated ex: "stardog-test;stardog-prod" |
+| config.env.RECONCILIATION_FREQUENCY | string | `"30s"` | Reconciliation frequency of CRD |
+| config.env.RECONCILIATION_FREQUENCY_ON_ERROR | string | `"5m"` | Reconciliation frequency of CRD on error |
+| image.pullPolicy | string | `"Always"` |  |
+| image.registry | string | `"ghcr.io"` |  |
+| image.repository | string | `"vshn/stardog-userrole-operator"` |  |
+| image.tag | string | `"v0.2.2"` |  |
+| imagePullSecrets | list | `[]` |  |
+| leaderElection.enabled | bool | `false` | Enable leader election for multiple replicas |
+| metrics.proxy.enabled | bool | `false` | Enable metrics via service behind a authenticated proxy |
 | metrics.proxy.image | string | `"gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0"` | Proxy image |
-| metrics.proxy.port | int | `8443`                                         |  |
-| metrics.service.enabled | bool | `true`                                         |  |
-| metrics.service.port | int | `8080`                                         |  |
-| replicaCount | int | `1`                                            |  |
-| resources.limits.cpu | string | `"100m"`                                       |  |
-| resources.limits.memory | string | `"100Mi"`                                      |  |
-| resources.requests.cpu | string | `"30m"`                                        |  |
-| resources.requests.memory | string | `"20Mi"`                                       |  |
-| serviceAccount.create | bool | `true`                                         |  |
+| metrics.proxy.port | int | `8443` |  |
+| metrics.service.enabled | bool | `true` |  |
+| metrics.service.port | int | `8080` |  |
+| replicaCount | int | `1` |  |
+| resources.limits.cpu | string | `"100m"` |  |
+| resources.limits.memory | string | `"100Mi"` |  |
+| resources.requests.cpu | string | `"30m"` |  |
+| resources.requests.memory | string | `"20Mi"` |  |
+| serviceAccount.create | bool | `true` |  |
 
 ## Source Code
 
