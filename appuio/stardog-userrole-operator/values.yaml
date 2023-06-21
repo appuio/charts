@@ -1,7 +1,7 @@
 image:
-  registry: docker.io
+  registry: ghcr.io
   repository: vshn/stardog-userrole-operator
-  tag: v0.1.1
+  tag: v0.2.0
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -30,6 +30,10 @@ config:
     RECONCILIATION_FREQUENCY: "30s"
     # -- Reconciliation frequency of CRD on error
     RECONCILIATION_FREQUENCY_ON_ERROR: "5m"
+    # -- Which environments should be skipped during reconciliation of Namespaced CRD
+    # -- Currently: StardogUser, StardogRole and StardogInstance CRD
+    # -- semicolon separated ex: "stardog-test;stardog-prod"
+    DISABLED_ENVIRONMENTS: ""
 
 resources:
   limits:
