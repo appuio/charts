@@ -1,0 +1,106 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.0
+  creationTimestamp: null
+  name: organizations.stardog.vshn.ch
+spec:
+  group: stardog.vshn.ch
+  names:
+    kind: Organization
+    listKind: OrganizationList
+    plural: organizations
+    singular: organization
+  scope: Cluster
+  versions:
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: Organization is the Schema for the organizations API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: OrganizationSpec defines the desired state of an Organization
+            properties:
+              databaseRef:
+                description: DatabaseRef is the name of the Database this Organization
+                  is assigned to
+                type: string
+              displayName:
+                description: DisplayName is the long name of an organization
+                type: string
+              name:
+                description: Name is the short name of an organization
+                type: string
+              namedGraphs:
+                description: NamedGraphs are the suffix graph names for this organization.
+                  The prefix can be found in the Database resource. The final graphs
+                  is defined as prefix + "/" + orgName + "/" suffix
+                items:
+                  type: string
+                type: array
+            type: object
+          status:
+            description: OrganizationStatus defines the observed state of the Organization
+            properties:
+              conditions:
+                items:
+                  description: StardogCondition describes a status condition of a
+                    StardogRole
+                  properties:
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              databaseRef:
+                type: string
+              displayName:
+                type: string
+              name:
+                type: string
+              namedGraphs:
+                items:
+                  type: string
+                type: array
+              stardogInstanceRefs:
+                items:
+                  description: StardogInstanceRef contains name and namespace for
+                    a stardog instance
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                  type: object
+                type: array
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

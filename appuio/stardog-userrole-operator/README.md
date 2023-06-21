@@ -1,6 +1,6 @@
 # stardog-userrole-operator
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![AppVersion: 0.2.1](https://img.shields.io/badge/AppVersion-0.2.1-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![AppVersion: 0.2.2](https://img.shields.io/badge/AppVersion-0.2.2-informational?style=flat-square)
 
 Stardog User and Role Operator
 
@@ -27,7 +27,7 @@ Edit the README.gotmpl.md template instead.
 | image.pullPolicy | string | `"Always"` |  |
 | image.registry | string | `"ghcr.io"` |  |
 | image.repository | string | `"vshn/stardog-userrole-operator"` |  |
-| image.tag | string | `"v0.2.1"` |  |
+| image.tag | string | `"v0.2.2"` |  |
 | imagePullSecrets | list | `[]` |  |
 | leaderElection.enabled | bool | `false` | Enable leader election for multiple replicas |
 | metrics.proxy.enabled | bool | `false` | Enable metrics via service behind a authenticated proxy |

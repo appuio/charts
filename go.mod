@@ -5,10 +5,8 @@ go 1.18
 require (
 	github.com/gruntwork-io/terratest v0.40.7
 	github.com/norwoodj/helm-docs v1.9.1
-	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.51.2
 	github.com/stretchr/testify v1.7.2
 	k8s.io/api v0.20.6
-	k8s.io/apimachinery v0.20.6
 )
 
 require (
@@ -73,6 +71,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	k8s.io/apimachinery v0.20.6 // indirect
 	k8s.io/client-go v0.20.6 // indirect
 	k8s.io/helm v2.14.3+incompatible // indirect
 	k8s.io/klog/v2 v2.4.0 // indirect
