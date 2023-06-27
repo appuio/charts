@@ -1,7 +1,7 @@
 apiVersion: v1
 name: stardog-userrole-operator
-version: 0.2.2
-appVersion: 0.2.2
+version: 0.2.3
+appVersion: 0.2.3
 description: Stardog User and Role Operator
 sources:
   - https://github.com/vshn/stardog-userrole-operator
