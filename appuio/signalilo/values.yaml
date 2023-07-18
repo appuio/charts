@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: vshn/signalilo
-  tag: v0.13.0
+  tag: v0.14.0
   pullPolicy: IfNotPresent
   # username:
   # password:
@@ -47,7 +47,9 @@ config:
 #   value: "60s"
 # - name: SIGNALILO_ICINGA_KEEP_FOR
 #   value: "168h"
-
+# - name: SIGNALILO_ICINGA_SERVICE_TEMPLATE
+#   value: "go-icinga2-service"
+#
 # Extra volumes for the Signalilo deployment. Optional.
 extraVolumes: []
 
