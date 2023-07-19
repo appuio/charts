@@ -77,7 +77,7 @@ frontend galeraMetrics
   use_backend galera-node-{{$i}} if { hdr_sub(host) -i mariadb-{{$i}} }
   {{- end }}
   {{- range $i, $node := .Values.haproxy.galera.nodes }}
-  use_backend galera-node-{{$i}} if { path_beg /mariadb/{{$i}} }
+  use_backend galera-node-metrics-{{$i}} if { path_beg /mariadb/{{$i}} }
   {{- end }}
   {{- if .Values.haproxy.filterproxy.enabled }}
   use_backend filterproxy
@@ -89,8 +89,14 @@ backend galera-node-{{$i}}
   server node-{{$i}} {{ $node.address }}:9104 init-addr none check resolvers mydns
 {{- end }}
 {{- $namespace := .Release.Namespace -}}
-{{- if .Values.haproxy.filterproxy.enabled }}
+{{ range $i, $e := .Values.haproxy.galera.nodes }}
+backend galera-node-metrics-{{$i}}
+  mode http
+  http-request set-path /metrics
+  server node-{{$i}} {{ $e.address }}:9104 init-addr none check resolvers mydns
+{{- end }}
 
+{{- if .Values.haproxy.filterproxy.enabled }}
 backend filterproxy
   mode http
   http-request set-query namespace={{ $namespace }}
@@ -164,7 +170,7 @@ backend redis-node-{{$i}}
   mode http
   server node-{{$i}} redis-node-{{$i}}.redis-headless.{{ $namespace }}.svc.cluster.local:9121 init-addr none check resolvers mydns
 {{- end }}
-{{ range $i, $e := until (.Values.haproxy.galerak8s.nodeCount |int) }}
+{{ range $i, $e := until (.Values.haproxy.redisk8s.nodeCount |int) }}
 backend redis-node-metrics-{{$i}}
   mode http
   http-request set-path /metrics
