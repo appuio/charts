@@ -17,8 +17,8 @@
 /appuio/exoip             @appuio/pollux
 
 # Stardog
-/appuio/stardog                    @appuio/pollux
-/appuio/stardog-userrole-operator  @appuio/pollux
+/appuio/stardog                    @appuio/nunki
+/appuio/stardog-userrole-operator  @appuio/nunki
 
 
 # Contributed charts
