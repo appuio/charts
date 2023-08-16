@@ -49,6 +49,7 @@ The following table lists the configurable parameters chart. For default values 
 | `resources`                                  | Pod resource requests and limits |
 | `nodeSelector`                               | Pod node selector |
 | `tolerations`                                | Pod tolerations |
+| `extraEnv`                                   | Provide custom environment variables to the deployment |
 
 ## Source Code
 
