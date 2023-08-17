@@ -60,6 +60,14 @@ spec:
               set -e
               sed "s|\$ZOOKEEPER_USERNAME|$ZOOKEEPER_USERNAME|g; s|\$ZOOKEEPER_PASSWORD|$ZOOKEEPER_PASSWORD|g" ${STARDOG_HOME}/stardog.properties.tpl > ${STARDOG_HOME}/stardog.properties
               /opt/stardog/bin/stardog-admin server start --foreground
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /bin/bash
+                - -c
+                - |
+                  /opt/stardog/bin/stardog-admin server stop -u admin -p ${STARDOG_ADMIN_PW}
           env:
             {{- if and .Values.zookeeper.enabled .Values.zookeeper.auth.enabled }}
             - name: ZOOKEEPER_USERNAME
@@ -74,6 +82,11 @@ spec:
               value: "{{ .Values.stardog.javaArgs }} -XX:ParallelGCThreads=2 -Dstardog.license.location=/run/secrets/stardog/stardog-license-key.bin"
             - name: STARDOG_HOME
               value: /var/opt/stardog/data/
+            - name: STARDOG_ADMIN_PW
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "stardog.fullname" $ }}-user-passwords
+                  key: admin
           ports:
             - name: stardog
               containerPort: 5820
