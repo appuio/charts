@@ -41,6 +41,10 @@ spec:
               secretKeyRef:
                 name: {{ if $endpoint.secretName }}{{ $endpoint.secretName }}{{ else }}{{ include "trifid.fullname" . }}{{ end }}
                 key: password
+          {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value }}
+          {{- end }}
           ports:
             - name: http
               containerPort: 8080
