@@ -12,7 +12,8 @@ metadata:
 data:
   haproxy.cfg: |
     global
-      tune.bufsize 300000 # 300k shoulb be fine, average prometheus response in 100 test queries was 244k
+      external-check # required for mysql-check
+      insecure-fork-wanted # required for mysql-check
       log stdout format raw local0
     {{- include "haproxy.resolversConfig" . | nindent 4 }}
 
@@ -38,12 +39,12 @@ data:
     backend galera-nodes
       mode tcp
       option srvtcpka
-      option httpchk GET /metrics 
-      http-check expect string mysql_global_status_wsrep_ready\ 1
+      option external-check
+      external-check command /var/lib/haproxy/script.sh
       balance {{ $galera.balance }}
       {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
       default-server init-addr none {{ if $galera.check.enabled }}check {{ end }}resolvers mydns
       {{- range $index, $node := .Values.haproxy.galera.nodes }}
-      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }} check port 9104 {{ if $node.backup }} backup{{ end }}
+      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }} {{ if $node.backup }} backup{{ end }}
       {{- end }}
 {{- end }}
