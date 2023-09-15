@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  registry: docker.io
-  repository: haproxytech/haproxy-debian
-  tag: 2.7.3
+  registry: ghcr-docker-remote.artifactory.swisscom.com
+  repository: vshn/haproxy-with-mysql
+  tag: 1.0.0
   pullPolicy: IfNotPresent
 
 ingress:
