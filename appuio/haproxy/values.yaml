@@ -37,7 +37,7 @@ service:
   additionalPorts: []
 
 haproxy:
-  config: ldap-tls
+  config: galerak8s
   frontendPort: 30636
 
   check:

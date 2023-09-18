@@ -1,3 +1,5 @@
+{{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") }}
+
 kind: ConfigMap
 apiVersion: v1
 data:
@@ -8,3 +10,4 @@ data:
     \"Error: Unable to connect to MySQL or query failed\"\n  exit 1\nfi\n\nif [ \"$wsrep_ready\"
     != \"ON\" ]; then\n  echo \"Error: wsrep_ready is not ON, actual status is: $WSREP_READY\"\n
     \ exit 1\nfi\n\nexit 0 \n"
+{{- end}}

@@ -84,7 +84,8 @@ spec:
             name: "{{ include "haproxy.fullname" . }}-{{ .Values.haproxy.config }}"
         - name: haproxy-script
           configMap:
-            defaultMode: 511
+            # it's 0555 read+execute permissions
+            defaultMode: 365
             name: haproxy-script
         - name: mariadb-creds
           secret:
