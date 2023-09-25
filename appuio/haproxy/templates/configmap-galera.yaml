@@ -45,6 +45,6 @@ data:
       {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
       default-server init-addr none {{ if $galera.check.enabled }}check {{ end }}resolvers mydns
       {{- range $index, $node := .Values.haproxy.galera.nodes }}
-      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }} {{ if $node.backup }} backup{{ end }}
+      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }}{{ if $node.backup }} backup{{ end }}
       {{- end }}
 {{- end }}
