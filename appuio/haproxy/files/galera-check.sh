@@ -1,8 +1,13 @@
 #!/bin/bash
-    
-### This script is used to check the status of the Galera cluster
+
+#====================================================================================================
+### This script is used to check the status of the Galera cluster by HAProxy
 ### Maintainer: https://github.com/wejdross 
-### It takes hash of checks and expected values as input and returns 0 if all checks are successful, 1 otherwise 
+### It's sh/dash compatible, because it's used in a haproxy container and bash shell has serious issues to spawn 
+### logic is simple, it takes 4 parameters and check if they are equal to the expected value
+### parameters are returned always in the same manner thanks to ORDER BY, if any of the parameters is not equal to the expected value, script will exit with 1
+#====================================================================================================
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 pass=$(/bin/cat /secrets/mariadb-root-password)
 
 if [ -z "$pass" ]; then
@@ -10,28 +15,37 @@ if [ -z "$pass" ]; then
   exit 1
 fi
 
-declare -A mysql_checks
+# sample return -> "WSREP_CLUSTER_STATUS Primary WSREP_CONNECTED ON WSREP_LOCAL_STATE 4 WSREP_READY ON"
+return_val=$(/usr/bin/mysql -h $3 -u root -p"$pass" -e "SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_status WHERE VARIABLE_NAME IN ('wsrep_cluster_status','wsrep_ready','wsrep_local_state','wsrep_connected') ORDER BY VARIABLE_NAME ASC;" -Ns)
+if [ $? -ne 0 ]; then
+  echo Error: Unable to connect to MySQL or query failed
+  exit 1
+else
+  to_check=$(echo $return_val | cut -d' ' -f2)
 
-mysql_checks=( 
-  ["wsrep_cluster_status"]="Primary"
-  ["wsrep_ready"]="ON"
-  ["wsrep_local_state"]="4"
-  ["wsrep_connected"]="ON"
-)
-
-for check in "${!mysql_checks[@]}"; do
-  return_val=$(/usr/bin/mysql -h $3 -u root -p"$pass" -e "SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_status WHERE VARIABLE_NAME = '$check';" -Ns)
-
-  if [ $? -ne 0 ]; then
-    echo Error: Unable to connect to MySQL or query failed
+  if [ $to_check != "Primary" ]; then
+    echo "Error: WSREP_CLUSTER_STATUS is not 'Primary'"
     exit 1
-  else
-    strarray=($return_val) # convert string to array
-    if [ "${strarray[1]}" != "${mysql_checks[$check]}" ]; then
-      echo Error: "$check" is not "${mysql_checks[$check]}", actual status is: "${strarray[1]}"
-      exit 1
-    fi
   fi
-done
 
+  to_check=$(echo $return_val | cut -d' ' -f4)
+
+  if [ $to_check != "ON" ]; then
+    echo "Error: WSREP_CONNECTED is not 'ON'"
+    exit 1
+  fi
+
+  to_check=$(echo $return_val | cut -d' ' -f6)
+
+  if [ $to_check != 4 ]; then
+    echo "Error: WSREP_LOCAL_STATE is not '4' it's: $to_check"
+    exit 1
+  fi
+
+  to_check=$(echo $return_val | cut -d' ' -f8)
+  if [ $to_check != "ON" ]; then
+    echo "Error: WSREP_READY is not 'ON'"
+    exit 1
+  fi
+fi
 exit 0 
