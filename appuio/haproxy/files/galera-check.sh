@@ -24,14 +24,14 @@ else
   to_check=$(echo $return_val | cut -d' ' -f2)
 
   if [ $to_check != "Primary" ]; then
-    echo "Error: WSREP_CLUSTER_STATUS is not 'Primary'"
+    echo "Error: WSREP_CLUSTER_STATUS is not 'Primary' it's: $to_check"
     exit 1
   fi
 
   to_check=$(echo $return_val | cut -d' ' -f4)
 
   if [ $to_check != "ON" ]; then
-    echo "Error: WSREP_CONNECTED is not 'ON'"
+    echo "Error: WSREP_CONNECTED is not 'ON' it's: $to_check"
     exit 1
   fi
 
@@ -44,7 +44,7 @@ else
 
   to_check=$(echo $return_val | cut -d' ' -f8)
   if [ $to_check != "ON" ]; then
-    echo "Error: WSREP_READY is not 'ON'"
+    echo "Error: WSREP_READY is not 'ON' it's: $to_check"
     exit 1
   fi
 fi
