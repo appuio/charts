@@ -18,7 +18,6 @@ fi
 # sample return -> "WSREP_CLUSTER_STATUS Primary WSREP_CONNECTED ON WSREP_LOCAL_STATE 4 WSREP_READY ON"
 return_val=$(/usr/bin/mysql -h $3 -u root -p"$pass" -e "SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_status WHERE VARIABLE_NAME IN ('wsrep_cluster_status','wsrep_ready','wsrep_local_state','wsrep_connected') ORDER BY VARIABLE_NAME ASC;" -Ns)
 if [ $? -ne 0 ]; then
-  echo Error: Unable to connect to MySQL or query failed
   exit 1
 else
   to_check=$(echo $return_val | cut -d' ' -f2)
