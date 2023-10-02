@@ -30,7 +30,7 @@ helm repo add appuio https://charts.appuio.ch
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/secret-1.1.0/total)](https://github.com/appuio/charts/releases/tag/secret-1.1.0) | [secret](appuio/secret/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/signalilo-0.12.1/total)](https://github.com/appuio/charts/releases/tag/signalilo-0.12.1) | [signalilo](appuio/signalilo/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/snappass-1.0.0/total)](https://github.com/appuio/charts/releases/tag/snappass-1.0.0) | [snappass](appuio/snappass/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.22.0/total)](https://github.com/appuio/charts/releases/tag/stardog-0.22.0) | [stardog](appuio/stardog/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-0.23.0/total)](https://github.com/appuio/charts/releases/tag/stardog-0.23.0) | [stardog](appuio/stardog/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/stardog-userrole-operator-0.2.3/total)](https://github.com/appuio/charts/releases/tag/stardog-userrole-operator-0.2.3) | [stardog-userrole-operator](appuio/stardog-userrole-operator/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/trifid-2.0.2/total)](https://github.com/appuio/charts/releases/tag/trifid-2.0.2) | [trifid](appuio/trifid/README.md) |
 
