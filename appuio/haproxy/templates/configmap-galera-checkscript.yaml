@@ -1,0 +1,17 @@
+{{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") }}
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    helm.sh/chart: {{ include "haproxy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  name: haproxy-script
+data:
+  script.sh: |-
+    {{ range .Files.Lines "files/galera-check.sh" }}
+    {{ . | indent 2 }}
+    {{- end}}
+{{- end}}

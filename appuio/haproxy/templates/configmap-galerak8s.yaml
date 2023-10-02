@@ -13,6 +13,8 @@ data:
   haproxy.cfg: |
     global
       log stdout format raw local0
+      external-check # required for mysql-check
+      insecure-fork-wanted # required for mysql-check
     {{- include "haproxy.resolversConfig" . | nindent 4 }}
 
     defaults
@@ -37,6 +39,8 @@ data:
     backend galera-nodes
       mode tcp
       option srvtcpka
+      option external-check
+      external-check command /var/lib/haproxy/script.sh
       balance {{ $galera.balance }}
 
       {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
