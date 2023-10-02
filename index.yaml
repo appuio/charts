@@ -407,6 +407,18 @@ entries:
   haproxy:
   - apiVersion: v1
     appVersion: 2.7.3
+    created: "2023-10-02T12:18:08.57425792Z"
+    description: A Helm chart for HAProxy which can be customized by a config map.
+    digest: 581c09f43c922e23b2721ecad7565b160a36911d67164893ea88b33885947a32
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: haproxy
+    urls:
+    - https://github.com/appuio/charts/releases/download/haproxy-2.4.0/haproxy-2.4.0.tgz
+    version: 2.4.0
+  - apiVersion: v1
+    appVersion: 2.7.3
     created: "2023-07-19T12:08:47.588086655Z"
     description: A Helm chart for HAProxy which can be customized by a config map.
     digest: e4ca2ce5dd7e3047a8b06247ccf0a0403f35fc91a151c8495c95403f48e28c7b
@@ -5504,4 +5516,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-02T09:39:24.661593783Z"
+generated: "2023-10-02T12:18:08.575959223Z"
