@@ -32,6 +32,20 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Create backendName depending on the selected configuration
+*/}}
+{{- define "haproxy.backendName" -}}
+{{- if eq .Values.haproxy.config "redisk8s" -}}
+redis-nodes
+{{- else if or (eq .Values.haproxy.config "galerak8s") (eq .Values.haproxy.config "galera") -}}
+galera-nodes
+{{- else -}}
+backend
+{{- end -}}
+{{- end -}}
+
+{{/*
+{{/*
 HAProxy config for stats and metrics
 */}}
 {{- define "haproxy.metricsConfig" -}}
@@ -43,8 +57,9 @@ frontend stats
   stats uri /stats
   stats refresh 3s
   acl server_stopping stopping
+  acl service_down nbsrv({{ include "haproxy.backendName" . }}) eq 0
   monitor-uri /healthz
-  monitor fail if server_stopping
+  monitor fail if server_stopping || service_down
   option dontlog-normal
   option httplog
   http-request use-service prometheus-exporter if { path /metrics }

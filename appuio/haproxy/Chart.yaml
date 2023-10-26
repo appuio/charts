@@ -2,7 +2,7 @@ apiVersion: v1
 appVersion: 2.7.3
 description: A Helm chart for HAProxy which can be customized by a config map.
 name: haproxy
-version: 2.4.0
+version: 2.5.0
 maintainers:
   - name: APPUiO Team
     email: info@appuio.ch
