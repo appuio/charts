@@ -94,7 +94,7 @@ metrics:
     pullPolicy: IfNotPresent
 alerts:
   httpCheck:
-    for: 1m
+    for:
 resources: {}
 
 nodeSelector: {}
