@@ -48,7 +48,7 @@ spec:
     {{- if .Values.ingress.enabled }}
     - alert: HttpCheck
       expr: probe_success{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} != 1
-      for: {{ (((.Values.alerts).httpCheck).for) | default 1m | quote }}
+      for: {{ (((.Values.alerts).httpCheck).for) | default 1m }}
       annotations:
         summary: Http check failed
         description: "Http check failed on {{ "{{" }} $labels.instance {{ "}}" }}"
