@@ -116,7 +116,7 @@ spec:
               port: stardog
             initialDelaySeconds: 7200
             periodSeconds: 60
-            failureThreshold: 60
+            failureThreshold: 45
             timeoutSeconds: 60
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
