@@ -1,6 +1,6 @@
 # stardog
 
-![Version: 0.24.0](https://img.shields.io/badge/Version-0.24.0-informational?style=flat-square) ![AppVersion: 9.2.1](https://img.shields.io/badge/AppVersion-9.2.1-informational?style=flat-square)
+![Version: 0.25.0](https://img.shields.io/badge/Version-0.25.0-informational?style=flat-square) ![AppVersion: 10.0.1](https://img.shields.io/badge/AppVersion-10.0.1-informational?style=flat-square)
 
 Stardog is the world’s leading knowledge graph platform for the enterprise. Stardog makes it fast and easy to turn enterprise data into knowledge.
 
@@ -100,7 +100,7 @@ The following table lists the configurable parameters chart. For default values 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/b661ad0e6e3277fc5b5b2db197cba47174693712/bitnami/ | zookeeper | 8.1.2 |
+| https://raw.githubusercontent.com/bitnami/charts/b661ad0e6e3277fc5b5b2db197cba47174693712/bitnami/ | zookeeper | 9.2.7 |
 
 <!---
 Common/Useful Link references from values.yaml
