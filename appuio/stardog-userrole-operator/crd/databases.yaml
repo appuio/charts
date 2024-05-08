@@ -3,8 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.9.0
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.14.0
   name: databases.stardog.vshn.ch
 spec:
   group: stardog.vshn.ch
@@ -15,95 +14,107 @@ spec:
     singular: database
   scope: Cluster
   versions:
-  - name: v1beta1
-    schema:
-      openAPIV3Schema:
-        description: Database is the Schema for the databases API
-        properties:
-          apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
-            type: string
-          kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
-            type: string
-          metadata:
-            type: object
-          spec:
-            description: DatabaseSpec defines the desired state of the Database
-            properties:
-              databaseName:
-                description: DatabaseName the database name that has to be created
-                  in the Stardog server
-                type: string
-              namedGraphPrefix:
-                description: NamedGraphPrefix a prefix for a Stardog Named Graph.
-                type: string
-              options:
-                description: Options is the Stardog configuration options for this
-                  database. Only json input is valid.
-                type: string
-              stardogInstanceRefs:
-                description: StardogInstanceRefs contains the reference to the Stardog
-                  instance the database should exist in
-                items:
-                  description: StardogInstanceRef contains name and namespace for
-                    a stardog instance
-                  properties:
-                    name:
-                      type: string
-                    namespace:
-                      type: string
-                  type: object
-                type: array
-            type: object
-          status:
-            description: DatabaseStatus defines the observed state of the Database
-            properties:
-              conditions:
-                items:
-                  description: StardogCondition describes a status condition of a
-                    StardogRole
-                  properties:
-                    lastTransitionTime:
-                      format: date-time
-                      type: string
-                    message:
-                      type: string
-                    reason:
-                      type: string
-                    status:
-                      type: string
-                    type:
-                      type: string
-                  required:
-                  - status
-                  - type
-                  type: object
-                type: array
-              databaseName:
-                type: string
-              namedGraphPrefix:
-                type: string
-              options:
-                type: string
-              stardogInstanceRef:
-                items:
-                  description: StardogInstanceRef contains name and namespace for
-                    a stardog instance
-                  properties:
-                    name:
-                      type: string
-                    namespace:
-                      type: string
-                  type: object
-                type: array
-            type: object
-        type: object
-    served: true
-    storage: true
-    subresources:
-      status: {}
+    - name: v1beta1
+      schema:
+        openAPIV3Schema:
+          description: Database is the Schema for the databases API
+          properties:
+            apiVersion:
+              description: |-
+                APIVersion defines the versioned schema of this representation of an object.
+                Servers should convert recognized schemas to the latest internal value, and
+                may reject unrecognized values.
+                More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+              type: string
+            kind:
+              description: |-
+                Kind is a string value representing the REST resource this object represents.
+                Servers may infer this from the endpoint the client submits requests to.
+                Cannot be updated.
+                In CamelCase.
+                More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: DatabaseSpec defines the desired state of the Database
+              properties:
+                addUserForNonHiddenGraphs:
+                  description: |-
+                    AddUserForNonHiddenGraphs a dynamically managed user of this db with custom permissions
+                    Mainly used to not have access to hidden graphs
+                  type: string
+                databaseName:
+                  description: DatabaseName the database name that has to be created
+                    in the Stardog server
+                  type: string
+                namedGraphPrefix:
+                  description: NamedGraphPrefix a prefix for a Stardog Named Graph.
+                  type: string
+                options:
+                  description: Options is the Stardog configuration options for this
+                    database. Only json input is valid.
+                  type: string
+                stardogInstanceRefs:
+                  description: StardogInstanceRefs contains the reference to the Stardog
+                    instance the database should exist in
+                  items:
+                    description: StardogInstanceRef contains name and namespace for
+                      a stardog instance
+                    properties:
+                      name:
+                        type: string
+                      namespace:
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            status:
+              description: DatabaseStatus defines the observed state of the Database
+              properties:
+                addUserForNonHiddenGraphs:
+                  type: string
+                conditions:
+                  items:
+                    description: StardogCondition describes a status condition of a
+                      StardogRole
+                    properties:
+                      lastTransitionTime:
+                        format: date-time
+                        type: string
+                      message:
+                        type: string
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                      type:
+                        type: string
+                    required:
+                      - status
+                      - type
+                    type: object
+                  type: array
+                databaseName:
+                  type: string
+                namedGraphPrefix:
+                  type: string
+                options:
+                  type: string
+                stardogInstanceRef:
+                  items:
+                    description: StardogInstanceRef contains name and namespace for
+                      a stardog instance
+                    properties:
+                      name:
+                        type: string
+                      namespace:
+                        type: string
+                    type: object
+                  type: array
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
