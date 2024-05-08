@@ -5280,6 +5280,26 @@ entries:
     version: 0.0.1
   stardog-userrole-operator:
   - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2024-05-08T12:08:21.849712616Z"
+    description: Stardog User and Role Operator
+    digest: 4b340d10bebc3eafda37470c7cb0064bcac7780fa94b577275082e3536a6c867
+    keywords:
+    - stardog
+    - operator
+    - appuio
+    - user
+    - role
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: stardog-userrole-operator
+    sources:
+    - https://github.com/vshn/stardog-userrole-operator
+    urls:
+    - https://github.com/appuio/charts/releases/download/stardog-userrole-operator-0.3.0/stardog-userrole-operator-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v1
     appVersion: 0.2.3
     created: "2023-06-27T09:44:20.662957292Z"
     description: Stardog User and Role Operator
@@ -5608,4 +5628,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-17T07:40:39.95110838Z"
+generated: "2024-05-08T12:08:21.850848963Z"
