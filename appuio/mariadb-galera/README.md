@@ -1,6 +1,6 @@
 # mariadb-galera
 
-![Version: 1.2.4](https://img.shields.io/badge/Version-1.2.4-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
+![Version: 1.2.6](https://img.shields.io/badge/Version-1.2.6-informational?style=flat-square) ![AppVersion: 10.5.12](https://img.shields.io/badge/AppVersion-10.5.12-informational?style=flat-square)
 
 MariaDB Galera is a multi-master database cluster solution for synchronous replication and high availability.
 

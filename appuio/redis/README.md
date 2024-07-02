@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.3.5](https://img.shields.io/badge/Version-1.3.5-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
+![Version: 1.3.7](https://img.shields.io/badge/Version-1.3.7-informational?style=flat-square) ![AppVersion: 6.2.1](https://img.shields.io/badge/AppVersion-6.2.1-informational?style=flat-square)
 
 Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
