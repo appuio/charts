@@ -24,26 +24,27 @@ stardog:
   # - name: nameOfTheUser
   #   password: passwordForTheUser
   disabledUsers:
-  - anonymous
+    - anonymous
   databases:
   # - name: stardog
   #   options:
   #   - name: search.enabled
   #     value: "true"
   roles:
-  - name: superuser
-    grants:
-    - action: all
-      object: "*:*"
-    users:
+    - name: superuser
+      grants:
+        - action: all
+          object: "*:*"
+      users:
   existingLicenseSecret: stardog-license
   # Custom Stardog config (string value)
   config: |
-  javaArgs: -Xmx3g -Xms1g -XX:MaxDirectMemorySize=3g
+    javaArgs: -Xmx3g -Xms1g -XX:MaxDirectMemorySize=3g
   backup:
-    databases: # List of databases to backup
-     # - name: myDB
-     #   schedule: "18 03 * * *" # in UTC
+    # List of databases to backup
+    databases: []
+    # - name: myDB
+    #   schedule: "18 03 * * *" # in UTC
     s3Region: eu-central-1
     s3Endpoint:
     s3BucketName:
@@ -83,11 +84,11 @@ persistence:
 metrics:
   enabled: false
   prometheusOperator: false
-  serviceMonitor:
-    # Scrape interval and timeout.
-    # Interval may not be smaller than timeout.
-    # interval: 10s
-    # timeout: 10s
+  serviceMonitor: {}
+  # Scrape interval and timeout.
+  # Interval may not be smaller than timeout.
+  #   interval: 10s
+  #   timeout: 10s
   stardogRules:
     extraLabels: null
   zookeeperRules:
