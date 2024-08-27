@@ -1,0 +1,21 @@
+{{- if (gt (.Values.replicaCount | int) 1) }}
+{{- range $i := .Values.replicaCount }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "stardog.fullname" . }}-{{ $i }}
+  labels:
+    app.kubernetes.io/name: {{ include "stardog.name" . }}
+    helm.sh/chart: {{ include "stardog.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: stardog
+      port: 5820
+      targetPort: stardog
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ include "stardog.fullname" . }}-{{ $i }}
+{{- end }}
+{{- end }}
