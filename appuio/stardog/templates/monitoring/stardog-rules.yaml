@@ -16,11 +16,12 @@ spec:
   - name: Stardog
     rules:
     - alert: StardogOpenConnections
-      expr: databases_openConnections{ {{ $ns_selector }} } > 32
-      for: 1m
+      #Default value of http.max.connections is 200
+      expr: databases_openConnections{ {{ $ns_selector }} } > 150
+      for: 30m
       annotations:
         summary: Too many open connections
-        description: Open connections for DB {{ "{{" }} $labels.database {{ "}}" }} on instance {{ "{{" }} $labels.pod {{ "}}" }} exeeded 32 ({{ "{{" }} $value {{ "}}" }}).
+        description: Open connections for DB {{ "{{" }} $labels.database {{ "}}" }} on instance {{ "{{" }} $labels.pod {{ "}}" }} exeeded 150 ({{ "{{" }} $value {{ "}}" }}).
       labels:
         env: {{ .Release.Name }}
         app: stardog
