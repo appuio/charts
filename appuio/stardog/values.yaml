@@ -11,7 +11,7 @@ image:
   registry: stardog-eps-docker.jfrog.io
   # username:
   # password:
-  tag: 10.1.0
+  tag: 10.2.0
   pullPolicy: IfNotPresent
   # existingPullSecret: my-image-pull-secret
 
