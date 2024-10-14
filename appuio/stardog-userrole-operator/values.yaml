@@ -49,7 +49,7 @@ metrics:
     port: 8080
   proxy:
     # -- Proxy image
-    image: gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0
+    image: gcr.io/kubebuilder/kube-rbac-proxy:v0.16.0
     # -- Enable metrics via service behind a authenticated proxy
     enabled: false
     port: 8443
