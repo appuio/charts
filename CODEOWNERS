@@ -3,13 +3,10 @@
 # As a Code owner, you are requested for Pull Request reviews
 
 # Used by VSHN as part of product offering
-/appuio/k8up              @appuio/tarazed
-/appuio/mariadb-galera    @appuio/tarazed
-/appuio/redis             @appuio/tarazed
-/appuio/generic           @appuio/tarazed
-/appuio/openshift-route   @appuio/tarazed
-/appuio/secret            @appuio/tarazed
-/appuio/haproxy           @appuio/tarazed
+/appuio/mariadb-galera    @appuio/schedar
+/appuio/redis             @appuio/schedar
+/appuio/generic           @appuio/schedar
+/appuio/haproxy           @appuio/schedar
 
 # Other charts
 /appuio/signalilo         @simu
