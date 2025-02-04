@@ -3823,6 +3823,26 @@ entries:
     version: 0.1.0
   stardog:
   - apiVersion: v1
+    appVersion: 10.2.2
+    created: "2025-02-04T16:54:48.729043631Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://raw.githubusercontent.com/bitnami/charts/b661ad0e6e3277fc5b5b2db197cba47174693712/bitnami/
+      version: 9.2.7
+    description: Stardog is the world’s leading knowledge graph platform for the enterprise.
+      Stardog makes it fast and easy to turn enterprise data into knowledge.
+    digest: aacdd426328b1c4a23c9d8553c74255cf4db65cd353e547f063f83ec9149ec32
+    home: https://www.stardog.com/
+    icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
+    maintainers:
+    - email: info@appuio.ch
+      name: APPUiO Team
+    name: stardog
+    urls:
+    - https://github.com/appuio/charts/releases/download/stardog-0.26.5/stardog-0.26.5.tgz
+    version: 0.26.5
+  - apiVersion: v1
     appVersion: 10.2.1
     created: "2024-11-12T18:39:54.82370325Z"
     dependencies:
@@ -5870,4 +5890,4 @@ entries:
     urls:
     - https://charts.appuio.ch/trifid-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-12T18:39:54.824913918Z"
+generated: "2025-02-04T16:54:48.730240607Z"
