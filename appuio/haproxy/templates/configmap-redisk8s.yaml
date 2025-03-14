@@ -39,7 +39,7 @@ data:
 
       {{- if $redisk8s.check.enabled }}
       option tcp-check
-      tcp-check connect
+      tcp-check connect {{ if $redisk8s.tls }} ssl {{ end }}
 
       {{- if or ($redisk8s.check.redis.auth) ( .Values.haproxy.check.existingSecret) }}
       tcp-check send AUTH\ "${CHECK_AUTH_CREDENTIALS}"\r\n
@@ -56,5 +56,5 @@ data:
       tcp-check expect string +OK
       {{- end }}
 
-      server-template redis- {{ $redisk8s.nodeCount }} {{ $redisk8s.dnsservicename }}:{{ default "6379" $redisk8s.port }} {{ if $redisk8s.check.enabled }}check inter 1s on-marked-down shutdown-sessions {{ end }}resolvers mydns init-addr none
+      server-template redis- {{ $redisk8s.nodeCount }} {{ $redisk8s.dnsservicename }}:{{ default "6379" $redisk8s.port }} {{ if $redisk8s.check.enabled }}check inter 1s on-marked-down shutdown-sessions {{ end }}resolvers mydns init-addr none {{ if $redisk8s.tls }} verify none {{ end }}
 {{- end }}

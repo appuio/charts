@@ -91,6 +91,7 @@ haproxy:
       exposeLoadbalancer: true
 
   redisk8s:
+    tls: false
     timeout:
       connect: 5s
       client: 60s
