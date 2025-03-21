@@ -1,4 +1,4 @@
-from haproxytech/haproxy-debian:2.8.3
+from haproxytech/haproxy-debian:2.9.15
 
 RUN curl -o mysql.deb https://dev.mysql.com/get/mysql-apt-config_0.8.26-1_all.deb || exit 1 \
     dpkg -i mysql.deb || exit 1 ; \
