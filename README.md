@@ -19,7 +19,7 @@ helm repo add appuio https://charts.appuio.ch
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/data-cube-curation-0.3.1/total)](https://github.com/appuio/charts/releases/tag/data-cube-curation-0.3.1) | [data-cube-curation](appuio/data-cube-curation/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/exoip-1.0.4/total)](https://github.com/appuio/charts/releases/tag/exoip-1.0.4) | [exoip](appuio/exoip/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/generic-0.1.2/total)](https://github.com/appuio/charts/releases/tag/generic-0.1.2) | [generic](appuio/generic/README.md) |
-| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/haproxy-2.6.0/total)](https://github.com/appuio/charts/releases/tag/haproxy-2.6.0) | [haproxy](appuio/haproxy/README.md) |
+| [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/haproxy-2.6.1/total)](https://github.com/appuio/charts/releases/tag/haproxy-2.6.1) | [haproxy](appuio/haproxy/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/mariadb-galera-1.2.6/total)](https://github.com/appuio/charts/releases/tag/mariadb-galera-1.2.6) | [mariadb-galera](appuio/mariadb-galera/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/maxscale-2.0.1/total)](https://github.com/appuio/charts/releases/tag/maxscale-2.0.1) | [maxscale](appuio/maxscale/README.md) |
 | [![chart downloads](https://img.shields.io/github/downloads/appuio/charts/metrics-server-2.12.1/total)](https://github.com/appuio/charts/releases/tag/metrics-server-2.12.1) | [metrics-server](appuio/metrics-server/README.md) |
