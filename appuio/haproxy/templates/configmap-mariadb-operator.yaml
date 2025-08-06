@@ -1,0 +1,50 @@
+{{- if eq .Values.haproxy.config "mariadb-operator"}}
+{{- $galera := .Values.haproxy.mariadbOperator -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "haproxy.fullname" . }}-galera"
+  labels:
+    app.kubernetes.io/name: {{ include "haproxy.name" . }}
+    helm.sh/chart: {{ include "haproxy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  haproxy.cfg: |
+    global
+      external-check # required for mysql-check
+      insecure-fork-wanted # required for mysql-check
+      log stdout format raw local0
+    {{- include "haproxy.resolversConfig" . | nindent 4 }}
+
+    defaults
+      log global
+
+      option dontlognull
+      timeout connect {{ $galera.timeout.connect }}
+      timeout client {{ $galera.timeout.client }}
+      timeout server {{ $galera.timeout.client }}
+
+    {{- include "haproxy.metricsConfig" . | nindent 4 }}
+
+    frontend galera-in
+      bind *:{{ .Values.haproxy.frontendPort }}
+      mode tcp
+      option tcplog
+      option clitcpka
+      default_backend galera-nodes
+
+    {{- include "haproxy.mariadbOperatorMetricsConfig" . | nindent 4 }}
+    
+    backend galera-nodes
+      mode tcp
+      option srvtcpka
+      option external-check
+      external-check command /var/lib/haproxy/script.sh
+      balance {{ $galera.balance }}
+      {{ if and $galera.check.enabled $galera.check.mysql.enabled }}option mysql-check user {{ $galera.check.mysql.user }}{{ end }}
+      default-server init-addr none {{ if $galera.check.enabled }}check {{ end }}resolvers mydns
+      {{- range $index, $node := .Values.haproxy.galera.nodes }}
+      server node-{{ $index }} {{ $node.address }}:{{ default "3306" $node.port }}{{ if $node.backup }} backup{{ end }}
+      {{- end }}
+{{- end }}

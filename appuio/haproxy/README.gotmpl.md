@@ -117,6 +117,24 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
 | `haproxy.galerak8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Galera backends should be exposed in the haproxy service | `true`
 
+### mariadbOperator
+
+Set `haproxy.config` to `mariadbOperator` to use the mariadb-operator configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.mariadbOperator.balance` | What balance mode HAProxy should use | `first`
+| `haproxy.mariadbOperator.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | `5s`
+| `haproxy.mariadbOperator.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or send data | `10800s`
+| `haproxy.mariadbOperator.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or send data | `10800s`
+| `haproxy.mariadbOperator.check.enabled` | If check should be enabled | `true`
+| `haproxy.mariadbOperator.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | `true`
+| `haproxy.mariadbOperator.check.mysql.user` | The database user to use for mysql-check | `haproxy`
+| `haproxy.mariadbOperator.dnsservicename` | The DNS Record for service discovery | `mycluster-mariadb-galera-headless`
+| `haproxy.mariadbOperator.nodeCount` | Max number of nodes in the backend | `3`
+| `haproxy.mariadbOperator.port` | Port of the Galera node | `3306`
+| `haproxy.mariadbOperator.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
+
 ### redisk8s
 
 Set `haproxy.config` to `redisk8s` to use the Redis configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/

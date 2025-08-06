@@ -161,6 +161,45 @@ backend filterproxy
 {{- end -}}
 
 {{/*
+HAProxy config for mariadb-operator metrics
+*/}}
+{{- define "haproxy.mariadbOperatorMetricsConfig" -}}
+{{- if .Values.haproxy.mariadbOperator.metrics.enabled }}
+frontend galeraMetrics
+  mode http
+  bind *:9090
+  option httplog
+  
+  {{- range $i, $node := .Values.haproxy.galera.nodes }}
+  use_backend galera-node-metrics-{{$i}} if { path_beg /mariadb/{{$i}} }
+  {{- end }}
+  {{- if .Values.haproxy.filterproxy.enabled }}
+  use_backend filterproxy
+  {{- end }}
+
+{{- $namespace := .Release.Namespace -}}
+backend galera-node-metrics
+  mode http
+  http-request set-path /metrics
+  
+{{ range $i, $e := .Values.haproxy.galera.nodes }}
+backend galera-node-metrics-{{$i}}
+  mode http
+  http-request set-path /probe?target={{ $e.address }}:{{ default "3306" $e.port }}
+  server metrics mariadb-metrics.{{ $namespace }}.svc.cluster.local:9104 init-addr none check resolvers mydns
+{{- end }}
+
+
+{{- if .Values.haproxy.filterproxy.enabled }}
+backend filterproxy
+  mode http
+  http-request set-query namespace={{ $namespace }}
+  server filter {{ .Values.haproxy.filterproxy.url }}
+{{- end }}
+{{- end }}
+{{- end -}}
+
+{{/*
 HAProxy config for redis metrics
 */}}
 {{- define "haproxy.redisMetricsConfig" -}}
