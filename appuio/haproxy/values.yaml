@@ -90,6 +90,23 @@ haproxy:
       enabled: false
       exposeLoadbalancer: true
 
+  mariadbOperator:
+    balance: first # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#4-balance
+    timeout:
+      connect: 5s
+      client: 10800s
+      server: 10800s
+    check:
+      enabled: true
+      mysql:
+        enabled: true # see http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20mysql-check
+        user: haproxy
+    dnsservicename: mycluster-mariadb-galera-headless
+    port: 3306
+    nodeCount: 3
+    metrics:
+      enabled: false
+
   redisk8s:
     tls: false
     timeout:

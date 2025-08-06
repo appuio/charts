@@ -1,6 +1,6 @@
 # haproxy
 
-![Version: 2.6.0](https://img.shields.io/badge/Version-2.6.0-informational?style=flat-square) ![AppVersion: 2.7.3](https://img.shields.io/badge/AppVersion-2.7.3-informational?style=flat-square)
+![Version: 2.7.0](https://img.shields.io/badge/Version-2.7.0-informational?style=flat-square) ![AppVersion: 2.7.3](https://img.shields.io/badge/AppVersion-2.7.3-informational?style=flat-square)
 
 A Helm chart for HAProxy which can be customized by a config map.
 
@@ -126,6 +126,24 @@ Set `haproxy.config` to `galerak8s` to use the Galera configuration with DNS ser
 | `haproxy.galerak8s.port` | Port of the Galera node | `3306`
 | `haproxy.galerak8s.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
 | `haproxy.galerak8s.metrics.exposeLoadbalancer`| If the metric endpoint of the Galera backends should be exposed in the haproxy service | `true`
+
+### mariadbOperator
+
+Set `haproxy.config` to `mariadbOperator` to use the mariadb-operator configuration with DNS service discovery. See https://www.haproxy.com/de/blog/dns-service-discovery-haproxy/
+
+| Parameter              | Description            | Default
+|---                     | ---                    | ---
+| `haproxy.mariadbOperator.balance` | What balance mode HAProxy should use | `first`
+| `haproxy.mariadbOperator.timeout.connect` | Set the maximum time to wait for a connection attempt to a server to succeed. | `5s`
+| `haproxy.mariadbOperator.timeout.client` | The inactivity timeout applies when the client is expected to acknowledge or send data | `10800s`
+| `haproxy.mariadbOperator.timeout.server` | The inactivity timeout applies when the server is expected to acknowledge or send data | `10800s`
+| `haproxy.mariadbOperator.check.enabled` | If check should be enabled | `true`
+| `haproxy.mariadbOperator.check.mysql.enabled` | If mysql-check should be enabled (requires check.enabled) | `true`
+| `haproxy.mariadbOperator.check.mysql.user` | The database user to use for mysql-check | `haproxy`
+| `haproxy.mariadbOperator.dnsservicename` | The DNS Record for service discovery | `mycluster-mariadb-galera-headless`
+| `haproxy.mariadbOperator.nodeCount` | Max number of nodes in the backend | `3`
+| `haproxy.mariadbOperator.port` | Port of the Galera node | `3306`
+| `haproxy.mariadbOperator.metrics.enabled`| If the metric endpoint of the Galera backends should be exposed in haproxy | `false`
 
 ### redisk8s
 
