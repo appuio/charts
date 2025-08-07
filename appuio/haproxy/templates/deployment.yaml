@@ -40,7 +40,7 @@ spec:
             - name: metrics
               containerPort: 9000
             {{- end }}
-            {{- if or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled}}
+            {{- if or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled .Values.haproxy.mariadbOperator.metrics.enabled}}
             - name: metrics-backend
               containerPort: 9090
             {{- end }}
@@ -71,7 +71,7 @@ spec:
           volumeMounts:
             - name: haproxy-config
               mountPath: /etc/haproxy/
-            {{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") }}
+            {{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") (eq .Values.haproxy.config "mariadb-operator") }}
             - mountPath: /var/lib/haproxy
               name: haproxy-script
             - mountPath: /secrets
@@ -84,7 +84,7 @@ spec:
         - name: haproxy-config
           configMap:
             name: "{{ include "haproxy.fullname" . }}-{{ .Values.haproxy.config }}"
-       {{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") }}
+       {{- if or (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "galerak8s") (eq .Values.haproxy.config "mariadb-operator") }}
         - name: haproxy-script
           configMap:
             # it's 0555 read+execute permissions
