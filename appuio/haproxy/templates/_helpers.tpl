@@ -37,7 +37,7 @@ Create backendName depending on the selected configuration
 {{- define "haproxy.backendName" -}}
 {{- if eq .Values.haproxy.config "redisk8s" -}}
 redis-nodes
-{{- else if or (eq .Values.haproxy.config "galerak8s") (eq .Values.haproxy.config "galera") -}}
+{{- else if or (eq .Values.haproxy.config "galerak8s") (eq .Values.haproxy.config "galera") (eq .Values.haproxy.config "mariadb-operator") -}}
 galera-nodes
 {{- else -}}
 backend
@@ -178,10 +178,6 @@ frontend galeraMetrics
   {{- end }}
 
 {{- $namespace := .Release.Namespace -}}
-backend galera-node-metrics
-  mode http
-  http-request set-path /metrics
-  
 {{ range $i, $e := .Values.haproxy.galera.nodes }}
 backend galera-node-metrics-{{$i}}
   mode http

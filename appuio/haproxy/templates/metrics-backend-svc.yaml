@@ -1,4 +1,4 @@
-{{- if (or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled)  }}
+{{- if (or .Values.haproxy.redisk8s.metrics.enabled .Values.haproxy.galerak8s.metrics.enabled .Values.haproxy.galera.metrics.enabled .Values.haproxy.mariadbOperator.metrics.enabled)  }}
 apiVersion: v1
 kind: Service
 metadata:
