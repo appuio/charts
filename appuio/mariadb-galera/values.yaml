@@ -633,7 +633,7 @@ metrics:
     # -- MariaDB Prometheus exporter image repository
     repository: bitnami/mysqld-exporter
     # -- MariaDB Prometheus exporter image tag (immutable tags are recommended)
-    tag: 0.13.0-debian-10-r75
+    tag: 0.17.2-debian-12-r16
     # -- MariaDB Prometheus exporter image pull policy
     pullPolicy: IfNotPresent
     # -- MariaDB Prometheus exporter image pull secrets.
