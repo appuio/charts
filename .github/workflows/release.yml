@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   gh-pages:
@@ -24,6 +25,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         with:
           charts_dir: appuio
-          charts_repo_url: ${{ vars.CHART_REPO || https://charts.appuio.ch }}
+          charts_repo_url: ${{ vars.CHART_REPO || 'https://charts.appuio.ch' }}
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
