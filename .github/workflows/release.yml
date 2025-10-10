@@ -24,6 +24,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.3.0
         with:
           charts_dir: appuio
-          charts_repo_url: https://charts.appuio.ch
+          charts_repo_url: ${{ vars.CHART_REPO || https://charts.appuio.ch }}
         env:
-          CR_TOKEN: "${{ secrets.RELEASE_PAT }}"
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
