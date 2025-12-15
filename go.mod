@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/gruntwork-io/terratest v0.40.7
 	github.com/norwoodj/helm-docs v1.9.1
-	github.com/stretchr/testify v1.7.2
+	github.com/stretchr/testify v1.11.1
 	k8s.io/api v0.20.6
 )
 
