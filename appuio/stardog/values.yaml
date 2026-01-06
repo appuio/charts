@@ -100,7 +100,15 @@ metrics:
     pullPolicy: IfNotPresent
 
 alerts:
+  stardogOpenConnections:
+    for:
+  stardogLicenseExpire:
+    for:
+  stardogPodsNotReady:
+    for:
   httpCheck:
+    for:
+  certExpirySoon:
     for:
 resources: {}
 
