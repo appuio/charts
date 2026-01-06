@@ -102,14 +102,19 @@ metrics:
 alerts:
   stardogOpenConnections:
     for:
+    keep_firing_for:
   stardogLicenseExpire:
     for:
+    keep_firing_for:
   stardogPodsNotReady:
     for:
+    keep_firing_for:
   httpCheck:
     for:
+    keep_firing_for:
   certExpirySoon:
     for:
+    keep_firing_for:
 resources: {}
 
 nodeSelector: {}
