@@ -21,8 +21,8 @@ spec:
       for: {{ default "1m" .for | quote }}
       {{- if .keep_firing_for }}
       keep_firing_for: {{ .keep_firing_for | quote }}
-      {{ end -}}
-      {{ end -}}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: Too many open connections
         description: Open connections for DB {{ "{{" }} $labels.database {{ "}}" }} on instance {{ "{{" }} $labels.pod {{ "}}" }} exeeded 32 ({{ "{{" }} $value {{ "}}" }}).
@@ -36,8 +36,8 @@ spec:
       for: {{ default "10m" .for | quote }}
       {{- if .keep_firing_for }}
       keep_firing_for: {{ .keep_firing_for | quote }}
-      {{ end -}}
-      {{ end -}}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: Stardog license about to expire
         description: The Stardog license will expire in {{ "{{" }} $value {{ "}}" }} days.
@@ -51,8 +51,8 @@ spec:
       for: {{ default "10m" .for | quote }}
       {{- if .keep_firing_for }}
       keep_firing_for: {{ .keep_firing_for | quote }}
-      {{ end -}}
-      {{ end -}}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: Pods of Stardog StatefulSet not ready
         description: Only {{ "{{" }} $value {{ "}}" }} of {{ .Values.replicaCount }} Stardog pods are ready in namespace {{ "{{" }} $labels.namespace {{ "}}" }}.
@@ -67,8 +67,8 @@ spec:
       for: {{ default "1m" .for | quote }}
       {{- if .keep_firing_for }}
       keep_firing_for: {{ .keep_firing_for | quote }}
-      {{ end -}}
-      {{ end -}}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: Http check failed
         description: "Http check failed on {{ "{{" }} $labels.instance {{ "}}" }}"
@@ -82,8 +82,8 @@ spec:
       for: {{ default "10m" .for | quote }}
       {{- if .keep_firing_for }}
       keep_firing_for: {{ .keep_firing_for | quote }}
-      {{ end -}}
-      {{ end -}}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: SSL ertificate expires in less than 30 days
         description: "SSL certificate on {{ "{{" }} $labels.instance {{ "}}" }} expires is in less than 30 days"
