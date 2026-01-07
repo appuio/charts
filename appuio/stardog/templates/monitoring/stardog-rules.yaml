@@ -17,7 +17,12 @@ spec:
     rules:
     - alert: StardogOpenConnections
       expr: databases_openConnections{ {{ $ns_selector }} } > 32
-      for: 1m
+      {{- with .Values.alerts.stardogOpenConnections }}
+      for: {{ default "1m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{ end -}}
+      {{ end -}}
       annotations:
         summary: Too many open connections
         description: Open connections for DB {{ "{{" }} $labels.database {{ "}}" }} on instance {{ "{{" }} $labels.pod {{ "}}" }} exeeded 32 ({{ "{{" }} $value {{ "}}" }}).
@@ -27,7 +32,12 @@ spec:
         severity: critical
     - alert: StardogLicenseExpire
       expr: min(dbms_license_expiration{ {{ $ns_selector }} }) without (instance, pod) < 42
-      for: 10m
+      {{- with .Values.alerts.stardogLicenseExpire }}
+      for: {{ default "10m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{ end -}}
+      {{ end -}}
       annotations:
         summary: Stardog license about to expire
         description: The Stardog license will expire in {{ "{{" }} $value {{ "}}" }} days.
@@ -37,7 +47,12 @@ spec:
         severity: "{{ "{{ if lt $value 21.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
     - alert: StardogPodsNotReady
       expr: kube_statefulset_status_replicas_ready{ {{ $ns_selector }}, statefulset="{{ include "stardog.fullname" . }}" } != {{ .Values.replicaCount }}
-      for: 10m
+      {{- with .Values.alerts.stardogPodsNotReady }}
+      for: {{ default "10m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{ end -}}
+      {{ end -}}
       annotations:
         summary: Pods of Stardog StatefulSet not ready
         description: Only {{ "{{" }} $value {{ "}}" }} of {{ .Values.replicaCount }} Stardog pods are ready in namespace {{ "{{" }} $labels.namespace {{ "}}" }}.
@@ -48,7 +63,12 @@ spec:
     {{- if .Values.ingress.enabled }}
     - alert: HttpCheck
       expr: probe_success{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} != 1
-      for: {{ default "1m" (((.Values.alerts).httpCheck).for) | quote }}
+      {{- with .Values.alerts.httpCheck }}
+      for: {{ default "1m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{ end -}}
+      {{ end -}}
       annotations:
         summary: Http check failed
         description: "Http check failed on {{ "{{" }} $labels.instance {{ "}}" }}"
@@ -58,7 +78,12 @@ spec:
         oncall: "{{ "{{ if eq $labels.env \\\"prod\\\" }}" }}true{{ "{{ else }}" }}false{{" {{ end }} "}}"
     - alert: CertExpirySoon
       expr: probe_ssl_earliest_cert_expiry{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} - time() < 86400 * 30
-      for: 10m
+      {{- with .Values.alerts.certExpirySoon }}
+      for: {{ default "10m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{ end -}}
+      {{ end -}}
       annotations:
         summary: SSL ertificate expires in less than 30 days
         description: "SSL certificate on {{ "{{" }} $labels.instance {{ "}}" }} expires is in less than 30 days"
