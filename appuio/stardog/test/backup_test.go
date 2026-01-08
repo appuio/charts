@@ -3,10 +3,9 @@ package test
 import (
 	"testing"
 
-	batchv2alpha1 "k8s.io/api/batch/v2alpha1"
-
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/assert"
+	batchv1 "k8s.io/api/batch/v1"
 )
 
 var (
@@ -31,7 +30,7 @@ func Test_Backup_CronJob_Should_Exist(t *testing.T) {
 
 	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplCronJob)
 
-	cronJob := batchv2alpha1.CronJob{}
+	cronJob := batchv1.CronJob{}
 	helm.UnmarshalK8SYaml(t, output, &cronJob)
 
 	assert.Equal(t, schedule, cronJob.Spec.Schedule)
@@ -49,7 +48,7 @@ func Test_Backup_CronJob_S3_Endpoint(t *testing.T) {
 
 	output := helm.RenderTemplate(t, options, helmChartPath, releaseName, tplCronJob)
 
-	cronJob := batchv2alpha1.CronJob{}
+	cronJob := batchv1.CronJob{}
 	helm.UnmarshalK8SYaml(t, output, &cronJob)
 
 	assert.Equal(t, s3Endpoint, cronJob.Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env[3].Value)
