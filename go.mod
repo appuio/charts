@@ -1,6 +1,6 @@
 module github.com/appuio/charts
 
-go 1.18
+go 1.25.5
 
 require (
 	github.com/gruntwork-io/terratest v0.40.7
