@@ -17,7 +17,12 @@ spec:
     rules:
     - alert: ZooKeeperPodsNotReady
       expr: kube_statefulset_status_replicas_ready{ {{ $ns_selector }}, statefulset="{{ include "stardog.zookeeper.fullname" . }}" } != {{ .Values.zookeeper.replicaCount }}
-      for: 10m
+      {{- with .Values.alerts.zooKeeperPodsNotReady }}
+      for: {{ default "10m" .for | quote }}
+      {{- if .keep_firing_for }}
+      keep_firing_for: {{ .keep_firing_for | quote }}
+      {{- end }}
+      {{- end }}
       annotations:
         summary: Pods of ZooKeeper StatefulSet not ready
         description: Only {{ "{{" }} $value {{ "}}" }} of {{ .Values.zookeeper.replicaCount }} ZooKeeper pods are ready in namespace {{ "{{" }} $labels.namespace {{ "}}" }}.
@@ -25,4 +30,7 @@ spec:
         env: {{ .Release.Name }}
         app: zookeeper
         severity: "{{ "{{ if lt $value 2.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
+        {{- range $key,$value := .Values.alerts.zooKeeperPodsNotReady.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
 {{- end }}

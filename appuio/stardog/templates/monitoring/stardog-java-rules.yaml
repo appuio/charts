@@ -17,7 +17,12 @@ spec:
     rules:
       - alert: JavaLowHeapMemory
         expr: dbms_memory_heap_max{ {{ $ns_selector }} } - dbms_memory_heap_used{ {{ $ns_selector }} } < 128 * 1024 * 1024
-        for: 1m
+        {{- with .Values.alerts.javaLowHeapMemory }}
+        for: {{ default "1m" .for | quote }}
+        {{- if .keep_firing_for }}
+        keep_firing_for: {{ .keep_firing_for | quote }}
+        {{- end }}
+        {{- end }}
         annotations:
           summary: Java Low Heap Memory
           description: Less than 128M of heap memory is available ({{ "{{" }} $value {{ "}}" }}).
@@ -25,4 +30,7 @@ spec:
           env: {{ .Release.Name }}
           app: stardog
           severity: warning
+          {{- range $key,$value := .Values.alerts.javaLowHeapMemory.additionalLabels }}
+          {{ $key }}: {{ $value | quote }}
+          {{- end }}
 {{- end }}
