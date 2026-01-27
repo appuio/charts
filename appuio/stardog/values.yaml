@@ -100,21 +100,34 @@ metrics:
     pullPolicy: IfNotPresent
 
 alerts:
+  javaLowHeapMemory:
+    for:
+    keep_firing_for:
+    additionalLabels: {}
   stardogOpenConnections:
     for:
     keep_firing_for:
+    additionalLabels: {}
   stardogLicenseExpire:
     for:
     keep_firing_for:
+    additionalLabels: {}
   stardogPodsNotReady:
     for:
     keep_firing_for:
+    additionalLabels: {}
   httpCheck:
     for:
     keep_firing_for:
+    additionalLabels: {}
   certExpirySoon:
     for:
     keep_firing_for:
+    additionalLabels: {}
+  zooKeeperPodsNotReady:
+    for:
+    keep_firing_for:
+    additionalLabels: {}
 resources: {}
 
 nodeSelector: {}

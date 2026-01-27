@@ -30,6 +30,9 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: critical
+        {{- range $key,$value := .Values.alerts.stardogOpenConnections.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     - alert: StardogLicenseExpire
       expr: min(dbms_license_expiration{ {{ $ns_selector }} }) without (instance, pod) < 42
       {{- with .Values.alerts.stardogLicenseExpire }}
@@ -45,6 +48,9 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: "{{ "{{ if lt $value 21.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
+        {{- range $key,$value := .Values.alerts.stardogLicenseExpire.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     - alert: StardogPodsNotReady
       expr: kube_statefulset_status_replicas_ready{ {{ $ns_selector }}, statefulset="{{ include "stardog.fullname" . }}" } != {{ .Values.replicaCount }}
       {{- with .Values.alerts.stardogPodsNotReady }}
@@ -60,6 +66,9 @@ spec:
         env: {{ .Release.Name }}
         app: stardog
         severity: "{{ "{{ if lt $value 2.0 }}" }}critical{{ "{{ else }}" }}warning{{ "{{ end }}" }}"
+        {{- range $key,$value := .Values.alerts.stardogPodsNotReady.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     {{- if .Values.ingress.enabled }}
     - alert: HttpCheck
       expr: probe_success{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} != 1
@@ -76,6 +85,9 @@ spec:
         env: {{ .Release.Name }}
         severity: critical
         oncall: "{{ "{{ if eq $labels.env \\\"prod\\\" }}" }}true{{ "{{ else }}" }}false{{" {{ end }} "}}"
+        {{- range $key,$value := .Values.alerts.httpCheck.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     - alert: CertExpirySoon
       expr: probe_ssl_earliest_cert_expiry{instance="https://{{ .Values.ingress.host }}/admin/healthcheck"} - time() < 86400 * 30
       {{- with .Values.alerts.certExpirySoon }}
@@ -90,5 +102,8 @@ spec:
       labels:
         env: {{ .Release.Name }}
         severity: warning
+        {{- range $key,$value := .Values.alerts.certExpirySoon.additionalLabels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     {{- end }}
 {{- end }}
