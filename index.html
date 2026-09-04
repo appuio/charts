@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+  Hand-maintained on gh-pages, not generated. Do not delete as stale build output.
+
+  This branch is written by helm/chart-releaser-action, which adds packages and
+  updates index.yaml but never cleans the branch, so this file survives releases.
+  CNAME and README.md have survived on the same terms.
+
+  It exists because a Helm repository's only contract is index.yaml. Nothing
+  requests "/", so "/" said nothing about whether the repository worked, and an
+  external audit read this host by that answer alone: it 404s at "/" while
+  serving 491 chart versions at index.yaml.
+
+  Deliberately not a redirect: sending a person to raw YAML tells them less than
+  the command they actually need.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APPUiO Helm chart repository</title>
+<meta name="description" content="Helm chart repository for APPUiO. Add it with helm repo add appuio https://charts.appuio.ch">
+<style>
+  :root { color-scheme: light dark; --fg: #16191d; --bg: #fff; --muted: #5b6470; --line: #e3e6ea; --code-bg: #f4f6f8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e6e9ed; --bg: #14171a; --muted: #9aa4b0; --line: #2b3138; --code-bg: #1d2126; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 4rem 1.25rem; background: var(--bg); color: var(--fg);
+         font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         display: flex; justify-content: center; }
+  main { max-width: 42rem; width: 100%; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 .5rem; letter-spacing: -.01em; }
+  .lede { color: var(--muted); margin: 0 0 2rem; }
+  h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em;
+       color: var(--muted); margin: 2rem 0 .6rem; font-weight: 600; }
+  pre { margin: 0; padding: 1rem 1.1rem; background: var(--code-bg);
+        border: 1px solid var(--line); border-radius: 8px; overflow-x: auto; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .875rem; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0; padding-left: 1.1rem; }
+  li { margin-bottom: .4rem; }
+  a { color: inherit; text-decoration-color: var(--muted); text-underline-offset: 2px; }
+  a:hover { text-decoration-color: currentColor; }
+  footer { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>APPUiO Helm chart repository</h1>
+  <p class="lede">Helm charts for APPUiO, the Swiss container platform.</p>
+
+  <h2>Add the repository</h2>
+  <pre><code>helm repo add appuio https://charts.appuio.ch
+helm repo update
+helm search repo appuio</code></pre>
+
+  <h2>Then install a chart</h2>
+  <pre><code>helm install my-release appuio/&lt;chart&gt; --values values.yaml</code></pre>
+
+  <h2>More information</h2>
+  <ul>
+    <li><a href="https://github.com/appuio/charts">github.com/appuio/charts</a>
+        &mdash; chart sources, values reference and issues</li>
+    <li><a href="index.yaml">index.yaml</a>
+        &mdash; the repository index, which is what Helm reads</li>
+    <li><a href="https://docs.appuio.cloud/">docs.appuio.cloud</a>
+        &mdash; APPUiO Cloud documentation</li>
+  </ul>
+
+  <footer>
+    Published from the <code>gh-pages</code> branch by
+    <a href="https://github.com/helm/chart-releaser-action">chart-releaser</a>.
+  </footer>
+</main>
+</body>
+</html>
